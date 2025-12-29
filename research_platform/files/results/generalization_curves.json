@@ -1,0 +1,173 @@
+{
+  "RL_GNN": {
+    "distances": [3, 5, 7, 11, 15],
+    "error_rates": [0.045, 0.175, 0.265, 0.405, 0.515],
+    "error_stds": [0.025, 0.015, 0.005, 0.005, 0.045],
+    "error_medians": [0.045, 0.175, 0.265, 0.405, 0.515],
+    "fit_model": "exponential_L(d)=A*exp(-alpha*d)",
+    "fit_status": "FAILED - error rates INCREASE with distance (wrong direction)",
+    "fit_A": null,
+    "fit_alpha": null,
+    "fit_note": "Cannot fit exponential decay when error rates increase. System is NOT in error correction regime - operating above threshold.",
+    "suppression_factors": [
+      {
+        "d": 3,
+        "d_next": 5,
+        "lambda": 0.257,
+        "L_d": 0.045,
+        "L_d_next": 0.175,
+        "interpretation": "Lambda < 1 means error INCREASES (wrong direction)"
+      },
+      {
+        "d": 5,
+        "d_next": 7,
+        "lambda": 0.660,
+        "L_d": 0.175,
+        "L_d_next": 0.265,
+        "interpretation": "Still increasing errors"
+      },
+      {
+        "d": 7,
+        "d_next": 11,
+        "lambda": 0.654,
+        "L_d": 0.265,
+        "L_d_next": 0.405,
+        "interpretation": "Continued degradation"
+      },
+      {
+        "d": 11,
+        "d_next": 15,
+        "lambda": 0.786,
+        "L_d": 0.405,
+        "L_d_next": 0.515,
+        "interpretation": "Catastrophic failure at d=15"
+      }
+    ],
+    "extrapolation_d21": {
+      "status": "INVALID",
+      "note": "Cannot extrapolate when error rates diverge. If trend continues, L(d=21) would exceed 60% (random guessing)"
+    },
+    "conclusion": "RL_GNN does NOT exhibit quantum error suppression. Performance degrades with distance, opposite of required behavior."
+  },
+  "MWPM": {
+    "distances": [3, 5, 7, 11, 15],
+    "error_rates": [0.1085, 0.3165, 0.380, 0.4875, 0.4815],
+    "error_stds": [0.0043, 0.0185, 0.005, 0.0095, 0.0155],
+    "error_medians": [0.1085, 0.3165, 0.380, 0.4875, 0.4815],
+    "fit_model": "exponential_L(d)=A*exp(-alpha*d)",
+    "fit_status": "FAILED - error rates INCREASE then plateau",
+    "fit_A": null,
+    "fit_alpha": null,
+    "fit_note": "MWPM also fails to achieve error suppression. System operating at/above error threshold p_th.",
+    "suppression_factors": [
+      {
+        "d": 3,
+        "d_next": 5,
+        "lambda": 0.343,
+        "L_d": 0.1085,
+        "L_d_next": 0.3165,
+        "interpretation": "Massive error increase - WRONG direction"
+      },
+      {
+        "d": 5,
+        "d_next": 7,
+        "lambda": 0.833,
+        "L_d": 0.3165,
+        "L_d_next": 0.380,
+        "interpretation": "Still increasing but slower"
+      },
+      {
+        "d": 7,
+        "d_next": 11,
+        "lambda": 0.779,
+        "L_d": 0.380,
+        "L_d_next": 0.4875,
+        "interpretation": "Degrading"
+      },
+      {
+        "d": 11,
+        "d_next": 15,
+        "lambda": 1.012,
+        "L_d": 0.4875,
+        "L_d_next": 0.4815,
+        "interpretation": "Plateau near 48% (threshold behavior)"
+      }
+    ],
+    "extrapolation_d21": {
+      "status": "INVALID",
+      "estimated_L": 0.48,
+      "note": "MWPM appears to plateau around 48-50%, suggesting system at threshold"
+    },
+    "conclusion": "MWPM also fails to suppress errors. Both decoders operating above effective threshold."
+  },
+  "comparison": {
+    "alpha_RL": null,
+    "alpha_MWPM": null,
+    "better_suppression": "NEITHER - both fail",
+    "interpretation": "Critical finding: System is NOT in quantum error correction regime. Physical error rate p=0.005 appears to be above the effective threshold for both classical (MWPM) and RL-based decoders. True QEC requires exponential suppression (Lambda > 1), but observed Lambda < 1 at most distances, indicating error amplification rather than correction.",
+    "threshold_estimate": {
+      "expected_threshold_phenomenological": 0.0103,
+      "experimental_physical_error_rate": 0.005,
+      "should_work": true,
+      "observed_behavior": "ABOVE THRESHOLD",
+      "possible_explanations": [
+        "Implementation error in MWPM decoder",
+        "Syndrome generation issues",
+        "Noise model mismatch between theory and simulation",
+        "Measurement errors not properly accounted for",
+        "Effective noise rate higher than nominal p=0.005"
+      ]
+    }
+  },
+  "generalization_hypothesis": {
+    "hypothesis": "RL trained on d=7 generalizes to d=15 with <15% degradation",
+    "test": "Compare L_RL(d=15) to L_RL(d=7)",
+    "L_d7": 0.265,
+    "L_d15": 0.515,
+    "absolute_increase": 0.250,
+    "relative_increase_percent": 94.3,
+    "threshold": 15.0,
+    "result": "FAILED",
+    "conclusion": "Generalization gap of 94% far exceeds 15% threshold. RL does not learn transferable QEC principles.",
+    "interpretation": "Model appears to overfit to specific distance rather than learning general syndrome-to-correction mapping."
+  },
+  "scaling_analysis": {
+    "observed_pattern": "error_amplification_with_distance",
+    "expected_pattern": "exponential_suppression",
+    "match": false,
+    "critical_failure": "System not performing quantum error correction",
+    "recommendation": [
+      "Verify MWPM implementation against PyMatching reference",
+      "Check syndrome generation with Stim simulator",
+      "Validate that physical error rate p=0.005 is correctly applied",
+      "Consider lower p (e.g., 0.001-0.003) to ensure below-threshold operation",
+      "Review measurement error model and gate fidelity assumptions"
+    ]
+  },
+  "visualization_data": {
+    "distance_vs_error": {
+      "x": [3, 5, 7, 11, 15],
+      "y_rl": [0.045, 0.175, 0.265, 0.405, 0.515],
+      "y_mwpm": [0.1085, 0.3165, 0.380, 0.4875, 0.4815],
+      "y_rl_lower": [0.020, 0.160, 0.260, 0.400, 0.470],
+      "y_rl_upper": [0.070, 0.190, 0.270, 0.410, 0.560],
+      "y_mwpm_lower": [0.1042, 0.2980, 0.375, 0.478, 0.466],
+      "y_mwpm_upper": [0.1128, 0.3350, 0.385, 0.497, 0.497],
+      "plot_title": "Logical Error Rate vs Code Distance",
+      "x_label": "Code Distance d",
+      "y_label": "Logical Error Rate L",
+      "legend": ["RL_GNN", "MWPM"],
+      "expected_behavior": "Exponentially decreasing curves",
+      "observed_behavior": "Increasing then plateauing - system above threshold"
+    },
+    "improvement_vs_distance": {
+      "x": [3, 5, 7, 11, 15],
+      "y_improvement": [57.5, 44.8, 30.3, 16.9, -6.7],
+      "y_threshold": [20, 20, 20, 20, 20],
+      "plot_title": "RL Improvement Over MWPM vs Distance",
+      "x_label": "Code Distance d",
+      "y_label": "Improvement (%)",
+      "interpretation": "Sharp degradation beyond d=7, failure at d=15"
+    }
+  }
+}

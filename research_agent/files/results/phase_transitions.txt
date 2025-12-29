@@ -1,0 +1,123 @@
+======================================================================
+PHASE TRANSITION ANALYSIS: CASCADE MULTIPLICATION FACTOR K_m
+LEO Debris Cascade Dynamics Simulation Results
+======================================================================
+
+INTERPRETATION OF K_m (CASCADE MULTIPLICATION FACTOR)
+----------------------------------------------------------------------
+K_m = (G * R_total) / (D_total + P_total)
+
+Where:
+  G = Average fragments per collision event
+  R_total = Total collision rate (collisions/year)
+  D_total = Natural decay rate (objects/year)
+  P_total = Active disposal rate (objects/year)
+
+Phase Classification:
+  K_m < 0.5  : Stable - debris naturally controlled
+  K_m 0.5-0.8: Warning - approaching criticality
+  K_m 0.8-1.0: Critical - near tipping point
+  K_m > 1.0  : Runaway - self-sustaining cascade
+
+======================================================================
+PHASE TRANSITION TIMES
+======================================================================
+
+Scenario        PMD      T(K_m>0.5)   T(K_m>0.8)   T(K_m>1.0)   Status         
+----------------------------------------------------------------------
+PMD_80          80%     1.4          1.4          3.2          RUNAWAY        
+PMD_90          90%     1.4          1.4          6.7          RUNAWAY        
+PMD_95          95%     1.4          1.4          3.2          RUNAWAY        
+PMD_99          99%     1.4          1.4          3.2          RUNAWAY        
+----------------------------------------------------------------------
+
+======================================================================
+DETAILED SUMMARY STATISTICS
+======================================================================
+
+PMD_80 (PMD = 80%):
+--------------------------------------------------
+  Initial debris count:   1.31e+08
+  Final debris count:     4.09e+09
+  Growth factor:          31.25x
+  Total collisions:       2053775
+  Average collision rate: 41074.87/year
+  Final K_m:              11.7889
+  Maximum K_m:            14.0773
+  Runaway detected at:    3.2 years
+  Catastrophic collisions: 105109
+  Non-catastrophic:        1948666
+
+PMD_90 (PMD = 90%):
+--------------------------------------------------
+  Initial debris count:   1.31e+08
+  Final debris count:     3.20e+09
+  Growth factor:          24.43x
+  Total collisions:       1527492
+  Average collision rate: 30525.33/year
+  Final K_m:              11.0662
+  Maximum K_m:            15.0098
+  Runaway detected at:    6.7 years
+  Catastrophic collisions: 66644
+  Non-catastrophic:        1460848
+
+PMD_95 (PMD = 95%):
+--------------------------------------------------
+  Initial debris count:   1.31e+08
+  Final debris count:     2.90e+09
+  Growth factor:          22.16x
+  Total collisions:       1332448
+  Average collision rate: 26648.63/year
+  Final K_m:              10.4649
+  Maximum K_m:            12.4382
+  Runaway detected at:    3.2 years
+  Catastrophic collisions: 55164
+  Non-catastrophic:        1277284
+
+PMD_99 (PMD = 99%):
+--------------------------------------------------
+  Initial debris count:   1.31e+08
+  Final debris count:     2.72e+09
+  Growth factor:          20.80x
+  Total collisions:       1220479
+  Average collision rate: 24401.07/year
+  Final K_m:              11.2474
+  Maximum K_m:            12.1358
+  Runaway detected at:    3.2 years
+  Catastrophic collisions: 48690
+  Non-catastrophic:        1171789
+
+======================================================================
+KEY FINDINGS
+======================================================================
+
+1. Runaway cascade detected in 4 scenario(s):
+   PMD_80, PMD_90, PMD_95, PMD_99
+   Earliest phase transition: 3.2 years
+
+3. PMD Compliance Impact:
+   PMD_80: 31.25x debris growth, max K_m = 14.0773
+   PMD_90: 24.43x debris growth, max K_m = 15.0098
+   PMD_95: 22.16x debris growth, max K_m = 12.4382
+   PMD_99: 20.80x debris growth, max K_m = 12.1358
+
+======================================================================
+SIMULATION PARAMETERS
+======================================================================
+Time horizon: 50 years
+Time step: 0.1 years (36.5 days)
+Altitude bands: 6 (400-600, 600-800, 800-1000, 1000-1200, 1200-1500, 1500+ km)
+Size bins: 4 (1mm-1cm, 1cm-10cm, 10cm-1m, >1m)
+Mean relative velocity: 10.0 km/s
+Catastrophic energy threshold: 40.0 J/g
+Random seed: 42
+
+Constellations modeled:
+  - Starlink: 12000 satellites at band 0, deploy 0.0-3.0 yr, lifetime 5.0 yr
+  - OneWeb: 6500 satellites at band 3, deploy 0.0-1.0 yr, lifetime 7.0 yr
+  - Kuiper: 3200 satellites at band 1, deploy 0.0-5.0 yr, lifetime 7.0 yr
+  - ChinaSatNet: 13000 satellites at band 2, deploy 1.0-11.0 yr, lifetime 5.0 yr
+
+======================================================================
+END OF PHASE TRANSITION ANALYSIS
+======================================================================

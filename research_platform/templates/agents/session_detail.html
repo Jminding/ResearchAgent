@@ -1,0 +1,363 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ session.title|default:session.session_id }} - Research Agent{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Dashboard</a></li>
+            <li class="breadcrumb-item active">{{ session.session_id }}</li>
+        </ol>
+    </nav>
+
+    <div class="d-flex justify-content-between align-items-start mb-4">
+        <div>
+            <h1>{{ session.title|default:session.session_id }}</h1>
+            <p class="text-muted mb-1"><small><strong>Session ID:</strong> {{ session.session_id }}</small></p>
+            {% if session.topic != session.title %}
+            <p class="text-muted">{{ session.topic }}</p>
+            {% endif %}
+        </div>
+        <div>
+            {% if session.status == 'completed' %}
+            <span class="badge bg-success fs-6">Completed</span>
+            {% elif session.status == 'running' %}
+            <span class="badge bg-primary fs-6">Running</span>
+            {% elif session.status == 'failed' %}
+            <span class="badge bg-danger fs-6">Failed</span>
+            {% elif session.status == 'revision' %}
+            <span class="badge bg-warning fs-6">Under Revision</span>
+            {% else %}
+            <span class="badge bg-secondary fs-6">Pending</span>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Live Progress (only for running sessions) -->
+    {% if session.status == 'running' %}
+    <div class="card mb-4 border-primary" id="progress-card">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">
+                <i class="bi bi-gear-fill spin"></i> Research in Progress
+            </h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <h6>Current Step</h6>
+                    <p class="lead" id="current-step">
+                        {% if current_step %}{{ current_step }}{% else %}Loading...{% endif %}
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    <h6>Active Agents</h6>
+                    <div id="active-agents">
+                        <span class="text-muted">Loading...</span>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <h6>Recent Activity</h6>
+            <div id="recent-activity" style="max-height: 300px; overflow-y: auto; overflow-x: hidden;">
+                <span class="text-muted">Loading...</span>
+            </div>
+            <small class="text-muted" id="last-updated">Last updated: --</small>
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="row">
+        <!-- Main Content -->
+        <div class="col-md-8">
+            <!-- Research Paper -->
+            {% if has_paper %}
+            <div class="card mb-3">
+                <div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0"><i class="bi bi-file-pdf"></i> Research Paper</h5>
+                    <a href="{% url 'download_paper' session.session_id %}"
+                       class="btn btn-sm btn-light">
+                        <i class="bi bi-download"></i> Download PDF
+                    </a>
+                </div>
+                <div class="card-body p-0">
+                    <iframe
+                        src="{% url 'view_paper' session.session_id %}"
+                        style="width: 100%; height: 800px; border: none;"
+                        title="{{ session.paper.title|default:'Research Paper' }}">
+                    </iframe>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">
+                        <strong>{{ session.paper.title|default:"Research Paper" }}</strong> |
+                        Size: {{ session.paper.file_size|filesizeformat }}
+                    </small>
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Generated Files -->
+            {% if generated_files %}
+            <div class="card mb-3">
+                <div class="card-header">
+                    <h5 class="mb-0"><i class="bi bi-files"></i> Generated Files</h5>
+                </div>
+                <div class="card-body">
+                    <div class="list-group">
+                        {% for file in generated_files %}
+                        <div class="list-group-item d-flex justify-content-between align-items-center">
+                            <div>
+                                <strong>{{ file.filename }}</strong>
+                                <br>
+                                <small class="text-muted">
+                                    {{ file.description }} | {{ file.file_size|filesizeformat }}
+                                </small>
+                            </div>
+                            <a href="{% url 'download_file' file.id %}" class="btn btn-sm btn-outline-primary">
+                                <i class="bi bi-download"></i>
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Peer Review Feedback -->
+            {% if feedbacks %}
+            <div class="card mb-3">
+                <div class="card-header">
+                    <h5 class="mb-0"><i class="bi bi-chat-dots"></i> Feedback History</h5>
+                </div>
+                <div class="card-body">
+                    {% for feedback in feedbacks %}
+                    <div class="card mb-2">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <h6>Feedback {{ forloop.counter }}</h6>
+                                {% if feedback.status == 'completed' %}
+                                <span class="badge bg-success">Completed</span>
+                                {% elif feedback.status == 'processing' %}
+                                <span class="badge bg-primary">Processing</span>
+                                {% elif feedback.status == 'failed' %}
+                                <span class="badge bg-danger">Failed</span>
+                                {% else %}
+                                <span class="badge bg-secondary">Pending</span>
+                                {% endif %}
+                            </div>
+                            <small class="text-muted">{{ feedback.submitted_at|date:"Y-m-d H:i" }}</small>
+                            <p class="mt-2 small">{{ feedback.feedback_text|truncatewords:50 }}</p>
+                            {% if feedback.revision_notes %}
+                            <div class="alert alert-info small">
+                                <strong>Response:</strong> {{ feedback.revision_notes }}
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Submit Feedback Button -->
+            {% if session.status == 'completed' or session.status == 'revision' %}
+            <div class="d-grid gap-2 mb-3">
+                <a href="{% url 'submit_feedback' session.session_id %}"
+                   class="btn btn-outline-primary btn-lg">
+                    <i class="bi bi-chat-right-text"></i> Submit Peer Review Feedback
+                </a>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Sidebar -->
+        <div class="col-md-4">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <h6 class="mb-0">Session Info</h6>
+                </div>
+                <div class="card-body">
+                    <p><strong>Mode:</strong> <span class="badge bg-info">{{ session.get_mode_display }}</span></p>
+                    <p><strong>Created:</strong><br>{{ session.created_at|date:"Y-m-d H:i:s" }}</p>
+                    {% if session.started_at %}
+                    <p><strong>Started:</strong><br>{{ session.started_at|date:"Y-m-d H:i:s" }}</p>
+                    {% endif %}
+                    {% if session.completed_at %}
+                    <p><strong>Completed:</strong><br>{{ session.completed_at|date:"Y-m-d H:i:s" }}</p>
+                    {% endif %}
+                    {% if session.duration_display %}
+                    <p><strong>Duration:</strong> {{ session.duration_display }}</p>
+                    {% endif %}
+                </div>
+            </div>
+
+            {% if session.error_message %}
+            <div class="card mb-3 border-danger">
+                <div class="card-header bg-danger text-white">
+                    <h6 class="mb-0">Error</h6>
+                </div>
+                <div class="card-body">
+                    <p class="small">{{ session.error_message }}</p>
+                </div>
+            </div>
+            {% endif %}
+
+            <div class="card">
+                <div class="card-header">
+                    <h6 class="mb-0">Actions</h6>
+                </div>
+                <div class="card-body">
+                    <div class="d-grid gap-2">
+                        <a href="{% url 'dashboard' %}" class="btn btn-outline-secondary">
+                            <i class="bi bi-arrow-left"></i> Back to Dashboard
+                        </a>
+                        <a href="{% url 'delete_session' session.session_id %}"
+                           class="btn btn-outline-danger">
+                            <i class="bi bi-trash"></i> Delete Session
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if session.status == 'running' %}
+<style>
+    @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+    .spin {
+        display: inline-block;
+        animation: spin 2s linear infinite;
+    }
+</style>
+
+<script>
+// Poll for progress updates every 3 seconds
+let progressInterval = null;
+
+function updateProgress() {
+    fetch("{% url 'session_progress_api' session.session_id %}")
+        .then(response => response.json())
+        .then(data => {
+            // Update current step
+            if (data.current_step) {
+                document.getElementById('current-step').textContent = data.current_step;
+            }
+
+            // Update active agents
+            const activeAgentsDiv = document.getElementById('active-agents');
+            if (data.progress.active_agents && data.progress.active_agents.length > 0) {
+                // Map agent types to friendly names
+                const agentNames = {
+                    'literature-reviewer': 'Literature Reviewer',
+                    'theorist': 'Theory Developer',
+                    'experimental-designer': 'Experiment Designer',
+                    'data-collector': 'Data Collector',
+                    'experimentalist': 'Experimentalist',
+                    'analyst': 'Data Analyst',
+                    'report-writer': 'Paper Writer',
+                    'latex-compiler': 'Document Compiler',
+                    'lead-agent': 'Lead Coordinator'
+                };
+
+                // Count agents by type
+                const agentCounts = {};
+                data.progress.active_agents.forEach(agent => {
+                    const type = agent.type;
+                    agentCounts[type] = (agentCounts[type] || 0) + 1;
+                });
+
+                // Display with counts
+                activeAgentsDiv.innerHTML = Object.entries(agentCounts)
+                    .map(([type, count]) => {
+                        const friendlyName = agentNames[type] || type;
+                        const countStr = count > 1 ? ` x${count}` : '';
+                        return `<span class="badge bg-info me-1 mb-1">${friendlyName}${countStr}</span>`;
+                    })
+                    .join('');
+            } else {
+                activeAgentsDiv.innerHTML = '<span class="text-muted">No active agents</span>';
+            }
+
+            // Update recent activity
+            const recentActivityDiv = document.getElementById('recent-activity');
+            if (data.progress.tool_calls && data.progress.tool_calls.length > 0) {
+                // Get last 20 calls and reverse to show most recent first
+                const recentCalls = data.progress.tool_calls.slice(-20).reverse();
+
+                // Friendly agent names
+                const agentNames = {
+                    'literature-reviewer': 'Literature Reviewer',
+                    'theorist': 'Theory Developer',
+                    'experimental-designer': 'Experiment Designer',
+                    'data-collector': 'Data Collector',
+                    'experimentalist': 'Experimentalist',
+                    'analyst': 'Data Analyst',
+                    'report-writer': 'Paper Writer',
+                    'latex-compiler': 'Document Compiler',
+                    'lead-agent': 'Lead Agent'
+                };
+
+                // Friendly tool names
+                const toolNames = {
+                    'WebSearch': 'Searching web',
+                    'Read': 'Reading file',
+                    'Write': 'Writing file',
+                    'Edit': 'Editing file',
+                    'Bash': 'Running command',
+                    'Task': 'Spawning agent',
+                    'Grep': 'Searching code',
+                    'Glob': 'Finding files'
+                };
+
+                recentActivityDiv.innerHTML = recentCalls
+                    .map(call => {
+                        const time = call.timestamp ? new Date(call.timestamp).toLocaleTimeString() : '';
+                        const agent = agentNames[call.agent_type] || call.agent_type || 'Agent';
+                        const tool = toolNames[call.tool_name] || call.tool_name || 'Working';
+                        const event = call.event || '';
+
+                        return `<div class="small mb-1">
+                            <span class="badge bg-secondary">${time}</span>
+                            <strong>${agent}:</strong> ${tool}
+                        </div>`;
+                    })
+                    .join('');
+            } else {
+                recentActivityDiv.innerHTML = '<span class="text-muted">No activity yet</span>';
+            }
+
+            // Update last updated time
+            document.getElementById('last-updated').textContent =
+                'Last updated: ' + new Date().toLocaleTimeString();
+
+            // Check if session completed
+            if (data.status !== 'running') {
+                clearInterval(progressInterval);
+                location.reload(); // Reload to show final state
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching progress:', error);
+        });
+}
+
+// Start polling when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    updateProgress(); // Initial update
+    progressInterval = setInterval(updateProgress, 3000); // Poll every 3 seconds
+});
+
+// Stop polling when user leaves page
+window.addEventListener('beforeunload', function() {
+    if (progressInterval) {
+        clearInterval(progressInterval);
+    }
+});
+</script>
+{% endif %}
+
+{% endblock %}

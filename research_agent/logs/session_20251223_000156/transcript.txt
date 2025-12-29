@@ -1,0 +1,368 @@
+You: Research and implement a multi-factor momentum strategy on the S&P 500, incorporating transaction costs and stop-loss triggers.
+Agent: I'll orchestrate a full research pipeline on multi-factor momentum strategies with transaction costs and stop-loss mechanics. Spawning literature reviewers across 4 key areas in parallel.
+
+[🚀 Spawning LITERATURE-REVIEWER-1: Momentum strategies fundamentals]
+
+
+[🚀 Spawning LITERATURE-REVIEWER-2: Multi-factor momentum models]
+
+
+[🚀 Spawning LITERATURE-REVIEWER-3: Transaction costs and market microstructure]
+
+
+[🚀 Spawning LITERATURE-REVIEWER-4: Risk management and stop-loss mechanisms]
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='multi-factor momentum strategies literature review 2023 2024 2025'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='factor weighting schemes momentum value volatility liquidity portfolio construction'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='quality factor momentum interaction academic research'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='multi-factor investing benchmark performance Sharpe ratio'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='momentum factor portfolio construction methodology academic'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='transaction costs momentum strategies bid-ask spreads slippage'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='momentum trading strategy profitability transaction costs market impact'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='rebalancing frequency transaction costs portfolio optimization'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='commission costs factor momentum investing literature review'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='momentum anomaly transaction costs market microstructure'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='momentum investing theory price momentum academic research'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='earnings momentum factor anomaly quantitative trading'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='momentum factor Fama French empirical results performance'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='Jegadeesh Titman momentum effect canonical definition'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='momentum investing literature review state of the art 2023 2024'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='stop-loss triggers momentum strategies risk management'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='drawdown protection optimal stop-loss levels empirical study'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='momentum trading stop-loss psychology behavioral finance'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='volatility-based stop-loss drawdown risk management benchmarks'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='trailing stops fixed stops maximum drawdown comparison'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='Fama French factor model momentum 2023 2024 academic paper'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='"factor weighting" risk parity equal weight inverse volatility'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='volatility factor quality factor academic research interaction effects'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='liquidity factor portfolio construction performance measurement'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='smart beta multi-factor strategy back testing Sortino ratio information ratio'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='"stop-loss" cryptocurrency momentum trading 2023 2024'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='maximum drawdown control policy optimal stopping problem'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='position sizing risk management momentum portfolio performance'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='disposition effect loss aversion behavioral finance stop-loss orders'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='dynamic hedging drawdown avoidance trend-following strategies'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='"momentum factor" definition construction monthly quarterly historical'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='momentum investing limitations challenges transaction costs 2023 2024'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='behavioral finance momentum underreaction overreaction information processing'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='momentum profitability Carhart four factor model benchmark results'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='cross-sectional momentum time-series momentum absolute momentum relative momentum'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='"Korajczyk" "Sadka" momentum trading costs 2004'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='Novy-Marx Velikov transaction costs momentum 2015'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='market impact modeling portfolio rebalancing optimal frequency'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='Lesmond momentum profitability trading costs literature 2002'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='high frequency rebalancing transaction costs portfolio drift model'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='momentum investing returns annualized Sharpe ratio academic research 2020 2024'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='"momentum factor" risk-based explanation rational pricing model'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='momentum effect international markets emerging markets developed markets'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='price momentum vs earnings momentum economic significance returns'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='Blitz Hanauer Vidojevic momentum quality academic paper 2024'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='factor combination strategies risk diversification academic empirical'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='portfolio optimization multi-factor mean variance framework 2023 2024'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='dynamic factor weighting allocation volatility adjustment research'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='factor crowding transaction costs implementation multi-factor strategy'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='algorithmic execution market impact cost estimation techniques'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='liquidity-adjusted momentum strategy holding period portfolio turnover'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='statistical significance after transaction costs factor investing'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='Kelly criterion position sizing optimal risk allocation'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='Han Zhou Zhu momentum crashes stop-loss SSRN 2407199'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='value at risk VaR conditional value at risk momentum strategies'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='"Asness Frazzini Pedersen" value momentum interaction academic'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='factor rebalancing frequency portfolio drift multi-factor tactical'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='factor model out of sample performance empirical backtesting 2024'
+
+[LITERATURE-REVIEWER-3] → Write    Input: file='lit_review_transaction_costs_momentum.md' (30224 chars)
+
+[LITERATURE-REVIEWER-1] → Write    Input: file='lit_review_momentum_investing.md' (33648 chars)
+
+[LITERATURE-REVIEWER-2] → Write    Input: file='lit_review_multi_factor_momentum_strategies.md' (35005 chars)
+
+[LITERATURE-REVIEWER-1] → Write    Input: file='momentum_key_takeaways.md' (7143 chars)
+
+[LITERATURE-REVIEWER-4] → Write    Input: file='lit_review_stop_loss_drawdown_momentum.md' (42396 chars)
+
+[LITERATURE-REVIEWER-3] → Write    Input: file='transaction_costs_quantitative_summary.md' (16980 chars)
+
+[LITERATURE-REVIEWER-2] → Write    Input: file='multi_factor_momentum_research_tables.md' (18940 chars)
+
+[LITERATURE-REVIEWER-3] → Write    Input: file='momentum_cost_mitigation_strategies.md' (18460 chars)
+
+[LITERATURE-REVIEWER-3] → Write    Input: file='README_transaction_costs_momentum.md' (13464 chars)
+
+[LITERATURE-REVIEWER-2] → Write    Input: file='multi_factor_implementation_framework.md' (32468 chars)
+
+[LITERATURE-REVIEWER-2] → Write    Input: file='README_multi_factor_review.md' (16230 chars)
+
+[LITERATURE-REVIEWER-2] → Write    Input: file='QUICK_REFERENCE_guide.md' (13181 chars)
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='"multi-factor momentum" performance 2024 2025 recent academic'
+
+All literature reviewers complete. Spawning theorist to formalize the framework, then data-collector and experimentalist in parallel.
+
+[🚀 Spawning THEORIST-1: Formalize momentum strategy theory]
+
+
+[🚀 Spawning DATA-COLLECTOR-1: Find S&P 500 data sources]
+
+[DATA-COLLECTOR-1] → WebSearch    Input: query='S&P 500 historical stock price data Kaggle 2010-2025'
+
+[DATA-COLLECTOR-1] → WebSearch    Input: query='S&P 500 fundamental data financial statements Kaggle dataset'
+
+[DATA-COLLECTOR-1] → WebSearch    Input: query='Yahoo Finance S&P 500 historical data download API 2025'
+
+[DATA-COLLECTOR-1] → WebSearch    Input: query='CRSP stock price data S&P 500 access cost academic'
+
+[DATA-COLLECTOR-1] → WebSearch    Input: query='Compustat fundamental data S&P 500 access WRDS academic 2025'
+
+[DATA-COLLECTOR-1] → WebSearch    Input: query='Fama French factor data library 2025 download'
+
+[DATA-COLLECTOR-1] → WebSearch    Input: query='S&P 500 constituents historical list changes 2010-2025'
+
+[DATA-COLLECTOR-1] → WebSearch    Input: query='stock trading bid-ask spread data transaction costs dataset'
+
+[DATA-COLLECTOR-1] → WebSearch    Input: query='TAQ trade and quote data NYSE intraday bid-ask spread academic access'
+
+[DATA-COLLECTOR-1] → WebSearch    Input: query='market impact slippage estimation model parameters equity trading'
+
+[DATA-COLLECTOR-1] → WebSearch    Input: query='yfinance python library S&P 500 data documentation 2025'
+
+[DATA-COLLECTOR-1] → WebSearch    Input: query='OpenBB Terminal financial data API S&P 500 2025'
+
+[DATA-COLLECTOR-1] → WebSearch    Input: query='Alpha Vantage API stock fundamental data free tier limits'
+
+[DATA-COLLECTOR-1] → WebSearch    Input: query='Polygon.io stock market data API pricing academic research'
+
+[THEORIST-1] → Write    Input: file='theory_multi_factor_momentum_sp500.md' (21546 chars)
+
+[DATA-COLLECTOR-1] → Write    Input: file='data_sources_sp500_portfolio.md' (40969 chars)
+
+Spawning experimentalist to implement and backtest the strategy. Will await results before analysis and final paper writing.
+
+[🚀 Spawning EXPERIMENTALIST-1: Implement multi-factor momentum backtest]
+
+[EXPERIMENTALIST-1] → Bash    Input: {'command': 'ls -la /Users/jminding/Desktop/Code/Research\\ Agent/files/', 'description': 'List file
+
+[EXPERIMENTALIST-1] → Bash    Input: {'command': 'ls -la /Users/jminding/Desktop/Code/Research\\ Agent/files/theory/ 2>/dev/null || echo 
+
+[EXPERIMENTALIST-1] → Bash    Input: {'command': 'ls -la /Users/jminding/Desktop/Code/Research\\ Agent/files/data/ 2>/dev/null || echo "D
+
+[EXPERIMENTALIST-1] → Read    Input: path='/Users/jminding/Desktop/Code/Research Agent/files/theory/theory_multi_factor_momentum_sp500.md'
+
+[EXPERIMENTALIST-1] → Read    Input: path='/Users/jminding/Desktop/Code/Research Agent/files/data/data_sources_sp500_portfolio.md'
+
+[EXPERIMENTALIST-1] → Bash    Input: {'command': 'ls -la /Users/jminding/Desktop/Code/Research\\ Agent/files/experiments/', 'description'
+
+[EXPERIMENTALIST-1] → Bash    Input: {'command': 'ls -la /Users/jminding/Desktop/Code/Research\\ Agent/files/results/', 'description': 'L
+
+[EXPERIMENTALIST-1] → Write    Input: file='multi_factor_momentum_backtest.py' (58218 chars)
+
+[EXPERIMENTALIST-1] → Bash    Input: {'command': 'cd /Users/jminding/Desktop/Code/Research\\ Agent && python3 -c "import yfinance, pandas
+
+[EXPERIMENTALIST-1] → Bash    Input: {'command': 'cd /Users/jminding/Desktop/Code/Research\\ Agent && python3 files/experiments/multi_fac
+
+[EXPERIMENTALIST-1] → Read    Input: path='/Users/jminding/Desktop/Code/Research Agent/files/experiments/multi_factor_momentum_backtest.py'
+
+[EXPERIMENTALIST-1] → Write    Input: file='multi_factor_momentum_backtest.py' (63361 chars)
+
+[EXPERIMENTALIST-1] → Bash    Input: {'command': 'cd /Users/jminding/Desktop/Code/Research\\ Agent && python3 files/experiments/multi_fac
+
+[EXPERIMENTALIST-1] → Bash    Input: {'command': 'ls -la /Users/jminding/Desktop/Code/Research\\ Agent/files/results/*.csv /Users/jmindin
+
+[EXPERIMENTALIST-1] → Read    Input: path='/Users/jminding/Desktop/Code/Research Agent/files/results/performance_metrics.json'
+
+[EXPERIMENTALIST-1] → Bash    Input: {'command': 'ls -la /Users/jminding/Desktop/Code/Research\\ Agent/files/results/', 'description': 'L
+
+[EXPERIMENTALIST-1] → Read    Input: path='/Users/jminding/Desktop/Code/Research Agent/files/results/backtest_report.md'
+
+[EXPERIMENTALIST-1] → Write    Input: file='run_full_analysis.py' (24095 chars)
+
+[EXPERIMENTALIST-1] → Bash    Input: {'command': 'cd /Users/jminding/Desktop/Code/Research\\ Agent && python3 files/experiments/run_full_
+
+[EXPERIMENTALIST-1] → Read    Input: path='/Users/jminding/Desktop/Code/Research Agent/files/results/backtest_report.md'
+
+[EXPERIMENTALIST-1] → Read    Input: path='/Users/jminding/Desktop/Code/Research Agent/files/results/sensitivity_analysis.csv'
+
+[EXPERIMENTALIST-1] → Bash    Input: {'command': 'ls -la /Users/jminding/Desktop/Code/Research\\ Agent/files/results/ | grep -E "(portfol
+
+[EXPERIMENTALIST-1] → Read    Input: path='/Users/jminding/Desktop/Code/Research Agent/files/results/comparison_table.csv'
+
+Experimentalist complete. Spawning analyst to evaluate results and test hypotheses.
+
+[🚀 Spawning ANALYST-1: Analyze backtest results and hypotheses]
+
+[ANALYST-1] → Read    Input: path='/Users/jminding/Desktop/Code/Research Agent/files/results'
+
+[ANALYST-1] → Read    Input: path='/Users/jminding/Desktop/Code/Research Agent/files/results/experiment_summary.md'
+
+[ANALYST-1] → Read    Input: path='/Users/jminding/Desktop/Code/Research Agent/files/results/experiment_results_v2.json'
+
+[ANALYST-1] → Read    Input: path='/Users/jminding/Desktop/Code/Research Agent/files/results/experiment_results.json'
+
+[ANALYST-1] → Read    Input: path='/Users/jminding/Desktop/Code/Research Agent/files/results/evaluation_report.txt'
+
+[ANALYST-1] → Read    Input: path='/Users/jminding/Desktop/Code/Research Agent/files/experiments/hybrid_stochastic_neural_model.py'
+
+[ANALYST-1] → Write    Input: file='analysis_volatility_forecasting.md' (25822 chars)
+
+[ANALYST-1] → Write    Input: file='analysis_executive_summary.md' (13751 chars)
+
+[ANALYST-1] → Write    Input: file='analysis_limitations_and_recommendations.md' (42641 chars)
+
+[ANALYST-1] → Write    Input: file='ANALYSIS_SUMMARY_FOR_USER.md' (13831 chars)
+
+Analyst identifies mismatch—experimentalist ran wrong model. Resuming experimentalist to implement correct multi-factor momentum backtest with stop-loss and transaction costs.
+
+[🚀 Spawning EXPERIMENTALIST-2: Backtest multi-factor momentum strategy]
+
+[EXPERIMENTALIST-2] → Bash    Input: {'command': 'ls -la /Users/jminding/Desktop/Code/Research\\ Agent/files/theory/', 'description': 'Li
+
+[EXPERIMENTALIST-2] → Bash    Input: {'command': 'ls -la /Users/jminding/Desktop/Code/Research\\ Agent/files/', 'description': 'List file
+
+[EXPERIMENTALIST-2] → Bash    Input: {'command': 'ls -la /Users/jminding/Desktop/Code/Research\\ Agent/files/experiments/', 'description'
+
+[EXPERIMENTALIST-2] → Bash    Input: {'command': 'ls -la /Users/jminding/Desktop/Code/Research\\ Agent/files/results/', 'description': 'L
+
+[EXPERIMENTALIST-2] → Read    Input: path='/Users/jminding/Desktop/Code/Research Agent/files/theory/theory_multi_factor_momentum_sp500.md'
+
+[EXPERIMENTALIST-2] → Read    Input: path='/Users/jminding/Desktop/Code/Research Agent/files/experiments/multi_factor_momentum_backtest.py'
+
+[EXPERIMENTALIST-2] → Write    Input: file='multi_factor_momentum_backtest_v2.py' (66211 chars)
+
+[EXPERIMENTALIST-2] → Bash    Input: {'command': 'cd /Users/jminding/Desktop/Code/Research\\ Agent && python files/experiments/multi_fact
+
+[EXPERIMENTALIST-2] → Bash    Input: {'command': 'ls -la /Users/jminding/Desktop/Code/Research\\ Agent/files/results/ | grep v2', 'descri
+
+[EXPERIMENTALIST-2] → Read    Input: path='/Users/jminding/Desktop/Code/Research Agent/files/results/performance_metrics_v2.json'
+
+[EXPERIMENTALIST-2] → Read    Input: path='/Users/jminding/Desktop/Code/Research Agent/files/results/sensitivity_analysis_v2.csv'
+
+[EXPERIMENTALIST-2] → Read    Input: path='/Users/jminding/Desktop/Code/Research Agent/files/results/backtest_report_v2.md'
+
+[EXPERIMENTALIST-2] → Bash    Input: {'command': 'head -20 /Users/jminding/Desktop/Code/Research\\ Agent/files/results/daily_returns_v2.c
+
+[EXPERIMENTALIST-2] → Bash    Input: {'command': 'head -20 /Users/jminding/Desktop/Code/Research\\ Agent/files/results/portfolio_history_
+
+[EXPERIMENTALIST-2] → Bash    Input: {'command': 'awk -F\',\' \'NR>1 && $2!=0 {count++} END {print "Non-zero returns:", count}\' /Users/j
+
+[EXPERIMENTALIST-2] → Bash    Input: {'command': 'awk -F\',\' \'NR>1 && $4>0 {count++} END {print "Days with positions:", count}\' /Users
+
+[EXPERIMENTALIST-2] → Bash    Input: {'command': 'python3 -c "\nimport pandas as pd\ndf = pd.read_csv(\'/Users/jminding/Desktop/Code/Rese
+
+[EXPERIMENTALIST-2] → Bash    Input: {'command': 'head -30 /Users/jminding/Desktop/Code/Research\\ Agent/files/results/trade_log_v2.csv',
+
+[EXPERIMENTALIST-2] → Read    Input: path='/Users/jminding/Desktop/Code/Research Agent/files/results/comparison_table_v2.csv'
+
+[EXPERIMENTALIST-2] → Bash    Input: {'command': 'ls -la /Users/jminding/Desktop/Code/Research\\ Agent/files/results/*v2* && echo "" && l
+
+Experimentalist complete. Spawning analyst to evaluate results against hypotheses and academic benchmarks.
+
+[🚀 Spawning ANALYST-2: Analyze momentum strategy results]
+
+[ANALYST-2] → Read    Input: path='/Users/jminding/Desktop/Code/Research Agent/files/results'
+
+[ANALYST-2] → Read    Input: path='/Users/jminding/Desktop/Code/Research Agent/files/results/experiment_results_v2.json'
+
+[ANALYST-2] → Read    Input: path='/Users/jminding/Desktop/Code/Research Agent/files/results/ANALYSIS_SUMMARY_FOR_USER.md'
+
+[ANALYST-2] → Write    Input: file='analysis_momentum_portfolio_v2.md' (60454 chars)
+
+[ANALYST-2] → Write    Input: file='EXECUTIVE_SUMMARY_momentum_v2.md' (19099 chars)
+
+[ANALYST-2] → Write    Input: file='PAPER_RECOMMENDATIONS_momentum_v2.md' (37708 chars)
+
+Analyst complete. Spawning report-writer to synthesize all outputs into final LaTeX research paper.
+
+[🚀 Spawning REPORT-WRITER-1: Write final research paper]
+
+[REPORT-WRITER-1] → Glob    Input: pattern='files/research_notes/**/*'
+
+[REPORT-WRITER-1] → Glob    Input: pattern='files/theory/**/*'
+
+[REPORT-WRITER-1] → Glob    Input: pattern='files/data/**/*'
+
+[REPORT-WRITER-1] → Glob    Input: pattern='files/results/**/*'
+
+[REPORT-WRITER-1] → Glob    Input: pattern='files/charts/**/*'
+
+[REPORT-WRITER-1] → Read    Input: path='/Users/jminding/Desktop/Code/Research Agent/files/research_notes/lit_review_momentum_investing.md'
+
+[REPORT-WRITER-1] → Read    Input: path='/Users/jminding/Desktop/Code/Research Agent/files/research_notes/lit_review_transaction_costs_momentum.md'
+
+[REPORT-WRITER-1] → Read    Input: path='/Users/jminding/Desktop/Code/Research Agent/files/research_notes/lit_review_multi_factor_momentum_strategies.md'
+
+[REPORT-WRITER-1] → Read    Input: path='/Users/jminding/Desktop/Code/Research Agent/files/research_notes/lit_review_stop_loss_drawdown_momentum.md'
+
+[REPORT-WRITER-1] → Read    Input: path='/Users/jminding/Desktop/Code/Research Agent/files/theory/theory_multi_factor_momentum_sp500.md'
+
+[REPORT-WRITER-1] → Read    Input: path='/Users/jminding/Desktop/Code/Research Agent/files/data/data_sources_sp500_portfolio.md'
+
+[REPORT-WRITER-1] → Read    Input: path='/Users/jminding/Desktop/Code/Research Agent/files/results/backtest_report_v2.md'
+
+[REPORT-WRITER-1] → Read    Input: path='/Users/jminding/Desktop/Code/Research Agent/files/results/EXECUTIVE_SUMMARY_momentum_v2.md'
+
+[REPORT-WRITER-1] → Read    Input: path='/Users/jminding/Desktop/Code/Research Agent/files/results/analysis_momentum_portfolio_v2.md'
+
+[REPORT-WRITER-1] → Read    Input: path='/Users/jminding/Desktop/Code/Research Agent/files/results/PAPER_RECOMMENDATIONS_momentum_v2.md'
+
+[REPORT-WRITER-1] → Write    Input: file='momentum_sp500_paper.tex' (73674 chars)
+
+Research complete. Final paper saved to `/Users/jminding/Desktop/Code/Research Agent/files/reports/momentum_sp500_paper.tex`. Key findings: quarterly rebalancing achieves 0.547 Sharpe (31% above weekly), but multi-factor momentum underperforms SPY by 6.51pp annually due to weak large-cap factor, not transaction costs. Stop-losses provide marginal drawdown reduction. Paper ready for compilation and submission.
+
+Research complete.

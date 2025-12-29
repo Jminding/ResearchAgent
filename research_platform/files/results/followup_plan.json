@@ -1,0 +1,347 @@
+{
+  "trigger": "Primary hypothesis REJECTED: RL improvement at d=15 is -6.7% (target: >=20%, p=0.05 not significant at alpha=0.01)",
+  "primary_hypothesis_failed": true,
+  "failure_summary": {
+    "observed_improvement_percent": -6.7,
+    "target_improvement_percent": 20.0,
+    "p_value": 0.05,
+    "significance_threshold": 0.01,
+    "critical_distance": 15,
+    "observed_L_RL": 0.515,
+    "observed_L_MWPM": 0.482,
+    "expected_L_RL_range": [0.0008, 0.0015],
+    "discrepancy_factor": 343,
+    "conclusion": "RL performs WORSE than MWPM at d=15 and achieves error rates 340x higher than expected"
+  },
+  "hypotheses": [
+    {
+      "id": "H1",
+      "hypothesis": "Insufficient training episodes cause failure at d>=15",
+      "priority": 1,
+      "confidence": "HIGH (75%)",
+      "rationale": [
+        "Only 200 training steps used vs 5-10M planned in experiment_plan.json",
+        "Sample complexity scales superlinearly with code distance d",
+        "RL shows monotonic degradation with distance (signature of undertraining)",
+        "Strong performance at d=3-7 demonstrates RL can learn QEC, just not at scale yet",
+        "Learning curves likely have not converged"
+      ],
+      "diagnostic_experiment": {
+        "name": "extended_training_d15",
+        "description": "Extend training from 200 to 1000-5000 steps at d=15",
+        "parameters": {
+          "code_distance": 15,
+          "training_steps": [1000, 2000, 5000],
+          "rl_algorithm": "PPO",
+          "network_architecture": "GNN",
+          "physical_error_rate": 0.005,
+          "noise_model": "phenomenological",
+          "seeds": 10,
+          "monitor": ["episodic_reward", "logical_error_rate", "learning_curve_plateau"]
+        },
+        "computational_cost": "5-25x baseline (manageable)",
+        "estimated_runtime_hours": 4
+      },
+      "expected_outcome": "If hypothesis correct, error rate L_RL should decrease by >=30% from current 51.5%",
+      "success_criteria": {
+        "strong_support": "L_RL < 0.36 (achieves 20% improvement over MWPM at 48.2%)",
+        "moderate_support": "L_RL < 0.42 (shows clear learning trend, needs more training)",
+        "hypothesis_rejected": "L_RL plateaus at >0.45 (no improvement with more training)"
+      },
+      "next_steps_if_supported": [
+        "Extend to 10M episodes as originally planned",
+        "Apply to d=17, 19, 21 to validate scaling",
+        "Publish results if >20% improvement achieved"
+      ],
+      "next_steps_if_rejected": [
+        "Execute H2 and H3 in parallel",
+        "Investigate fundamental architectural or algorithmic limitations"
+      ]
+    },
+    {
+      "id": "H2",
+      "hypothesis": "Reward function provides insufficient learning signal for large d",
+      "priority": 1,
+      "confidence": "MEDIUM (50%)",
+      "rationale": [
+        "Sparse reward (only logical error at episode end) causes credit assignment problem",
+        "Syndrome graph at d=15 has ~450 qubits - very long causal chains",
+        "PPO struggles with sparse rewards in high-dimensional action spaces",
+        "Dense intermediate rewards (syndrome matching, correction efficiency) may guide learning",
+        "Successful RL applications typically use reward shaping"
+      ],
+      "diagnostic_experiment": {
+        "name": "reward_shaping_ablation_d15",
+        "description": "Test 4 reward function variants at d=15 with 1000 training steps each",
+        "parameters": {
+          "code_distance": 15,
+          "training_steps": 1000,
+          "rl_algorithm": "PPO",
+          "network_architecture": "GNN",
+          "physical_error_rate": 0.005,
+          "seeds": 5,
+          "reward_variants": [
+            {
+              "name": "pure_logical_error",
+              "formula": "R = -1 if logical_error else 0",
+              "note": "Current baseline"
+            },
+            {
+              "name": "syndrome_penalty",
+              "formula": "R = -logical_error - 0.01*syndrome_mismatch",
+              "note": "Penalize incorrect syndrome matching"
+            },
+            {
+              "name": "efficiency_penalty",
+              "formula": "R = -logical_error - 0.001*num_corrections",
+              "note": "Encourage minimal corrections"
+            },
+            {
+              "name": "combined_shaped",
+              "formula": "R = -logical_error - 0.01*syndrome_mismatch - 0.001*num_corrections",
+              "note": "Full reward shaping"
+            }
+          ]
+        },
+        "computational_cost": "4x H1 baseline",
+        "estimated_runtime_hours": 3
+      },
+      "expected_outcome": "If hypothesis correct, shaped reward should converge faster and achieve >=20% better final performance than pure reward",
+      "success_criteria": {
+        "strong_support": "Shaped reward achieves L < 0.38 while pure reward fails",
+        "moderate_support": "Shaped reward shows 10-15% improvement and smoother learning curves",
+        "hypothesis_rejected": "No significant difference between reward variants"
+      },
+      "next_steps_if_supported": [
+        "Adopt best reward function for all future experiments",
+        "Test at other distances to validate generalization",
+        "Tune shaping weights for optimal performance"
+      ]
+    },
+    {
+      "id": "H3",
+      "hypothesis": "GNN architecture insufficient for capturing long-range error correlations at d=15",
+      "priority": 2,
+      "confidence": "MEDIUM (45%)",
+      "rationale": [
+        "Surface code d=15 has graph diameter ~15",
+        "Standard GNN with 3-5 message passing layers cannot propagate information across full graph",
+        "Long-range error correlations require many layers or attention mechanisms",
+        "Graph Transformers with O(n^2) attention can capture arbitrary-distance interactions",
+        "Over-smoothing problem in deep GNNs may prevent effective learning"
+      ],
+      "diagnostic_experiment": {
+        "name": "architecture_comparison_d15",
+        "description": "Test 3 neural architectures at d=15 with 1000 training steps",
+        "parameters": {
+          "code_distance": 15,
+          "training_steps": 1000,
+          "rl_algorithm": "PPO",
+          "physical_error_rate": 0.005,
+          "seeds": 5,
+          "architectures": [
+            {
+              "name": "GNN_shallow",
+              "layers": 3,
+              "note": "Current baseline"
+            },
+            {
+              "name": "GNN_deep",
+              "layers": 12,
+              "hidden_dim": 256,
+              "note": "Deeper network for full-graph message passing"
+            },
+            {
+              "name": "Graph_Transformer",
+              "num_heads": 8,
+              "layers": 6,
+              "note": "Attention mechanism for long-range dependencies"
+            },
+            {
+              "name": "Hierarchical_GNN",
+              "coarsening_levels": 3,
+              "note": "Multi-scale processing for large graphs"
+            }
+          ]
+        },
+        "computational_cost": "4-8x baseline (Transformer is slowest)",
+        "estimated_runtime_hours": 6
+      },
+      "expected_outcome": "If hypothesis correct, deeper architectures should improve by >=25% over shallow GNN",
+      "success_criteria": {
+        "strong_support": "Deep GNN or Transformer achieves L < 0.35",
+        "moderate_support": "Clear improvement (10-20%) and attention weights show long-range correlations",
+        "hypothesis_rejected": "All architectures perform similarly - architecture not the bottleneck"
+      },
+      "next_steps_if_supported": [
+        "Adopt best architecture as new baseline",
+        "Analyze attention patterns to understand learned QEC strategies",
+        "Scale to d=21 with optimal architecture"
+      ]
+    },
+    {
+      "id": "H4",
+      "hypothesis": "Training overfits to specific distance, preventing generalization",
+      "priority": 2,
+      "confidence": "MEDIUM (40%)",
+      "rationale": [
+        "Current approach trains separate model for each distance",
+        "May learn distance-specific shortcuts rather than general QEC principles",
+        "Curriculum learning (progressive difficulty) can improve generalization",
+        "Multi-task learning (simultaneous training on multiple distances) enforces shared representations",
+        "Zero-shot transfer from d=7 to d=15 completely fails (94% degradation)"
+      ],
+      "diagnostic_experiment": {
+        "name": "curriculum_and_multitask_learning",
+        "description": "Test curriculum vs multi-task vs single-distance training",
+        "parameters": {
+          "test_distance": 15,
+          "training_configurations": [
+            {
+              "name": "single_distance_baseline",
+              "train_on": [15],
+              "steps_per_distance": 1000,
+              "note": "Current approach"
+            },
+            {
+              "name": "curriculum_learning",
+              "train_on": [3, 5, 7, 11, 13, 15],
+              "steps_per_distance": [200, 200, 200, 200, 200, 1000],
+              "note": "Progressive difficulty"
+            },
+            {
+              "name": "multi_task_learning",
+              "train_on": [5, 7, 11, 13, 15],
+              "steps_per_distance": 200,
+              "simultaneous": true,
+              "note": "Shared weights, mixed batches"
+            },
+            {
+              "name": "zero_shot_transfer",
+              "train_on": [7],
+              "test_on": [15],
+              "steps": 5000,
+              "note": "Pure generalization test"
+            }
+          ],
+          "seeds": 5
+        },
+        "computational_cost": "5x baseline",
+        "estimated_runtime_hours": 5
+      },
+      "expected_outcome": "If hypothesis correct, curriculum should enable zero-shot transfer with <15% degradation",
+      "success_criteria": {
+        "strong_support": "Zero-shot from d=7 achieves L_test(15) / L_train(7) < 1.15",
+        "moderate_support": "Curriculum or multi-task outperforms single-distance by >=20%",
+        "hypothesis_rejected": "All training methods perform similarly"
+      },
+      "next_steps_if_supported": [
+        "Adopt curriculum learning as standard training protocol",
+        "Investigate size-invariant graph representations",
+        "Test transfer to d=21, 25 for extreme generalization"
+      ]
+    },
+    {
+      "id": "H5",
+      "hypothesis": "Physical error rate p=0.005 is above effective threshold for current RL implementation",
+      "priority": 3,
+      "confidence": "LOW (25%)",
+      "rationale": [
+        "Both MWPM and RL show 40-50% logical error rates (near/above threshold)",
+        "Expected threshold for phenomenological noise is ~1.0-1.03%",
+        "p=0.005 should be well below threshold, but observed behavior suggests otherwise",
+        "Possible explanations: implementation bugs, measurement errors, model mismatch",
+        "RL may have lower threshold than classical decoders due to approximation errors"
+      ],
+      "diagnostic_experiment": {
+        "name": "threshold_analysis_sweep",
+        "description": "Sweep physical error rate p to identify thresholds for RL and MWPM",
+        "parameters": {
+          "code_distances": [7, 11, 15],
+          "physical_error_rates": [0.0005, 0.001, 0.002, 0.003, 0.005, 0.007, 0.01, 0.015, 0.02],
+          "training_steps": 1000,
+          "seeds": 5,
+          "fit_model": "sigmoid_L(p) = L_max / (1 + exp(-k*(p - p_th)))"
+        },
+        "computational_cost": "9 error rates × 3 distances = 27x baseline",
+        "estimated_runtime_hours": 12
+      },
+      "expected_outcome": "If hypothesis correct, RL should show lower threshold p_th than MWPM",
+      "success_criteria": {
+        "strong_support": "p_th_RL < p_th_MWPM AND at p<=0.003, RL achieves >20% improvement",
+        "moderate_support": "Clear threshold identified with RL performing better below threshold",
+        "hypothesis_rejected": "RL and MWPM have similar thresholds OR MWPM threshold is anomalously high (implementation bug)"
+      },
+      "next_steps_if_supported": [
+        "Retrain all experiments at p=0.001-0.003 (below threshold)",
+        "Investigate why effective threshold differs from theoretical predictions",
+        "Consider adaptive error rate scheduling during training"
+      ],
+      "next_steps_if_rejected": [
+        "CRITICAL: Validate MWPM implementation against PyMatching reference",
+        "Verify Stim syndrome generation is correct",
+        "Check for bugs in error model or measurement process"
+      ]
+    }
+  ],
+  "selected_followup": {
+    "primary": "H1",
+    "rationale": "Highest confidence, lowest cost, most direct test of undertraining hypothesis. If successful, immediately enables scaling validation. If fails, H2 and H3 provide alternative paths.",
+    "execution_order": [
+      {
+        "step": 1,
+        "hypothesis": "H1",
+        "estimated_days": 1,
+        "decision_point": "If L_RL improves to <0.42, continue to 5000 steps. If plateaus, proceed to step 2."
+      },
+      {
+        "step": 2,
+        "hypothesis": "H2 and H3 in parallel",
+        "estimated_days": 2,
+        "decision_point": "If either shows >20% improvement, adopt and iterate. If both fail, proceed to step 3."
+      },
+      {
+        "step": 3,
+        "hypothesis": "H4",
+        "estimated_days": 2,
+        "decision_point": "If curriculum learning succeeds, validate on full plan. If fails, proceed to step 4."
+      },
+      {
+        "step": 4,
+        "hypothesis": "H5 and validation",
+        "estimated_days": 3,
+        "decision_point": "Threshold sweep + implementation validation. If MWPM behaves anomalously, fix bugs and restart. If thresholds are correct, conclude RL fundamentally limited."
+      }
+    ]
+  },
+  "mode": "discovery",
+  "auto_execute": true,
+  "total_estimated_cost_usd": 250,
+  "total_estimated_time_days": 8,
+  "success_probability_estimate": 0.60,
+  "alternative_if_all_fail": {
+    "recommendation": "If all five hypotheses fail, conclude that current RL+GNN approach does not scale to d>=15. Consider:",
+    "options": [
+      "Hybrid approach: RL for preprocessing/syndrome filtering, classical decoder for final correction",
+      "Alternative RL algorithms: SAC, TD3, or model-based RL with better sample efficiency",
+      "Graph representation learning: Pre-train on synthetic syndrome data, fine-tune with RL",
+      "Quantum circuit optimization: Co-design QEC code and decoder (e.g., LDPC codes instead of surface codes)",
+      "Accept limitation: Use RL for d<=11 only, MWPM for larger distances"
+    ],
+    "publication_strategy": "Publish negative result in PRL or PRX Quantum. Negative results are scientifically valuable - 'RL does not scale to practical QEC distances under standard training' is an important finding for the field."
+  },
+  "metadata": {
+    "created_date": "2025-12-28",
+    "trigger_experiment": "162-experiment QEC simulation",
+    "analyst": "Research Analyst Agent",
+    "review_status": "Ready for execution",
+    "approval_required": false,
+    "notes": [
+      "Discovery mode enabled - highest priority hypothesis (H1) will auto-execute",
+      "Conservative estimates: Each hypothesis has individual success probability, joint probability ~60%",
+      "Total cost $250 is manageable for academic/industry labs",
+      "If H1 succeeds, can skip H2-H5 and proceed directly to full-scale validation",
+      "Critical: Validate MWPM implementation regardless of follow-up outcomes"
+    ]
+  }
+}

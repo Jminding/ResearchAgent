@@ -1,0 +1,365 @@
+GNN ARCHITECTURES: QUICK REFERENCE GUIDE
+========================================
+
+This document provides rapid lookup of key metrics, findings, and decisions.
+
+================================================================================
+PERFORMANCE LOOKUP TABLE
+================================================================================
+
+Dataset          | Size    | GCN    | GraphSAGE | GAT    | Notes
+Cora             | 2.7K    | 81.4%  | 90.7%*   | 83.3%  | *Inductive
+Citeseer         | 3.3K    | 70.3%  | ~71%*    | 72.5%  | *Inductive
+PubMed           | 19.7K   | 79.0%  | ~78%*    | 79.0%  | *Inductive
+Reddit           | 232K    | XXX    | 95.4%    | XXX    | GraphSAGE only
+ogbn-products    | 2.4M    | Comp   | 1st rank | Lower  | Mini-batch
+ogbn-proteins    | 132K    | ~85%   | ~86%     | 87.47% | 6-layer GAT
+ogbn-arxiv       | 169K    | Comp   | Comp     | Comp   | Similar results
+OGBN-Papers100M  | 110M+   | XX     | XX       | XX     | SIGN 82% only
+PPI              | 56K     | ~95%   | ~96%     | 97.3%  | F1 score
+
+Legend: XXX=Infeasible, XX=Not viable, Comp=Competitive, *= Mode noted
+
+================================================================================
+SPEED COMPARISON
+================================================================================
+
+Method                | Relative Time | Notes
+GraphSAGE             | 1x (baseline) | 88x faster than GAT
+GCN (full-batch)      | 4x slower     | 4x slower than GraphSAGE
+GAT (full-batch)      | 88x slower    | O(N²) attention bottleneck
+Mini-batch convergence| 3-5x faster   | Fewer epochs to target despite slower per-epoch
+
+================================================================================
+MEMORY REQUIREMENTS
+================================================================================
+
+Architecture | Full-Batch Memory  | Mini-Batch Memory | Max Scalable Nodes
+GCN          | O(Lnd + Ld²)      | O(bLd²)          | ~1M
+GraphSAGE    | O(bkLd²)          | O(bkLd²)         | Unlimited*
+GAT          | O(N²d + Lnd)      | O(N²d)           | ~100K
+SIGN         | O(n × F)          | O(bF)            | 110M+
+
+*Depends on neighborhood size; theoretical scaling
+
+================================================================================
+QUICK DECISION MATRIX
+================================================================================
+
+Question                          | Answer              | Action
+Graph size < 100K nodes?          | Yes                 | Any method viable
+Graph size 100K-1M?               | Yes                 | GraphSAGE preferred
+Graph size > 1M?                  | Yes                 | SIGN or SMPNN required
+Need inductive learning?          | Yes                 | GraphSAGE or GAT
+Need to maximize accuracy?         | Yes (< 1M nodes)    | Use GAT
+Need to scale to 100M+ nodes?     | Yes                 | Use SIGN/SMPNN
+Graph known at test time?         | Yes (transductive)  | GCN/GAT preferred
+Graph unknown at test time?       | Yes (inductive)     | GraphSAGE preferred
+Limited memory budget?            | Yes (< 8GB GPU)     | GraphSAGE mini-batch
+Want simple efficient method?      | Yes                 | GCN
+
+================================================================================
+HYPERPARAMETER CHEAT SHEET
+================================================================================
+
+Parameter           | GCN      | GraphSAGE | GAT      | Notes
+Learning Rate       | 0.01-0.05| 0.001-0.01| 0.001-0.01 | Lower for sampling
+Dropout Rate        | 0.5-0.6  | 0.3-0.5   | 0.5-0.6  | CRITICAL: 2.44-2.53% loss if omitted
+Number of Layers    | 2-3      | 2-4       | 2-4      | Depth limited by over-smoothing
+Hidden Dimension    | 32-64    | 32-64     | 32-64    | Problem-dependent
+Weight Decay        | 1e-4-1e-3| 1e-4-1e-3 | 1e-4-1e-3|
+Batch Norm          | Yes      | Yes       | Yes      | Essential for depth
+Skip Connections    | Optional | Optional  | Helpful  | Enables deeper networks
+DropEdge            | Optional | Optional  | Optional | Mitigates over-smoothing
+Neighbor Samples    | N/A      | 10-25     | N/A      | Per hop, GraphSAGE only
+Batch Size          | Full     | 256-512   | Full     | Mini-batch for large graphs
+
+================================================================================
+COMPLEXITY LOOKUP
+================================================================================
+
+Method    | Time per Layer    | Space (Full-Batch)  | Space (Mini-Batch)
+GCN       | O(|E|F)          | O(Lnd + Ld²)       | O(bLd²)
+GraphSAGE | O(bkLd²)         | O(bkLd²)           | O(bkLd²)
+GAT       | O(N²d)           | O(N²d + Lnd)       | O(N²d)
+SIGN      | O(|E|F)+precomp  | O(n × F)           | O(bF)
+
+Legend: |E|=edges, F=features, d=dimension, n=nodes, b=batch size, k=neighbor samples, L=layers
+
+================================================================================
+ARCHITECTURE STRENGTHS & WEAKNESSES
+================================================================================
+
+GCN:
+  Strengths:  O(|E|F) efficient, simple, interpretable
+  Weaknesses: Transductive-only (original), full-batch memory O(Lnd + Ld²)
+  Best for:   Transductive small-medium graphs with efficiency focus
+
+GraphSAGE:
+  Strengths:  Inductive, O(bkL) mini-batch scales, 88x faster than GAT
+  Weaknesses: Sampling introduces variance, limited global context
+  Best for:   Inductive learning, large graphs, dynamic scenarios
+
+GAT:
+  Strengths:  High expressiveness, works inductive & transductive
+  Weaknesses: O(N²) attention prohibitive at scale, 88x slower than GraphSAGE
+  Best for:   Small graphs (< 20K) where accuracy prioritized
+
+SIGN:
+  Strengths:  Scales to 110M+ nodes, simplified (non-learned) aggregation
+  Weaknesses: Reduced flexibility, requires pre-computed features
+  Best for:   Transductive extreme-scale problems (100M+ nodes)
+
+SMPNN (2025):
+  Strengths:  Linear O(n) scaling, outperforms Transformers at scale
+  Weaknesses: Recent (limited production use), pre-computed messages
+  Best for:   Large graphs, linear scaling requirement
+
+================================================================================
+PITFALL CHECKLIST
+================================================================================
+
+Before deploying, verify you haven't fallen into these traps:
+
+[  ] Over-smoothing mitigation
+    - Using > 4 layers without batch norm / skip connections / DropEdge?
+    - Solution: Add one of these regularization techniques
+
+[  ] Over-squashing
+    - Graph has high-degree hub nodes creating bottlenecks?
+    - Solution: Graph rewiring or use Transformer-based method
+
+[  ] Transductive bias
+    - Using GCN expecting to generalize to new nodes?
+    - Solution: Use GraphSAGE or other inductive method
+
+[  ] Memory explosion
+    - Using full-batch GCN/GAT on graph > 1M nodes?
+    - Solution: Switch to mini-batch or use SIGN/SMPNN
+
+[  ] Attention quadratic cost
+    - Running GAT on graph with > 100K nodes?
+    - Solution: Use mini-batch sampling or switch to GraphSAGE
+
+[  ] Missing regularization
+    - Dropout not included?
+    - Solution: Add dropout (0.5-0.6 typical); 2.44-2.53% loss expected without it
+
+[  ] Insufficient hyperparameter tuning
+    - Used default learning rate and dropout?
+    - Solution: Tune dropout first (most critical), then learning rate
+
+[  ] Benchmark bias
+    - Benchmarking on only small citation networks?
+    - Solution: Test on OGBN large-scale benchmarks for robustness
+
+[  ] Weisfeiler-Lehman limitations
+    - Expecting GNN to count subgraphs or distinguish complex patterns?
+    - Solution: Use higher-order GNNs or add explicit structural features
+
+[  ] Sampling variance
+    - Using GraphSAGE with very small neighbor samples?
+    - Solution: Use 10-25 samples per hop; validate variance
+
+================================================================================
+EXPECTED RESULTS (Approximate Ranges)
+================================================================================
+
+Transductive Citation Networks (Cora-like, 2-3K nodes):
+- GCN:      79-82% accuracy
+- GAT:      82-85% accuracy
+- GraphSAGE: 88-92% accuracy (inductive setting)
+
+Medium-Scale Graphs (100K-1M nodes):
+- GCN (mini-batch):  78-82% accuracy
+- GAT (mini-batch):  80-84% accuracy
+- GraphSAGE:         80-85% accuracy
+
+Large-Scale Graphs (1M+ nodes):
+- GCN:      Not recommended (memory)
+- GAT:      Not recommended (time)
+- GraphSAGE: 75-80% accuracy
+- SIGN:     78-82% accuracy
+
+Extreme Scale (100M+ nodes):
+- SIGN:     80-85% accuracy
+- SMPNN:    78-84% accuracy
+- GCN/GAT:  Infeasible
+
+Training Time (Rough Estimates):
+- Citation networks (2-3K nodes):
+  - GCN:      Seconds
+  - GraphSAGE: Milliseconds to seconds
+  - GAT:      Seconds to minutes
+
+- Large graphs (2.4M nodes, ogbn-products):
+  - GCN (mini-batch): Minutes per epoch
+  - GraphSAGE:       Seconds to minutes per epoch
+  - GAT:             Prohibitive without sampling
+
+================================================================================
+WHEN TO USE EACH ARCHITECTURE
+================================================================================
+
+Use GCN If:
+  - Graph is small (< 100K nodes)
+  - Transductive learning acceptable
+  - Efficiency is primary concern
+  - Simplicity and interpretability valued
+  - Memory is limited for GAT
+
+Use GraphSAGE If:
+  - Need inductive learning (unseen nodes at test)
+  - Graph is large (100K-10M nodes)
+  - Speed important
+  - Dynamic graph (nodes added over time)
+  - Want predictable memory per batch
+
+Use GAT If:
+  - Graph is small (< 100K nodes)
+  - Maximum accuracy prioritized
+  - Inductive capability required
+  - Can afford O(N²) attention cost
+  - Have sufficient GPU memory
+
+Use SIGN If:
+  - Graph is very large (> 10M nodes)
+  - Transductive learning acceptable
+  - Can pre-compute diffusion matrices
+  - Scalability is absolute requirement
+  - Willing to trade flexibility for scale
+
+Use SMPNN If:
+  - Graph is very large (> 1M nodes)
+  - Need linear O(n) scaling
+  - Can use pre-computed message functions
+  - Research on message-passing architectures
+
+================================================================================
+DEBUGGING GUIDE
+================================================================================
+
+Problem: Model underfitting (low accuracy on both train & test)
+
+Check:
+1. Depth too shallow? (Try 2→3→4 layers)
+2. Hidden dimension too small? (Try 32→64→128)
+3. Learning rate too high? (Try 0.01→0.001)
+4. Dropout too high? (Try 0.6→0.3)
+5. Wrong regularization? (Ensure batch norm on hidden layers)
+
+Action: Increase model capacity (depth, hidden dim); lower regularization
+
+---
+
+Problem: Model overfitting (high train, low test accuracy)
+
+Check:
+1. Dropout too low? (Try 0.3→0.6)
+2. Weight decay too low? (Try 1e-3→1e-4)
+3. Training too long? (Add early stopping)
+4. Data leakage? (Verify train/test split)
+5. Batch size too small? (Try 256→512)
+
+Action: Increase regularization (dropout, weight decay); add early stopping
+
+---
+
+Problem: Out of memory (OOM) error
+
+Check:
+1. Graph size? (If > 1M, use mini-batch or SIGN)
+2. Batch size too large? (Reduce 512→256→128)
+3. Neighbor samples too high? (For GraphSAGE: reduce k)
+4. Using full-batch? (Switch to mini-batch for large graphs)
+5. Gradient accumulation enabled? (Can double memory use)
+
+Action: Reduce batch size; switch to mini-batch; consider SIGN for extreme scale
+
+---
+
+Problem: Training too slow (high per-epoch time)
+
+Check:
+1. Using GAT on large graph? (88x slower than GraphSAGE)
+2. Full-batch training? (Switch to mini-batch)
+3. Sampling too aggressive? (More samples = slower per-epoch, fewer total epochs)
+4. Wrong hardware? (GPU much faster than CPU for GNNs)
+
+Action: Switch to GraphSAGE or SIGN; use GPU; reduce batch size if memory allows
+
+---
+
+Problem: Poor generalization on unseen nodes
+
+Check:
+1. Using transductive method (GCN)? (Switch to GraphSAGE or GAT)
+2. Sampling strategy poor? (Increase neighbor samples k)
+3. Features insufficient? (Check input features quality)
+4. Graph very sparse? (May limit inductive capability)
+
+Action: Use GraphSAGE; ensure good input features; validate sampling
+
+================================================================================
+REFERENCE LOOKUP
+================================================================================
+
+Quick reference to key papers:
+
+GCN Foundational:
+  Kipf & Welling 2016
+  "Semi-Supervised Classification with Graph Convolutional Networks"
+  https://arxiv.org/abs/1609.02907
+  Results: Cora 81.4%, Citeseer 70.3%, PubMed 79%
+
+GraphSAGE Foundational:
+  Hamilton, Ying, Leskovec 2017
+  "Inductive Representation Learning on Large Graphs"
+  https://arxiv.org/abs/1706.02216
+  Results: Cora 90.7% (inductive), 88x faster than GAT
+
+GAT Foundational:
+  Veličković et al. 2017
+  "Graph Attention Networks"
+  https://arxiv.org/abs/1710.10903
+  Results: Cora 83.3%, PPI 97.3% F1
+
+Expressiveness Bounds:
+  Xu et al. 2018
+  "How Powerful are Graph Neural Networks?"
+  https://arxiv.org/abs/1810.00826
+  Finding: Bounded by Weisfeiler-Lehman test
+
+Over-Smoothing Mitigation:
+  Rong et al. 2020
+  "DropEdge: Towards Deep Graph Convolutional Networks"
+  https://arxiv.org/abs/1907.10903
+  Finding: DropEdge enables 16-layer GCN with +2% improvement
+
+Over-Squashing:
+  Topping et al. 2021
+  "Understanding Over-Squashing and Bottlenecks via Curvature"
+  https://arxiv.org/abs/2111.14522
+  Finding: Negatively curved edges cause bottlenecks
+
+Recent Large-Scale:
+  Huang et al. 2023
+  "Simple Scalable Graph Neural Networks"
+  https://arxiv.org/abs/2302.03468
+  Finding: SIGN scales to 110M+ nodes
+
+Recent Reassessment:
+  Huang et al. 2024
+  "Classic GNNs are Strong Baselines"
+  NeurIPS 2024 (Datasets & Benchmarks)
+  Finding: Tuned GCN/GAT competitive with recent architectures
+
+Recent Message-Passing:
+  Bobkov et al. 2025
+  "Scalable Message Passing Neural Networks"
+  https://arxiv.org/abs/2411.00835
+  Finding: Linear O(n) scaling; outperforms Graph Transformers
+
+================================================================================
+END OF QUICK REFERENCE
+================================================================================

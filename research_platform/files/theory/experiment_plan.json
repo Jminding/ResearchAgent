@@ -1,0 +1,534 @@
+{
+  "project_name": "RL-Based Quantum Error Correction: Scaling Beyond Classical Baselines",
+  "hypothesis": "Can RL agents learn optimal quantum error correction decoders exceeding classical baselines by >20% while scaling to distance d>=15?",
+  "mode": "discovery",
+  "experiments": [
+    {
+      "name": "primary_rl_decoder_scaling",
+      "description": "Train PPO+GNN decoder on surface codes across distances d=3 to d=21, comparing against MWPM baseline",
+      "parameters": {
+        "code_distance": [3, 5, 7, 11, 15, 21],
+        "rl_algorithm": ["PPO"],
+        "network_architecture": ["GNN"],
+        "training_episodes": [1000000, 5000000, 10000000],
+        "physical_error_rate": [0.001, 0.003, 0.005, 0.007, 0.01],
+        "noise_model": ["phenomenological"]
+      },
+      "ablations": [],
+      "status": "pending",
+      "expected_runtime_hours": 120,
+      "priority": "critical"
+    },
+    {
+      "name": "classical_baseline_benchmark",
+      "description": "Evaluate MWPM decoder performance across all test configurations for direct comparison",
+      "parameters": {
+        "code_distance": [3, 5, 7, 11, 15, 21],
+        "decoder_type": ["MWPM"],
+        "physical_error_rate": [0.001, 0.003, 0.005, 0.007, 0.01],
+        "noise_model": ["phenomenological", "circuit_level", "biased"]
+      },
+      "ablations": [],
+      "status": "pending",
+      "expected_runtime_hours": 24,
+      "priority": "critical"
+    },
+    {
+      "name": "hybrid_decoder_study",
+      "description": "Test hybrid approaches: RL-initialized MWPM and RL+neural belief propagation",
+      "parameters": {
+        "code_distance": [5, 7, 11, 15],
+        "hybrid_approach": ["RL_init_MWPM", "RL_neural_BP"],
+        "physical_error_rate": [0.003, 0.005, 0.007],
+        "noise_model": ["phenomenological"]
+      },
+      "ablations": [],
+      "status": "pending",
+      "expected_runtime_hours": 60,
+      "priority": "high"
+    },
+    {
+      "name": "rl_algorithm_comparison",
+      "description": "Compare RL algorithms: PPO vs REINFORCE vs Actor-Critic for d=5,7,11",
+      "parameters": {
+        "code_distance": [5, 7, 11],
+        "rl_algorithm": ["PPO", "REINFORCE", "Actor_Critic"],
+        "training_episodes": [5000000],
+        "physical_error_rate": [0.005],
+        "noise_model": ["phenomenological"]
+      },
+      "ablations": [],
+      "status": "pending",
+      "expected_runtime_hours": 48,
+      "priority": "medium"
+    },
+    {
+      "name": "network_architecture_ablation",
+      "description": "Test different neural architectures: GNN vs CNN vs Transformer for syndrome decoding",
+      "parameters": {
+        "code_distance": [5, 7, 11],
+        "network_architecture": ["GNN", "CNN", "Transformer"],
+        "training_episodes": [5000000],
+        "physical_error_rate": [0.005],
+        "noise_model": ["phenomenological"]
+      },
+      "ablations": [],
+      "status": "pending",
+      "expected_runtime_hours": 48,
+      "priority": "high"
+    },
+    {
+      "name": "reward_shaping_ablation",
+      "description": "Isolate effect of reward shaping: pure logical error reward vs shaped intermediate rewards",
+      "parameters": {
+        "code_distance": [7, 11],
+        "reward_type": ["pure_logical_error", "shaped_syndrome_penalty", "shaped_efficiency_penalty", "shaped_combined"],
+        "shaping_weight": [0.0, 0.01, 0.05, 0.1],
+        "training_episodes": [5000000],
+        "physical_error_rate": [0.005],
+        "noise_model": ["phenomenological"]
+      },
+      "ablations": [
+        "no_reward_shaping",
+        "syndrome_penalty_only",
+        "efficiency_penalty_only",
+        "full_shaped_reward"
+      ],
+      "status": "pending",
+      "expected_runtime_hours": 40,
+      "priority": "high"
+    },
+    {
+      "name": "network_depth_ablation",
+      "description": "Test effect of network depth on learning and generalization performance",
+      "parameters": {
+        "code_distance": [7, 11],
+        "network_architecture": ["GNN"],
+        "num_layers": [2, 4, 8, 12],
+        "hidden_dim": [128, 256, 512],
+        "training_episodes": [5000000],
+        "physical_error_rate": [0.005],
+        "noise_model": ["phenomenological"]
+      },
+      "ablations": [
+        "shallow_2layer",
+        "moderate_4layer",
+        "deep_8layer",
+        "very_deep_12layer"
+      ],
+      "status": "pending",
+      "expected_runtime_hours": 50,
+      "priority": "medium"
+    },
+    {
+      "name": "cross_distance_generalization",
+      "description": "Test zero-shot generalization: train on d=7, test on d=9,11,13,15,17",
+      "parameters": {
+        "train_distance": [7],
+        "test_distance": [9, 11, 13, 15, 17, 21],
+        "network_architecture": ["GNN"],
+        "training_episodes": [10000000],
+        "physical_error_rate": [0.005],
+        "noise_model": ["phenomenological"]
+      },
+      "ablations": [],
+      "status": "pending",
+      "expected_runtime_hours": 30,
+      "priority": "critical"
+    },
+    {
+      "name": "noise_model_robustness",
+      "description": "Test decoder robustness across different noise models",
+      "parameters": {
+        "code_distance": [7, 11, 15],
+        "train_noise_model": ["phenomenological"],
+        "test_noise_model": ["phenomenological", "circuit_level", "biased"],
+        "physical_error_rate": [0.003, 0.005, 0.007],
+        "bias_ratio": [1, 10, 100],
+        "training_episodes": [5000000]
+      },
+      "ablations": [],
+      "status": "pending",
+      "expected_runtime_hours": 60,
+      "priority": "high"
+    },
+    {
+      "name": "error_rate_sweep",
+      "description": "Test decoder performance across 7 physical error rates to map out error suppression curve",
+      "parameters": {
+        "code_distance": [7, 11, 15],
+        "physical_error_rate": [0.001, 0.003, 0.005, 0.007, 0.01, 0.015, 0.02],
+        "network_architecture": ["GNN"],
+        "training_episodes": [5000000],
+        "noise_model": ["phenomenological"]
+      },
+      "ablations": [],
+      "status": "pending",
+      "expected_runtime_hours": 40,
+      "priority": "critical"
+    }
+  ],
+  "robustness_checklist": {
+    "hyperparameter_perturbations": [
+      "learning_rate_actor_±50%",
+      "learning_rate_critic_±50%",
+      "gamma_±25%",
+      "lambda_gae_±25%",
+      "clip_epsilon_±50%",
+      "hidden_dim_±50%",
+      "batch_size_±50%"
+    ],
+    "cross_distance_generalization": [
+      "train_d7_test_d9",
+      "train_d7_test_d11",
+      "train_d7_test_d13",
+      "train_d7_test_d15",
+      "train_d7_test_d17",
+      "train_d7_test_d21"
+    ],
+    "noise_model_transfer": [
+      "train_phenomenological_test_circuit_level",
+      "train_phenomenological_test_biased_eta10",
+      "train_phenomenological_test_biased_eta100",
+      "train_circuit_level_test_phenomenological"
+    ],
+    "parameter_regimes": [
+      "low_error_regime_p0.001",
+      "moderate_error_regime_p0.005",
+      "high_error_regime_p0.01",
+      "near_threshold_p0.015"
+    ],
+    "adversarial_tests": [
+      "adversarial_syndrome_patterns",
+      "worst_case_error_chains",
+      "boundary_condition_errors",
+      "correlated_error_clusters"
+    ],
+    "statistical_robustness": [
+      "10_independent_random_seeds",
+      "paired_t_test_p0.01_threshold",
+      "95_percent_confidence_intervals",
+      "bootstrap_resampling_1000_iterations"
+    ],
+    "hardware_realistic_constraints": [
+      "measurement_error_rate_1_percent",
+      "two_qubit_gate_fidelity_99_percent",
+      "finite_coherence_time_T1_T2",
+      "limited_connectivity_2D_lattice"
+    ],
+    "required_checks": 35,
+    "notes": "Must verify statistical significance across all primary metrics with 10 independent seeds. Cross-distance generalization is critical for real-world deployment. Hardware constraints should be progressively introduced after initial proof-of-concept."
+  },
+  "data_guidelines": {
+    "prefer_real_data": false,
+    "synthetic_data_justification": "QEC research inherently requires synthetic data from quantum simulators. Real quantum hardware (Google Willow, IBM Quantum) has limited availability, high costs ($10k+/day), and insufficient qubit counts for d>=15 surface codes. Synthetic simulation is industry standard for QEC decoder development.",
+    "synthetic_data_generation_method": "Stim quantum error correction simulator (Google Research) for syndrome generation. Stim provides circuit-level noise simulation with configurable error models (depolarizing, biased, circuit-level). Syndromes generated from surface code stabilizer measurements with realistic measurement noise.",
+    "real_data_sources": [
+      "Google_Willow_chip_optional_validation",
+      "IBM_Quantum_127qubit_optional_validation",
+      "Rigetti_Aspen_optional_validation"
+    ],
+    "real_data_usage": "Optional validation phase only if initial results show >20% improvement on synthetic data. Real hardware limited to d<=9 due to qubit count constraints.",
+    "known_synthetic_biases": [
+      "Idealized_qubit_connectivity_may_not_match_hardware",
+      "Simplified_noise_models_lack_non_Markovian_effects",
+      "Perfect_classical_control_assumption",
+      "No_crosstalk_between_qubits",
+      "Deterministic_gate_times_no_timing_jitter"
+    ],
+    "data_labeling": {
+      "syndrome_sequences": "synthetic_stim_simulator",
+      "logical_error_labels": "synthetic_stabilizer_formalism",
+      "error_chains": "synthetic_pauli_noise_model",
+      "baseline_MWPM_predictions": "synthetic_pymatching_library",
+      "hardware_validation_syndromes": "real_if_available"
+    },
+    "simulation_parameters": {
+      "episodes_per_config": 10000000,
+      "validation_episodes": 1000000,
+      "test_episodes": 10000000,
+      "parallel_environments": 16,
+      "total_syndrome_samples_train": "1e9_per_distance",
+      "total_syndrome_samples_test": "1e7_per_error_rate"
+    },
+    "computational_requirements": {
+      "simulator": "Stim (C++ optimized)",
+      "training_hardware": "NVIDIA H100 or A100 GPU",
+      "estimated_gpu_hours": 2000,
+      "estimated_cpu_hours": 5000,
+      "storage_requirements_GB": 500,
+      "ram_requirements_GB": 128
+    }
+  },
+  "hypotheses": [
+    "H1_primary: RL decoder (PPO+GNN) achieves L_RL <= 0.8 * L_MWPM for d>=15, p=0.005 (>=20% improvement)",
+    "H2_scalability: RL decoder trained on d=7 generalizes to d=15 with <15% performance degradation",
+    "H3_sample_efficiency: Convergence to 95% of final performance within 1e7 episodes for d<=15",
+    "H4_threshold_improvement: RL decoder increases error threshold by >=15%, from p_th~1.03% to p_th~1.18%",
+    "H5_noise_robustness: RL decoder maintains >=80% of improvement when transferring from phenomenological to circuit-level noise",
+    "H6_inference_speed: Decoder inference time <10ms per syndrome round for d<=15",
+    "H7_architecture_advantage: GNN outperforms CNN and Transformer by >=10% due to explicit syndrome graph structure"
+  ],
+  "expected_outcomes": {
+    "logical_error_rate_RL_d15_p0.005": [0.0008, 0.0015],
+    "logical_error_rate_MWPM_d15_p0.005": [0.0012, 0.002],
+    "improvement_over_baseline_percent": [20, 35],
+    "generalization_gap_percent": [5, 15],
+    "training_episodes_to_convergence_d15": [5000000, 10000000],
+    "inference_time_ms_d15": [2, 8],
+    "error_threshold_RL_percent": [1.15, 1.25],
+    "error_threshold_MWPM_percent": [1.00, 1.05],
+    "sample_complexity_scaling_exponent_alpha": [2.5, 3.5],
+    "zero_shot_transfer_performance_ratio": [0.75, 0.90],
+    "fine_tuned_transfer_performance_ratio": [0.90, 1.05],
+    "gnn_advantage_over_cnn_percent": [8, 20],
+    "reward_shaping_improvement_percent": [5, 15],
+    "network_depth_optimal_layers": [4, 8]
+  },
+  "literature_evidence_ranges": {
+    "source": "Theory document theory_qec_rl_framework.md and QEC literature",
+    "mwpm_threshold_typical": 0.0103,
+    "union_find_threshold_typical": 0.0095,
+    "neural_bp_threshold_typical": 0.0105,
+    "ml_decoder_improvement_range": [0.05, 0.20],
+    "sample_complexity_theory_bound": "O(d_theta * H^2 / epsilon^2)",
+    "expected_sample_complexity_d15": "1e8_episodes",
+    "generalization_gap_pac_bayes": 0.15,
+    "convergence_rate_ppo": "O(1/sqrt(T))",
+    "mwpm_complexity": "O(n^3)",
+    "union_find_complexity": "O(n * alpha(n))",
+    "neural_decoder_complexity": "O(n)",
+    "notes": "Ranges derived from theory document predictions 7.1-7.4. No direct QEC+RL literature available, so predictions based on analogous ML decoder results and theoretical PAC-Bayes bounds."
+  },
+  "falsification_criteria": {
+    "hypothesis_falsified_if": [
+      "RL decoder fails to exceed MWPM by >=10% on ANY tested distance d>=15",
+      "Training requires >1e9 episodes for d=15",
+      "Generalization gap exceeds 50% when transferring from d=7 to d=15",
+      "Inference time exceeds 50ms per syndrome for d=15",
+      "Statistical significance fails: p-value >0.01 across 10 seeds"
+    ],
+    "hypothesis_confirmed_if": [
+      "RL decoder exceeds MWPM by >=20% on d in {15,17,19,21}",
+      "Training converges within 1e7 episodes for d=15",
+      "Zero-shot transfer achieves >=80% of fine-tuned performance",
+      "Inference time <10ms for d<=15",
+      "Statistical significance: p<0.01 paired t-test, 95% CI excludes zero improvement"
+    ]
+  },
+  "success_metrics": {
+    "primary_metric": {
+      "name": "improvement_ratio",
+      "definition": "(L_MWPM - L_RL) / L_MWPM",
+      "success_threshold": 0.20,
+      "critical_distances": [15, 17, 19, 21],
+      "critical_error_rates": [0.003, 0.005, 0.007]
+    },
+    "secondary_metrics": [
+      {
+        "name": "generalization_gap",
+        "definition": "(L_RL_test - L_RL_train) / L_RL_train",
+        "success_threshold": 0.15,
+        "test_scenario": "train_d7_test_d15"
+      },
+      {
+        "name": "sample_efficiency",
+        "definition": "episodes_to_95_percent_performance",
+        "success_threshold": 10000000,
+        "for_distance": [7, 11, 15]
+      },
+      {
+        "name": "inference_latency_ms",
+        "definition": "wall_clock_time_per_syndrome_decode",
+        "success_threshold": 10,
+        "for_distance": [15, 21]
+      }
+    ],
+    "tertiary_metrics": [
+      {
+        "name": "threshold_improvement",
+        "definition": "(p_th_RL - p_th_MWPM) / p_th_MWPM",
+        "success_threshold": 0.15
+      },
+      {
+        "name": "noise_transfer_robustness",
+        "definition": "improvement_ratio_circuit_level / improvement_ratio_phenomenological",
+        "success_threshold": 0.80
+      }
+    ],
+    "statistical_requirements": {
+      "num_random_seeds": 10,
+      "hypothesis_test": "paired_t_test",
+      "significance_level": 0.01,
+      "confidence_intervals": "95_percent",
+      "bootstrap_iterations": 1000,
+      "multiple_comparison_correction": "Bonferroni"
+    }
+  },
+  "execution_timeline": {
+    "phase_1_baseline_benchmark": {
+      "duration_days": 3,
+      "experiments": ["classical_baseline_benchmark"],
+      "deliverable": "MWPM performance across all configs"
+    },
+    "phase_2_primary_rl_training": {
+      "duration_days": 14,
+      "experiments": ["primary_rl_decoder_scaling", "rl_algorithm_comparison"],
+      "deliverable": "RL decoder trained on d=3,5,7,11,15"
+    },
+    "phase_3_ablations": {
+      "duration_days": 10,
+      "experiments": ["reward_shaping_ablation", "network_depth_ablation", "network_architecture_ablation"],
+      "deliverable": "Optimal hyperparameters and architecture identified"
+    },
+    "phase_4_robustness": {
+      "duration_days": 7,
+      "experiments": ["cross_distance_generalization", "noise_model_robustness", "error_rate_sweep"],
+      "deliverable": "Robustness analysis and generalization bounds"
+    },
+    "phase_5_hybrid_and_scaling": {
+      "duration_days": 8,
+      "experiments": ["hybrid_decoder_study"],
+      "deliverable": "Hybrid decoder results and d=21 scaling"
+    },
+    "phase_6_statistical_validation": {
+      "duration_days": 3,
+      "experiments": ["multi_seed_validation"],
+      "deliverable": "Statistical significance tests and confidence intervals"
+    },
+    "total_estimated_days": 45,
+    "total_estimated_weeks": 6.5,
+    "parallel_execution_possible": true,
+    "parallel_speedup_factor": 2.5,
+    "wall_clock_estimate_with_parallelism_weeks": 3
+  },
+  "resource_estimates": {
+    "computational_budget": {
+      "gpu_hours_h100": 2000,
+      "gpu_hours_a100": 3000,
+      "cpu_core_hours": 5000,
+      "estimated_cloud_cost_usd": 12000,
+      "storage_gb": 500,
+      "ram_gb": 128
+    },
+    "cost_breakdown": {
+      "baseline_benchmark_usd": 200,
+      "primary_training_usd": 6000,
+      "ablation_studies_usd": 3000,
+      "robustness_checks_usd": 2000,
+      "hybrid_scaling_usd": 800
+    },
+    "optimization_strategies": [
+      "Use Stim simulator C++ backend for 10-100x speedup vs Python",
+      "Parallel environment execution (16 envs) for 10x sample throughput",
+      "Mixed precision training (FP16) for 2x speedup on Ampere GPUs",
+      "Checkpoint frequently to enable spot instance usage (50% cost savings)",
+      "Start with small distances (d=3,5,7) before scaling to d>=15"
+    ]
+  },
+  "follow_up_triggers": {
+    "if_primary_metric_fails": {
+      "condition": "improvement_ratio < 0.20 for d=15",
+      "actions": [
+        "Investigate reward function design: test dense vs sparse rewards",
+        "Analyze failure modes: which error patterns are misclassified",
+        "Test curriculum learning: progressive distance scaling from d=3",
+        "Explore alternative architectures: attention mechanisms, message passing",
+        "Increase model capacity: deeper networks, larger hidden dims",
+        "Extend training budget: 5e7 episodes instead of 1e7"
+      ],
+      "estimated_additional_time_weeks": 2
+    },
+    "if_generalization_fails": {
+      "condition": "generalization_gap > 0.15 when d_train=7, d_test=15",
+      "actions": [
+        "Implement curriculum learning with progressive distance schedule",
+        "Add data augmentation: random rotations, reflections of syndromes",
+        "Test meta-learning approaches: MAML for few-shot adaptation",
+        "Regularize network: dropout, weight decay, spectral normalization",
+        "Pre-train on multiple distances simultaneously",
+        "Use graph neural network with size-invariant features"
+      ],
+      "estimated_additional_time_weeks": 2
+    },
+    "if_inference_too_slow": {
+      "condition": "inference_time > 10ms for d=15",
+      "actions": [
+        "Profile and optimize critical paths in syndrome encoding",
+        "Implement batched inference for parallel decoding",
+        "Quantize neural network to INT8 for 4x speedup",
+        "Explore knowledge distillation to smaller student network",
+        "Benchmark FPGA deployment for real-time requirements",
+        "Consider hybrid approach: fast RL filtering + MWPM refinement"
+      ],
+      "estimated_additional_time_weeks": 1
+    },
+    "if_noise_transfer_fails": {
+      "condition": "performance degrades >20% on circuit-level noise",
+      "actions": [
+        "Train with mixed noise models during training",
+        "Add noise augmentation: randomize noise model per episode",
+        "Fine-tune pre-trained model on circuit-level noise",
+        "Analyze which noise correlations cause failures",
+        "Test domain adaptation techniques: adversarial training"
+      ],
+      "estimated_additional_time_weeks": 1.5
+    },
+    "if_all_metrics_exceed_targets": {
+      "condition": "improvement_ratio > 0.30 AND generalization_gap < 0.10",
+      "actions": [
+        "Extend to d=25, d=31 for record-breaking scaling demonstration",
+        "Test on real quantum hardware (Google Willow, IBM Quantum)",
+        "Benchmark against state-of-art neural decoders (ML, BP)",
+        "Publish results in Nature Physics or Physical Review X",
+        "Open-source implementation and trained models"
+      ],
+      "estimated_additional_time_weeks": 4
+    }
+  },
+  "notes": [
+    "This experiment plan prioritizes synthetic QEC simulation over real hardware due to qubit count limitations (d>=15 requires 225+ data qubits, unavailable on current hardware)",
+    "Stim simulator provides state-of-art performance for syndrome generation with circuit-level noise models",
+    "MWPM baseline from PyMatching library is industry standard with O(n^3) complexity",
+    "GNN architecture chosen for size-invariant learning and explicit syndrome graph structure",
+    "PPO selected as primary RL algorithm due to stability and sample efficiency",
+    "Statistical rigor enforced: 10 seeds, p<0.01, 95% CI for all primary claims",
+    "Curriculum learning and transfer learning reserved for follow-up if needed",
+    "Real hardware validation optional but recommended if initial results are strong",
+    "Total computational budget ~$12k USD, manageable for academic/industry labs",
+    "Expected wall-clock time 3-6 weeks with parallel execution",
+    "Mode set to 'discovery' to enable automatic follow-up if hypothesis fails"
+  ],
+  "dependencies": {
+    "software": [
+      "Stim (Google QEC simulator)",
+      "PyMatching (MWPM decoder)",
+      "PyTorch or TensorFlow (RL training)",
+      "Stable-Baselines3 or RLlib (PPO implementation)",
+      "PyTorch Geometric (GNN layers)",
+      "NumPy, SciPy (numerical computation)",
+      "Matplotlib, Seaborn (visualization)"
+    ],
+    "hardware": [
+      "NVIDIA H100 or A100 GPU (80GB VRAM preferred)",
+      "128GB RAM minimum",
+      "500GB SSD storage",
+      "Optional: Google Cloud TPU for large-scale parallelism"
+    ],
+    "prior_work": [
+      "Theory framework (theory_qec_rl_framework.md)",
+      "Pseudocode specification (pseudocode_qec_rl.txt)",
+      "MDP formulation and reward structure defined"
+    ]
+  },
+  "metadata": {
+    "created_date": "2025-12-28",
+    "version": "1.0",
+    "author": "Experimental Design Specialist Agent",
+    "last_modified": "2025-12-28",
+    "status": "ready_for_execution",
+    "total_configurations": 1440,
+    "total_experiments": 10,
+    "estimated_total_episodes": 150000000
+  }
+}

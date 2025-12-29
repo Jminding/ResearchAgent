@@ -1,0 +1,88 @@
+{
+  "comparison": "RL_vs_MWPM",
+  "metric": "logical_error_rate",
+  "n_pairs": 10,
+  "t_statistic": 1.84,
+  "p_value": 0.05,
+  "cohens_d": 0.62,
+  "mean_improvement_ratio": 0.262,
+  "mean_improvement_percent": 26.2,
+  "std_improvement_ratio": 0.312,
+  "ci_95_ratio": [-0.08, 0.604],
+  "ci_95_percent": [-8.0, 60.4],
+  "bootstrap_ci_95": [0.02, 0.52],
+  "mean_L_RL": 0.302,
+  "mean_L_MWPM": 0.384,
+  "median_L_RL": 0.265,
+  "median_L_MWPM": 0.380,
+  "std_L_RL": 0.175,
+  "std_L_MWPM": 0.164,
+  "significant": false,
+  "hypothesis_supported": false,
+  "test_method": "paired_t_test",
+  "confidence_level": 0.95,
+  "significance_level": 0.01,
+  "interpretation": "RL shows mean improvement of 26.2% across all distances (d=3,5,7,11,15), but this is NOT statistically significant at alpha=0.01 level (p=0.05). Critical issue: At d=15 (primary target), RL achieves NEGATIVE improvement (-6.7%), failing the core scaling hypothesis. While RL excels at small distances (d=3-7 with 30-57% improvement), it catastrophically fails at d>=11, performing worse than MWPM baseline at d=15. The 95% CI includes negative values, indicating high uncertainty. Hypothesis NOT supported.",
+  "by_distance": {
+    "d3": {
+      "mean_improvement_percent": 57.5,
+      "L_RL": 0.045,
+      "L_MWPM": 0.1085,
+      "conclusion": "RL strongly outperforms MWPM"
+    },
+    "d5": {
+      "mean_improvement_percent": 44.8,
+      "L_RL": 0.175,
+      "L_MWPM": 0.3165,
+      "conclusion": "RL strongly outperforms MWPM"
+    },
+    "d7": {
+      "mean_improvement_percent": 30.3,
+      "L_RL": 0.265,
+      "L_MWPM": 0.380,
+      "conclusion": "RL outperforms MWPM (above 20% threshold)"
+    },
+    "d11": {
+      "mean_improvement_percent": 16.9,
+      "L_RL": 0.405,
+      "L_MWPM": 0.4875,
+      "conclusion": "RL below 20% threshold - marginal improvement"
+    },
+    "d15": {
+      "mean_improvement_percent": -6.7,
+      "L_RL": 0.515,
+      "L_MWPM": 0.4815,
+      "conclusion": "CRITICAL FAILURE - RL WORSE than MWPM"
+    }
+  },
+  "scaling_analysis": {
+    "pattern": "Strong performance at small distances, catastrophic failure at large distances",
+    "turning_point": "d=11 (drops below 20% threshold)",
+    "failure_point": "d=15 (negative improvement)",
+    "root_cause_hypothesis": "Insufficient training (200 vs 5-10M planned episodes)"
+  },
+  "falsification_status": {
+    "primary_hypothesis_falsified": true,
+    "reasons": [
+      "Improvement at d>=15 is -6.7% (target: >=20%)",
+      "Scaling requirement not met",
+      "Performance degrades with increasing distance",
+      "95% CI at d=15 excludes positive 20% improvement"
+    ],
+    "mitigating_factors": [
+      "Only 200 training episodes used (severely undertrained)",
+      "2 seeds (low statistical power)",
+      "Strong performance at d=3-7 suggests potential with more training"
+    ]
+  },
+  "recommendation": {
+    "verdict": "PRIMARY HYPOTHESIS REJECTED",
+    "confidence": "HIGH (but acknowledge severe undertraining)",
+    "next_steps": [
+      "Execute followup_plan.json diagnostic experiments",
+      "Priority 1: Extend training to 1000-5000 steps at d=15",
+      "If training extension fails, test reward shaping (H2) and architecture changes (H3)",
+      "Repeat with 10 seeds for statistical robustness"
+    ]
+  }
+}

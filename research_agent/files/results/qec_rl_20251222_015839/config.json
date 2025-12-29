@@ -1,0 +1,32 @@
+{
+  "code_distances": [
+    3
+  ],
+  "error_rates": [
+    0.03,
+    0.05,
+    0.07,
+    0.09
+  ],
+  "noise_model": "depolarizing",
+  "gamma_bias": 0.0,
+  "n_episodes": 3000,
+  "T_max": 30,
+  "history_window": 3,
+  "eval_interval": 500,
+  "n_eval_episodes": 200,
+  "hidden_dims": [
+    32,
+    32
+  ],
+  "lr_actor": 0.0003,
+  "lr_critic": 0.001,
+  "ppo_gamma": 0.99,
+  "ppo_lambda": 0.95,
+  "eps_clip": 0.2,
+  "K_epochs": 10,
+  "batch_size": 64,
+  "buffer_size": 512,
+  "entropy_coef": 0.01,
+  "save_dir": "/Users/jminding/Desktop/Code/Research Agent/research_agent/files/results/qec_rl_20251222_015839"
+}

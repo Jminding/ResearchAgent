@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block title %}Submit Feedback - {{ session.session_id }}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'session_detail' session.session_id %}">{{ session.session_id }}</a></li>
+            <li class="breadcrumb-item active">Submit Feedback</li>
+        </ol>
+    </nav>
+
+    <h1><i class="bi bi-chat-right-text"></i> Submit Peer Review Feedback</h1>
+
+    <div class="row mt-4">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Feedback Form</h5>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+
+                        {% for field in form %}
+                        <div class="mb-3">
+                            <label for="{{ field.id_for_label }}" class="form-label">
+                                {{ field.label }}
+                            </label>
+                            {{ field }}
+                            {% if field.help_text %}
+                            <small class="form-text text-muted">{{ field.help_text }}</small>
+                            {% endif %}
+                            {% if field.errors %}
+                            <div class="invalid-feedback d-block">
+                                {{ field.errors }}
+                            </div>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-send"></i> Submit Feedback
+                        </button>
+                        <a href="{% url 'session_detail' session.session_id %}" class="btn btn-secondary">Cancel</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">How It Works</h5>
+                </div>
+                <div class="card-body">
+                    <p class="small">
+                        Paste your peer review feedback or revision requests in the form.
+                        The research agent will:
+                    </p>
+                    <ol class="small">
+                        <li>Read the existing paper and results</li>
+                        <li>Address each point of feedback systematically</li>
+                        <li>Make necessary revisions</li>
+                        <li>Generate an updated paper</li>
+                    </ol>
+                    <p class="small text-muted">
+                        This process may take several minutes depending on the feedback complexity.
+                    </p>
+                </div>
+            </div>
+
+            <div class="card mt-3">
+                <div class="card-header">
+                    <h5 class="mb-0">Example Feedback</h5>
+                </div>
+                <div class="card-body">
+                    <p class="small">
+                        "The methodology section needs more detail on hyperparameter selection.
+                        Add a comparison with the baseline method from Smith et al. (2023).
+                        Figure 2 labels are unclear - please improve."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

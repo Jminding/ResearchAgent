@@ -1,0 +1,176 @@
+You: Research a new quantitative model for financial markets using current data. Write the final paper using the AASTeX LaTeX library template.
+Agent: Spawning 4 parallel literature reviewers to cover financial modeling foundations, quantitative methods, market data analysis, and current empirical applications.
+
+[🚀 Spawning LITERATURE-REVIEWER-1: Financial market modeling foundations]
+
+
+[🚀 Spawning LITERATURE-REVIEWER-2: Advanced quantitative methods and ML]
+
+
+[🚀 Spawning LITERATURE-REVIEWER-3: Market microstructure and data]
+
+
+[🚀 Spawning LITERATURE-REVIEWER-4: Empirical validation and benchmarking]
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='machine learning quantitative finance 2024 2025'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='deep learning asset pricing neural networks 2024'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='alternative data machine learning finance 2023 2024'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='tree-based models quantitative finance gradient boosting XGBoost 2024'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='neural networks stock price prediction 2024 2025'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='financial market microstructure high-frequency trading data quality 2024 2025'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='market microstructure effects liquidity modeling empirical'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='high-frequency trading HFT real-time data challenges'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='financial data quality issues market data sources'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='bid-ask spread market dynamics liquidity 2023 2024'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='empirical validation quantitative financial models out-of-sample performance 2024 2025'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='backtesting methodologies financial models benchmarks'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='quantitative trading model performance evaluation metrics 2024'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='machine learning financial predictions real market validation'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='algorithmic trading model implementation constraints real data'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='Black-Scholes option pricing model assumptions limitations'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='CAPM capital asset pricing model theoretical foundations'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='factor models finance Fama French multi-factor'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='classical financial models criticism market assumptions'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='quantitative finance models literature review 2023 2024'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='reinforcement learning portfolio optimization 2024 2025'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='LSTM RNN financial time series forecasting 2024'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='transformer attention mechanism stock prediction 2024'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='sentiment analysis NLP financial markets 2024 2025'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='graph neural networks financial markets 2024'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='Markowitz portfolio theory efficient frontier optimization'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='"Black Scholes" stochastic differential equations geometric Brownian motion'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='efficient market hypothesis EMH weak form strong form'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='arbitrage pricing theory APT Ross factor models'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='volatility smile skew option pricing models limitations'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='walk-forward validation financial models cross-validation methodologies 2024'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='"out-of-sample" Sharpe ratio alpha performance trading strategies case study'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='market microstructure implementation costs transaction costs model validation'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='deep learning LSTM transformer stock prediction empirical results 2024 2025'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='factor models empirical validation risk-adjusted returns out-of-sample'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='limit order book LOB market impact empirical research 2023 2024'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='tick size effects market microstructure trading costs 2024'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='order flow information asymmetry adverse selection 2023 2025'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='market data timestamps synchronization latency arXiv 2024'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='intraday seasonality market microstructure empirical findings'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='arxiv financial machine learning 2024 2025 deep learning pricing'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='volatility prediction machine learning GARCH neural networks 2024'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='generative adversarial networks GAN finance stock prediction 2024'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='multimodal learning financial data alternative data fusion 2024'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='Sharpe ratio overfitting probability backtest inflation 2024'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='"deflated Sharpe ratio" "Probability of Backtest Overfitting" PBO DSR'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='quantitative hedge fund performance empirical study returns constraints 2024'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='regime switching market regimes trading model performance validation'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='Merton stock option pricing stochastic volatility jump processes'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='modern portfolio theory risk return framework beta systematic risk'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='"Sharpe ratio" performance measurement risk-adjusted returns'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='"market fragmentation" liquidity empirical 2023 2024'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='algorithmic trading execution costs market impact research'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='data-driven measures HFT machine learning trading 2024 2025'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='market quality metrics transparency disclosure regulations 2024'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='alternative data alternative information sources trading research 2024'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='volatility estimation realized volatility microstructure noise 2023 2024'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='order submission strategies VWAP TWAP execution benchmarks'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='Menkveld 2023 market microstructure reproducibility research quality'
+
+[LITERATURE-REVIEWER-4] → Write    Input: file='04_empirical_validation.md' (44415 chars)
+
+[LITERATURE-REVIEWER-1] → Write    Input: file='01_foundations.md' (49590 chars)
+
+[LITERATURE-REVIEWER-3] → Write    Input: file='03_market_data.md' (44080 chars)
+
+[LITERATURE-REVIEWER-2] → Write    Input: file='02_advanced_methods.md' (56679 chars)
+
+Literature review complete across 4 subtopics. Spawning theorist to formalize the quantitative framework and hypothesis.
+
+[🚀 Spawning THEORIST-1: Formalize financial model theory and hypothesis]
+
+[THEORIST-1] → Write    Input: file='framework.md' (25759 chars)
+
+Spawning data-collector to identify and document real financial market datasets for model validation.
+
+[🚀 Spawning DATA-COLLECTOR-1: Locate financial datasets for model testing]
+
+[DATA-COLLECTOR-1] → WebSearch    Input: query='high-frequency tick data limit order book dataset 2023 2024 2025 Kaggle UCI academic'
+
+[DATA-COLLECTOR-1] → WebSearch    Input: query='WRDS TAQ high-frequency trading data order flow microstructure dataset'
+
+[DATA-COLLECTOR-1] → WebSearch    Input: query='LOB limit order book dataset FI-2010 benchmark financial microstructure'
+
+[DATA-COLLECTOR-1] → WebSearch    Input: query='cross-sectional factor data Fama French size value momentum dataset 2024 2025'
+
+[DATA-COLLECTOR-1] → WebSearch    Input: query='VIX volatility index historical data dataset 2023 2024 2025 CBOE download'
+
+[DATA-COLLECTOR-1] → WebSearch    Input: query='market regime indicators stress periods dataset jump detection volatility 2024'
+
+[DATA-COLLECTOR-1] → WebSearch    Input: query='alternative financial data sources alpha vantage polygon.io financial datasets API 2024'
+
+[DATA-COLLECTOR-1] → WebSearch    Input: query='synthetic financial data generation order flow simulation microstructure 2024'
+
+[DATA-COLLECTOR-1] → WebSearch    Input: query='"LOBSTER dataset" academic access pricing stock microstructure 2024'
+
+[DATA-COLLECTOR-1] → WebSearch    Input: query='Databento market data API high frequency tick data pricing 2024'
+
+[DATA-COLLECTOR-1] → WebSearch    Input: query='crypto high frequency order book dataset binance coinbase historical download'
+
+[DATA-COLLECTOR-1] → WebSearch    Input: query='FI-2010 dataset download link github LOB benchmark'
+
+Error: Command failed with exit code -2 (exit code: -2)
+Error output: Check stderr output for details

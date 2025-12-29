@@ -1,0 +1,104 @@
+This is BibTeX, Version 0.99d (TeX Live 2024)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: superconductor_tc_prediction_paper.aux
+The style file: naturemag.bst
+I found no \bibdata command---while reading file superconductor_tc_prediction_paper.aux
+Warning--I didn't find a database entry for "onnes1911"
+Warning--I didn't find a database entry for "schilling1993"
+Warning--I didn't find a database entry for "drozdov2015"
+Warning--I didn't find a database entry for "somayazulu2019"
+Warning--I didn't find a database entry for "drozdov2019"
+Warning--I didn't find a database entry for "doe2015"
+Warning--I didn't find a database entry for "clarke2008"
+Warning--I didn't find a database entry for "lvovsky2013"
+Warning--I didn't find a database entry for "bardeen1957"
+Warning--I didn't find a database entry for "giustino2017"
+Warning--I didn't find a database entry for "scalapino2012"
+Warning--I didn't find a database entry for "supercon2020"
+Warning--I didn't find a database entry for "curtarolo2013"
+Warning--I didn't find a database entry for "kumar2023"
+Warning--I didn't find a database entry for "si2023"
+Warning--I didn't find a database entry for "stanev2018"
+Warning--I didn't find a database entry for "konno2021"
+Warning--I didn't find a database entry for "matsumoto2019"
+Warning--I didn't find a database entry for "hamidieh2018"
+Warning--I didn't find a database entry for "owolabi2021"
+Warning--I didn't find a database entry for "matthias1957"
+Warning--I didn't find a database entry for "ward2016"
+Warning--I didn't find a database entry for "lundberg2017"
+Warning--I didn't find a database entry for "carbotte1990"
+Warning--I didn't find a database entry for "errea2020"
+Warning--I didn't find a database entry for "eliashberg1960"
+Warning--I didn't find a database entry for "mcmillan1968"
+Warning--I didn't find a database entry for "allen1975"
+Warning--I didn't find a database entry for "ashcroft1968"
+Warning--I didn't find a database entry for "matthias1963"
+Warning--I didn't find a database entry for "pickett2006"
+Warning--I didn't find a database entry for "snider2020"
+Warning--I didn't find a database entry for "isayev2015"
+Warning--I didn't find a database entry for "breiman2001"
+Warning--I didn't find a database entry for "xie2018"
+Warning--I didn't find a database entry for "chen2019"
+Warning--I didn't find a database entry for "choudhary2021"
+Warning--I didn't find a database entry for "roter2023"
+Warning--I didn't find a database entry for "liu2008"
+Warning--I didn't find a database entry for "ong2013"
+Warning--I didn't find a database entry for "troyan2019"
+Warning--I didn't find a database entry for "hong2020"
+Warning--I didn't find a database entry for "cohen1972"
+Warning--I didn't find a database entry for "yeh2004"
+Warning--I didn't find a database entry for "srivastava2014"
+Warning--I didn't find a database entry for "ioffe2015"
+Warning--I didn't find a database entry for "kingma2015"
+Warning--I didn't find a database entry for "glorot2010"
+Warning--I didn't find a database entry for "bennett2021"
+Warning--I didn't find a database entry for "garland1963"
+Warning--I didn't find a database entry for "anderson1958"
+Warning--I didn't find a database entry for "goodfellow2016"
+Warning--I didn't find a database entry for "vaswani2017"
+Warning--I didn't find a database entry for "mahalanobis1936"
+Warning--I didn't find a database entry for "lookman2019"
+Warning--I didn't find a database entry for "pearl2009"
+Warning--I didn't find a database entry for "kim2018"
+You've used 0 entries,
+            2348 wiz_defined-function locations,
+            1031 strings with 9375 characters,
+and the built_in function-call counts, 28 in all, are:
+= -- 0
+> -- 0
+< -- 0
++ -- 0
+- -- 0
+* -- 2
+:= -- 7
+add.period$ -- 0
+call.type$ -- 0
+change.case$ -- 0
+chr.to.int$ -- 0
+cite$ -- 0
+duplicate$ -- 0
+empty$ -- 1
+format.name$ -- 0
+if$ -- 1
+int.to.chr$ -- 0
+int.to.str$ -- 0
+missing$ -- 0
+newline$ -- 8
+num.names$ -- 0
+pop$ -- 0
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 1
+stack$ -- 0
+substring$ -- 0
+swap$ -- 0
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 0
+while$ -- 0
+width$ -- 0
+write$ -- 7
+(There was 1 error message)

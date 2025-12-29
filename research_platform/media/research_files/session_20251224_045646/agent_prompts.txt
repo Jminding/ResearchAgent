@@ -1,0 +1,88 @@
+
+================================================================================
+AGENT: LITERATURE-REVIEWER-1
+TYPE: literature-reviewer
+SPAWNED: 2025-12-24 04:56:51
+DESCRIPTION: GNN architectures and foundations
+================================================================================
+
+PROMPT:
+Survey foundational graph neural network architectures (GCN, GraphSAGE, GAT, message-passing frameworks). Focus on scalability, expressiveness, and inductive/transductive capabilities. MUST create files/research_notes/evidence_sheet.json with quantitative evidence on model performance, training time, and parameter efficiency.
+
+
+================================================================================
+AGENT: LITERATURE-REVIEWER-2
+TYPE: literature-reviewer
+SPAWNED: 2025-12-24 04:56:52
+DESCRIPTION: Anomaly detection methods and GNN-specific approaches
+================================================================================
+
+PROMPT:
+Review anomaly detection techniques applied to graphs: outlier scoring, reconstruction error, contrastive learning, and graph autoencoders. Identify GNN-specific anomaly detection methods for node, edge, and subgraph anomalies. MUST create files/research_notes/evidence_sheet.json with quantitative metrics on detection accuracy, precision, recall, and AUC across benchmark datasets.
+
+
+================================================================================
+AGENT: LITERATURE-REVIEWER-3
+TYPE: literature-reviewer
+SPAWNED: 2025-12-24 04:56:54
+DESCRIPTION: Financial transaction networks and fraud detection
+================================================================================
+
+PROMPT:
+Investigate financial transaction networks, money laundering detection, fraud patterns, and existing detection baselines (isolation forest, random forest, unsupervised methods). Document dataset characteristics (node/edge counts, temporal dynamics, ground truth labels). MUST create files/research_notes/evidence_sheet.json with quantitative evidence on baseline performance, class imbalance, and real-world detection metrics.
+
+
+================================================================================
+AGENT: LITERATURE-REVIEWER-4
+TYPE: literature-reviewer
+SPAWNED: 2025-12-24 04:56:55
+DESCRIPTION: GNN applications to financial anomalies and temporal dynamics
+================================================================================
+
+PROMPT:
+Search for case studies and benchmarks of GNNs applied to financial fraud/anomaly detection, temporal graph networks, dynamic graph learning, and real-world financial datasets (NASDAQ, SEC filings, transaction records). Document performance gains over baselines and computational constraints. MUST create files/research_notes/evidence_sheet.json with quantitative results from financial anomaly detection papers and benchmarks.
+
+
+================================================================================
+AGENT: THEORIST-1
+TYPE: theorist
+SPAWNED: 2025-12-24 05:07:00
+DESCRIPTION: Formalize GNN anomaly detection theory
+================================================================================
+
+PROMPT:
+Read all files in files/research_notes/ including evidence_sheet.json files from all 4 reviewers. Construct a unified mathematical framework for GNN-based anomaly detection on financial transaction networks. Define: (1) graph representation of transactions, (2) node/edge anomaly scoring functions, (3) temporal dynamics incorporation, (4) class imbalance and heterophily handling. Propose a falsifiable hypothesis comparing GNN methods vs. baseline methods on financial networks. Write pseudocode for the complete pipeline. Save to files/theory/framework.md and files/theory/hypothesis.md.
+
+
+================================================================================
+AGENT: EXPERIMENTAL-DESIGNER-1
+TYPE: experimental-designer
+SPAWNED: 2025-12-24 05:15:14
+DESCRIPTION: Design comprehensive experiment plan with ablations
+================================================================================
+
+PROMPT:
+Read files/research_notes/ (all evidence sheets from 4 reviewers) and files/theory/ (framework.md and hypothesis.md). Design a comprehensive ExperimentPlan for testing GNN-based anomaly detection on financial transaction networks. Include: (1) 4-5 baseline comparisons (XGBoost, Random Forest, Isolation Forest, MLP, plus top GNN), (2) systematic parameter grid for best GNN across hidden dims [64,128,256], layers [2,3,4], learning rates [0.001,0.01], (3) ablation studies: temporal vs static, with/without heterophily handling, with/without focal loss, (4) robustness checks: random seeds (5), temporal leakage validation, graph sparsification (50%, 75%, 90%), (5) data selection guidelines favoring IEEE-CIS and Elliptic datasets with realistic fraud rates. Save to files/theory/experiment_plan.json with all configs specified.
+
+
+================================================================================
+AGENT: DATA-COLLECTOR-1
+TYPE: data-collector
+SPAWNED: 2025-12-24 05:23:23
+DESCRIPTION: Find and document financial anomaly datasets
+================================================================================
+
+PROMPT:
+Read files/theory/experiment_plan.json to understand data guidelines. Locate, evaluate, and document real-world financial transaction network datasets. Prioritize: (1) Elliptic Bitcoin (203K nodes, 2% fraud), (2) IEEE-CIS credit card fraud (590K transactions, 3.49% fraud), (3) Kaggle credit card dataset (284K, 0.17% fraud). For each dataset, document: access method, size, features, fraud rate, temporal span, graph structure properties (avg degree, diameter), known limitations. Record in files/data/datasets.json with complete metadata. If datasets unavailable, justify need for synthetic data (SBM generation). Verify all URLs and access instructions as of 2025-12-24.
+
+
+================================================================================
+AGENT: EXPERIMENTALIST-1
+TYPE: experimentalist
+SPAWNED: 2025-12-24 05:31:18
+DESCRIPTION: Implement and run all experiments
+================================================================================
+
+PROMPT:
+Read files/theory/experiment_plan.json and files/data/datasets.json. Implement the complete experimental pipeline for GNN-based anomaly detection on financial networks. Execute: (1) Experiment 1: 5 baselines (XGBoost, RF, IF, MLP, GAT) on Elliptic, (2) Experiment 2: FAGCN parameter grid (hidden_dim, num_layers, lr), (3) Experiments 3-6: all ablations (temporal/static, heterophily, focal loss, homophily sweep), (4) All robustness checks (5 seeds, temporal leakage, sparsification, label noise). Use PyTorch/PyG. For each configuration: train on 70% Elliptic, validate on 15%, test on 15%, compute AUROC/AUPRC/F1 with 95% CIs. Save complete ResultsTable (all metrics for all 100+ configs) to files/results/results_table.json and results.csv. Document training time, inference latency, memory usage. Save experiment code to files/experiments/.
+

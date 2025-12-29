@@ -1,0 +1,63 @@
+
+================================================================================
+AGN vs Star-Forming Galaxy X-ray Classification: EXPERIMENT SUMMARY
+================================================================================
+
+Date: 2025-12-21 21:48:50
+
+DATA SUMMARY
+------------
+Total sources: 6800
+  - XMM-COSMOS-like: 1800 sources
+  - eROSITA eFEDS-like: 5000 sources
+
+Class distribution:
+  - AGN: 5563 (81.8%)
+  - SFG: 1237 (18.2%)
+
+MODEL PERFORMANCE (Test Set)
+----------------------------
+
+RANDOM FOREST
+  Accuracy:  0.9934
+  ROC-AUC:   0.9999
+  F1-Score:  0.9821
+  Precision: 0.9648
+  Recall:    1.0000
+
+GRADIENT BOOSTING
+  Accuracy:  0.9941
+  ROC-AUC:   0.9999
+  F1-Score:  0.9840
+  Precision: 0.9723
+  Recall:    0.9960
+
+NEURAL NETWORK
+  Accuracy:  0.9949
+  ROC-AUC:   0.9999
+  F1-Score:  0.9860
+  Precision: 0.9762
+  Recall:    0.9960
+
+BEST MODEL: NEURAL NETWORK
+  ROC-AUC: 0.9999
+
+THEORETICAL FRAMEWORK VALIDATION
+--------------------------------
+Hypothesis H1 (Luminosity-SFR Excess): CONFIRMED
+Hypothesis H2 (HR-L_X Separation): CONFIRMED
+Hypothesis H4 (Multi-wavelength Benefit): CONFIRMED
+
+FILES GENERATED
+---------------
+- synthetic_catalog.csv: Full synthetic catalog
+- experiment_results.json: Numerical results
+- luminosity_hardness.png: L_X vs HR diagnostic diagram
+- xray_sfr_relation.png: X-ray vs SFR diagram
+- photon_index_dist.png: Gamma distribution comparison
+- roc_curves.png: ROC curves for all models
+- confusion_matrices.png: Confusion matrices
+- feature_importance.png: Feature importance plots
+- redshift_performance.png: Performance across redshift bins
+
+================================================================================

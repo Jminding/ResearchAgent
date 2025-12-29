@@ -1,0 +1,85 @@
+\contentsline {section}{\numberline {1}Introduction}{5}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Motivation and Context}{5}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}The Materials Discovery Bottleneck}{5}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Machine Learning as an Accelerated Screening Tool}{6}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}Research Questions and Hypotheses}{6}{subsection.1.4}%
+\contentsline {subsection}{\numberline {1.5}Contributions}{7}{subsection.1.5}%
+\contentsline {subsection}{\numberline {1.6}Paper Organization}{7}{subsection.1.6}%
+\contentsline {section}{\numberline {2}Theoretical Background and Literature Review}{7}{section.2}%
+\contentsline {subsection}{\numberline {2.1}BCS Theory and the McMillan-Allen-Dynes Formula}{7}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Matthias' Empirical Rules}{8}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}High-Pressure Hydride Superconductors}{9}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Machine Learning for Materials Property Prediction}{9}{subsection.2.4}%
+\contentsline {subsubsection}{\numberline {2.4.1}Feature Engineering Approaches}{9}{subsubsection.2.4.1}%
+\contentsline {subsubsection}{\numberline {2.4.2}Model Architectures}{10}{subsubsection.2.4.2}%
+\contentsline {subsubsection}{\numberline {2.4.3}Prior Work on $T_c$ Prediction}{10}{subsubsection.2.4.3}%
+\contentsline {subsection}{\numberline {2.5}Physical Constraints and Validation Strategies}{11}{subsection.2.5}%
+\contentsline {section}{\numberline {3}Data Sources and Feature Engineering}{11}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Dataset Construction}{11}{subsection.3.1}%
+\contentsline {subsubsection}{\numberline {3.1.1}Primary Data Source: SuperCon Database}{11}{subsubsection.3.1.1}%
+\contentsline {subsubsection}{\numberline {3.1.2}Data Cleaning Protocol}{12}{subsubsection.3.1.2}%
+\contentsline {subsubsection}{\numberline {3.1.3}Final Curated Dataset}{13}{subsubsection.3.1.3}%
+\contentsline {subsubsection}{\numberline {3.1.4}Hold-Out Hydride Validation Set}{13}{subsubsection.3.1.4}%
+\contentsline {subsection}{\numberline {3.2}Feature Engineering: MAGPIE Descriptors}{13}{subsection.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}Descriptor Categories}{13}{subsubsection.3.2.1}%
+\contentsline {subsubsection}{\numberline {3.2.2}Physical Connections to BCS Theory}{14}{subsubsection.3.2.2}%
+\contentsline {subsubsection}{\numberline {3.2.3}Feature Normalization}{15}{subsubsection.3.2.3}%
+\contentsline {subsection}{\numberline {3.3}Train/Test/Validation Split}{15}{subsection.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.1}Stratified Split Strategy}{15}{subsubsection.3.3.1}%
+\contentsline {subsubsection}{\numberline {3.3.2}Cross-Validation Design}{15}{subsubsection.3.3.2}%
+\contentsline {section}{\numberline {4}Machine Learning Models and Training}{16}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Random Forest Regression}{16}{subsection.4.1}%
+\contentsline {subsubsection}{\numberline {4.1.1}Model Architecture}{16}{subsubsection.4.1.1}%
+\contentsline {subsubsection}{\numberline {4.1.2}Hyperparameter Optimization}{16}{subsubsection.4.1.2}%
+\contentsline {subsection}{\numberline {4.2}Deep Neural Network Regression}{17}{subsection.4.2}%
+\contentsline {subsubsection}{\numberline {4.2.1}Architecture Design}{17}{subsubsection.4.2.1}%
+\contentsline {subsubsection}{\numberline {4.2.2}Loss Function and Optimization}{17}{subsubsection.4.2.2}%
+\contentsline {subsubsection}{\numberline {4.2.3}Training Protocol}{18}{subsubsection.4.2.3}%
+\contentsline {subsection}{\numberline {4.3}Feature Importance Extraction}{18}{subsection.4.3}%
+\contentsline {subsubsection}{\numberline {4.3.1}Random Forest: Mean Decrease in Impurity}{18}{subsubsection.4.3.1}%
+\contentsline {subsubsection}{\numberline {4.3.2}SHAP Values}{18}{subsubsection.4.3.2}%
+\contentsline {subsubsection}{\numberline {4.3.3}DNN: Gradient-Based Saliency}{18}{subsubsection.4.3.3}%
+\contentsline {section}{\numberline {5}Results}{19}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Test Set Performance}{19}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Cross-Validation Results}{19}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Performance Breakdown by Material Class}{20}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Performance vs. $T_c$ Range}{21}{subsection.5.4}%
+\contentsline {subsection}{\numberline {5.5}Feature Importance Rankings}{21}{subsection.5.5}%
+\contentsline {subsubsection}{\numberline {5.5.1}Random Forest: Mean Decrease in Impurity}{21}{subsubsection.5.5.1}%
+\contentsline {subsubsection}{\numberline {5.5.2}SHAP Values: Global Feature Attribution}{22}{subsubsection.5.5.2}%
+\contentsline {subsubsection}{\numberline {5.5.3}DNN Gradient-Based Importance}{23}{subsubsection.5.5.3}%
+\contentsline {subsubsection}{\numberline {5.5.4}Consensus Features}{23}{subsubsection.5.5.4}%
+\contentsline {subsection}{\numberline {5.6}Hydride Hold-Out Validation: Extrapolation Failure}{24}{subsection.5.6}%
+\contentsline {subsubsection}{\numberline {5.6.1}Root Cause Analysis}{24}{subsubsection.5.6.1}%
+\contentsline {subsubsection}{\numberline {5.6.2}Per-Sample Hydride Predictions}{25}{subsubsection.5.6.2}%
+\contentsline {subsection}{\numberline {5.7}Physical Constraint Validation}{25}{subsection.5.7}%
+\contentsline {subsubsection}{\numberline {5.7.1}Thermodynamic Bounds}{25}{subsubsection.5.7.1}%
+\contentsline {subsubsection}{\numberline {5.7.2}Isotope Effect Check}{25}{subsubsection.5.7.2}%
+\contentsline {subsubsection}{\numberline {5.7.3}Matthias Rule Validation}{26}{subsubsection.5.7.3}%
+\contentsline {section}{\numberline {6}Discussion}{26}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Interpretation of Feature Importance}{26}{subsection.6.1}%
+\contentsline {subsubsection}{\numberline {6.1.1}Dominance of total\_atoms: Artifact or Physics?}{26}{subsubsection.6.1.1}%
+\contentsline {subsubsection}{\numberline {6.1.2}Valence Electron Concentration: Matthias' Legacy}{27}{subsubsection.6.1.2}%
+\contentsline {subsubsection}{\numberline {6.1.3}Entropy Features: Compositional Disorder}{27}{subsubsection.6.1.3}%
+\contentsline {subsubsection}{\numberline {6.1.4}Electronegativity: Electron-Phonon Coupling}{28}{subsubsection.6.1.4}%
+\contentsline {subsection}{\numberline {6.2}Model Trustworthiness and Deployment Readiness}{28}{subsection.6.2}%
+\contentsline {subsubsection}{\numberline {6.2.1}Random Forest: Recommended for Deployment}{28}{subsubsection.6.2.1}%
+\contentsline {subsubsection}{\numberline {6.2.2}Deep Neural Network: High-Risk, Not Recommended}{29}{subsubsection.6.2.2}%
+\contentsline {subsection}{\numberline {6.3}Comparison with Prior ML Studies}{30}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.4}Failure Mode Analysis: Hydride Catastrophe}{30}{subsection.6.4}%
+\contentsline {subsubsection}{\numberline {6.4.1}Lesson 1: Domain Shift Detection}{30}{subsubsection.6.4.1}%
+\contentsline {subsubsection}{\numberline {6.4.2}Lesson 2: Physics-Informed Features}{31}{subsubsection.6.4.2}%
+\contentsline {subsubsection}{\numberline {6.4.3}Lesson 3: Model Ensembling}{31}{subsubsection.6.4.3}%
+\contentsline {subsection}{\numberline {6.5}Implications for Materials Discovery Pipelines}{31}{subsection.6.5}%
+\contentsline {subsubsection}{\numberline {6.5.1}Integration with High-Throughput Screening}{31}{subsubsection.6.5.1}%
+\contentsline {subsubsection}{\numberline {6.5.2}Experimental Validation Campaign}{32}{subsubsection.6.5.2}%
+\contentsline {section}{\numberline {7}Recommendations}{32}{section.7}%
+\contentsline {subsection}{\numberline {7.1}For Machine Learning Practitioners}{32}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}For Materials Scientists}{33}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}Future Research Directions}{33}{subsection.7.3}%
+\contentsline {section}{\numberline {8}Conclusion}{34}{section.8}%
+\contentsline {section}{\numberline {A}Cross-Validation Fold Details}{39}{appendix.A}%
+\contentsline {section}{\numberline {B}Feature Definitions}{39}{appendix.B}%
+\contentsline {section}{\numberline {C}Physical Bounds Validation Details}{40}{appendix.C}%
+\contentsline {section}{\numberline {D}Hydride Analysis: Per-Compound Residuals}{40}{appendix.D}%
+\contentsline {section}{\numberline {E}Code and Data Availability}{40}{appendix.E}%

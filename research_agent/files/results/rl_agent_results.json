@@ -1,0 +1,234 @@
+{
+  "train_distance": 3,
+  "distances": [
+    3,
+    5,
+    7
+  ],
+  "error_rates": [
+    0.01,
+    0.03,
+    0.049999999999999996,
+    0.06999999999999999,
+    0.08999999999999998,
+    0.10999999999999997,
+    0.12999999999999998,
+    0.15
+  ],
+  "noise_types": [
+    "depolarizing",
+    "dephasing"
+  ],
+  "logical_error_rates": {
+    "d3": {
+      "depolarizing": {
+        "p0.0100": {
+          "logical_error_rate": 0.007,
+          "accuracy": 0.993
+        },
+        "p0.0300": {
+          "logical_error_rate": 0.06,
+          "accuracy": 0.94
+        },
+        "p0.0500": {
+          "logical_error_rate": 0.1225,
+          "accuracy": 0.8775
+        },
+        "p0.0700": {
+          "logical_error_rate": 0.213,
+          "accuracy": 0.787
+        },
+        "p0.0900": {
+          "logical_error_rate": 0.269,
+          "accuracy": 0.731
+        },
+        "p0.1100": {
+          "logical_error_rate": 0.335,
+          "accuracy": 0.665
+        },
+        "p0.1300": {
+          "logical_error_rate": 0.3655,
+          "accuracy": 0.6345
+        },
+        "p0.1500": {
+          "logical_error_rate": 0.426,
+          "accuracy": 0.574
+        }
+      },
+      "dephasing": {
+        "p0.0100": {
+          "logical_error_rate": 0.0045,
+          "accuracy": 0.9955
+        },
+        "p0.0300": {
+          "logical_error_rate": 0.047,
+          "accuracy": 0.953
+        },
+        "p0.0500": {
+          "logical_error_rate": 0.0955,
+          "accuracy": 0.9045
+        },
+        "p0.0700": {
+          "logical_error_rate": 0.1775,
+          "accuracy": 0.8225
+        },
+        "p0.0900": {
+          "logical_error_rate": 0.2285,
+          "accuracy": 0.7715
+        },
+        "p0.1100": {
+          "logical_error_rate": 0.293,
+          "accuracy": 0.707
+        },
+        "p0.1300": {
+          "logical_error_rate": 0.3365,
+          "accuracy": 0.6635
+        },
+        "p0.1500": {
+          "logical_error_rate": 0.3845,
+          "accuracy": 0.6155
+        }
+      }
+    },
+    "d5": {
+      "depolarizing": {
+        "p0.0100": {
+          "logical_error_rate": 0.07,
+          "accuracy": 0.93
+        },
+        "p0.0300": {
+          "logical_error_rate": 0.215,
+          "accuracy": 0.785
+        },
+        "p0.0500": {
+          "logical_error_rate": 0.342,
+          "accuracy": 0.658
+        },
+        "p0.0700": {
+          "logical_error_rate": 0.4235,
+          "accuracy": 0.5765
+        },
+        "p0.0900": {
+          "logical_error_rate": 0.453,
+          "accuracy": 0.547
+        },
+        "p0.1100": {
+          "logical_error_rate": 0.479,
+          "accuracy": 0.521
+        },
+        "p0.1300": {
+          "logical_error_rate": 0.4915,
+          "accuracy": 0.5085
+        },
+        "p0.1500": {
+          "logical_error_rate": 0.5075,
+          "accuracy": 0.4925
+        }
+      },
+      "dephasing": {
+        "p0.0100": {
+          "logical_error_rate": 0.036,
+          "accuracy": 0.964
+        },
+        "p0.0300": {
+          "logical_error_rate": 0.156,
+          "accuracy": 0.844
+        },
+        "p0.0500": {
+          "logical_error_rate": 0.307,
+          "accuracy": 0.693
+        },
+        "p0.0700": {
+          "logical_error_rate": 0.4,
+          "accuracy": 0.6
+        },
+        "p0.0900": {
+          "logical_error_rate": 0.4305,
+          "accuracy": 0.5695
+        },
+        "p0.1100": {
+          "logical_error_rate": 0.459,
+          "accuracy": 0.541
+        },
+        "p0.1300": {
+          "logical_error_rate": 0.4975,
+          "accuracy": 0.5025
+        },
+        "p0.1500": {
+          "logical_error_rate": 0.4975,
+          "accuracy": 0.5025
+        }
+      }
+    },
+    "d7": {
+      "depolarizing": {
+        "p0.0100": {
+          "logical_error_rate": 0.1105,
+          "accuracy": 0.8895
+        },
+        "p0.0300": {
+          "logical_error_rate": 0.332,
+          "accuracy": 0.668
+        },
+        "p0.0500": {
+          "logical_error_rate": 0.433,
+          "accuracy": 0.567
+        },
+        "p0.0700": {
+          "logical_error_rate": 0.482,
+          "accuracy": 0.518
+        },
+        "p0.0900": {
+          "logical_error_rate": 0.511,
+          "accuracy": 0.489
+        },
+        "p0.1100": {
+          "logical_error_rate": 0.4985,
+          "accuracy": 0.5015
+        },
+        "p0.1300": {
+          "logical_error_rate": 0.4935,
+          "accuracy": 0.5065
+        },
+        "p0.1500": {
+          "logical_error_rate": 0.4995,
+          "accuracy": 0.5005
+        }
+      },
+      "dephasing": {
+        "p0.0100": {
+          "logical_error_rate": 0.0595,
+          "accuracy": 0.9405
+        },
+        "p0.0300": {
+          "logical_error_rate": 0.265,
+          "accuracy": 0.735
+        },
+        "p0.0500": {
+          "logical_error_rate": 0.395,
+          "accuracy": 0.605
+        },
+        "p0.0700": {
+          "logical_error_rate": 0.468,
+          "accuracy": 0.532
+        },
+        "p0.0900": {
+          "logical_error_rate": 0.5055,
+          "accuracy": 0.4945
+        },
+        "p0.1100": {
+          "logical_error_rate": 0.4885,
+          "accuracy": 0.5115
+        },
+        "p0.1300": {
+          "logical_error_rate": 0.484,
+          "accuracy": 0.516
+        },
+        "p0.1500": {
+          "logical_error_rate": 0.51,
+          "accuracy": 0.49
+        }
+      }
+    }
+  }
+}

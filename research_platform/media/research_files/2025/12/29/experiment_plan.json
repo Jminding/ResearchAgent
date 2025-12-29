@@ -1,0 +1,106 @@
+{
+  "project_name": "QEC_RL_Scaling_Revision",
+  "description": "Extended experiments addressing peer review concerns about RL-based GNN decoder scaling for surface code QEC",
+  "experiments": [
+    {
+      "name": "extended_training_d15",
+      "description": "Test undertraining hypothesis with 10x more episodes at d=15",
+      "parameters": {
+        "code_distance": [15],
+        "physical_error_rate": [0.005],
+        "training_episodes": [200, 500, 1000, 2000, 5000],
+        "seed": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+      },
+      "metrics": ["logical_error_rate", "training_loss", "convergence_episode"],
+      "ablations": []
+    },
+    {
+      "name": "baseline_comparison",
+      "description": "Compare RL decoder vs MWPM across code distances with extended training",
+      "parameters": {
+        "code_distance": [3, 5, 7, 9, 11, 13, 15],
+        "physical_error_rate": [0.005],
+        "training_episodes": [2000],
+        "seed": [1, 2, 3, 4, 5]
+      },
+      "metrics": ["logical_error_rate_rl", "logical_error_rate_mwpm", "rl_vs_mwpm_ratio"],
+      "ablations": []
+    },
+    {
+      "name": "reward_shaping_ablation",
+      "description": "Test different reward functions for RL decoder",
+      "parameters": {
+        "code_distance": [7, 15],
+        "physical_error_rate": [0.005],
+        "reward_type": ["sparse", "dense_syndrome", "dense_distance", "shaped_curriculum"],
+        "training_episodes": [2000],
+        "seed": [1, 2, 3, 4, 5]
+      },
+      "metrics": ["logical_error_rate", "training_loss", "convergence_speed"],
+      "ablations": ["sparse", "dense_syndrome", "dense_distance", "shaped_curriculum"]
+    },
+    {
+      "name": "gnn_depth_ablation",
+      "description": "Test different GNN architectures (receptive field / depth)",
+      "parameters": {
+        "code_distance": [7, 15],
+        "physical_error_rate": [0.005],
+        "gnn_layers": [2, 4, 6, 8],
+        "hidden_dim": [64, 128],
+        "training_episodes": [2000],
+        "seed": [1, 2, 3]
+      },
+      "metrics": ["logical_error_rate", "model_params", "inference_time"],
+      "ablations": ["shallow_2L", "medium_4L", "deep_6L", "very_deep_8L"]
+    },
+    {
+      "name": "zero_shot_generalization",
+      "description": "Test d=7 trained model on d=15 with different training budgets",
+      "parameters": {
+        "train_distance": [7],
+        "test_distance": [15],
+        "physical_error_rate": [0.005],
+        "training_episodes": [200, 1000, 2000, 5000],
+        "seed": [1, 2, 3, 4, 5]
+      },
+      "metrics": ["logical_error_rate_train_dist", "logical_error_rate_test_dist", "generalization_gap"],
+      "ablations": []
+    },
+    {
+      "name": "mwpm_validation",
+      "description": "Validate MWPM baseline against known benchmarks",
+      "parameters": {
+        "code_distance": [3, 5, 7, 9, 11, 13, 15],
+        "physical_error_rate": [0.001, 0.003, 0.005, 0.007, 0.01],
+        "num_samples": [10000]
+      },
+      "metrics": ["logical_error_rate", "expected_benchmark_rate", "deviation_from_benchmark"],
+      "ablations": []
+    }
+  ],
+  "robustness_checklist": {
+    "hyperparameter_perturbations": [
+      "learning_rate_0.5x",
+      "learning_rate_2x",
+      "batch_size_0.5x",
+      "batch_size_2x"
+    ],
+    "additional_seeds": true,
+    "statistical_tests": ["confidence_intervals_95", "bootstrap_stderr"]
+  },
+  "original_results_summary": {
+    "d3_rl_logical_error": 0.0012,
+    "d5_rl_logical_error": 0.0089,
+    "d7_rl_logical_error": 0.0245,
+    "d15_rl_logical_error": 0.312,
+    "d15_mwpm_logical_error": 0.089,
+    "original_training_episodes": 200,
+    "original_seeds": 2,
+    "reviewer_concerns": [
+      "undertraining at d=15",
+      "insufficient seeds (n=2)",
+      "missing ablations",
+      "MWPM benchmark mismatch"
+    ]
+  }
+}

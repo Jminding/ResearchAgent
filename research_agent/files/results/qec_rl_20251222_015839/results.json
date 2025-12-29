@@ -1,0 +1,128 @@
+{
+  "config": {
+    "code_distances": [
+      3
+    ],
+    "error_rates": [
+      0.03,
+      0.05,
+      0.07,
+      0.09
+    ],
+    "noise_model": "depolarizing",
+    "gamma_bias": 0.0,
+    "n_episodes": 3000,
+    "T_max": 30,
+    "history_window": 3,
+    "eval_interval": 500,
+    "n_eval_episodes": 200,
+    "hidden_dims": [
+      32,
+      32
+    ],
+    "lr_actor": 0.0003,
+    "lr_critic": 0.001,
+    "ppo_gamma": 0.99,
+    "ppo_lambda": 0.95,
+    "eps_clip": 0.2,
+    "K_epochs": 10,
+    "batch_size": 64,
+    "buffer_size": 512,
+    "entropy_coef": 0.01,
+    "save_dir": "/Users/jminding/Desktop/Code/Research Agent/research_agent/files/results/qec_rl_20251222_015839"
+  },
+  "training_results": {
+    "d3_p0.030": {
+      "best_P_L": 0.975,
+      "best_episode": 500,
+      "final_P_L": 1.0,
+      "mwpm_P_L": 0.9675
+    },
+    "d3_p0.050": {
+      "best_P_L": 0.99,
+      "best_episode": 500,
+      "final_P_L": 1.0,
+      "mwpm_P_L": 0.9975
+    },
+    "d3_p0.070": {
+      "best_P_L": 1.0,
+      "best_episode": 500,
+      "final_P_L": 1.0,
+      "mwpm_P_L": 1.0
+    },
+    "d3_p0.090": {
+      "best_P_L": 1.0,
+      "best_episode": 500,
+      "final_P_L": 1.0,
+      "mwpm_P_L": 1.0
+    }
+  },
+  "rl_P_L": {
+    "d3_p0.030": 1.0,
+    "d3_p0.050": 1.0,
+    "d3_p0.070": 1.0,
+    "d3_p0.090": 1.0
+  },
+  "mwpm_P_L": {
+    "d3_p0.030": 0.9675,
+    "d3_p0.050": 0.9975,
+    "d3_p0.070": 1.0,
+    "d3_p0.090": 1.0
+  },
+  "rl_metrics": {
+    "d3_p0.030": {
+      "n_episodes": 400,
+      "n_logical_errors": 400,
+      "avg_episode_length": 1.07,
+      "avg_reward": -1.0015249252319336,
+      "survival_rate": 0.0
+    },
+    "d3_p0.050": {
+      "n_episodes": 400,
+      "n_logical_errors": 400,
+      "avg_episode_length": 1.1025,
+      "avg_reward": -1.002699851989746,
+      "survival_rate": 0.0
+    },
+    "d3_p0.070": {
+      "n_episodes": 400,
+      "n_logical_errors": 400,
+      "avg_episode_length": 1.19,
+      "avg_reward": -1.0045747756958008,
+      "survival_rate": 0.0
+    },
+    "d3_p0.090": {
+      "n_episodes": 400,
+      "n_logical_errors": 400,
+      "avg_episode_length": 1.23,
+      "avg_reward": -1.0074995756149292,
+      "survival_rate": 0.0
+    }
+  },
+  "mwpm_metrics": {
+    "d3_p0.030": {
+      "n_episodes": 400,
+      "n_logical_errors": 387,
+      "avg_episode_length": 9.2075,
+      "survival_rate": 0.03249999999999997
+    },
+    "d3_p0.050": {
+      "n_episodes": 400,
+      "n_logical_errors": 399,
+      "avg_episode_length": 5.195,
+      "survival_rate": 0.0024999999999999467
+    },
+    "d3_p0.070": {
+      "n_episodes": 400,
+      "n_logical_errors": 400,
+      "avg_episode_length": 3.6775,
+      "survival_rate": 0.0
+    },
+    "d3_p0.090": {
+      "n_episodes": 400,
+      "n_logical_errors": 400,
+      "avg_episode_length": 3.3775,
+      "survival_rate": 0.0
+    }
+  }
+}

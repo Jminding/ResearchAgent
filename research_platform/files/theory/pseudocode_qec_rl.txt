@@ -1,0 +1,771 @@
+================================================================================
+PSEUDOCODE: REINFORCEMENT LEARNING FOR QUANTUM ERROR CORRECTION
+================================================================================
+
+DOCUMENT: Implementation Specification for RL-based Syndrome Decoding
+VERSION: 1.0
+TARGET: Experimentalist Agent
+
+================================================================================
+SECTION 1: ENVIRONMENT SETUP
+================================================================================
+
+ALGORITHM 1: Initialize QEC Environment
+--------------------------------------------------------------------------------
+INPUT:
+    d         : int          -- Code distance (odd integer >= 3)
+    p         : float        -- Physical error rate in [0.001, 0.01]
+    H         : int          -- Number of syndrome rounds (default = d)
+    noise_model : str        -- One of {"depolarizing", "biased", "circuit"}
+
+OUTPUT:
+    env       : QECEnvironment
+
+PROCEDURE:
+    1. Initialize surface code lattice with d x d data qubits
+    2. Generate stabilizer group S = <S_X, S_Z> where:
+       a. S_X: X-type stabilizer generators (d^2 - 1)/2 operators
+       b. S_Z: Z-type stabilizer generators (d^2 - 1)/2 operators
+    3. Compute syndrome extraction circuit C_syndrome
+    4. Initialize noise model:
+       IF noise_model == "depolarizing":
+           error_channel <- DepolarizingChannel(p)
+       ELSE IF noise_model == "biased":
+           error_channel <- BiasedChannel(p, eta=10)  # Z-bias factor
+       ELSE IF noise_model == "circuit":
+           error_channel <- CircuitLevelNoise(p_1q=p, p_2q=10*p, p_meas=p)
+    5. Initialize Minimum Weight Perfect Matching decoder for baseline
+    6. RETURN QECEnvironment(lattice, stabilizers, noise_model, mwpm_decoder)
+
+--------------------------------------------------------------------------------
+
+ALGORITHM 2: Environment Reset
+--------------------------------------------------------------------------------
+INPUT:
+    env : QECEnvironment
+
+OUTPUT:
+    s_0 : ndarray[float] -- Initial state
+
+PROCEDURE:
+    1. Initialize logical state |psi_L> = |0_L>
+    2. Set syndrome_history <- empty queue of size k (history window)
+    3. Apply initial error pattern E_0 ~ error_channel
+    4. Measure syndrome sigma_0 <- MeasureSyndromes(env.lattice)
+    5. Append sigma_0 to syndrome_history
+    6. Set env.current_step <- 0
+    7. Set env.accumulated_correction <- Identity
+    8. s_0 <- EncodeState(syndrome_history, env.hidden_state)
+    9. RETURN s_0
+
+--------------------------------------------------------------------------------
+
+ALGORITHM 3: Environment Step
+--------------------------------------------------------------------------------
+INPUT:
+    env   : QECEnvironment
+    action: int or tuple  -- Recovery action identifier
+
+OUTPUT:
+    s_next : ndarray[float]  -- Next state
+    reward : float           -- Immediate reward
+    done   : bool            -- Episode termination flag
+    info   : dict            -- Auxiliary information
+
+PROCEDURE:
+    1. Decode action to Pauli operator:
+       IF action == NULL_ACTION:
+           P_correction <- Identity
+       ELSE:
+           (qubit_idx, pauli_type) <- DecodeAction(action)
+           P_correction <- PauliOperator(qubit_idx, pauli_type)
+
+    2. Apply correction to lattice (classically tracked):
+       env.accumulated_correction <- env.accumulated_correction * P_correction
+
+    3. Simulate next error round:
+       E_t ~ env.error_channel
+       Apply E_t to env.lattice
+
+    4. Measure syndrome:
+       sigma_t <- MeasureSyndromes(env.lattice)
+       IF env.measurement_noise:
+           sigma_t <- ApplyMeasurementNoise(sigma_t, env.p_meas)
+
+    5. Update syndrome history:
+       syndrome_history.append(sigma_t)
+       IF len(syndrome_history) > k:
+           syndrome_history.pop(0)
+
+    6. Encode next state:
+       s_next <- EncodeState(syndrome_history, env.hidden_state)
+
+    7. Check termination:
+       env.current_step <- env.current_step + 1
+       done <- (env.current_step >= env.H)
+
+    8. Compute reward:
+       IF done:
+           # Final round: check for logical error
+           logical_error <- CheckLogicalError(env.accumulated_correction,
+                                               env.total_errors,
+                                               env.logical_operators)
+           IF logical_error:
+               reward <- -1.0
+           ELSE:
+               reward <- +1.0
+       ELSE:
+           # Intermediate reward (optional shaping)
+           reward <- -0.001 * HammingWeight(sigma_t)  # Small syndrome penalty
+
+    9. info <- {
+           "syndrome": sigma_t,
+           "correction_applied": P_correction,
+           "step": env.current_step,
+           "logical_error": logical_error if done else None
+       }
+
+    10. RETURN (s_next, reward, done, info)
+
+================================================================================
+SECTION 2: NEURAL NETWORK ARCHITECTURE
+================================================================================
+
+ALGORITHM 4: Policy Network (Actor)
+--------------------------------------------------------------------------------
+INPUT:
+    state_dim   : int   -- Dimension of state vector
+    action_dim  : int   -- Number of possible actions
+    hidden_dim  : int   -- Hidden layer dimension (default = 256)
+    num_layers  : int   -- Number of hidden layers (default = 3)
+    use_gnn     : bool  -- Whether to use graph neural network
+
+OUTPUT:
+    policy_network : NeuralNetwork
+
+PROCEDURE:
+    IF use_gnn:
+        1. Create SyndromeGraphConstructor:
+           a. Nodes: syndrome qubits + virtual boundary nodes
+           b. Edges: connect adjacent syndrome qubits
+           c. Node features: [syndrome_value, x_coord, y_coord, qubit_type]
+
+        2. GNN_layers <- []
+        FOR i in range(num_gnn_layers):  # num_gnn_layers = 4
+            GNN_layers.append(GraphConvLayer(hidden_dim))
+            GNN_layers.append(ReLU())
+
+        3. Aggregation <- GlobalMeanPooling()
+
+        4. MLP_head <- Sequential(
+            Linear(hidden_dim, hidden_dim),
+            ReLU(),
+            Linear(hidden_dim, action_dim)
+        )
+
+        5. policy_network <- GNNPolicy(GNN_layers, Aggregation, MLP_head)
+
+    ELSE:
+        1. layers <- [Linear(state_dim, hidden_dim), ReLU()]
+        FOR i in range(num_layers - 1):
+            layers.append(Linear(hidden_dim, hidden_dim))
+            layers.append(ReLU())
+        layers.append(Linear(hidden_dim, action_dim))
+
+        2. policy_network <- Sequential(layers)
+
+    RETURN policy_network
+
+--------------------------------------------------------------------------------
+
+ALGORITHM 5: Value Network (Critic)
+--------------------------------------------------------------------------------
+INPUT:
+    state_dim   : int
+    hidden_dim  : int (default = 256)
+    num_layers  : int (default = 3)
+
+OUTPUT:
+    value_network : NeuralNetwork
+
+PROCEDURE:
+    1. layers <- [Linear(state_dim, hidden_dim), ReLU()]
+    FOR i in range(num_layers - 1):
+        layers.append(Linear(hidden_dim, hidden_dim))
+        layers.append(ReLU())
+    layers.append(Linear(hidden_dim, 1))  # Single value output
+
+    2. value_network <- Sequential(layers)
+
+    RETURN value_network
+
+================================================================================
+SECTION 3: PPO TRAINING ALGORITHM
+================================================================================
+
+ALGORITHM 6: PPO Agent Initialization
+--------------------------------------------------------------------------------
+INPUT:
+    env             : QECEnvironment
+    lr_actor        : float (default = 3e-4)
+    lr_critic       : float (default = 1e-3)
+    gamma           : float (default = 0.99)
+    lambda_gae      : float (default = 0.95)
+    clip_epsilon    : float (default = 0.2)
+    entropy_coef    : float (default = 0.01)
+    value_coef      : float (default = 0.5)
+    max_grad_norm   : float (default = 0.5)
+
+OUTPUT:
+    agent : PPOAgent
+
+PROCEDURE:
+    1. state_dim <- env.observation_space.shape[0]
+    2. action_dim <- env.action_space.n
+
+    3. actor <- PolicyNetwork(state_dim, action_dim)
+    4. critic <- ValueNetwork(state_dim)
+
+    5. optimizer_actor <- Adam(actor.parameters(), lr=lr_actor)
+    6. optimizer_critic <- Adam(critic.parameters(), lr=lr_critic)
+
+    7. agent <- PPOAgent(
+           actor, critic,
+           optimizer_actor, optimizer_critic,
+           gamma, lambda_gae, clip_epsilon,
+           entropy_coef, value_coef, max_grad_norm
+       )
+
+    RETURN agent
+
+--------------------------------------------------------------------------------
+
+ALGORITHM 7: Collect Trajectories
+--------------------------------------------------------------------------------
+INPUT:
+    env           : QECEnvironment
+    agent         : PPOAgent
+    num_steps     : int (default = 2048)  -- Steps per collection phase
+    num_envs      : int (default = 16)    -- Parallel environments
+
+OUTPUT:
+    trajectories : TrajectoryBuffer
+
+PROCEDURE:
+    1. Initialize parallel environments:
+       envs <- [env.copy() for _ in range(num_envs)]
+       states <- [env.reset() for env in envs]
+
+    2. Initialize buffers:
+       buffer_states <- []
+       buffer_actions <- []
+       buffer_rewards <- []
+       buffer_dones <- []
+       buffer_log_probs <- []
+       buffer_values <- []
+
+    3. FOR step in range(num_steps // num_envs):
+       FOR i in range(num_envs):
+           # Get action from policy
+           state_tensor <- ToTensor(states[i])
+           WITH no_gradient():
+               action_logits <- agent.actor(state_tensor)
+               action_probs <- Softmax(action_logits)
+               action_dist <- Categorical(action_probs)
+               action <- action_dist.sample()
+               log_prob <- action_dist.log_prob(action)
+               value <- agent.critic(state_tensor)
+
+           # Step environment
+           next_state, reward, done, info <- envs[i].step(action)
+
+           # Store transition
+           buffer_states.append(states[i])
+           buffer_actions.append(action)
+           buffer_rewards.append(reward)
+           buffer_dones.append(done)
+           buffer_log_probs.append(log_prob)
+           buffer_values.append(value)
+
+           # Reset if done
+           IF done:
+               states[i] <- envs[i].reset()
+           ELSE:
+               states[i] <- next_state
+
+    4. # Compute returns and advantages
+       returns, advantages <- ComputeGAE(
+           buffer_rewards, buffer_values, buffer_dones,
+           agent.gamma, agent.lambda_gae
+       )
+
+    5. trajectories <- TrajectoryBuffer(
+           states=buffer_states,
+           actions=buffer_actions,
+           log_probs=buffer_log_probs,
+           returns=returns,
+           advantages=advantages
+       )
+
+    RETURN trajectories
+
+--------------------------------------------------------------------------------
+
+ALGORITHM 8: Compute GAE (Generalized Advantage Estimation)
+--------------------------------------------------------------------------------
+INPUT:
+    rewards     : list[float]
+    values      : list[float]
+    dones       : list[bool]
+    gamma       : float
+    lambda_gae  : float
+
+OUTPUT:
+    returns     : list[float]
+    advantages  : list[float]
+
+PROCEDURE:
+    1. T <- len(rewards)
+    2. advantages <- zeros(T)
+    3. returns <- zeros(T)
+    4. gae <- 0
+
+    5. FOR t in range(T-1, -1, -1):  # Reverse iteration
+       IF dones[t]:
+           next_value <- 0
+       ELSE IF t == T-1:
+           next_value <- values[t]  # Bootstrap
+       ELSE:
+           next_value <- values[t+1]
+
+       delta <- rewards[t] + gamma * next_value - values[t]
+
+       IF dones[t]:
+           gae <- delta
+       ELSE:
+           gae <- delta + gamma * lambda_gae * gae
+
+       advantages[t] <- gae
+       returns[t] <- advantages[t] + values[t]
+
+    6. # Normalize advantages
+       advantages <- (advantages - mean(advantages)) / (std(advantages) + 1e-8)
+
+    RETURN returns, advantages
+
+--------------------------------------------------------------------------------
+
+ALGORITHM 9: PPO Update
+--------------------------------------------------------------------------------
+INPUT:
+    agent         : PPOAgent
+    trajectories  : TrajectoryBuffer
+    num_epochs    : int (default = 10)
+    batch_size    : int (default = 64)
+
+OUTPUT:
+    metrics : dict  -- Training metrics
+
+PROCEDURE:
+    1. total_policy_loss <- 0
+    2. total_value_loss <- 0
+    3. total_entropy <- 0
+    4. num_updates <- 0
+
+    5. FOR epoch in range(num_epochs):
+       # Shuffle and batch data
+       indices <- RandomPermutation(len(trajectories))
+
+       FOR batch_start in range(0, len(trajectories), batch_size):
+           batch_idx <- indices[batch_start : batch_start + batch_size]
+
+           # Extract batch
+           states_batch <- trajectories.states[batch_idx]
+           actions_batch <- trajectories.actions[batch_idx]
+           old_log_probs <- trajectories.log_probs[batch_idx]
+           returns_batch <- trajectories.returns[batch_idx]
+           advantages_batch <- trajectories.advantages[batch_idx]
+
+           # Forward pass
+           action_logits <- agent.actor(states_batch)
+           action_probs <- Softmax(action_logits)
+           dist <- Categorical(action_probs)
+
+           new_log_probs <- dist.log_prob(actions_batch)
+           entropy <- dist.entropy().mean()
+           values <- agent.critic(states_batch).squeeze()
+
+           # Policy loss (clipped)
+           ratio <- exp(new_log_probs - old_log_probs)
+           surr1 <- ratio * advantages_batch
+           surr2 <- clip(ratio, 1 - agent.clip_epsilon, 1 + agent.clip_epsilon) * advantages_batch
+           policy_loss <- -mean(min(surr1, surr2))
+
+           # Value loss
+           value_loss <- mean((returns_batch - values)^2)
+
+           # Total loss
+           loss <- policy_loss + agent.value_coef * value_loss - agent.entropy_coef * entropy
+
+           # Backward pass
+           agent.optimizer_actor.zero_grad()
+           agent.optimizer_critic.zero_grad()
+           loss.backward()
+
+           # Gradient clipping
+           clip_grad_norm(agent.actor.parameters(), agent.max_grad_norm)
+           clip_grad_norm(agent.critic.parameters(), agent.max_grad_norm)
+
+           agent.optimizer_actor.step()
+           agent.optimizer_critic.step()
+
+           # Accumulate metrics
+           total_policy_loss <- total_policy_loss + policy_loss.item()
+           total_value_loss <- total_value_loss + value_loss.item()
+           total_entropy <- total_entropy + entropy.item()
+           num_updates <- num_updates + 1
+
+    6. metrics <- {
+           "policy_loss": total_policy_loss / num_updates,
+           "value_loss": total_value_loss / num_updates,
+           "entropy": total_entropy / num_updates
+       }
+
+    RETURN metrics
+
+================================================================================
+SECTION 4: MAIN TRAINING LOOP
+================================================================================
+
+ALGORITHM 10: Train RL Decoder
+--------------------------------------------------------------------------------
+INPUT:
+    config : dict containing:
+        - code_distance     : int (start with 5, scale to 15+)
+        - physical_error    : float
+        - total_timesteps   : int (default = 10_000_000)
+        - steps_per_update  : int (default = 2048)
+        - num_envs          : int (default = 16)
+        - eval_freq         : int (default = 10_000)
+        - save_freq         : int (default = 100_000)
+        - checkpoint_dir    : str
+        - log_dir           : str
+
+OUTPUT:
+    trained_agent : PPOAgent
+    training_log  : dict
+
+PROCEDURE:
+    1. # Initialize environment
+       env <- InitializeQECEnvironment(
+           d=config.code_distance,
+           p=config.physical_error,
+           H=config.code_distance  # syndrome rounds = distance
+       )
+
+    2. # Initialize agent
+       agent <- PPOAgentInit(env)
+
+    3. # Initialize logging
+       logger <- TensorBoardLogger(config.log_dir)
+       best_performance <- -infinity
+       training_log <- {"losses": [], "rewards": [], "eval_metrics": []}
+
+    4. # Initialize MWPM baseline
+       mwpm_decoder <- MinWeightPerfectMatching(env.lattice)
+
+    5. # Main training loop
+       total_steps <- 0
+       iteration <- 0
+
+       WHILE total_steps < config.total_timesteps:
+
+           # Collect trajectories
+           trajectories <- CollectTrajectories(
+               env, agent,
+               num_steps=config.steps_per_update,
+               num_envs=config.num_envs
+           )
+           total_steps <- total_steps + config.steps_per_update
+           iteration <- iteration + 1
+
+           # PPO update
+           metrics <- PPOUpdate(agent, trajectories)
+
+           # Log metrics
+           logger.log("train/policy_loss", metrics["policy_loss"], total_steps)
+           logger.log("train/value_loss", metrics["value_loss"], total_steps)
+           logger.log("train/entropy", metrics["entropy"], total_steps)
+           training_log["losses"].append(metrics)
+
+           # Periodic evaluation
+           IF total_steps % config.eval_freq == 0:
+               eval_results <- EvaluateDecoder(agent, env, num_episodes=1000)
+               mwpm_results <- EvaluateMWPM(mwpm_decoder, env, num_episodes=1000)
+
+               improvement <- (mwpm_results["logical_error_rate"] -
+                              eval_results["logical_error_rate"]) / mwpm_results["logical_error_rate"]
+
+               logger.log("eval/logical_error_rate", eval_results["logical_error_rate"], total_steps)
+               logger.log("eval/improvement_over_mwpm", improvement, total_steps)
+               logger.log("eval/mean_episode_reward", eval_results["mean_reward"], total_steps)
+
+               training_log["eval_metrics"].append({
+                   "step": total_steps,
+                   "rl_error_rate": eval_results["logical_error_rate"],
+                   "mwpm_error_rate": mwpm_results["logical_error_rate"],
+                   "improvement": improvement
+               })
+
+               PRINT(f"Step {total_steps}: RL={eval_results['logical_error_rate']:.4f}, "
+                     f"MWPM={mwpm_results['logical_error_rate']:.4f}, "
+                     f"Improvement={improvement*100:.1f}%")
+
+               # Save best model
+               IF eval_results["logical_error_rate"] < best_performance:
+                   best_performance <- eval_results["logical_error_rate"]
+                   SaveCheckpoint(agent, config.checkpoint_dir + "/best_model.pt")
+
+           # Periodic checkpoint
+           IF total_steps % config.save_freq == 0:
+               SaveCheckpoint(agent, config.checkpoint_dir + f"/checkpoint_{total_steps}.pt")
+
+    6. # Final save
+       SaveCheckpoint(agent, config.checkpoint_dir + "/final_model.pt")
+       SaveJSON(training_log, config.log_dir + "/training_log.json")
+
+    RETURN agent, training_log
+
+================================================================================
+SECTION 5: EVALUATION PROCEDURES
+================================================================================
+
+ALGORITHM 11: Evaluate Decoder
+--------------------------------------------------------------------------------
+INPUT:
+    agent         : PPOAgent (or BaselineDecoder)
+    env           : QECEnvironment
+    num_episodes  : int (default = 10_000)
+
+OUTPUT:
+    results : dict
+
+PROCEDURE:
+    1. logical_errors <- 0
+    2. total_rewards <- 0
+    3. episode_lengths <- []
+
+    4. FOR episode in range(num_episodes):
+       state <- env.reset()
+       episode_reward <- 0
+       steps <- 0
+
+       WHILE True:
+           IF agent is PPOAgent:
+               WITH no_gradient():
+                   action <- agent.actor(ToTensor(state)).argmax()
+           ELSE:
+               action <- agent.decode(state)
+
+           state, reward, done, info <- env.step(action)
+           episode_reward <- episode_reward + reward
+           steps <- steps + 1
+
+           IF done:
+               IF info["logical_error"]:
+                   logical_errors <- logical_errors + 1
+               total_rewards <- total_rewards + episode_reward
+               episode_lengths.append(steps)
+               BREAK
+
+    5. results <- {
+           "logical_error_rate": logical_errors / num_episodes,
+           "mean_reward": total_rewards / num_episodes,
+           "mean_episode_length": mean(episode_lengths),
+           "std_episode_length": std(episode_lengths)
+       }
+
+    RETURN results
+
+--------------------------------------------------------------------------------
+
+ALGORITHM 12: Cross-Distance Generalization Test
+--------------------------------------------------------------------------------
+INPUT:
+    agent           : PPOAgent (trained on distance d_train)
+    d_train         : int
+    d_test_range    : list[int] (e.g., [5, 7, 9, 11, 13, 15])
+    p               : float (physical error rate)
+    num_episodes    : int (default = 10_000)
+
+OUTPUT:
+    generalization_results : dict
+
+PROCEDURE:
+    1. generalization_results <- {}
+
+    2. FOR d_test in d_test_range:
+       # Create test environment
+       env_test <- InitializeQECEnvironment(d=d_test, p=p, H=d_test)
+
+       # Evaluate RL agent (may need architecture adaptation for different sizes)
+       IF d_test != d_train:
+           # Use graph-based representation for size-invariant evaluation
+           adapted_agent <- AdaptToNewSize(agent, d_train, d_test)
+       ELSE:
+           adapted_agent <- agent
+
+       rl_results <- EvaluateDecoder(adapted_agent, env_test, num_episodes)
+
+       # Evaluate MWPM baseline
+       mwpm_decoder <- MinWeightPerfectMatching(env_test.lattice)
+       mwpm_results <- EvaluateMWPM(mwpm_decoder, env_test, num_episodes)
+
+       # Compute improvement
+       improvement <- (mwpm_results["logical_error_rate"] -
+                      rl_results["logical_error_rate"]) / mwpm_results["logical_error_rate"]
+
+       generalization_results[d_test] <- {
+           "rl_error_rate": rl_results["logical_error_rate"],
+           "mwpm_error_rate": mwpm_results["logical_error_rate"],
+           "improvement": improvement,
+           "is_train_distance": (d_test == d_train)
+       }
+
+       PRINT(f"Distance {d_test}: Improvement = {improvement*100:.1f}%")
+
+    RETURN generalization_results
+
+================================================================================
+SECTION 6: CURRICULUM LEARNING (OPTIONAL ENHANCEMENT)
+================================================================================
+
+ALGORITHM 13: Curriculum Training
+--------------------------------------------------------------------------------
+INPUT:
+    distance_schedule : list[int] (e.g., [5, 7, 9, 11, 13, 15])
+    p                 : float
+    steps_per_stage   : int (default = 2_000_000)
+
+OUTPUT:
+    final_agent : PPOAgent
+
+PROCEDURE:
+    1. agent <- None  # Will be initialized at first stage
+
+    2. FOR stage, d in enumerate(distance_schedule):
+       PRINT(f"=== Curriculum Stage {stage}: Distance {d} ===")
+
+       # Create environment for this distance
+       env <- InitializeQECEnvironment(d=d, p=p, H=d)
+
+       IF agent is None:
+           # First stage: initialize from scratch
+           agent <- PPOAgentInit(env)
+       ELSE:
+           # Transfer learning: adapt network to new size
+           agent <- AdaptNetworkSize(agent, old_d=distance_schedule[stage-1], new_d=d)
+           # Optionally reduce learning rate for fine-tuning
+           agent.optimizer_actor.lr <- agent.optimizer_actor.lr * 0.5
+           agent.optimizer_critic.lr <- agent.optimizer_critic.lr * 0.5
+
+       # Train on this distance
+       config <- {
+           "code_distance": d,
+           "physical_error": p,
+           "total_timesteps": steps_per_stage,
+           ...
+       }
+       agent, _ <- TrainRLDecoder(config, initial_agent=agent)
+
+       # Evaluate before moving to next stage
+       eval_results <- EvaluateDecoder(agent, env, num_episodes=5000)
+       PRINT(f"Stage {stage} complete. Error rate: {eval_results['logical_error_rate']:.4f}")
+
+    RETURN agent
+
+================================================================================
+SECTION 7: HYPERPARAMETER CONFIGURATION
+================================================================================
+
+RECOMMENDED HYPERPARAMETERS:
+--------------------------------------------------------------------------------
+
+# Environment
+code_distance       = 5       # Start small, scale up
+physical_error_rate = 0.005   # Mid-range for initial experiments
+syndrome_rounds     = d       # Match distance
+noise_model         = "depolarizing"
+
+# Network Architecture
+hidden_dim          = 256
+num_layers          = 3
+use_gnn             = True    # Recommended for generalization
+gnn_layers          = 4
+aggregation         = "mean"
+
+# PPO Hyperparameters
+learning_rate_actor  = 3e-4
+learning_rate_critic = 1e-3
+gamma               = 0.99
+lambda_gae          = 0.95
+clip_epsilon        = 0.2
+entropy_coefficient = 0.01
+value_coefficient   = 0.5
+max_grad_norm       = 0.5
+
+# Training Schedule
+total_timesteps     = 10_000_000  # For d=5
+steps_per_update    = 2048
+num_parallel_envs   = 16
+ppo_epochs          = 10
+minibatch_size      = 64
+eval_frequency      = 10_000
+save_frequency      = 100_000
+
+# Scaling for larger distances (d > 5):
+# - Increase total_timesteps proportionally to d^2
+# - Increase hidden_dim to 512 for d >= 11
+# - Consider curriculum learning for d >= 13
+
+================================================================================
+SECTION 8: DATA REQUIREMENTS
+================================================================================
+
+TRAINING DATA:
+    - Generated on-the-fly via environment simulation
+    - No pre-collected dataset required
+    - Stim library recommended for efficient syndrome simulation
+
+EVALUATION DATA:
+    - 10,000 episodes minimum per evaluation point
+    - Multiple random seeds (10+) for statistical significance
+    - Sweep over physical error rates: [0.001, 0.003, 0.005, 0.007, 0.01]
+
+BASELINE COMPARISON:
+    - MWPM decoder from PyMatching library
+    - Union-Find decoder for speed comparison
+    - Optional: Neural Belief Propagation (if available)
+
+================================================================================
+SECTION 9: SUCCESS CRITERIA
+================================================================================
+
+PRIMARY SUCCESS METRIC:
+    improvement_ratio = (L_MWPM - L_RL) / L_MWPM
+
+    SUCCESS: improvement_ratio >= 0.20 for d >= 15
+
+SECONDARY METRICS:
+    1. Training efficiency: Converge within 10^7 steps for d <= 15
+    2. Generalization: <15% degradation when testing on d_test = d_train + 2
+    3. Inference speed: <1ms per decoding decision
+
+STATISTICAL REQUIREMENTS:
+    - Report mean +/- std over 10 random seeds
+    - Hypothesis test: paired t-test with p < 0.01
+    - Confidence intervals: 95% CI for all reported metrics
+
+================================================================================
+END OF PSEUDOCODE SPECIFICATION
+================================================================================

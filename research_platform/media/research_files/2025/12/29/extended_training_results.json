@@ -1,0 +1,365 @@
+{
+  "project_name": "QEC_Extended_Training",
+  "results": [
+    {
+      "config_name": "extended_d15_ep200_s1",
+      "parameters": {
+        "code_distance": 15,
+        "physical_error_rate": 0.005,
+        "training_episodes": 200,
+        "seed": 1
+      },
+      "metrics": {
+        "logical_error_rate": 0.768,
+        "ci_95_lower": 0.7310005156360254,
+        "ci_95_upper": 0.8049994843639746,
+        "stderr": 0.018877287940803362,
+        "training_loss": 1.1505910473180685,
+        "convergence_episode": 200,
+        "training_time_sec": 48.7666540145874
+      }
+    },
+    {
+      "config_name": "extended_d15_ep200_s2",
+      "parameters": {
+        "code_distance": 15,
+        "physical_error_rate": 0.005,
+        "training_episodes": 200,
+        "seed": 2
+      },
+      "metrics": {
+        "logical_error_rate": 0.736,
+        "ci_95_lower": 0.6973622400649313,
+        "ci_95_upper": 0.7746377599350687,
+        "stderr": 0.019713142824014644,
+        "training_loss": 0.9843779234119902,
+        "convergence_episode": 200,
+        "training_time_sec": 50.465304136276245
+      }
+    },
+    {
+      "config_name": "extended_d15_ep200_s3",
+      "parameters": {
+        "code_distance": 15,
+        "physical_error_rate": 0.005,
+        "training_episodes": 200,
+        "seed": 3
+      },
+      "metrics": {
+        "logical_error_rate": 0.74,
+        "ci_95_lower": 0.7015520133166898,
+        "ci_95_upper": 0.7784479866833102,
+        "stderr": 0.019616319736382767,
+        "training_loss": 1.0535433512570356,
+        "convergence_episode": 200,
+        "training_time_sec": 52.952183961868286
+      }
+    },
+    {
+      "config_name": "extended_d15_ep200_s4",
+      "parameters": {
+        "code_distance": 15,
+        "physical_error_rate": 0.005,
+        "training_episodes": 200,
+        "seed": 4
+      },
+      "metrics": {
+        "logical_error_rate": 0.768,
+        "ci_95_lower": 0.7310005156360254,
+        "ci_95_upper": 0.8049994843639746,
+        "stderr": 0.018877287940803362,
+        "training_loss": 0.9287994248263155,
+        "convergence_episode": 200,
+        "training_time_sec": 59.5168981552124
+      }
+    },
+    {
+      "config_name": "extended_d15_ep200_s5",
+      "parameters": {
+        "code_distance": 15,
+        "physical_error_rate": 0.005,
+        "training_episodes": 200,
+        "seed": 5
+      },
+      "metrics": {
+        "logical_error_rate": 0.77,
+        "ci_95_lower": 0.7331124042529199,
+        "ci_95_upper": 0.8068875957470801,
+        "stderr": 0.018820201911775546,
+        "training_loss": 1.1089535677036069,
+        "convergence_episode": 200,
+        "training_time_sec": 59.18260908126831
+      }
+    },
+    {
+      "config_name": "extended_d15_ep500_s1",
+      "parameters": {
+        "code_distance": 15,
+        "physical_error_rate": 0.005,
+        "training_episodes": 500,
+        "seed": 1
+      },
+      "metrics": {
+        "logical_error_rate": 0.766,
+        "ci_95_lower": 0.7288897924985591,
+        "ci_95_upper": 0.8031102075014409,
+        "stderr": 0.01893377933746984,
+        "training_loss": 1.0951366707031882,
+        "convergence_episode": 500,
+        "training_time_sec": 148.93969106674194
+      }
+    },
+    {
+      "config_name": "extended_d15_ep500_s2",
+      "parameters": {
+        "code_distance": 15,
+        "physical_error_rate": 0.005,
+        "training_episodes": 500,
+        "seed": 2
+      },
+      "metrics": {
+        "logical_error_rate": 0.75,
+        "ci_95_lower": 0.7120447632071674,
+        "ci_95_upper": 0.7879552367928326,
+        "stderr": 0.019364916731037084,
+        "training_loss": 0.9841947773843838,
+        "convergence_episode": 500,
+        "training_time_sec": 145.90692901611328
+      }
+    },
+    {
+      "config_name": "extended_d15_ep500_s3",
+      "parameters": {
+        "code_distance": 15,
+        "physical_error_rate": 0.005,
+        "training_episodes": 500,
+        "seed": 3
+      },
+      "metrics": {
+        "logical_error_rate": 0.73,
+        "ci_95_lower": 0.6910852377625148,
+        "ci_95_upper": 0.7689147622374851,
+        "stderr": 0.019854470529329156,
+        "training_loss": 1.0120087038163326,
+        "convergence_episode": 500,
+        "training_time_sec": 148.17569279670715
+      }
+    },
+    {
+      "config_name": "extended_d15_ep500_s4",
+      "parameters": {
+        "code_distance": 15,
+        "physical_error_rate": 0.005,
+        "training_episodes": 500,
+        "seed": 4
+      },
+      "metrics": {
+        "logical_error_rate": 0.75,
+        "ci_95_lower": 0.7120447632071674,
+        "ci_95_upper": 0.7879552367928326,
+        "stderr": 0.019364916731037084,
+        "training_loss": 1.067434629320519,
+        "convergence_episode": 500,
+        "training_time_sec": 163.91109704971313
+      }
+    },
+    {
+      "config_name": "extended_d15_ep500_s5",
+      "parameters": {
+        "code_distance": 15,
+        "physical_error_rate": 0.005,
+        "training_episodes": 500,
+        "seed": 5
+      },
+      "metrics": {
+        "logical_error_rate": 0.806,
+        "ci_95_lower": 0.7713391303513603,
+        "ci_95_upper": 0.8406608696486398,
+        "stderr": 0.017684117167673367,
+        "training_loss": 1.0813605774654251,
+        "convergence_episode": 500,
+        "training_time_sec": 148.4420211315155
+      }
+    },
+    {
+      "config_name": "extended_d15_ep1000_s1",
+      "parameters": {
+        "code_distance": 15,
+        "physical_error_rate": 0.005,
+        "training_episodes": 1000,
+        "seed": 1
+      },
+      "metrics": {
+        "logical_error_rate": 0.76,
+        "ci_95_lower": 0.7225645130925215,
+        "ci_95_upper": 0.7974354869074786,
+        "stderr": 0.019099738218101316,
+        "training_loss": 1.0814278882129391,
+        "convergence_episode": 1000,
+        "training_time_sec": 291.9945909976959
+      }
+    },
+    {
+      "config_name": "extended_d15_ep1000_s2",
+      "parameters": {
+        "code_distance": 15,
+        "physical_error_rate": 0.005,
+        "training_episodes": 1000,
+        "seed": 2
+      },
+      "metrics": {
+        "logical_error_rate": 0.732,
+        "ci_95_lower": 0.6931765606469493,
+        "ci_95_upper": 0.7708234393530506,
+        "stderr": 0.0198078772209442,
+        "training_loss": 0.9842007630841316,
+        "convergence_episode": 1000,
+        "training_time_sec": 257.16840720176697
+      }
+    },
+    {
+      "config_name": "extended_d15_ep1000_s3",
+      "parameters": {
+        "code_distance": 15,
+        "physical_error_rate": 0.005,
+        "training_episodes": 1000,
+        "seed": 3
+      },
+      "metrics": {
+        "logical_error_rate": 0.76,
+        "ci_95_lower": 0.7225645130925215,
+        "ci_95_upper": 0.7974354869074786,
+        "stderr": 0.019099738218101316,
+        "training_loss": 0.9565400616585837,
+        "convergence_episode": 1000,
+        "training_time_sec": 324.72301602363586
+      }
+    },
+    {
+      "config_name": "extended_d15_ep1000_s4",
+      "parameters": {
+        "code_distance": 15,
+        "physical_error_rate": 0.005,
+        "training_episodes": 1000,
+        "seed": 4
+      },
+      "metrics": {
+        "logical_error_rate": 0.778,
+        "ci_95_lower": 0.7415718299773376,
+        "ci_95_upper": 0.8144281700226624,
+        "stderr": 0.018585801031970613,
+        "training_loss": 0.9565366908940924,
+        "convergence_episode": 1000,
+        "training_time_sec": 327.46553015708923
+      }
+    },
+    {
+      "config_name": "extended_d15_ep1000_s5",
+      "parameters": {
+        "code_distance": 15,
+        "physical_error_rate": 0.005,
+        "training_episodes": 1000,
+        "seed": 5
+      },
+      "metrics": {
+        "logical_error_rate": 0.75,
+        "ci_95_lower": 0.7120447632071674,
+        "ci_95_upper": 0.7879552367928326,
+        "stderr": 0.019364916731037084,
+        "training_loss": 1.0258928504649862,
+        "convergence_episode": 1000,
+        "training_time_sec": 302.9900460243225
+      }
+    },
+    {
+      "config_name": "extended_d15_ep2000_s1",
+      "parameters": {
+        "code_distance": 15,
+        "physical_error_rate": 0.005,
+        "training_episodes": 2000,
+        "seed": 1
+      },
+      "metrics": {
+        "logical_error_rate": 0.752,
+        "ci_95_lower": 0.7141465184269663,
+        "ci_95_upper": 0.7898534815730337,
+        "stderr": 0.019313000802568203,
+        "training_loss": 0.9705240489146248,
+        "convergence_episode": 2000,
+        "training_time_sec": 526.2155649662018
+      }
+    },
+    {
+      "config_name": "extended_d15_ep2000_s2",
+      "parameters": {
+        "code_distance": 15,
+        "physical_error_rate": 0.005,
+        "training_episodes": 2000,
+        "seed": 2
+      },
+      "metrics": {
+        "logical_error_rate": 0.76,
+        "ci_95_lower": 0.7225645130925215,
+        "ci_95_upper": 0.7974354869074786,
+        "stderr": 0.019099738218101316,
+        "training_loss": 0.9982431762883452,
+        "convergence_episode": 2000,
+        "training_time_sec": 528.9150085449219
+      }
+    },
+    {
+      "config_name": "extended_d15_ep2000_s3",
+      "parameters": {
+        "code_distance": 15,
+        "physical_error_rate": 0.005,
+        "training_episodes": 2000,
+        "seed": 3
+      },
+      "metrics": {
+        "logical_error_rate": 0.754,
+        "ci_95_lower": 0.7162493620080401,
+        "ci_95_upper": 0.7917506379919599,
+        "stderr": 0.019260529587734602,
+        "training_loss": 1.039673709887078,
+        "convergence_episode": 2000,
+        "training_time_sec": 536.6089930534363
+      }
+    },
+    {
+      "config_name": "extended_d15_ep2000_s4",
+      "parameters": {
+        "code_distance": 15,
+        "physical_error_rate": 0.005,
+        "training_episodes": 2000,
+        "seed": 4
+      },
+      "metrics": {
+        "logical_error_rate": 0.726,
+        "ci_95_lower": 0.6869055902103638,
+        "ci_95_upper": 0.7650944097896362,
+        "stderr": 0.01994612744369192,
+        "training_loss": 0.9842483771281907,
+        "convergence_episode": 2000,
+        "training_time_sec": 549.2443912029266
+      }
+    },
+    {
+      "config_name": "extended_d15_ep2000_s5",
+      "parameters": {
+        "code_distance": 15,
+        "physical_error_rate": 0.005,
+        "training_episodes": 2000,
+        "seed": 5
+      },
+      "metrics": {
+        "logical_error_rate": 0.77,
+        "ci_95_lower": 0.7331124042529199,
+        "ci_95_upper": 0.8068875957470801,
+        "stderr": 0.018820201911775546,
+        "training_loss": 0.9565195442673772,
+        "convergence_episode": 2000,
+        "training_time_sec": 530.6735200881958
+      }
+    }
+  ]
+}

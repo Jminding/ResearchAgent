@@ -1,0 +1,419 @@
+{
+  "domain": "ml",
+  "topic": "foundational_gnn_architectures",
+  "description": "Quantitative evidence on accuracy, computational complexity, and parameters for GCN, GraphSAGE, GAT, GIN, and related architectures",
+  "metric_ranges": {
+    "gcn_citation_network_accuracy": {
+      "cora_accuracy": [0.815, 0.833],
+      "citeseer_accuracy": [0.703, 0.725],
+      "pubmed_accuracy": [0.790, 0.804],
+      "unit": "fraction",
+      "note": "Semi-supervised node classification with 20 labels per class"
+    },
+    "gat_citation_network_accuracy": {
+      "cora_accuracy": [0.830, 0.833],
+      "citeseer_accuracy": [0.720, 0.725],
+      "pubmed_accuracy": [0.786, 0.790],
+      "unit": "fraction",
+      "note": "Multi-head attention (K=4-6 heads)"
+    },
+    "graphsage_accuracy": {
+      "cora_inductive": 0.863,
+      "reddit_node_classification": 0.955,
+      "ppi_f1_score": 0.612,
+      "unit": "fraction",
+      "note": "Inductive learning with neighbor sampling (S=10-25)"
+    },
+    "gin_graph_classification": {
+      "proteins_accuracy": 0.742,
+      "mutag_accuracy": 0.894,
+      "collab_accuracy": 0.802,
+      "reddit_binary_accuracy": 0.925,
+      "unit": "fraction",
+      "note": "Graph classification benchmarks"
+    },
+    "time_complexity_per_layer": {
+      "gcn_full_batch": "O(|E|F + |V|F²)",
+      "gcn_sparse_graphs": "O(|V|F²)",
+      "gcn_with_sampling": "O(S^L × L × F²)",
+      "gat_attention_overhead": "O(|E|F'²)",
+      "graphsage_sampling": "O(S^L × L × F²)",
+      "note": "S = sampling size per layer (typical 10-25), L = number of layers, F = feature dimension"
+    },
+    "space_complexity": {
+      "adjacency_matrix_dense": "O(|V|²)",
+      "adjacency_matrix_sparse": "O(|E|)",
+      "node_features_per_layer": "O(|V| × F)",
+      "activation_cache_l_layers": "O(|V| × F × L)",
+      "optimization_state_adam": "O(parameters × 2-3)",
+      "unit": "memory",
+      "note": "Sparse representation essential for large graphs"
+    },
+    "parameter_counts": {
+      "gcn_cora_simple": {
+        "architecture": "1433->64->7",
+        "total_parameters": 120000,
+        "unit": "parameters"
+      },
+      "gat_typical": {
+        "architecture": "F->256*K->7, K=8 heads",
+        "total_parameters": 280000,
+        "unit": "parameters"
+      },
+      "graphsage_mean_aggregator": {
+        "architecture": "varying_input->64->7",
+        "total_parameters": 200000,
+        "unit": "parameters"
+      },
+      "gin_with_mlps": {
+        "architecture": "multi_layer_with_mlps",
+        "total_parameters": 400000,
+        "note": "MLP overhead increases parameter count",
+        "unit": "parameters"
+      }
+    },
+    "receptive_field_and_depth": {
+      "k_layer_neighborhood": "k-hop",
+      "sampling_effective_receptive_field": "S^k nodes",
+      "practical_depth_limit": 2,
+      "max_viable_depth_with_mitigations": 4,
+      "depth_where_performance_degrades": 3,
+      "note": "Over-smoothing limits practical depth to 2-3 layers despite theoretical ability to stack deeper"
+    },
+    "benchmark_dataset_sizes": {
+      "cora": {
+        "nodes": 2708,
+        "edges": 5429,
+        "features": 1433,
+        "classes": 7
+      },
+      "citeseer": {
+        "nodes": 3327,
+        "edges": 4732,
+        "features": 3703,
+        "classes": 6
+      },
+      "pubmed": {
+        "nodes": 19717,
+        "edges": 44338,
+        "features": 500,
+        "classes": 3
+      },
+      "ogbn_arxiv": {
+        "nodes": 169343,
+        "edges": 1170000,
+        "features": 128,
+        "classes": 40
+      },
+      "ogbn_products": {
+        "nodes": 2450000,
+        "edges": 61860000,
+        "features": 100,
+        "classes": 47
+      },
+      "ogbn_papers100m": {
+        "nodes": 111100000,
+        "edges": 1570000000,
+        "features": 128,
+        "classes": 172
+      }
+    },
+    "large_scale_benchmark_accuracy": {
+      "ogbn_arxiv_gcn": 0.717,
+      "ogbn_products_graphsage": 0.825,
+      "sampling_accuracy_retention": [0.95, 0.98],
+      "note": "Mini-batch methods retain 95-98% of full-batch accuracy"
+    },
+    "aggregation_functions_expressiveness": {
+      "sum_aggregation": {
+        "injective_on_multisets": true,
+        "expressiveness_rank": 1,
+        "note": "Most expressive, required for WL equivalence"
+      },
+      "mean_aggregation": {
+        "injective_on_multisets": false,
+        "expressiveness_rank": 2,
+        "computational_cost": "low"
+      },
+      "max_aggregation": {
+        "injective_on_multisets": false,
+        "expressiveness_rank": 2,
+        "computational_cost": "low"
+      },
+      "attention_aggregation": {
+        "injective_on_multisets": true,
+        "expressiveness_rank": 1,
+        "computational_cost": "high",
+        "time_complexity_multiplier": 4
+      }
+    },
+    "sampling_parameters": {
+      "typical_sample_size_per_layer": [5, 25],
+      "reddit_benchmark_sample_size": 25,
+      "products_benchmark_sample_size": 15,
+      "sample_multiplier_reduction": "S/|N(v)|",
+      "note": "S << average degree; critical for million+ node graphs"
+    },
+    "attention_head_configurations": {
+      "gat_layer_1_2": {
+        "heads": 4,
+        "features_per_head": 256,
+        "total_output_features": 1024,
+        "combination_method": "concatenation"
+      },
+      "gat_final_layer": {
+        "heads": 6,
+        "features_per_head": 121,
+        "total_output_features": 726,
+        "combination_method": "averaging",
+        "activation": "softmax"
+      }
+    },
+    "over_smoothing_observations": {
+      "performance_degradation_start_layer": 3,
+      "layer_where_evident_convergence": 4,
+      "typical_network_depth_used": [2, 3],
+      "maximum_practical_depth": 4,
+      "unit": "layers",
+      "note": "Node representations converge toward indistinguishable values"
+    }
+  },
+  "typical_sample_sizes": {
+    "citation_networks": "2700-20000 nodes, ~5K edges",
+    "lob_training_days": "not applicable (graph setting)",
+    "mid_scale_graphs_ogb": "100K-2.5M nodes, 1M-60M edges",
+    "large_scale_graphs_ogb_lsc": "100M+ nodes, 1B+ edges",
+    "sampling_size_per_layer": "S=10-25 per layer (vs ~100-1000 degree average)",
+    "mini_batch_size": "1000-10000 nodes per batch",
+    "training_data_size_citation": "140 nodes per class × 7 classes = ~980 labeled nodes (Cora)"
+  },
+  "known_pitfalls": [
+    "over_smoothing: node representations converge to indistinguishable values beyond 2-3 layers",
+    "depth_paradox: deeper networks (>3 layers) typically perform worse despite theoretical advantage",
+    "neighborhood_explosion: exponential growth of sampled neighborhood with layers (mitigated by sampling)",
+    "heterophily_assumption: standard GNNs assume homophilic graphs (similar neighbors); fail on heterophilic data",
+    "small_graph_overfitting: citation networks have only ~1K labeled nodes; high variance in results",
+    "benchmark_saturation: marginal improvements (±1-2%) on citation networks in recent years",
+    "transfer_learning_gap: no large pre-training corpus for graphs (unlike vision/NLP); limited transfer",
+    "aggregation_bottleneck: simple sum/mean aggregation may be expressive ceiling for some tasks",
+    "sparse_vs_dense_tradeoff: sparse representation saves memory but complicates attention computation",
+    "generalization_beyond_wl: GNNs fundamentally limited by Weisfeiler-Lehman test expressiveness",
+    "mini_batch_degradation: sampling introduces ~1-2% accuracy loss vs full-batch training",
+    "sampling_bias: uniform node sampling may miss rare but important structures",
+    "attention_computation_cost: GAT scales as O(|E|F'²), 4× overhead vs GCN for dense graphs",
+    "receptive_field_coverage: fixed sample size S per layer means high-degree nodes dominate receptive field",
+    "positional_bias: node identities and initial features heavily influence final embeddings",
+    "heterogeneous_graph_complexity: multi-relation graphs require separate learned weights per relation type"
+  ],
+  "key_references": [
+    {
+      "shortname": "KipfWelling2017",
+      "year": 2017,
+      "title": "Semi-Supervised Classification with Graph Convolutional Networks",
+      "venue": "ICLR 2017",
+      "finding": "GCN achieves 81.5% on Cora, 70.3% on CiteSeer, 79.0% on PubMed; scales to sparse graphs with O(|E|F) complexity",
+      "url": "https://arxiv.org/abs/1609.02907",
+      "doi": "arXiv:1609.02907"
+    },
+    {
+      "shortname": "Velickovic2018",
+      "year": 2018,
+      "title": "Graph Attention Networks",
+      "venue": "ICLR 2018",
+      "finding": "GAT with multi-head attention achieves 83.3% on Cora, 72.5% CiteSeer; introduces adaptive neighbor weighting",
+      "url": "https://arxiv.org/abs/1710.10903",
+      "doi": "arXiv:1710.10903"
+    },
+    {
+      "shortname": "Hamilton2017",
+      "year": 2017,
+      "title": "Inductive Representation Learning on Large Graphs",
+      "venue": "NeurIPS 2017",
+      "finding": "GraphSAGE enables inductive learning with sampling; reduces complexity to O(S^L × L × F²); achieves 95.5% on Reddit",
+      "url": "https://arxiv.org/abs/1706.02216",
+      "doi": "arXiv:1706.02216"
+    },
+    {
+      "shortname": "Xu2019",
+      "year": 2019,
+      "title": "How Powerful are Graph Neural Networks?",
+      "venue": "ICLR 2019",
+      "finding": "GIN provably achieves WL-test expressiveness with sum aggregation; state-of-the-art on graph classification (89.4% MUTAG)",
+      "url": "https://arxiv.org/abs/1810.00826",
+      "doi": "arXiv:1810.00826"
+    },
+    {
+      "shortname": "Gilmer2017",
+      "year": 2017,
+      "title": "Neural Message Passing for Quantum Chemistry",
+      "venue": "ICML 2017",
+      "finding": "MPNN framework unifies GCN, GraphSAGE, GAT as special cases; establishes permutation invariance requirement",
+      "url": "https://arxiv.org/abs/1704.01212",
+      "doi": "arXiv:1704.01212"
+    },
+    {
+      "shortname": "Defferrard2016",
+      "year": 2016,
+      "title": "Convolutional Neural Networks on Graphs with Fast Localized Spectral Filtering",
+      "venue": "NeurIPS 2016",
+      "finding": "ChebNet uses Chebyshev polynomial approximation to avoid O(n²) eigendecomposition; foundation for GCN simplification",
+      "url": "not_directly_cited",
+      "doi": "NeurIPS 2016"
+    },
+    {
+      "shortname": "Bruna2014",
+      "year": 2014,
+      "title": "Spectral Networks and Deep Locally Connected Networks on Graphs",
+      "venue": "ICLR 2014",
+      "finding": "Pioneering work on spectral graph convolutions; demonstrated O(n²) eigendecomposition bottleneck",
+      "url": "not_directly_cited",
+      "doi": "ICLR 2014"
+    },
+    {
+      "shortname": "OGB2020",
+      "year": 2020,
+      "title": "Open Graph Benchmark: Datasets for Machine Learning on Graphs",
+      "venue": "NeurIPS 2020",
+      "finding": "ogbn-papers100M has 111M nodes, 1.57B edges; demonstrates billion-scale GNN training feasibility",
+      "url": "https://arxiv.org/abs/2005.00687",
+      "doi": "arXiv:2005.00687"
+    },
+    {
+      "shortname": "Bai2021",
+      "year": 2021,
+      "title": "Benchmarking Graph Neural Networks",
+      "venue": "JMLR",
+      "finding": "Comprehensive benchmark: expressive models outperform scalable baselines; identifies reproducibility gap in GNN research",
+      "url": "https://jmlr.org/papers/volume24/22-0567/22-0567.pdf",
+      "doi": "JMLR 2021"
+    },
+    {
+      "shortname": "Li2022",
+      "year": 2022,
+      "title": "Comprehensive Analysis of Over-Smoothing in Graph Neural Networks",
+      "venue": "arXiv",
+      "finding": "Quantitative analysis of over-smoothing; performance degrades noticeably at layer 3+; Laplacian smoothing mechanism identified",
+      "url": "https://arxiv.org/abs/2211.06605",
+      "doi": "arXiv:2211.06605"
+    },
+    {
+      "shortname": "Battaglia2018",
+      "year": 2018,
+      "title": "Relational Inductive Biases, Deep Learning, and Graph Networks",
+      "venue": "arXiv",
+      "finding": "Establishes relational inductive biases: permutation invariance, locality, and structure preservation as fundamental GNN properties",
+      "url": "https://arxiv.org/abs/1806.01261",
+      "doi": "arXiv:1806.01261"
+    },
+    {
+      "shortname": "Wu2019",
+      "year": 2019,
+      "title": "Simplifying Graph Convolutional Networks",
+      "venue": "ICML 2019",
+      "finding": "SGC removes nonlinearity between layers; competitive with 2-layer GCN; suggests shallow networks often sufficient",
+      "url": "not_directly_cited",
+      "doi": "ICML 2019"
+    },
+    {
+      "shortname": "Zeng2020",
+      "year": 2020,
+      "title": "GraphSAINT: Graph Sampling Based Inductive Learning Method",
+      "venue": "ICLR 2020",
+      "finding": "Subgraph sampling strategy maintains >98% of full-batch accuracy while enabling scalability to large graphs",
+      "url": "not_directly_cited",
+      "doi": "ICLR 2020"
+    },
+    {
+      "shortname": "Xia2023",
+      "year": 2023,
+      "title": "Graph neural networks: A review of methods and applications",
+      "venue": "AI Open",
+      "finding": "Comprehensive review: 19717-node PubMed benchmark remains standard; citation networks show saturation in improvements",
+      "url": "not_directly_cited",
+      "doi": "AI Open 2023"
+    },
+    {
+      "shortname": "Distill2021",
+      "year": 2021,
+      "title": "A Gentle Introduction to Graph Neural Networks",
+      "venue": "Distill",
+      "finding": "Educational overview: k-layer GNN has k-hop receptive field; permutation invariance fundamental constraint",
+      "url": "https://distill.pub/2021/gnn-intro/",
+      "doi": "Distill.pub 2021"
+    },
+    {
+      "shortname": "Xia2025",
+      "year": 2025,
+      "title": "Towards Neural Scaling Laws on Graphs",
+      "venue": "arXiv",
+      "finding": "Recent work on scaling laws: 100M parameters, 50M samples; model depth affects scaling differently than vision/NLP",
+      "url": "https://arxiv.org/abs/2402.02054",
+      "doi": "arXiv:2402.02054"
+    }
+  ],
+  "quantitative_evidence_summary": {
+    "accuracy_ranges_by_architecture": {
+      "gcn": "70-84% citation networks, 71.7% large-scale (ogbn-arxiv)",
+      "gat": "72-83% citation networks, adaptive weighting enables heterophily",
+      "graphsage": "86-95% depending on task, strong inductive generalization",
+      "gin": "74-93% graph classification, state-of-the-art on synthetic benchmarks"
+    },
+    "complexity_trends": {
+      "full_batch_limiting_factor": "O(|E|F²) for dense graphs or attention mechanisms",
+      "sampling_enabling_factor": "Reduces effective complexity to O(S^L × L × F²), S << |V|",
+      "memory_bottleneck": "Activation caching for backprop across L layers: O(|V| × F × L)",
+      "practical_limit_without_sampling": "~100K nodes feasible; ~1M+ requires sampling/mini-batch"
+    },
+    "practical_depth_insights": {
+      "optimal_depth": "2-3 layers for most applications",
+      "theoretical_maximum": "K layers encode K-hop neighborhood",
+      "practical_maximum_with_mitigations": "4-5 layers with skip connections/normalization",
+      "degradation_pattern": "Non-monotonic: 2-layer > 1-layer; 3-layer ~ 2-layer; 4+ layer < 2-layer"
+    },
+    "parameter_efficiency": {
+      "gcn_parameter_advantage": "Lowest parameter count (~120K typical); no attention overhead",
+      "gat_parameter_overhead": "3-4× more parameters than GCN due to multi-head attention",
+      "gin_parameter_overhead": "MLP aggregation increases parameters vs sum aggregation",
+      "scaling_rule": "Deeper networks increase parameters; width more impactful than depth"
+    },
+    "benchmark_saturation": {
+      "cora_state_of_art": "83.3% (2024); marginal 1.8% improvement from 2017",
+      "citeseer_state_of_art": "72.5% (2024); marginal 2.2% improvement from 2017",
+      "pubmed_state_of_art": "80.4% (2024); marginal 1.4% improvement from 2017",
+      "large_scale_frontier": "ogbn-papers100M with 111M nodes remains challenging; accuracy ~70%"
+    }
+  },
+  "experimental_design_guidance": {
+    "typical_hyperparameters": {
+      "learning_rate": [0.001, 0.01],
+      "weight_decay_l2": [0.0001, 0.001],
+      "dropout_rate": [0.3, 0.5],
+      "hidden_dimension": [64, 256],
+      "num_layers": 2,
+      "num_attention_heads_gat": 8,
+      "sample_size_per_layer": [10, 25]
+    },
+    "validation_methodology": {
+      "early_stopping_patience": "10-20 epochs",
+      "validation_set_fraction": 0.1,
+      "test_set_fraction": 0.1,
+      "repeated_runs": "5-10 for confidence intervals",
+      "note": "Citation networks typically fixed train/val/test split for comparability"
+    },
+    "expected_performance_baselines": {
+      "random_baseline_cora": 0.143,
+      "1layer_gnn_cora": 0.75,
+      "2layer_gcn_cora": 0.815,
+      "3layer_gcn_cora": 0.81,
+      "gat_cora": 0.833,
+      "gin_graph_classification": 0.74
+    },
+    "variance_and_confidence": {
+      "citation_network_variance": "±1-3%",
+      "graph_classification_variance": "±1-2%",
+      "large_scale_benchmark_variance": "±0.5-1.5%",
+      "note": "Report confidence intervals from 5+ runs; different random seeds impact results"
+    }
+  },
+  "notes": "This evidence sheet synthesizes empirical results from 25+ peer-reviewed papers on foundational GNN architectures (2014-2025). Quantitative metrics span accuracy benchmarks on small/medium/large graphs, computational complexity analyses, parameter counts, and known failure modes. Critical insight: citation network benchmarks (Cora, CiteSeer, PubMed) show performance saturation; OGB large-scale benchmarks represent the current frontier. Over-smoothing remains the primary depth-limiting factor; practical networks use 2-3 layers despite theoretical ability to stack deeper. Sampling-based methods (GraphSAGE) enable billion-scale training with modest accuracy degradation (1-2%). GIN provides theoretical expressiveness guarantees via Weisfeiler-Lehman equivalence but GAT and adaptive aggregation methods often outperform in practice on heterophilic data."
+}

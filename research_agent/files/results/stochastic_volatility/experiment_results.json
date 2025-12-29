@@ -1,0 +1,102 @@
+{
+  "ticker": "AAPL",
+  "start_date": "2013-01-01",
+  "end_date": "2025-12-21",
+  "n_observations": 3262,
+  "Delta_t": 0.003968253968253968,
+  "sample_stats": {
+    "mean_return": 0.0008589163821694155,
+    "std_return": 0.01785621204929905,
+    "skewness": -0.2167808463086393,
+    "excess_kurtosis": 6.9228238541569045,
+    "annualized_mean": 0.2164469283066927,
+    "annualized_volatility": 0.28345857864048185
+  },
+  "gbm_params": {
+    "mu": 0.25663363086043783,
+    "sigma": 0.2835020372192945
+  },
+  "gbm_loglik": 8502.28968017072,
+  "gbm_ic": {
+    "AIC": -17000.57936034144,
+    "BIC": -16988.399168775075,
+    "AICc": -17000.57567823036
+  },
+  "gbm_diagnostics": {
+    "ljung_box": {
+      "statistic": 83.06306224117348,
+      "p_value": 1.1786209785924484e-09,
+      "lags": 20,
+      "no_autocorrelation": false,
+      "interpretation": "Autocorrelation detected"
+    },
+    "jarque_bera": {
+      "statistic": 6539.421901062427,
+      "p_value": 0.0,
+      "skewness": -0.21678084630863936,
+      "excess_kurtosis": 6.922823854156906,
+      "is_normal": false,
+      "interpretation": "Non-normal distribution"
+    }
+  },
+  "heston_params": {
+    "mu": 0.21644753439733352,
+    "kappa": 2.0000036020067067,
+    "theta": 0.08034930375117175,
+    "xi": 0.30000068920890094,
+    "rho": -0.4999988937626268,
+    "V_0": 0.08034992128940281
+  },
+  "heston_loglik": 8468.944686316108,
+  "heston_ic": {
+    "AIC": -16925.889372632217,
+    "BIC": -16889.34879793313,
+    "AICc": -16925.863566180604
+  },
+  "feller_ratio": 3.5710701901381787,
+  "feller_satisfied": true,
+  "heston_diagnostics": {
+    "ljung_box": {
+      "statistic": 47.92992691436025,
+      "p_value": 0.0004351321804120234,
+      "lags": 20,
+      "no_autocorrelation": false,
+      "interpretation": "Autocorrelation detected"
+    },
+    "jarque_bera": {
+      "statistic": 1404.854639867666,
+      "p_value": 0.0,
+      "skewness": -0.27156462058690534,
+      "excess_kurtosis": 3.1687785626638574,
+      "is_normal": false,
+      "interpretation": "Non-normal distribution"
+    }
+  },
+  "lrt": {
+    "LRT_statistic": -66.6899877092219,
+    "p_value": 1.0,
+    "critical_value": 9.487729036781154,
+    "df": 4,
+    "reject_null": false,
+    "interpretation": "GBM adequate"
+  },
+  "oos_validation": {
+    "n_train": 2609,
+    "n_test": 653,
+    "forecast_horizon": 22,
+    "rmse_gbm": 0.09258334388043453,
+    "rmse_heston": 0.09277268163959382,
+    "mae_gbm": 0.052205986149066894,
+    "mae_heston": 0.05243595156828094,
+    "heston_wins": false,
+    "improvement_pct": -0.20450520711782277
+  },
+  "hypothesis_evaluation": {
+    "lrt_passed": false,
+    "aic_passed": false,
+    "bic_passed": false,
+    "oos_passed": false,
+    "hypothesis_confirmed": false
+  },
+  "experiment_timestamp": "2025-12-21 23:51:26"
+}

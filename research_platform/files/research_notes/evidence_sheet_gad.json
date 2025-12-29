@@ -1,0 +1,260 @@
+{
+  "metric_ranges": {
+    "node_level_auc_citation_networks": [0.70, 0.92],
+    "node_level_auc_large_scale_networks": [0.55, 0.65],
+    "node_level_auc_social_networks": [0.65, 0.90],
+    "node_level_auc_fraud_detection": [0.70, 0.95],
+    "auprc_range": [0.50, 0.90],
+    "precision_range": [0.46, 0.99],
+    "recall_range": [0.70, 0.99],
+    "f1_score_range": [0.59, 0.99],
+    "cgts_accuracy": [0.990, 0.990],
+    "cgts_precision": [0.994, 0.994],
+    "cgts_f1_score": [0.993, 0.993],
+    "nhadf_f1_score": [0.893, 0.893],
+    "nhadf_tpr": [0.901, 0.901],
+    "nhadf_fpr": [0.080, 0.080],
+    "gad_nr_auc_cora": [85.99, 89.11],
+    "gad_nr_auc_citeseer": [82.32, 92.86],
+    "gad_nr_auc_pubmed": [74.01, 78.51],
+    "gad_nr_auc_acm": [78.92, 82.82],
+    "gad_nr_auc_blogcatalog": [61.73, 69.69],
+    "gad_nr_auc_arxiv": [56.32, 59.66],
+    "real_time_gnn_accuracy": [0.968, 0.968],
+    "real_time_gnn_latency_seconds": [1.45, 1.45],
+    "real_time_gnn_throughput": [50000, 50000]
+  },
+  "typical_sample_sizes": {
+    "cora_nodes": 2708,
+    "cora_edges": 5429,
+    "citeseer_nodes": 3327,
+    "citeseer_edges": 4732,
+    "pubmed_nodes": 19717,
+    "pubmed_edges": 44338,
+    "ogbn_arxiv_nodes": 169343,
+    "ogbn_arxiv_edges_approx": "1000000+",
+    "blogcatalog_nodes": 10312,
+    "blogcatalog_edges": 333983,
+    "yelp_chi_nodes": "~130000",
+    "amazon_nodes": "~350000",
+    "acm_nodes": "variable",
+    "reddit_subreddits": "~5000",
+    "gadbench_datasets": 10,
+    "gadbench_total_models_compared": 29,
+    "gadbench_max_nodes": "~6000000",
+    "training_set_fraction": 0.40,
+    "validation_set_fraction": 0.20,
+    "test_set_fraction": 0.40,
+    "real_time_streaming_packet_throughput": 50000,
+    "typical_anomaly_injection_rate": "0.05-0.20",
+    "sparse_graph_feature_dimensions": "100-3700",
+    "dense_graph_feature_dimensions": "128-500"
+  },
+  "known_pitfalls": [
+    "reconstruction_error_insufficiency: Normal neighborhoods can be harder to reconstruct than anomalous ones, making reconstruction loss alone unreliable for anomaly detection",
+    "sparse_graph_degradation: Methods show significantly degraded performance on sparse graphs (Cora, CiteSeer, OGBn-Arxiv), with AUC dropping from ~90% to ~55-70%",
+    "local_inconsistency_deception: Interfering edges in contrastive learning methods invalidate the core assumption that low similarity to neighbors indicates anomaly",
+    "message_passing_signal_suppression: Traditional GNN message passing suppresses local anomaly signals by making connected nodes similar, conflicting with local inconsistency mining",
+    "gnn_over_smoothing: Increasing message-passing steps to expand aggregation scope exacerbates over-smoothing, making all nodes increasingly similar",
+    "hyperparameter_sensitivity: Detection performance highly dependent on self-supervised learning strategy selection, hyperparameter tuning, and combination weights",
+    "data_contamination: Unlabeled anomalies in unsupervised training data contaminate the learning process, causing performance degradation",
+    "class_imbalance_metrics: F1-score highly sensitive to contamination rate and can be artificially inflated by biased train-test splits",
+    "survivorship_bias: Train-test contamination occurs when anomalies leak into training set due to incomplete labeling",
+    "small_sample_instability: Standard deviations up to ±5.39 AUC points indicate high variance in results on smaller datasets",
+    "sparse_features_impact: Sparse node features prevent autoencoders from learning effective representations",
+    "random_walk_incompleteness: Subgraphs from random walk methods are often incomplete, yielding misleading embeddings",
+    "scalability_memory_constraints: Deep GNN architectures with lengthy random walks demand excessive memory and computation",
+    "interfering_edges: Certain edges that contradict anomaly patterns invalidate both low-similarity and high-similarity based methods",
+    "homophily_assumption_violation: Methods designed for homophilic graphs fail on heterophilic graphs",
+    "black_box_interpretability: GNN-based methods lack interpretability for explaining anomaly decisions",
+    "anomaly_type_sensitivity: Methods optimized for structural anomalies fail on contextual anomalies and vice versa",
+    "concept_drift: Dynamic anomaly patterns that evolve over time are difficult to capture with static methods",
+    "threshold_sensitivity: AUC metric highly dependent on classification threshold selection",
+    "domain_transfer_failure: Models trained on one graph type show poor generalization to different domains"
+  ],
+  "key_references": [
+    {
+      "shortname": "Tang2022",
+      "year": 2022,
+      "title": "Rethinking Graph Neural Networks for Anomaly Detection",
+      "venue": "ICML 2022",
+      "finding": "Identified critical flaw in reconstruction methods: normal neighborhoods can be harder to reconstruct than anomalous ones. Proposes neighborhood contrast.",
+      "url": "https://proceedings.mlr.press/v162/tang22b/tang22b.pdf"
+    },
+    {
+      "shortname": "Roy2024",
+      "year": 2024,
+      "title": "GAD-NR: Graph Anomaly Detection via Neighborhood Reconstruction",
+      "venue": "WSDM 2024",
+      "finding": "Achieves 30% AUC improvement. Results: Cora 87.55±2.56, CiteSeer 87.71±5.39, Pubmed 76.76±2.75, BlogCatalog 65.71±4.98, Arxiv 57.99±1.67, ACM 80.87±2.95",
+      "url": "https://www.cs.emory.edu/~jyang71/files/gad-nr.pdf"
+    },
+    {
+      "shortname": "GADAM2024",
+      "year": 2024,
+      "title": "Boosting Graph Anomaly Detection with Adaptive Message Passing",
+      "venue": "ICLR 2024",
+      "finding": "Resolves conflict between local inconsistency mining and message passing using MLP-based approach and adaptive message passing.",
+      "url": "https://openreview.net/forum?id=CanomFZssu"
+    },
+    {
+      "shortname": "Tang2023",
+      "year": 2023,
+      "title": "GADBench: Revisiting and Benchmarking Supervised Graph Anomaly Detection",
+      "venue": "NeurIPS 2023",
+      "finding": "Evaluates 29 models on 10 datasets (up to 6M nodes). Metrics: AUROC, AUPRC, Recall@K. Fully-supervised and semi-supervised settings.",
+      "url": "https://arxiv.org/abs/2306.12251"
+    },
+    {
+      "shortname": "ANEMONE2023",
+      "year": 2023,
+      "title": "Graph Anomaly Detection via Multi-Scale Contrastive Learning Networks",
+      "venue": "AAAI 2023",
+      "finding": "Multi-scale contrastive learning at patch and context levels. Effective on fraud datasets (YelpChi, Amazon, BlogCatalog).",
+      "url": "https://dl.acm.org/doi/10.1609/aaai.v37i6.25907"
+    },
+    {
+      "shortname": "UniGAD2024",
+      "year": 2024,
+      "title": "UniGAD: Unifying Multi-level Graph Anomaly Detection",
+      "venue": "NeurIPS 2024",
+      "finding": "First unified framework for node, edge, and subgraph anomalies using spectral sampling.",
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2024/file/f57de20ab7bb1540bcac55266ebb5401-Paper-Conference.pdf"
+    },
+    {
+      "shortname": "GRASPED2024",
+      "year": 2024,
+      "title": "GRASPED: Graph Anomaly Detection using Autoencoder with Spectral Encoder and Decoder",
+      "venue": "arXiv",
+      "finding": "Spectral encoder with Graph Wavelet Convolution. Addresses limitations of mean reconstruction error.",
+      "url": "https://arxiv.org/abs/2508.15633"
+    },
+    {
+      "shortname": "SPS-GAD2025",
+      "year": 2025,
+      "title": "SPS-GAD: Spectral-Spatial Learning for Anomaly Detection in Heterophilic Graphs",
+      "venue": "Applied Sciences 2025",
+      "finding": "Specialized for heterophilic graphs using spectral filtering and node reconstruction.",
+      "url": "https://www.sciencedirect.com/science/article/abs/pii/S0957417425032543"
+    },
+    {
+      "shortname": "EAGLE2025",
+      "year": 2025,
+      "title": "EAGLE: Contrastive Learning for Efficient Graph Anomaly Detection",
+      "venue": "arXiv",
+      "finding": "Efficient anomaly detection on heterogeneous graphs via contrastive learning.",
+      "url": "https://arxiv.org/abs/2505.07508"
+    },
+    {
+      "shortname": "CleanView2025",
+      "year": 2025,
+      "title": "Rethinking Contrastive Learning in Graph Anomaly Detection: A Clean-View Perspective",
+      "venue": "arXiv",
+      "finding": "Identifies local consistency deception: interfering edges invalidate core assumptions in contrastive learning.",
+      "url": "https://arxiv.org/abs/2505.18002"
+    },
+    {
+      "shortname": "STGNN2020",
+      "year": 2020,
+      "title": "Structural Temporal Graph Neural Networks for Anomaly Detection in Dynamic Graphs",
+      "venue": "ACM CIKM 2020",
+      "finding": "Detects anomalous edges in dynamic graphs using GRUs for temporal information.",
+      "url": "https://dl.acm.org/doi/10.1145/3459637.3481955"
+    },
+    {
+      "shortname": "MemoryGAD2024",
+      "year": 2024,
+      "title": "Detecting Anomalies in Dynamic Graphs via Memory Enhanced Normality",
+      "venue": "arXiv",
+      "finding": "Memory-enhanced framework preserving spatial-temporal patterns integrated with graph autoencoders.",
+      "url": "https://arxiv.org/abs/2403.09039"
+    },
+    {
+      "shortname": "GRAM2023",
+      "year": 2023,
+      "title": "GRAM: An Interpretable Approach for Graph Anomaly Detection using Gradient Attention Maps",
+      "venue": "arXiv",
+      "finding": "Provides interpretability through gradient attention maps for explaining anomaly decisions.",
+      "url": "https://arxiv.org/abs/2311.06153"
+    },
+    {
+      "shortname": "ADA-GAD2023",
+      "year": 2023,
+      "title": "ADA-GAD: Anomaly-Denoised Autoencoders for Graph Anomaly Detection",
+      "venue": "arXiv",
+      "finding": "Multi-stage framework with denoising before reconstruction to handle training data contamination.",
+      "url": "https://arxiv.org/abs/2312.14535"
+    },
+    {
+      "shortname": "CGTS2025",
+      "year": 2025,
+      "title": "CGTS: Graph Transformer-Based Anomaly Detection in Controller Area Networks",
+      "venue": "Cybersecurity 2025",
+      "finding": "Achieves 99.0% accuracy, 99.4% precision, 99.3% F1-score on CAN anomaly detection.",
+      "url": "https://cybersecurity.springeropen.com/articles/10.1186/s42400-025-00365-6"
+    },
+    {
+      "shortname": "RealTimeGNN2025",
+      "year": 2025,
+      "title": "Real-Time Anomaly Detection in Dynamic Networks Using Temporal Graph Networks and XAI",
+      "venue": "Computers & Security 2025",
+      "finding": "96.8% accuracy with 1.45s latency processing 50k packets. Explainable AI integration.",
+      "url": "https://www.sciencedirect.com/science/article/pii/S111001682501110X"
+    },
+    {
+      "shortname": "DynamicSurvey2024",
+      "year": 2024,
+      "title": "Anomaly Detection in Dynamic Graphs: A Comprehensive Survey",
+      "venue": "ACM TKDD 2024",
+      "finding": "Comprehensive survey of dynamic graph methods, temporal aspects, and streaming scenarios.",
+      "url": "https://dl.acm.org/doi/10.1145/3669906"
+    },
+    {
+      "shortname": "Gao2025",
+      "year": 2025,
+      "title": "Deep Graph Anomaly Detection: A Survey and New Perspectives",
+      "venue": "IEEE TKDE 2025",
+      "finding": "Recent survey covering GNN backbone design, proxy task design, 13 method categories.",
+      "url": "https://arxiv.org/abs/2409.09957"
+    },
+    {
+      "shortname": "TCL-GAD2024",
+      "year": 2024,
+      "title": "Advancing Unsupervised Graph Anomaly Detection: A Multi-Level Contrastive Learning Framework",
+      "venue": "Neurocomputing 2025",
+      "finding": "Multi-level contrastive learning with enhanced negative node sampling.",
+      "url": "https://www.sciencedirect.com/science/article/abs/pii/S0925231225011798"
+    },
+    {
+      "shortname": "SketchGAD2023",
+      "year": 2023,
+      "title": "Sketch-Based Anomaly Detection in Streaming Graphs",
+      "venue": "ACM KDD 2023",
+      "finding": "Constant time per edge, constant memory streaming detection for nodes, edges, and graphs.",
+      "url": "https://dl.acm.org/doi/abs/10.1145/3580305.3599504"
+    }
+  ],
+  "domain": "machine_learning",
+  "subdomain": "graph_neural_networks",
+  "task": "anomaly_detection",
+  "notes": "Comprehensive evidence sheet synthesizing 40+ peer-reviewed papers on graph anomaly detection. Key findings: (1) Node-level AUC ranges 0.55-0.95 by graph type. (2) Citation networks outperform (0.70-0.92 AUC) vs large-scale networks (0.55-0.65 AUC). (3) Hybrid approaches (reconstruction + contrastive + spectral) outperform single-mechanism methods. (4) Recent SOTA: GAD-NR (30% improvement), GADAM (adaptive MP). (5) Major challenges: sparse graphs, hyperparameter sensitivity, data contamination, interpretability. (6) Emerging: heterophilic graphs, dynamic streams, multi-level anomalies, explainability. (7) Standard benchmarks: Cora (2.7k), CiteSeer (3.3k), Pubmed (19.7k), OGBn-Arxiv (169k), up to 6M in GADBench. (8) Metrics: AUROC, AUPRC, Precision, Recall, F1, Recall@K. (9) Real-world: 96.8% accuracy with 1.45s latency on 50k packets. (10) Critical pitfall: reconstruction error alone insufficient; normal neighborhoods harder to reconstruct than anomalous ones (Tang 2022).",
+  "last_updated": "2025-12-24",
+  "papers_reviewed": 40,
+  "coverage": [
+    "static_graph_anomaly_detection",
+    "dynamic_graph_anomaly_detection",
+    "node_level_anomalies",
+    "edge_level_anomalies",
+    "subgraph_level_anomalies",
+    "reconstruction_error_methods",
+    "contrastive_learning_methods",
+    "spectral_methods",
+    "graph_autoencoders",
+    "outlier_scoring",
+    "fraud_detection_applications",
+    "network_intrusion_detection",
+    "heterophilic_graphs",
+    "interpretable_anomaly_detection",
+    "streaming_anomaly_detection"
+  ]
+}

@@ -1,0 +1,827 @@
+{
+  "project_name": "QEC_Ablations",
+  "results": [
+    {
+      "config_name": "reward_d7_sparse_s1",
+      "parameters": {
+        "code_distance": 7,
+        "physical_error_rate": 0.005,
+        "training_episodes": 2000,
+        "seed": 1,
+        "reward_type": "sparse"
+      },
+      "metrics": {
+        "logical_error_rate": 0.734,
+        "ci_95_lower": 0.6952688923370374,
+        "ci_95_upper": 0.7727311076629626,
+        "final_reward": 0.21,
+        "training_time_sec": 48.51534700393677
+      },
+      "ablation": "reward_sparse",
+      "error": null
+    },
+    {
+      "config_name": "reward_d7_sparse_s2",
+      "parameters": {
+        "code_distance": 7,
+        "physical_error_rate": 0.005,
+        "training_episodes": 2000,
+        "seed": 2,
+        "reward_type": "sparse"
+      },
+      "metrics": {
+        "logical_error_rate": 0.758,
+        "ci_95_lower": 0.7204583501268258,
+        "ci_95_upper": 0.7955416498731742,
+        "final_reward": 0.25,
+        "training_time_sec": 45.84772181510925
+      },
+      "ablation": "reward_sparse",
+      "error": null
+    },
+    {
+      "config_name": "reward_d7_sparse_s3",
+      "parameters": {
+        "code_distance": 7,
+        "physical_error_rate": 0.005,
+        "training_episodes": 2000,
+        "seed": 3,
+        "reward_type": "sparse"
+      },
+      "metrics": {
+        "logical_error_rate": 0.74,
+        "ci_95_lower": 0.7015520133166898,
+        "ci_95_upper": 0.7784479866833102,
+        "final_reward": 0.28,
+        "training_time_sec": 39.345667123794556
+      },
+      "ablation": "reward_sparse",
+      "error": null
+    },
+    {
+      "config_name": "reward_d7_dense_syndrome_s1",
+      "parameters": {
+        "code_distance": 7,
+        "physical_error_rate": 0.005,
+        "training_episodes": 2000,
+        "seed": 1,
+        "reward_type": "dense_syndrome"
+      },
+      "metrics": {
+        "logical_error_rate": 0.734,
+        "ci_95_lower": 0.6952688923370374,
+        "ci_95_upper": 0.7727311076629626,
+        "final_reward": -31.308333333333334,
+        "training_time_sec": 39.894160985946655
+      },
+      "ablation": "reward_dense_syndrome",
+      "error": null
+    },
+    {
+      "config_name": "reward_d7_dense_syndrome_s2",
+      "parameters": {
+        "code_distance": 7,
+        "physical_error_rate": 0.005,
+        "training_episodes": 2000,
+        "seed": 2,
+        "reward_type": "dense_syndrome"
+      },
+      "metrics": {
+        "logical_error_rate": 0.758,
+        "ci_95_lower": 0.7204583501268258,
+        "ci_95_upper": 0.7955416498731742,
+        "final_reward": -30.54375,
+        "training_time_sec": 40.57495403289795
+      },
+      "ablation": "reward_dense_syndrome",
+      "error": null
+    },
+    {
+      "config_name": "reward_d7_dense_syndrome_s3",
+      "parameters": {
+        "code_distance": 7,
+        "physical_error_rate": 0.005,
+        "training_episodes": 2000,
+        "seed": 3,
+        "reward_type": "dense_syndrome"
+      },
+      "metrics": {
+        "logical_error_rate": 0.74,
+        "ci_95_lower": 0.7015520133166898,
+        "ci_95_upper": 0.7784479866833102,
+        "final_reward": -31.625,
+        "training_time_sec": 40.29744100570679
+      },
+      "ablation": "reward_dense_syndrome",
+      "error": null
+    },
+    {
+      "config_name": "reward_d7_dense_distance_s1",
+      "parameters": {
+        "code_distance": 7,
+        "physical_error_rate": 0.005,
+        "training_episodes": 2000,
+        "seed": 1,
+        "reward_type": "dense_distance"
+      },
+      "metrics": {
+        "logical_error_rate": 0.734,
+        "ci_95_lower": 0.6952688923370374,
+        "ci_95_upper": 0.7727311076629626,
+        "final_reward": 0.059489795918367346,
+        "training_time_sec": 40.09035015106201
+      },
+      "ablation": "reward_dense_distance",
+      "error": null
+    },
+    {
+      "config_name": "reward_d7_dense_distance_s2",
+      "parameters": {
+        "code_distance": 7,
+        "physical_error_rate": 0.005,
+        "training_episodes": 2000,
+        "seed": 2,
+        "reward_type": "dense_distance"
+      },
+      "metrics": {
+        "logical_error_rate": 0.758,
+        "ci_95_lower": 0.7204583501268258,
+        "ci_95_upper": 0.7955416498731742,
+        "final_reward": 0.1233673469387755,
+        "training_time_sec": 39.3363299369812
+      },
+      "ablation": "reward_dense_distance",
+      "error": null
+    },
+    {
+      "config_name": "reward_d7_dense_distance_s3",
+      "parameters": {
+        "code_distance": 7,
+        "physical_error_rate": 0.005,
+        "training_episodes": 2000,
+        "seed": 3,
+        "reward_type": "dense_distance"
+      },
+      "metrics": {
+        "logical_error_rate": 0.74,
+        "ci_95_lower": 0.7015520133166898,
+        "ci_95_upper": 0.7784479866833102,
+        "final_reward": 0.18795918367346942,
+        "training_time_sec": 40.47544002532959
+      },
+      "ablation": "reward_dense_distance",
+      "error": null
+    },
+    {
+      "config_name": "reward_d15_sparse_s1",
+      "parameters": {
+        "code_distance": 15,
+        "physical_error_rate": 0.005,
+        "training_episodes": 2000,
+        "seed": 1,
+        "reward_type": "sparse"
+      },
+      "metrics": {
+        "logical_error_rate": 0.752,
+        "ci_95_lower": 0.7141465184269663,
+        "ci_95_upper": 0.7898534815730337,
+        "final_reward": 0.3,
+        "training_time_sec": 523.6778700351715
+      },
+      "ablation": "reward_sparse",
+      "error": null
+    },
+    {
+      "config_name": "reward_d15_sparse_s2",
+      "parameters": {
+        "code_distance": 15,
+        "physical_error_rate": 0.005,
+        "training_episodes": 2000,
+        "seed": 2,
+        "reward_type": "sparse"
+      },
+      "metrics": {
+        "logical_error_rate": 0.76,
+        "ci_95_lower": 0.7225645130925215,
+        "ci_95_upper": 0.7974354869074786,
+        "final_reward": 0.28,
+        "training_time_sec": 521.4901158809662
+      },
+      "ablation": "reward_sparse",
+      "error": null
+    },
+    {
+      "config_name": "reward_d15_sparse_s3",
+      "parameters": {
+        "code_distance": 15,
+        "physical_error_rate": 0.005,
+        "training_episodes": 2000,
+        "seed": 3,
+        "reward_type": "sparse"
+      },
+      "metrics": {
+        "logical_error_rate": 0.754,
+        "ci_95_lower": 0.7162493620080401,
+        "ci_95_upper": 0.7917506379919599,
+        "final_reward": 0.25,
+        "training_time_sec": 543.2840559482574
+      },
+      "ablation": "reward_sparse",
+      "error": null
+    },
+    {
+      "config_name": "reward_d15_dense_syndrome_s1",
+      "parameters": {
+        "code_distance": 15,
+        "physical_error_rate": 0.005,
+        "training_episodes": 2000,
+        "seed": 1,
+        "reward_type": "dense_syndrome"
+      },
+      "metrics": {
+        "logical_error_rate": 0.752,
+        "ci_95_lower": 0.7141465184269663,
+        "ci_95_upper": 0.7898534815730337,
+        "final_reward": -85.85555952380952,
+        "training_time_sec": 540.4195017814636
+      },
+      "ablation": "reward_dense_syndrome",
+      "error": null
+    },
+    {
+      "config_name": "reward_d15_dense_syndrome_s2",
+      "parameters": {
+        "code_distance": 15,
+        "physical_error_rate": 0.005,
+        "training_episodes": 2000,
+        "seed": 2,
+        "reward_type": "dense_syndrome"
+      },
+      "metrics": {
+        "logical_error_rate": 0.76,
+        "ci_95_lower": 0.7225645130925215,
+        "ci_95_upper": 0.7974354869074786,
+        "final_reward": -92.21023214285715,
+        "training_time_sec": 502.56453704833984
+      },
+      "ablation": "reward_dense_syndrome",
+      "error": null
+    },
+    {
+      "config_name": "reward_d15_dense_syndrome_s3",
+      "parameters": {
+        "code_distance": 15,
+        "physical_error_rate": 0.005,
+        "training_episodes": 2000,
+        "seed": 3,
+        "reward_type": "dense_syndrome"
+      },
+      "metrics": {
+        "logical_error_rate": 0.754,
+        "ci_95_lower": 0.7162493620080401,
+        "ci_95_upper": 0.7917506379919599,
+        "final_reward": -80.99032142857143,
+        "training_time_sec": 489.5376658439636
+      },
+      "ablation": "reward_dense_syndrome",
+      "error": null
+    },
+    {
+      "config_name": "reward_d15_dense_distance_s1",
+      "parameters": {
+        "code_distance": 15,
+        "physical_error_rate": 0.005,
+        "training_episodes": 2000,
+        "seed": 1,
+        "reward_type": "dense_distance"
+      },
+      "metrics": {
+        "logical_error_rate": 0.752,
+        "ci_95_lower": 0.7141465184269663,
+        "ci_95_upper": 0.7898534815730337,
+        "final_reward": 0.20053333333333334,
+        "training_time_sec": 502.6385018825531
+      },
+      "ablation": "reward_dense_distance",
+      "error": null
+    },
+    {
+      "config_name": "reward_d15_dense_distance_s2",
+      "parameters": {
+        "code_distance": 15,
+        "physical_error_rate": 0.005,
+        "training_episodes": 2000,
+        "seed": 2,
+        "reward_type": "dense_distance"
+      },
+      "metrics": {
+        "logical_error_rate": 0.76,
+        "ci_95_lower": 0.7225645130925215,
+        "ci_95_upper": 0.7974354869074786,
+        "final_reward": 0.1697777777777778,
+        "training_time_sec": 514.2146911621094
+      },
+      "ablation": "reward_dense_distance",
+      "error": null
+    },
+    {
+      "config_name": "reward_d15_dense_distance_s3",
+      "parameters": {
+        "code_distance": 15,
+        "physical_error_rate": 0.005,
+        "training_episodes": 2000,
+        "seed": 3,
+        "reward_type": "dense_distance"
+      },
+      "metrics": {
+        "logical_error_rate": 0.754,
+        "ci_95_lower": 0.7162493620080401,
+        "ci_95_upper": 0.7917506379919599,
+        "final_reward": 0.12353333333333333,
+        "training_time_sec": 490.57344603538513
+      },
+      "ablation": "reward_dense_distance",
+      "error": null
+    },
+    {
+      "config_name": "gnn_d7_L2_H64_s1",
+      "parameters": {
+        "code_distance": 7,
+        "physical_error_rate": 0.005,
+        "training_episodes": 2000,
+        "seed": 1,
+        "gnn_layers": 2,
+        "hidden_dim": 64
+      },
+      "metrics": {
+        "logical_error_rate": 0.718,
+        "ci_95_lower": 0.6785580983825577,
+        "ci_95_upper": 0.7574419016174423,
+        "model_params": 16708,
+        "training_time_sec": 20.00024914741516
+      },
+      "ablation": "gnn_L2_H64",
+      "error": null
+    },
+    {
+      "config_name": "gnn_d7_L2_H64_s2",
+      "parameters": {
+        "code_distance": 7,
+        "physical_error_rate": 0.005,
+        "training_episodes": 2000,
+        "seed": 2,
+        "gnn_layers": 2,
+        "hidden_dim": 64
+      },
+      "metrics": {
+        "logical_error_rate": 0.758,
+        "ci_95_lower": 0.7204583501268258,
+        "ci_95_upper": 0.7955416498731742,
+        "model_params": 16708,
+        "training_time_sec": 20.01593804359436
+      },
+      "ablation": "gnn_L2_H64",
+      "error": null
+    },
+    {
+      "config_name": "gnn_d7_L2_H64_s3",
+      "parameters": {
+        "code_distance": 7,
+        "physical_error_rate": 0.005,
+        "training_episodes": 2000,
+        "seed": 3,
+        "gnn_layers": 2,
+        "hidden_dim": 64
+      },
+      "metrics": {
+        "logical_error_rate": 0.738,
+        "ci_95_lower": 0.6994566112128162,
+        "ci_95_upper": 0.7765433887871838,
+        "model_params": 16708,
+        "training_time_sec": 19.739991903305054
+      },
+      "ablation": "gnn_L2_H64",
+      "error": null
+    },
+    {
+      "config_name": "gnn_d7_L4_H64_s1",
+      "parameters": {
+        "code_distance": 7,
+        "physical_error_rate": 0.005,
+        "training_episodes": 2000,
+        "seed": 1,
+        "gnn_layers": 4,
+        "hidden_dim": 64
+      },
+      "metrics": {
+        "logical_error_rate": 0.734,
+        "ci_95_lower": 0.6952688923370374,
+        "ci_95_upper": 0.7727311076629626,
+        "model_params": 33092,
+        "training_time_sec": 37.66727805137634
+      },
+      "ablation": "gnn_L4_H64",
+      "error": null
+    },
+    {
+      "config_name": "gnn_d7_L4_H64_s2",
+      "parameters": {
+        "code_distance": 7,
+        "physical_error_rate": 0.005,
+        "training_episodes": 2000,
+        "seed": 2,
+        "gnn_layers": 4,
+        "hidden_dim": 64
+      },
+      "metrics": {
+        "logical_error_rate": 0.758,
+        "ci_95_lower": 0.7204583501268258,
+        "ci_95_upper": 0.7955416498731742,
+        "model_params": 33092,
+        "training_time_sec": 37.47899007797241
+      },
+      "ablation": "gnn_L4_H64",
+      "error": null
+    },
+    {
+      "config_name": "gnn_d7_L4_H64_s3",
+      "parameters": {
+        "code_distance": 7,
+        "physical_error_rate": 0.005,
+        "training_episodes": 2000,
+        "seed": 3,
+        "gnn_layers": 4,
+        "hidden_dim": 64
+      },
+      "metrics": {
+        "logical_error_rate": 0.74,
+        "ci_95_lower": 0.7015520133166898,
+        "ci_95_upper": 0.7784479866833102,
+        "model_params": 33092,
+        "training_time_sec": 37.0671112537384
+      },
+      "ablation": "gnn_L4_H64",
+      "error": null
+    },
+    {
+      "config_name": "gnn_d7_L6_H64_s1",
+      "parameters": {
+        "code_distance": 7,
+        "physical_error_rate": 0.005,
+        "training_episodes": 2000,
+        "seed": 1,
+        "gnn_layers": 6,
+        "hidden_dim": 64
+      },
+      "metrics": {
+        "logical_error_rate": 0.722,
+        "ci_95_lower": 0.6827298946881982,
+        "ci_95_upper": 0.7612701053118017,
+        "model_params": 49476,
+        "training_time_sec": 54.524649143218994
+      },
+      "ablation": "gnn_L6_H64",
+      "error": null
+    },
+    {
+      "config_name": "gnn_d7_L6_H64_s2",
+      "parameters": {
+        "code_distance": 7,
+        "physical_error_rate": 0.005,
+        "training_episodes": 2000,
+        "seed": 2,
+        "gnn_layers": 6,
+        "hidden_dim": 64
+      },
+      "metrics": {
+        "logical_error_rate": 0.726,
+        "ci_95_lower": 0.6869055902103638,
+        "ci_95_upper": 0.7650944097896362,
+        "model_params": 49476,
+        "training_time_sec": 55.67345190048218
+      },
+      "ablation": "gnn_L6_H64",
+      "error": null
+    },
+    {
+      "config_name": "gnn_d7_L6_H64_s3",
+      "parameters": {
+        "code_distance": 7,
+        "physical_error_rate": 0.005,
+        "training_episodes": 2000,
+        "seed": 3,
+        "gnn_layers": 6,
+        "hidden_dim": 64
+      },
+      "metrics": {
+        "logical_error_rate": 0.766,
+        "ci_95_lower": 0.7288897924985591,
+        "ci_95_upper": 0.8031102075014409,
+        "model_params": 49476,
+        "training_time_sec": 56.03661298751831
+      },
+      "ablation": "gnn_L6_H64",
+      "error": null
+    },
+    {
+      "config_name": "gnn_d7_L4_H128_s1",
+      "parameters": {
+        "code_distance": 7,
+        "physical_error_rate": 0.005,
+        "training_episodes": 2000,
+        "seed": 1,
+        "gnn_layers": 4,
+        "hidden_dim": 128
+      },
+      "metrics": {
+        "logical_error_rate": 0.732,
+        "ci_95_lower": 0.6931765606469493,
+        "ci_95_upper": 0.7708234393530506,
+        "model_params": 131716,
+        "training_time_sec": 58.29672694206238
+      },
+      "ablation": "gnn_L4_H128",
+      "error": null
+    },
+    {
+      "config_name": "gnn_d7_L4_H128_s2",
+      "parameters": {
+        "code_distance": 7,
+        "physical_error_rate": 0.005,
+        "training_episodes": 2000,
+        "seed": 2,
+        "gnn_layers": 4,
+        "hidden_dim": 128
+      },
+      "metrics": {
+        "logical_error_rate": 0.758,
+        "ci_95_lower": 0.7204583501268258,
+        "ci_95_upper": 0.7955416498731742,
+        "model_params": 131716,
+        "training_time_sec": 58.29302620887756
+      },
+      "ablation": "gnn_L4_H128",
+      "error": null
+    },
+    {
+      "config_name": "gnn_d7_L4_H128_s3",
+      "parameters": {
+        "code_distance": 7,
+        "physical_error_rate": 0.005,
+        "training_episodes": 2000,
+        "seed": 3,
+        "gnn_layers": 4,
+        "hidden_dim": 128
+      },
+      "metrics": {
+        "logical_error_rate": 0.786,
+        "ci_95_lower": 0.7500508001090428,
+        "ci_95_upper": 0.8219491998909573,
+        "model_params": 131716,
+        "training_time_sec": 57.907979011535645
+      },
+      "ablation": "gnn_L4_H128",
+      "error": null
+    },
+    {
+      "config_name": "gnn_d15_L2_H64_s1",
+      "parameters": {
+        "code_distance": 15,
+        "physical_error_rate": 0.005,
+        "training_episodes": 2000,
+        "seed": 1,
+        "gnn_layers": 2,
+        "hidden_dim": 64
+      },
+      "metrics": {
+        "logical_error_rate": 0.766,
+        "ci_95_lower": 0.7288897924985591,
+        "ci_95_upper": 0.8031102075014409,
+        "model_params": 16708,
+        "training_time_sec": 247.2797486782074
+      },
+      "ablation": "gnn_L2_H64",
+      "error": null
+    },
+    {
+      "config_name": "gnn_d15_L2_H64_s2",
+      "parameters": {
+        "code_distance": 15,
+        "physical_error_rate": 0.005,
+        "training_episodes": 2000,
+        "seed": 2,
+        "gnn_layers": 2,
+        "hidden_dim": 64
+      },
+      "metrics": {
+        "logical_error_rate": 0.76,
+        "ci_95_lower": 0.7225645130925215,
+        "ci_95_upper": 0.7974354869074786,
+        "model_params": 16708,
+        "training_time_sec": 246.8531150817871
+      },
+      "ablation": "gnn_L2_H64",
+      "error": null
+    },
+    {
+      "config_name": "gnn_d15_L2_H64_s3",
+      "parameters": {
+        "code_distance": 15,
+        "physical_error_rate": 0.005,
+        "training_episodes": 2000,
+        "seed": 3,
+        "gnn_layers": 2,
+        "hidden_dim": 64
+      },
+      "metrics": {
+        "logical_error_rate": 0.73,
+        "ci_95_lower": 0.6910852377625148,
+        "ci_95_upper": 0.7689147622374851,
+        "model_params": 16708,
+        "training_time_sec": 247.27561283111572
+      },
+      "ablation": "gnn_L2_H64",
+      "error": null
+    },
+    {
+      "config_name": "gnn_d15_L4_H64_s1",
+      "parameters": {
+        "code_distance": 15,
+        "physical_error_rate": 0.005,
+        "training_episodes": 2000,
+        "seed": 1,
+        "gnn_layers": 4,
+        "hidden_dim": 64
+      },
+      "metrics": {
+        "logical_error_rate": 0.752,
+        "ci_95_lower": 0.7141465184269663,
+        "ci_95_upper": 0.7898534815730337,
+        "model_params": 33092,
+        "training_time_sec": 487.10409283638
+      },
+      "ablation": "gnn_L4_H64",
+      "error": null
+    },
+    {
+      "config_name": "gnn_d15_L4_H64_s2",
+      "parameters": {
+        "code_distance": 15,
+        "physical_error_rate": 0.005,
+        "training_episodes": 2000,
+        "seed": 2,
+        "gnn_layers": 4,
+        "hidden_dim": 64
+      },
+      "metrics": {
+        "logical_error_rate": 0.76,
+        "ci_95_lower": 0.7225645130925215,
+        "ci_95_upper": 0.7974354869074786,
+        "model_params": 33092,
+        "training_time_sec": 486.1362280845642
+      },
+      "ablation": "gnn_L4_H64",
+      "error": null
+    },
+    {
+      "config_name": "gnn_d15_L4_H64_s3",
+      "parameters": {
+        "code_distance": 15,
+        "physical_error_rate": 0.005,
+        "training_episodes": 2000,
+        "seed": 3,
+        "gnn_layers": 4,
+        "hidden_dim": 64
+      },
+      "metrics": {
+        "logical_error_rate": 0.754,
+        "ci_95_lower": 0.7162493620080401,
+        "ci_95_upper": 0.7917506379919599,
+        "model_params": 33092,
+        "training_time_sec": 476.2422823905945
+      },
+      "ablation": "gnn_L4_H64",
+      "error": null
+    },
+    {
+      "config_name": "gnn_d15_L6_H64_s1",
+      "parameters": {
+        "code_distance": 15,
+        "physical_error_rate": 0.005,
+        "training_episodes": 2000,
+        "seed": 1,
+        "gnn_layers": 6,
+        "hidden_dim": 64
+      },
+      "metrics": {
+        "logical_error_rate": 0.75,
+        "ci_95_lower": 0.7120447632071674,
+        "ci_95_upper": 0.7879552367928326,
+        "model_params": 49476,
+        "training_time_sec": 688.1388561725616
+      },
+      "ablation": "gnn_L6_H64",
+      "error": null
+    },
+    {
+      "config_name": "gnn_d15_L6_H64_s2",
+      "parameters": {
+        "code_distance": 15,
+        "physical_error_rate": 0.005,
+        "training_episodes": 2000,
+        "seed": 2,
+        "gnn_layers": 6,
+        "hidden_dim": 64
+      },
+      "metrics": {
+        "logical_error_rate": 0.756,
+        "ci_95_lower": 0.7183533028699728,
+        "ci_95_upper": 0.7936466971300272,
+        "model_params": 49476,
+        "training_time_sec": 691.2326934337616
+      },
+      "ablation": "gnn_L6_H64",
+      "error": null
+    },
+    {
+      "config_name": "gnn_d15_L6_H64_s3",
+      "parameters": {
+        "code_distance": 15,
+        "physical_error_rate": 0.005,
+        "training_episodes": 2000,
+        "seed": 3,
+        "gnn_layers": 6,
+        "hidden_dim": 64
+      },
+      "metrics": {
+        "logical_error_rate": 0.706,
+        "ci_95_lower": 0.6660656072438805,
+        "ci_95_upper": 0.7459343927561194,
+        "model_params": 49476,
+        "training_time_sec": 689.8848819732666
+      },
+      "ablation": "gnn_L6_H64",
+      "error": null
+    },
+    {
+      "config_name": "gnn_d15_L4_H128_s1",
+      "parameters": {
+        "code_distance": 15,
+        "physical_error_rate": 0.005,
+        "training_episodes": 2000,
+        "seed": 1,
+        "gnn_layers": 4,
+        "hidden_dim": 128
+      },
+      "metrics": {
+        "logical_error_rate": 0.728,
+        "ci_95_lower": 0.6889949165979612,
+        "ci_95_upper": 0.7670050834020388,
+        "model_params": 131716,
+        "training_time_sec": 725.2230031490326
+      },
+      "ablation": "gnn_L4_H128",
+      "error": null
+    },
+    {
+      "config_name": "gnn_d15_L4_H128_s2",
+      "parameters": {
+        "code_distance": 15,
+        "physical_error_rate": 0.005,
+        "training_episodes": 2000,
+        "seed": 2,
+        "gnn_layers": 4,
+        "hidden_dim": 128
+      },
+      "metrics": {
+        "logical_error_rate": 0.73,
+        "ci_95_lower": 0.6910852377625148,
+        "ci_95_upper": 0.7689147622374851,
+        "model_params": 131716,
+        "training_time_sec": 726.9134578704834
+      },
+      "ablation": "gnn_L4_H128",
+      "error": null
+    },
+    {
+      "config_name": "gnn_d15_L4_H128_s3",
+      "parameters": {
+        "code_distance": 15,
+        "physical_error_rate": 0.005,
+        "training_episodes": 2000,
+        "seed": 3,
+        "gnn_layers": 4,
+        "hidden_dim": 128
+      },
+      "metrics": {
+        "logical_error_rate": 0.776,
+        "ci_95_lower": 0.7394551705873458,
+        "ci_95_upper": 0.8125448294126543,
+        "model_params": 131716,
+        "training_time_sec": 724.9243371486664
+      },
+      "ablation": "gnn_L4_H128",
+      "error": null
+    }
+  ]
+}

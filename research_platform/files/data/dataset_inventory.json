@@ -1,0 +1,313 @@
+{
+  "dataset_inventory": {
+    "primary_datasets": {
+      "synthetic_sbm": {
+        "name": "Stochastic Block Model (SBM) Graphs",
+        "type": "synthetic",
+        "priority": "PRIMARY",
+        "rationale": "Required for systematic homophily control across h ∈ [0.1, 0.5] range. Real datasets cannot provide controlled homophily manipulation necessary for causal analysis of GNN performance under varying structural conditions.",
+        "specifications": {
+          "graph_sizes": [1000, 5000, 10000],
+          "homophily_range": [0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5],
+          "num_classes": 2,
+          "class_balance": [0.5, 0.5],
+          "anomaly_rate": 0.1,
+          "feature_dimension": 64,
+          "avg_degree": 10,
+          "generation_method": "networkx.stochastic_block_model",
+          "intra_class_probability": "varies by h",
+          "inter_class_probability": "varies by h",
+          "num_replications": 5
+        },
+        "parameters": {
+          "homophily_formula": "h = |{(u,v) ∈ E : y_u = y_v}| / |E|",
+          "p_intra": "p_in = h * avg_degree / (n/2)",
+          "p_inter": "p_out = (1-h) * avg_degree / (n/2)",
+          "node_features": "Gaussian N(μ_class, σ²I) where μ_0 = -1, μ_1 = +1, σ = 0.5",
+          "random_seed": "42 + replication_id"
+        },
+        "validation": {
+          "edge_homophily_check": true,
+          "degree_distribution_check": true,
+          "feature_separability_check": true,
+          "connected_components_check": true
+        },
+        "access": {
+          "generation_script": "scripts/generate_sbm_graphs.py",
+          "storage_format": "PyTorch Geometric Data objects",
+          "save_path": "data/synthetic/sbm/"
+        }
+      }
+    },
+    "validation_datasets": {
+      "elliptic_bitcoin": {
+        "name": "Elliptic Bitcoin Transaction Dataset",
+        "type": "real",
+        "source": "Kaggle + Elliptic Company",
+        "url": "https://www.kaggle.com/datasets/ellipticco/elliptic-data-set",
+        "paper": "https://arxiv.org/abs/1908.02591",
+        "priority": "VALIDATION",
+        "purpose": "Validate model performance on real-world heterophilic financial network",
+        "statistics": {
+          "nodes": 203769,
+          "edges": 234355,
+          "node_features": 166,
+          "feature_breakdown": {
+            "local_features": 94,
+            "aggregate_features": 72
+          },
+          "time_steps": 49,
+          "classes": 3,
+          "class_distribution": {
+            "illicit": 4545,
+            "licit": 42019,
+            "unknown": 157205
+          },
+          "anomaly_rate_labeled": 0.0977,
+          "anomaly_rate_total": 0.0223,
+          "labeled_ratio": 0.2284
+        },
+        "graph_properties": {
+          "homophily_type": "heterophilic",
+          "homophily_estimate": "< 0.3",
+          "description": "Illicit transactions often connect to licit ones",
+          "avg_degree": 2.30,
+          "temporal": true
+        },
+        "splits": {
+          "temporal_split": true,
+          "train_time_steps": "1-34",
+          "val_time_steps": "35-43",
+          "test_time_steps": "44-49"
+        },
+        "license": {
+          "type": "Unknown (Kaggle platform)",
+          "attribution_required": true,
+          "commercial_use": "Check Kaggle terms",
+          "note": "Public benchmark dataset widely used in academic research"
+        },
+        "access": {
+          "method": "Kaggle API or manual download",
+          "kaggle_command": "kaggle datasets download -d ellipticco/elliptic-data-set",
+          "files": [
+            "elliptic_txs_features.csv",
+            "elliptic_txs_classes.csv",
+            "elliptic_txs_edgelist.csv"
+          ]
+        },
+        "preprocessing_notes": {
+          "missing_labels": "Remove unknown class or use semi-supervised learning",
+          "feature_standardization": "Required - features are raw transaction attributes",
+          "temporal_ordering": "Preserve time step information for temporal splits",
+          "graph_construction": "Edges represent Bitcoin flow between transactions"
+        },
+        "limitations": {
+          "high_unlabeled_ratio": "77% of nodes unlabeled",
+          "heterophilic_structure": "Challenges for standard GNNs",
+          "temporal_drift": "Distribution shift across time steps",
+          "class_imbalance": "Only 9.77% anomalies in labeled set"
+        }
+      },
+      "elliptic_plusplus": {
+        "name": "Elliptic++ Extended Dataset",
+        "type": "real",
+        "source": "Georgia Tech DiSL Lab",
+        "url": "https://github.com/git-disl/EllipticPlusPlus",
+        "paper": "https://arxiv.org/abs/2306.06108",
+        "priority": "VALIDATION",
+        "purpose": "Extended version with wallet addresses for actor-level analysis",
+        "statistics": {
+          "transaction_nodes": 203000,
+          "wallet_nodes": 822000,
+          "total_nodes": 1025000,
+          "edges": 1270000,
+          "transaction_features": 183,
+          "wallet_features": 56,
+          "feature_breakdown_transactions": {
+            "local_features": 94,
+            "aggregate_features": 72,
+            "augmented_features": 17
+          }
+        },
+        "graph_properties": {
+          "heterogeneous": true,
+          "node_types": ["transactions", "wallets"],
+          "edge_types": ["transaction-to-transaction", "wallet-to-transaction"],
+          "temporal": true
+        },
+        "access": {
+          "method": "GitHub repository",
+          "clone_command": "git clone https://github.com/git-disl/EllipticPlusPlus.git"
+        },
+        "note": "More comprehensive but requires heterogeneous graph neural network methods"
+      },
+      "ieee_cis_fraud": {
+        "name": "IEEE-CIS Fraud Detection Dataset",
+        "type": "real",
+        "source": "Kaggle Competition (Vesta Corporation + IEEE-CIS)",
+        "url": "https://www.kaggle.com/c/ieee-fraud-detection",
+        "priority": "VALIDATION",
+        "purpose": "Large-scale e-commerce fraud detection benchmark",
+        "statistics": {
+          "transactions": 590540,
+          "features": 434,
+          "feature_breakdown": {
+            "transaction_features": 394,
+            "identity_features": 41
+          },
+          "classes": 2,
+          "fraud_rate": 0.035,
+          "normal_rate": 0.965,
+          "temporal_span": "~6 months",
+          "train_transactions": "~500000",
+          "test_transactions": "~90000"
+        },
+        "graph_properties": {
+          "native_graph_structure": false,
+          "graph_construction_required": true,
+          "construction_strategies": [
+            "User-based: Connect transactions by CardID",
+            "Merchant-based: Connect transactions to same ProductCD",
+            "Device-based: Connect by DeviceInfo/DeviceType",
+            "Temporal: Connect consecutive transactions within time window",
+            "Hybrid: Multi-relational heterogeneous graph"
+          ],
+          "estimated_nodes_after_construction": "~100000-200000",
+          "estimated_edges_after_construction": "~500000-2000000",
+          "homophily_estimate": "Unknown (depends on construction method)"
+        },
+        "splits": {
+          "temporal_split": true,
+          "train_test_gap": "~1 month",
+          "split_method": "Time-based (no overlap)"
+        },
+        "license": {
+          "type": "Kaggle Competition",
+          "attribution_required": true,
+          "commercial_use": "Restricted",
+          "note": "Competition dataset - check Kaggle rules for usage"
+        },
+        "access": {
+          "method": "Kaggle API or competition page",
+          "kaggle_command": "kaggle competitions download -c ieee-fraud-detection",
+          "files": [
+            "train_transaction.csv",
+            "train_identity.csv",
+            "test_transaction.csv",
+            "test_identity.csv",
+            "sample_submission.csv"
+          ],
+          "join_key": "TransactionID"
+        },
+        "preprocessing_notes": {
+          "missing_values": "Extensive missing data - requires imputation strategy",
+          "categorical_encoding": "Many categorical features (id_12 to id_38)",
+          "feature_engineering": "Time-based features (TransactionDT)",
+          "graph_construction": "NOT native graph - requires custom edge construction",
+          "anonymization": "Features are anonymized (V1-V339, C1-C14, D1-D15, M1-M9)"
+        },
+        "limitations": {
+          "no_native_graph": "Must construct graph structure from tabular data",
+          "high_dimensional": "434 features with many anonymized columns",
+          "extreme_class_imbalance": "Only 3.5% fraud cases",
+          "missing_data": "Significant missing values across features",
+          "anonymization": "Feature interpretation difficult",
+          "temporal_drift": "Distribution shift between train and test",
+          "construction_ambiguity": "Multiple valid graph construction methods"
+        },
+        "graph_construction_recommendations": {
+          "primary_method": "Card-based k-NN graph",
+          "steps": [
+            "1. Join transaction and identity tables on TransactionID",
+            "2. Group transactions by card (use card features as proxy)",
+            "3. Construct temporal edges between consecutive transactions of same card",
+            "4. Add k-NN edges based on feature similarity (transaction amount, time, location proxies)",
+            "5. Create heterogeneous edges if modeling users/merchants separately"
+          ],
+          "homophily_expectation": "Low to moderate (fraud connected to normal transactions)",
+          "validation": "Check degree distribution, connected components, fraud clustering coefficient"
+        }
+      }
+    },
+    "dataset_usage_strategy": {
+      "primary_experiments": {
+        "datasets": ["synthetic_sbm"],
+        "reason": "Controlled homophily manipulation is essential for causal analysis of GNN behavior across structural regimes. Real-world datasets have fixed, unknown, or poorly characterized homophily that cannot be systematically varied.",
+        "experimental_design": [
+          "Generate SBM graphs with h ∈ {0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5}",
+          "Fix node count, feature dimension, and class balance",
+          "Vary only homophily parameter to isolate its effect",
+          "Run 5 replications per configuration for statistical significance",
+          "Measure GNN performance, attention patterns, and prediction confidence"
+        ]
+      },
+      "validation_experiments": {
+        "datasets": ["elliptic_bitcoin"],
+        "reason": "Elliptic provides native graph structure with known heterophilic properties (fraud networks are inherently heterophilic). Validates that findings from controlled SBM experiments generalize to real-world financial anomaly detection.",
+        "experimental_design": [
+          "Use temporal train/val/test splits to respect time ordering",
+          "Apply same GNN architectures as SBM experiments",
+          "Measure performance on heterophilic real-world financial network",
+          "Compare to SBM results at similar homophily levels (h ~ 0.2-0.3)"
+        ]
+      },
+      "optional_validation": {
+        "datasets": ["ieee_cis_fraud"],
+        "reason": "Large-scale benchmark but requires graph construction. Use only if time permits after primary SBM and Elliptic experiments.",
+        "experimental_design": [
+          "Construct card-based transaction graph with temporal edges",
+          "Apply feature engineering and missing value imputation",
+          "Test trained models on constructed graph",
+          "Compare performance to tabular baseline methods"
+        ],
+        "caveat": "Graph construction method significantly affects results - report construction details clearly"
+      }
+    },
+    "justification_for_synthetic_primary_data": {
+      "reason_1_homophily_control": {
+        "requirement": "Research question requires systematic variation of homophily from 0.1 to 0.5",
+        "real_dataset_limitation": "Real datasets have fixed, intrinsic homophily that cannot be manipulated",
+        "elliptic_homophily": "< 0.3 (heterophilic, but fixed)",
+        "ieee_cis_homophily": "Unknown and depends on graph construction method",
+        "conclusion": "Only synthetic data allows precise homophily control needed for causal analysis"
+      },
+      "reason_2_confounding_factors": {
+        "requirement": "Isolate effect of homophily from other graph properties",
+        "real_dataset_limitation": "Real graphs confound homophily with degree distribution, feature quality, noise, class imbalance, temporal effects",
+        "synthetic_advantage": "Fix all factors except homophily parameter to establish causal relationship",
+        "conclusion": "Synthetic data enables controlled experiments analogous to physics/chemistry laboratories"
+      },
+      "reason_3_ground_truth": {
+        "requirement": "Know true homophily value and true anomaly labels",
+        "real_dataset_limitation": "Elliptic has 77% unlabeled nodes; homophily can only be estimated on labeled subset",
+        "synthetic_advantage": "Perfect labels and known homophily by construction",
+        "conclusion": "Enables precise measurement of GNN behavior without label noise confounds"
+      },
+      "reason_4_scalability": {
+        "requirement": "Generate multiple graphs per homophily level for statistical significance",
+        "real_dataset_limitation": "Only one Elliptic dataset exists; cannot replicate experiments with different random instantiations",
+        "synthetic_advantage": "Generate 5+ replications per configuration for confidence intervals",
+        "conclusion": "Enables robust statistical analysis with repeated measures"
+      },
+      "reason_5_reproducibility": {
+        "requirement": "Other researchers must reproduce exact experiments",
+        "real_dataset_limitation": "Real datasets may have access restrictions, updates, or preprocessing ambiguities",
+        "synthetic_advantage": "Deterministic generation from seed + parameters enables perfect reproduction",
+        "conclusion": "Maximizes scientific reproducibility and verification"
+      },
+      "validation_strategy": {
+        "approach": "Use real datasets (Elliptic) to validate that SBM findings transfer to real-world scenarios",
+        "expectation": "If SBM experiments show GNN degradation at low homophily, Elliptic (low homophily) should show similar patterns",
+        "conclusion": "Synthetic primary + real validation is gold standard for controlled graph learning experiments"
+      }
+    },
+    "metadata": {
+      "created_date": "2025-12-24",
+      "created_by": "Data Acquisition Specialist Agent",
+      "version": "1.0",
+      "last_updated": "2025-12-24",
+      "experiment_alignment": "files/theory/experiment_plan.json",
+      "status": "complete"
+    }
+  }
+}

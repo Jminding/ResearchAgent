@@ -1,0 +1,92 @@
+{
+  "timestamp": "2025-12-29T02:26:25.559922",
+  "reference": "Fowler et al., arXiv:1208.0928",
+  "expected_threshold": 0.0103,
+  "tests": [
+    {
+      "distance": 3,
+      "physical_error_rate": 0.001,
+      "logical_error_rate": 0.027879792000000004,
+      "std": 0.0008043962383402851,
+      "expected_range": [
+        0.0001,
+        0.01
+      ],
+      "within_expected": false,
+      "status": "CHECK"
+    },
+    {
+      "distance": 5,
+      "physical_error_rate": 0.001,
+      "logical_error_rate": 0.0729007,
+      "std": 0.0036960934323471847,
+      "expected_range": [
+        1e-05,
+        0.005
+      ],
+      "within_expected": false,
+      "status": "CHECK"
+    },
+    {
+      "distance": 7,
+      "physical_error_rate": 0.001,
+      "logical_error_rate": 0.136004288,
+      "std": 0.005482722635006809,
+      "expected_range": [
+        1e-06,
+        0.001
+      ],
+      "within_expected": false,
+      "status": "CHECK"
+    },
+    {
+      "distance": 5,
+      "physical_error_rate": 0.005,
+      "logical_error_rate": 0.27771543200000004,
+      "std": 0.003525053255577283,
+      "expected_range": [
+        0.001,
+        0.05
+      ],
+      "within_expected": false,
+      "status": "CHECK"
+    },
+    {
+      "distance": 7,
+      "physical_error_rate": 0.005,
+      "logical_error_rate": 0.392413664,
+      "std": 0.002365931027579642,
+      "expected_range": [
+        0.0005,
+        0.03
+      ],
+      "within_expected": false,
+      "status": "CHECK"
+    },
+    {
+      "distance": 11,
+      "physical_error_rate": 0.005,
+      "logical_error_rate": 0.48946039599999996,
+      "std": 0.000642044950501131,
+      "expected_range": [
+        0.0001,
+        0.02
+      ],
+      "within_expected": false,
+      "status": "CHECK"
+    },
+    {
+      "distance": 15,
+      "physical_error_rate": 0.005,
+      "logical_error_rate": 0.4995672,
+      "std": 0.00016699361041669236,
+      "expected_range": [
+        5e-05,
+        0.01
+      ],
+      "within_expected": false,
+      "status": "CHECK"
+    }
+  ],
+  "overall_status": "NEEDS_REVIEW"
+}

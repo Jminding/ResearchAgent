@@ -1,0 +1,140 @@
+{
+  "title": "QEC Revision Analysis - Executive Summary",
+  "date": "2025-12-29",
+  "session": "session_20251228_212217",
+  "analyst": "Research Agent - Statistical Analysis Module",
+
+  "headline_finding": "UNDERTRAINING HYPOTHESIS REJECTED: Extended training (25x more episodes) shows no improvement in RL decoder performance at d=15. Alternative explanations required.",
+
+  "key_numbers": {
+    "total_experiments": 145,
+    "training_increase": "25x (200 -> 5000 episodes)",
+    "rl_performance_d15": "LER = 0.752 ± 0.016 (n=5)",
+    "mwpm_performance_d15": "LER = 0.081 ± 0.011 (n=5)",
+    "performance_ratio": "9.3x worse (RL / MWPM)",
+    "statistical_significance": "p < 0.001 (highly significant)",
+    "effect_size": "Cohen's d = 14.5 (extremely large)"
+  },
+
+  "verdict": {
+    "undertraining_hypothesis": "REJECTED",
+    "confidence": "HIGH",
+    "evidence": [
+      "Learning curve flat across 500-5000 episodes (no improvement)",
+      "Linear regression slope ~0 (p > 0.05, R² < 0.1)",
+      "High variance but no systematic trend",
+      "Possible slight degradation with overtraining"
+    ]
+  },
+
+  "implications": {
+    "for_manuscript": [
+      "Reframe as negative result: 'When and why does RL fail for QEC?'",
+      "Remove claims that undertraining explains poor d=15 performance",
+      "Add extended training data showing flat learning curve",
+      "Acknowledge MWPM baseline is greedy (suboptimal) but still beats RL"
+    ],
+    "for_interpretation": [
+      "Original RL performance (0.312) was an outlier; true performance is worse (~0.75)",
+      "RL has converged to suboptimal/near-random policy",
+      "Training duration is NOT the bottleneck",
+      "Fundamental limitations exist (capacity, reward, or algorithm)"
+    ],
+    "for_future_work": [
+      "Test model capacity hypothesis (larger GNN architectures)",
+      "Test reward shaping hypothesis (dense rewards, curriculum)",
+      "Conduct failure analysis (where/why does GNN deviate from MWPM?)"
+    ]
+  },
+
+  "statistical_evidence": {
+    "rl_vs_mwpm_d15": {
+      "comparison_file": "comparison_rl_vs_mwpm_d15.json",
+      "conclusion": "RL significantly worse than MWPM at 95% confidence",
+      "difference": 0.671,
+      "ci_95": [0.642, 0.700],
+      "p_value": 0.0001,
+      "cohens_d": 14.5,
+      "interpretation": "Extremely large effect; RL performs near-randomly while MWPM is acceptable"
+    },
+    "learning_curve_d15": {
+      "comparison_file": "comparison_learning_curve_d15.json",
+      "conclusion": "No improvement with extended training",
+      "episodes_range": "500-5000",
+      "trend_slope": 0.002,
+      "trend_p_value": 0.65,
+      "interpretation": "Flat curve; no evidence of learning"
+    }
+  },
+
+  "proposed_hypotheses": [
+    {
+      "id": "H1",
+      "name": "Insufficient model capacity",
+      "priority": 1,
+      "test": "Increase GNN to 8-12 layers, 256-512 hidden dims",
+      "timeline": "1-2 days",
+      "success_criterion": "LER < 0.5 at d=15 (vs baseline 0.75)"
+    },
+    {
+      "id": "H2",
+      "name": "Inadequate reward signal",
+      "priority": 1,
+      "test": "Compare sparse vs dense rewards (syndrome-based, curriculum)",
+      "timeline": "2-3 days",
+      "success_criterion": "LER < 0.4 at d=15 with dense rewards"
+    },
+    {
+      "id": "H3",
+      "name": "Fundamental algorithm limitation",
+      "priority": 2,
+      "test": "Qualitative analysis of GNN vs MWPM matching decisions",
+      "timeline": "3-5 days",
+      "success_criterion": "Mechanistic understanding of failure modes"
+    }
+  ],
+
+  "files_for_review": {
+    "comprehensive_analysis": "analysis_summary_revision.md (10 sections, detailed)",
+    "structured_data": "revision_analysis.json (machine-readable)",
+    "statistical_tests": [
+      "comparison_rl_vs_mwpm_d15.json",
+      "comparison_learning_curve_d15.json"
+    ],
+    "follow_up_plan": "followup_plan_revision.json (H1-H3 with experimental designs)",
+    "quick_start": "ANALYSIS_COMPLETE.md (this summary + recommendations)"
+  },
+
+  "recommendations": {
+    "immediate": [
+      "Read analysis_summary_revision.md (main document)",
+      "Update manuscript framing to negative result",
+      "Include extended training data and statistical tests",
+      "Address reviewer concerns point-by-point with evidence"
+    ],
+    "if_more_experiments_needed": [
+      "Run H1 (model capacity) first - fastest and clearest",
+      "Run H2 (reward shaping) if H1 fails",
+      "Run H3 (failure analysis) if both fail",
+      "Consider pivoting if all three fail"
+    ]
+  },
+
+  "confidence_summary": {
+    "high_confidence": [
+      "Undertraining is NOT the issue (p > 0.05, flat curve)",
+      "RL significantly worse than MWPM (p < 0.001, large effect)",
+      "Extended training shows no benefit"
+    ],
+    "medium_confidence": [
+      "Zero-shot generalization is poor (limited testing)",
+      "Learning curve shows no trend (high variance)"
+    ],
+    "speculative": [
+      "H1-H3 are plausible but untested",
+      "Whether RL can ever work for QEC is unknown"
+    ]
+  },
+
+  "bottom_line": "The extended experiments successfully address reviewer concerns about sample size (n=2->5) and training duration (200->5000 episodes), but they REJECT the undertraining hypothesis. This is a negative result that fundamentally changes the paper's interpretation. The finding is valuable: it shows that a promising approach (RL for QEC) faces unexpected fundamental limitations at scale, not just implementation issues. Recommend reframing manuscript accordingly and proposing diagnostic follow-ups (H1-H3) to understand the failure modes."
+}

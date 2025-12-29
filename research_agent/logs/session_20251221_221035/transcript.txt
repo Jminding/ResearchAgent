@@ -1,0 +1,258 @@
+
+You: Research a new quantitative model for financial markets using current data. Write the final paper using the AASTeX LaTeX library template.
+
+Agent: Spawning 4 literature reviewers in parallel to cover market microstructure, quantitative models, modern datasets, and recent advances.
+
+[🚀 Spawning LITERATURE-REVIEWER-1: Market microstructure foundations]
+
+
+[🚀 Spawning LITERATURE-REVIEWER-2: Quantitative modeling approaches]
+
+
+[🚀 Spawning LITERATURE-REVIEWER-3: Financial market datasets and benchmarks]
+
+
+[🚀 Spawning LITERATURE-REVIEWER-4: Recent advances and empirical validation]
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='quantitative models financial markets machine learning 2023 2024 2025'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='deep learning financial markets stock price prediction'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='factor models finance machine learning performance'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='stochastic processes financial modeling neural networks'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='recurrent neural networks LSTM stock market prediction'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='high-frequency trading data HFT datasets characteristics 2025'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='CRSP dataset financial market data availability documentation 2025'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='Compustat financial data characteristics coverage time period'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='TAQ data trades and quotes dataset characteristics'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='alternative financial data sources machine learning trading 2025'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='neural network market prediction finance 2024 2025'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='deep learning stock price prediction benchmark 2023 2024'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='transformer models financial forecasting state of the art'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='empirical validation statistical testing financial prediction models'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='LSTM GRU time series financial prediction 2023 2024 comparison'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='market microstructure literature review 2015-2025'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='order flow dynamics price formation mechanisms'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='liquidity market microstructure state of the art'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='market microstructure models 2020-2025'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='Kyle model information asymmetry microstructure'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='transformer models attention mechanisms financial time series 2022 2023 2024'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='reinforcement learning portfolio optimization trading agents'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='neural network calibration option pricing derivatives 2021 2022 2023'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='time series forecasting financial markets ARIMA exponential smoothing comparison'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='graph neural networks market microstructure financial networks'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='market prediction evaluation metrics MAE RMSE MAPE statistical significance testing'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='recurrent neural networks financial time series forecasting 2024'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='attention mechanism finance market prediction 2023 2024'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='sentiment analysis neural networks stock market prediction'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='reinforcement learning trading agents benchmark 2024 2025'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='financial market datasets benchmarks comparison WRDS access 2025'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='SEC EDGAR data alternative datasets for financial research'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='market microstructure data Order Book LOBSTER dataset'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='news sentiment data financial machine learning datasets APIs'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='cryptocurrency blockchain data datasets trading 2025'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='Glosten Milgrom model bid-ask spread information'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='limit order book empirical studies 2018-2025'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='market impact measurement transaction costs 2020-2024'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='high frequency trading market microstructure impact'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='price discovery information asymmetry equity markets 2015-2025'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='convolutional neural networks CNN stock price forecasting 2021 2022 2023'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='generative adversarial networks GAN market simulation volatility'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='variational autoencoder VAE financial time series'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='quantum machine learning financial markets applications'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='sentiment analysis natural language processing stock market prediction'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='order placement strategies execution algorithms 2020-2025'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='market efficiency tick size regulation microstructure'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='volatility clustering microstructure market impact feedback loops'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='adverse selection inventory models market making 2018-2025'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='"financial data quality" issues cleaning missing data benchmarks 2024 2025'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='Fama French data factor data equity premium benchmark 2025'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='Bloomberg terminal alternative data vendors FactSet Refinitiv comparison'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='out-of-sample testing time series financial forecasting cross-validation 2023 2024'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='hyperparameter optimization neural networks stock prediction 2024'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='stock market dataset benchmark S&P 500 daily prediction 2024'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='arXiv quantitative finance machine learning 2024 2025'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='volatility forecasting GARCH neural networks hybrid models'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='option pricing Black-Scholes neural networks approximation'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='credit risk machine learning algorithms default prediction'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='anomaly detection financial time series unsupervised learning'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='"information content" trades volume price discovery 2020-2025'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='liquidity provision bid-ask dynamics spread decomposition'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='intraday trading patterns seasonality market microstructure'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='"neural ordinary differential equations" finance trading 2023 2024'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='attention mechanism self-attention stock price forecasting Fama French'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='multi-task learning transfer learning financial prediction models'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='ensemble methods bagging boosting financial forecasting performance'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='explainability interpretability machine learning financial models SHAP LIME'
+
+[LITERATURE-REVIEWER-3] → Write    Input: file='datasets.md' (34581 chars)
+
+[LITERATURE-REVIEWER-1] → Write    Input: file='lit_review_microstructure.md' (33974 chars)
+
+[LITERATURE-REVIEWER-4] → Write    Input: file='recent_advances.md' (44096 chars)
+
+[LITERATURE-REVIEWER-2] → Write    Input: file='quantitative_models.md' (65154 chars)
+
+All literature reviews complete. Spawning theorist to formalize framework and hypothesis.
+
+[🚀 Spawning THEORIST-1: Formalize quantitative model framework]
+
+[THEORIST-1] → Write    Input: file='framework.md' (29447 chars)
+
+Spawning data-collector to identify and document financial datasets.
+
+[🚀 Spawning DATA-COLLECTOR-1: Locate financial market datasets]
+
+[DATA-COLLECTOR-1] → WebSearch    Input: query='LOBSTER limit order book high frequency trading dataset academic access 2024 2025'
+
+[DATA-COLLECTOR-1] → WebSearch    Input: query='TAQ trade and quote high frequency data academic research access'
+
+[DATA-COLLECTOR-1] → WebSearch    Input: query='high frequency limit order book dataset free academic 2023 2024'
+
+[DATA-COLLECTOR-1] → WebSearch    Input: query='Kaggle financial market high frequency order book data'
+
+[DATA-COLLECTOR-1] → WebSearch    Input: query='"FI-2010" limit order book benchmark dataset download'
+
+[DATA-COLLECTOR-1] → WebSearch    Input: query='cryptocurrency limit order book high frequency Binance data academic 2024'
+
+[DATA-COLLECTOR-1] → WebSearch    Input: query='Optiver realized volatility prediction dataset Kaggle 2021'
+
+[DATA-COLLECTOR-1] → WebSearch    Input: query='free futures limit order book tick data CME academic research'
+
+[DATA-COLLECTOR-1] → WebSearch    Input: query='LOBFrame GitHub open source limit order book dataset 2024'
+
+[DATA-COLLECTOR-1] → WebSearch    Input: query='China stock market LOB dataset GitHub 2020 academic download'
+
+[DATA-COLLECTOR-1] → WebSearch    Input: query='Databento academic pricing futures limit order book data discount'
+
+[DATA-COLLECTOR-1] → WebSearch    Input: query='"FI-2010" dataset download link etsin.fairdata.fi'
+
+[DATA-COLLECTOR-1] → WebSearch    Input: query='WRDS TAQ institutional subscription cost academic access process'
+
+[DATA-COLLECTOR-1] → Write    Input: file='dataset_selection.md' (28272 chars)
+
+Data strategy documented. Spawning experimentalist to implement and train the model.
+
+[🚀 Spawning EXPERIMENTALIST-1: Implement and train quantitative model]
+
+[EXPERIMENTALIST-1] → Read    Input: path='/Users/jminding/Desktop/Code/Research Agent/research_agent/files/theory/framework.md'
+
+[EXPERIMENTALIST-1] → Bash    Input: {'command': 'ls -la /Users/jminding/Desktop/Code/Research\\ Agent/research_agent/files/', 'descripti
+
+[EXPERIMENTALIST-1] → Bash    Input: {'command': 'ls -la /Users/jminding/Desktop/Code/Research\\ Agent/research_agent/files/experiments/ 
+
+[EXPERIMENTALIST-1] → Bash    Input: {'command': 'ls -la /Users/jminding/Desktop/Code/Research\\ Agent/research_agent/files/results/ 2>/d
+
+[EXPERIMENTALIST-1] → Bash    Input: {'command': 'python3 --version && pip3 list 2>/dev/null | grep -E "(torch|numpy|pandas|scipy|sklearn
+
+[EXPERIMENTALIST-1] → Bash    Input: {'command': 'pip3 show torch 2>/dev/null || echo "PyTorch not installed"', 'description': 'Check if 
+
+[EXPERIMENTALIST-1] → Bash    Input: {'command': 'pip3 install torch scikit-learn 2>&1 | tail -10', 'timeout': 300000, 'description': 'In
+
+[EXPERIMENTALIST-1] → Write    Input: file='tofm_data.py' (18371 chars)
+
+[EXPERIMENTALIST-1] → Write    Input: file='tofm_model.py' (16481 chars)
+
+[EXPERIMENTALIST-1] → Write    Input: file='tofm_train.py' (17097 chars)
+
+[EXPERIMENTALIST-1] → Write    Input: file='tofm_evaluate.py' (24087 chars)
+
+[EXPERIMENTALIST-1] → Write    Input: file='run_tofm_experiment.py' (26280 chars)
+
+[EXPERIMENTALIST-1] → Bash    Input: {'command': 'cd /Users/jminding/Desktop/Code/Research\\ Agent/research_agent/files/experiments && py
+
+[EXPERIMENTALIST-1] → Bash    Input: {'command': 'sleep 30 && cat /tmp/claude/-Users-jminding-Desktop-Code-Research-Agent-research-agent/
+
+[EXPERIMENTALIST-1] → Bash    Input: {'command': 'cat /tmp/claude/-Users-jminding-Desktop-Code-Research-Agent-research-agent/tasks/bcd6f2
+
+[EXPERIMENTALIST-1] → Bash    Input: {'command': 'sleep 60 && cat /tmp/claude/-Users-jminding-Desktop-Code-Research-Agent-research-agent/
+
+[EXPERIMENTALIST-1] → Bash    Input: {'command': 'ps aux | grep python3 | grep -v grep', 'description': 'Check running processes'}
+
+[EXPERIMENTALIST-1] → Bash    Input: {'command': 'sleep 120 && cat /tmp/claude/-Users-jminding-Desktop-Code-Research-Agent-research-agent
+
+[EXPERIMENTALIST-1] → Bash    Input: {'command': 'ls -la /Users/jminding/Desktop/Code/Research\\ Agent/research_agent/files/results/tofm/
+
+[EXPERIMENTALIST-1] → Read    Input: path='/Users/jminding/Desktop/Code/Research Agent/research_agent/files/results/tofm/tofm_microstructure_training_log.txt'
+
+[EXPERIMENTALIST-1] → Bash    Input: {'command': 'sleep 180 && cat /Users/jminding/Desktop/Code/Research\\ Agent/research_agent/files/res
+
+[EXPERIMENTALIST-1] → Bash    Input: {'command': 'ls -la /Users/jminding/Desktop/Code/Research\\ Agent/research_agent/files/results/tofm/
+
+[EXPERIMENTALIST-1] → Bash    Input: {'command': 'sleep 300 && ls -la /Users/jminding/Desktop/Code/Research\\ Agent/research_agent/files/
+
+[EXPERIMENTALIST-1] → Bash    Input: {'command': 'cat /Users/jminding/Desktop/Code/Research\\ Agent/research_agent/files/results/tofm/tof
+
+[EXPERIMENTALIST-1] → Bash    Input: {'command': 'sleep 600 && ls -la /Users/jminding/Desktop/Code/Research\\ Agent/research_agent/files/
+
+[EXPERIMENTALIST-1] → Read    Input: path='/Users/jminding/Desktop/Code/Research Agent/research_agent/files/results/tofm/tofm_raw_lob_training_log.txt'
+
+[EXPERIMENTALIST-1] → Bash    Input: {'command': 'sleep 600 && ls -la /Users/jminding/Desktop/Code/Research\\ Agent/research_agent/files/
+
+
+Goodbye!

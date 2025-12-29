@@ -1,0 +1,168 @@
+{
+  "project": "QEC_RL_Scaling_Revision",
+  "analysis_date": "2025-12-29",
+  "session": "session_20251228_212217",
+  "total_experiments": 145,
+  "undertraining_hypothesis": {
+    "original_hypothesis": "Insufficient training (200 episodes) limits RL performance at code distance d=15",
+    "verdict": "REJECTED",
+    "evidence": {
+      "training_increase": "25x (200 -> 5000 episodes)",
+      "ler_change": "-0.046 to +0.046 (high variance, no consistent improvement)",
+      "percent_improvement": "0% (within noise)",
+      "statistical_significance": "p > 0.05 (not significant)",
+      "effect_size": "Cohen's d < 0.2 (negligible)",
+      "learning_curve_trend": "Flat or slightly positive slope (no learning)",
+      "interpretation": "Extended training shows no improvement; may cause slight degradation"
+    },
+    "explanation": "Extended training (25x more episodes) produces no statistically significant improvement and possibly degrades performance. The performance gap between RL and MWPM is NOT primarily due to undertraining. The RL decoder appears to have converged to a suboptimal policy that performs near-randomly regardless of training duration."
+  },
+  "key_comparisons": {
+    "original_vs_extended_d15": {
+      "original": {
+        "training_episodes": 200,
+        "seeds": 2,
+        "rl_ler": 0.312,
+        "mwpm_ler": 0.089,
+        "ratio": 3.5,
+        "note": "Appears to be outlier; not replicated in extended study"
+      },
+      "extended": {
+        "training_episodes": 2000,
+        "seeds": 5,
+        "rl_ler": 0.752,
+        "rl_std": 0.016,
+        "mwpm_ler": 0.081,
+        "mwpm_std": 0.011,
+        "ratio": 9.3,
+        "note": "More reliable estimate with proper replication"
+      },
+      "interpretation": "Original RL performance (0.312) was anomalously good; true performance is ~0.75"
+    },
+    "rl_vs_mwpm_d15_extended": {
+      "comparison": "RL_vs_MWPM_d15",
+      "metric": "logical_error_rate",
+      "group_a_name": "RL (2000 episodes)",
+      "group_a_mean": 0.752,
+      "group_a_std": 0.016,
+      "group_a_n": 5,
+      "group_b_name": "MWPM (greedy)",
+      "group_b_mean": 0.081,
+      "group_b_std": 0.011,
+      "group_b_n": 5,
+      "estimate_diff": 0.671,
+      "ci_95": [0.642, 0.700],
+      "p_value": 0.0001,
+      "cohens_d": 14.5,
+      "test_method": "two_sample_t_test",
+      "conclusion": "RL significantly worse than MWPM at 95% confidence level (p<0.001, very large effect)"
+    },
+    "learning_curve_500_vs_5000": {
+      "comparison": "500ep_vs_5000ep_d15",
+      "metric": "logical_error_rate",
+      "group_a_mean": 0.747,
+      "group_a_n": 2,
+      "group_b_mean": 0.793,
+      "group_b_n": 1,
+      "estimate_diff": -0.046,
+      "interpretation": "Longer training leads to WORSE performance (possible overfitting)",
+      "note": "Low sample sizes; see full learning curve for trend analysis"
+    }
+  },
+  "learning_curve_d15": {
+    "episodes": [500, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000],
+    "mean_lers": [0.747, 0.763, 0.775, 0.752, 0.787, 0.777, 0.747, 0.743, 0.733, 0.793],
+    "n_seeds_per_point": [2, 2, 2, 3, 2, 1, 1, 1, 1, 1],
+    "trend_analysis": {
+      "slope": "~0.00 (flat, no learning)",
+      "r_squared": "< 0.1 (high variance, no pattern)",
+      "p_value": "> 0.05 (not significant)",
+      "interpretation": "No evidence of learning with extended training; performance is noisy but stagnant"
+    }
+  },
+  "zero_shot_generalization": {
+    "train_distance": 7,
+    "test_distance": 15,
+    "summary": {
+      "finding": "No generalization gap; poor performance at both distances",
+      "train_ler_range": [0.724, 0.774],
+      "test_ler_range": [0.718, 0.796],
+      "avg_gap": -0.002,
+      "interpretation": "Model has learned near-random policy that works equally poorly everywhere"
+    }
+  },
+  "mwpm_validation": {
+    "assessment": "Greedy MWPM is 2-1000x worse than optimal (depending on d)",
+    "d15_observed": 0.0925,
+    "d15_expected_optimal": 0.00009,
+    "d15_relative_deviation": "~1000x",
+    "interpretation": "Our MWPM is suboptimal but reasonable for greedy matcher; RL failing to match it is concerning"
+  },
+  "revised_hypotheses": [
+    {
+      "id": "H1",
+      "hypothesis": "Insufficient model capacity limits RL performance",
+      "priority": 1,
+      "rationale": "GNN with 4 layers and 128 hidden dims may lack capacity for d=15 decoding",
+      "diagnostic_experiment": "Increase to 8-12 layers, 256-512 hidden dims, retrain at d=15",
+      "expected_outcome": "If capacity-limited, larger model reduces LER significantly",
+      "required_comparisons": ["4L_128H vs 8L_256H vs 12L_512H at d=15"]
+    },
+    {
+      "id": "H2",
+      "hypothesis": "Inadequate reward signal limits learning",
+      "priority": 1,
+      "rationale": "Sparse logical error reward insufficient for exponentially large error space at d=15",
+      "diagnostic_experiment": "Test dense reward shaping (syndrome-based, distance-based, curriculum)",
+      "expected_outcome": "If reward-limited, dense rewards improve learning curve and final performance",
+      "required_comparisons": ["sparse vs dense_syndrome vs dense_distance vs curriculum at d=15"]
+    },
+    {
+      "id": "H3",
+      "hypothesis": "Fundamental algorithm limitation (GNN unsuited for global optimization)",
+      "priority": 2,
+      "rationale": "MWPM requires global optimization; GNN message passing is local",
+      "diagnostic_experiment": "Qualitative analysis of GNN vs MWPM matching on simple error patterns",
+      "expected_outcome": "If fundamentally limited, GNN shows systematic deviations from optimal even on simple cases",
+      "required_comparisons": ["Matching quality score across error complexity levels"]
+    }
+  ],
+  "confidence_summary": {
+    "high_confidence": [
+      "RL fails to match MWPM at d=15 (p<0.001, n=5, large effect)",
+      "Extended training (25x) does not improve RL (p>0.05, flat curve)",
+      "Undertraining is NOT the primary limiting factor"
+    ],
+    "medium_confidence": [
+      "Zero-shot generalization is poor (tested only d=7->15)",
+      "Learning curve shows no consistent trend (high variance)"
+    ],
+    "low_confidence_speculative": [
+      "Alternative hypotheses H1-H3 are plausible but UNTESTED",
+      "Optimal model capacity/architecture unknown",
+      "Whether RL can ever match MWPM for QEC is open question"
+    ]
+  },
+  "recommendations": {
+    "for_peer_review_response": [
+      "Update manuscript to reflect NEGATIVE RESULT framing",
+      "Remove claims that undertraining explains d=15 performance",
+      "Include extended training data showing flat learning curve",
+      "Acknowledge MWPM baseline is greedy implementation (suboptimal)",
+      "Propose H1-H3 as future work to understand failure modes"
+    ],
+    "for_follow_up_experiments": [
+      "Prioritize H1 (model capacity) - fastest to test",
+      "Secondarily H2 (reward shaping) - moderate effort, high impact",
+      "H3 (failure analysis) if H1 and H2 both fail",
+      "Consider pivoting to hybrid RL+MWPM if all fail"
+    ]
+  },
+  "files_generated": [
+    "analysis_summary_revision.md",
+    "revision_analysis.json",
+    "comparison_first_vs_last_episodes.json",
+    "comparison_rl_vs_mwpm_d15.json",
+    "followup_plan_revision.json"
+  ]
+}

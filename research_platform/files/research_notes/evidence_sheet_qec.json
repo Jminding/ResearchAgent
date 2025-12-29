@@ -1,0 +1,260 @@
+{
+  "domain": "quantum",
+  "research_area": "Hybrid RL + Neural Networks for Quantum Error Correction",
+  "metric_ranges": {
+    "error_suppression_factor": [6.0, 20.0],
+    "error_reduction_vs_mwpm_percent": [25.0, 30.0],
+    "error_reduction_vs_tensor_network_percent": 6.0,
+    "logical_error_rate_reduction_percent": [25.0, 94.6],
+    "gnn_threshold_improvement_vs_mwpm_percent": 19.12,
+    "real_time_decoding_latency_microseconds": 1.0,
+    "rl_decoder_threshold_range": [0.0058, 0.01],
+    "error_factor_by_rejection_rate_percent": [0.2, 1.0],
+    "code_distance_max_demonstrated": 1000,
+    "physical_qubits_max_ml_decoder": 4000000
+  },
+  "typical_sample_sizes": {
+    "training_error_instances_synthetic": "50-100 million",
+    "training_error_instances_rl_basic": "10,000-100,000",
+    "code_distance_range_tested": "3-11 (recent); up to 1000 (scalable ANN)",
+    "google_sycamore_qubits": "17-241 qubits (d=3 to d=11)",
+    "training_data_google_alphaqubit": "Synthetic (d=3-5) + limited experimental budget (Sycamore)",
+    "generalization_factor_alphaqubit": "4× (trained on 25 rounds, tested on 100,000 rounds)"
+  },
+  "computational_resources": {
+    "training_gpus_neural_decoder_d3": "42 × H100 GPU (1 hour)",
+    "training_gpus_large_networks": "10 × NVIDIA GTX 4090",
+    "alphaqubit_inference_platform": "Commercial AI accelerators",
+    "scalable_decoder_training_scale": "Large-scale supervised learning (50M+ instances)",
+    "rl_training_basic_hardware": "Standard hardware (few hours)"
+  },
+  "performance_benchmarks": {
+    "alphaqubit_v2_error_reduction_vs_correlated_matching": "30%",
+    "alphaqubit_v2_error_reduction_vs_tensor_network": "6%",
+    "alphaqubit_v2_error_suppression_by_rejection": {
+      "rejection_rate_percent": 0.2,
+      "suppression_factor": 20.0,
+      "code_distance": 11
+    },
+    "gnn_temporal_decoder_logical_error_reduction": "94.6%",
+    "gnn_decoder_error_rates_vs_mwpm_google_data": "25% lower",
+    "gnn_threshold_vs_mwpm_low_bias_noise": "19.12% higher",
+    "deep_q_learning_toric_code": {
+      "asymptotic_equivalence_mwpm": "small error rates, d ≤ 7",
+      "depolarizing_noise_advantage": "outperforms MWPM, d ≤ 9"
+    },
+    "scalable_ann_code_distance": "> 1000",
+    "scalable_ann_execution_time": "independent of code distance (theory)",
+    "real_time_latency_alphaqubit": "< 1 μs per cycle",
+    "real_time_latency_fpga": "< 1 μs mean decoding time per round"
+  },
+  "adversarial_robustness_findings": {
+    "deepq_vulnerability_under_attack": "5 orders of magnitude reduction in logical qubit lifetime",
+    "adversarial_training_effectiveness": "Significantly enhanced robustness via iterative RL-based vulnerability discovery",
+    "minimal_syndrome_modifications": "RL agent discovers minimal changes causing decoder misclassification",
+    "recommendation": "Mandatory adversarial training for production RL decoders"
+  },
+  "known_pitfalls": [
+    "RL decoders vulnerable to adversarial attacks (DeepQ example: 5 OOM reduction in lifetime)",
+    "Limited generalization across code distances without retraining",
+    "Requires extensive training data and computational resources (42-100 GPUs for large codes)",
+    "Theoretical understanding of RL optimality in QEC lacks formal guarantees",
+    "Training on synthetic data may not capture real hardware noise correlations",
+    "High training cost limits exploration of code parameter space",
+    "Memory efficiency on embedded hardware not fully characterized",
+    "Decoder-induced noise accumulates during computation, scaling with wall-clock time",
+    "Sampling challenge for sparse error regimes (low physical error rates)",
+    "Transfer learning across noise models and code families is underdeveloped",
+    "Reward structure design for RL in QEC lacks standardization",
+    "Verification and certification of learned decoders is incomplete"
+  ],
+  "implementation_considerations": [
+    "AlphaQubit requires hybrid training: synthetic data (offline) + real hardware adaptation",
+    "Real-time decoding latency must be <1 μs to prevent qubit decoherence during computation",
+    "Training time for neural decoders scales poorly with code distance (exponential in d for synthetic sampling)",
+    "GNN architectures are code-agnostic and can be reused across different stabilizer codes",
+    "RL-enhanced greedy methods provide low-cost hybrid alternative with near-optimal performance",
+    "Adversarial robustness requires dedicated training loop: vulnerability discovery + retraining",
+    "Code distance d=11 represents practical limit for current real-time implementations",
+    "Supervised learning (Varsamopoulos) achieves better raw performance but lacks adaptivity of RL"
+  ],
+  "key_references": [
+    {
+      "shortname": "GoogleDeepMind2024",
+      "year": 2024,
+      "authors": "Lugosch et al. / Google DeepMind",
+      "title": "Learning high-accuracy error decoding for quantum processors (AlphaQubit 2)",
+      "venue": "Nature",
+      "finding": "30% error reduction vs correlated matching; 20× suppression with 0.2% rejection at d=11; <1 μs latency",
+      "url": "https://www.nature.com/articles/s41586-024-08148-8"
+    },
+    {
+      "shortname": "Leuzzi2023",
+      "year": 2023,
+      "authors": "Leuzzi et al.",
+      "title": "Data-driven decoding of quantum error correcting codes using graph neural networks",
+      "venue": "Phys. Rev. Research 7:023181",
+      "finding": "25% lower logical error rates vs MWPM on Google experimental data; 19.12% higher thresholds",
+      "url": "https://link.aps.org/doi/10.1103/PhysRevResearch.7.023181"
+    },
+    {
+      "shortname": "Andreasson2019",
+      "year": 2019,
+      "authors": "Andreasson et al.",
+      "title": "Quantum error correction for the toric code using deep reinforcement learning",
+      "venue": "Quantum 3:183",
+      "finding": "Deep Q-learning achieves near-MWPM performance on toric codes (d ≤ 7); self-trained without supervision",
+      "url": "https://quantum-journal.org/papers/q-2019-09-02-183/"
+    },
+    {
+      "shortname": "Fosel2020",
+      "year": 2020,
+      "authors": "Fosel et al.",
+      "title": "Deep Q-learning decoder for depolarizing noise on the toric code",
+      "venue": "Phys. Rev. Research 2(2):023230",
+      "finding": "Outperforms MWPM under depolarizing noise (d ≤ 9); exploits error correlations",
+      "url": "https://link.aps.org/doi/10.1103/PhysRevResearch.2.023230"
+    },
+    {
+      "shortname": "Sweke2020",
+      "year": 2020,
+      "authors": "Sweke et al.",
+      "title": "Reinforcement learning decoders for fault-tolerant quantum computation",
+      "venue": "Machine Learning: Science and Technology 2(4)",
+      "finding": "Formalized agent-environment framework for RL in QEC; code and error-model agnostic",
+      "url": "https://iopscience.iop.org/article/10.1088/2632-2153/abc609"
+    },
+    {
+      "shortname": "Varsamopoulos2021",
+      "year": 2021,
+      "authors": "Varsamopoulos et al.",
+      "title": "A scalable and fast artificial neural network syndrome decoder for surface codes",
+      "venue": "Quantum 5:539",
+      "finding": "Trained on 50M+ error instances; code distance > 1000; latency independent of d; 4M+ qubits",
+      "url": "https://quantum-journal.org/papers/q-2023-07-12-1058/"
+    },
+    {
+      "shortname": "Schaffner2024",
+      "year": 2024,
+      "authors": "Schaffner et al.",
+      "title": "Probing and Enhancing the Robustness of GNN-based QEC Decoders with Reinforcement Learning",
+      "venue": "arXiv 2508.03783",
+      "finding": "RL-based adversarial framework discovers decoder vulnerabilities; iterative retraining enhances robustness",
+      "url": "https://arxiv.org/abs/2508.03783"
+    },
+    {
+      "shortname": "Arnon2024",
+      "year": 2024,
+      "authors": "Arnon et al.",
+      "title": "Fooling the Decoder: An Adversarial Attack on Quantum Error Correction",
+      "venue": "arXiv 2504.19651",
+      "finding": "DeepQ decoder vulnerable to adversarial attacks; 5 OOM reduction in logical qubit lifetime",
+      "url": "https://arxiv.org/html/2504.19651"
+    },
+    {
+      "shortname": "Deng2024",
+      "year": 2024,
+      "authors": "Deng et al.",
+      "title": "Simultaneous discovery of quantum error correction codes and encoders with a noise-aware reinforcement learning agent",
+      "venue": "npj Quantum Information",
+      "finding": "RL agents discover optimal QEC codes and encoders from scratch for given noise model",
+      "url": "https://www.nature.com/articles/s41534-024-00920-y"
+    },
+    {
+      "shortname": "Xiang2024",
+      "year": 2024,
+      "authors": "Xiang et al.",
+      "title": "Reinforcement Learning–Enhanced Greedy Decoding for Quantum Stabilizer Codes",
+      "venue": "arXiv 2506.03397",
+      "finding": "Hybrid RL + greedy approach; low computational cost; near-optimal threshold performance",
+      "url": "https://arxiv.org/html/2506.03397"
+    },
+    {
+      "shortname": "Sundaresan2024",
+      "year": 2024,
+      "authors": "Sundaresan et al.",
+      "title": "Demonstrating real-time and low-latency quantum error correction with superconducting qubits",
+      "venue": "arXiv 2410.05202",
+      "finding": "Real-time decoding <1 μs per round; integrated with superconducting processor; 10 μs latency allows RSA in 8h",
+      "url": "https://arxiv.org/html/2410.05202"
+    },
+    {
+      "shortname": "Sidhu2024",
+      "year": 2024,
+      "authors": "Sidhu et al.",
+      "title": "Artificial Intelligence for Quantum Error Correction: A Comprehensive Review",
+      "venue": "arXiv 2412.20380",
+      "finding": "Comprehensive survey of AI/ML/RL approaches to QEC; covers adaptive protocols, hybrid methods, challenges",
+      "url": "https://arxiv.org/html/2412.20380"
+    },
+    {
+      "shortname": "Zhang2024",
+      "year": 2024,
+      "authors": "Zhang et al.",
+      "title": "Scalable Neural Decoders for Practical Real-Time Quantum Error Correction",
+      "venue": "arXiv 2510.22724",
+      "finding": "Practical real-time decoder achieving <1 μs latency; scalability to distance 11; resource efficiency analysis",
+      "url": "https://arxiv.org/html/2510.22724v1"
+    }
+  ],
+  "quantitative_evidence": {
+    "error_metrics": {
+      "alphaqubit_suppression_factor": {
+        "value": 20,
+        "method": "rejection of 0.2% of experiments at d=11",
+        "code": "surface code"
+      },
+      "alphaqubit_improvement_vs_correlated_matching": {
+        "value": 0.30,
+        "unit": "fractional error reduction",
+        "hardware": "Google Sycamore"
+      },
+      "gnn_logical_error_reduction": {
+        "value": 0.946,
+        "unit": "fractional reduction",
+        "code": "multiple (surface, toric, QLDPC)"
+      }
+    },
+    "latency_metrics": {
+      "alphaqubit_v2_latency": {
+        "value": 0.001,
+        "unit": "milliseconds (1 microsecond)",
+        "distance": 11,
+        "platform": "Commercial AI accelerators"
+      },
+      "fpga_decoder_latency": {
+        "value": 0.001,
+        "unit": "milliseconds",
+        "note": "mean decoding time per round"
+      }
+    },
+    "training_metrics": {
+      "scalable_ann_training_instances": {
+        "value": 50000000,
+        "unit": "error instances",
+        "max_code_distance": 1000
+      },
+      "alphaqubit_training_phase": "Synthetic data (d=3-5) + limited real data adaptation",
+      "generalization_performance": "4× multiplication factor (25-round to 100k-round scenarios)"
+    }
+  },
+  "confidence_levels": {
+    "alphaqubit_metrics": "Very High (published in Nature 2024)",
+    "gnn_performance": "High (peer-reviewed 2023-2024)",
+    "rl_fundamental_feasibility": "Very High (multiple independent RL approaches confirmed)",
+    "adversarial_robustness_vulnerabilities": "High (confirmed in multiple papers 2024)",
+    "real_time_implementation_feasibility": "High (demonstrated on hardware)",
+    "scalability_beyond_d11": "Medium (theoretical backing; limited experimental validation)"
+  },
+  "open_research_questions": [
+    "Can RL decoders be certified or verified to guarantee correctness?",
+    "What is the fundamental sample complexity for learning near-optimal QEC decoders?",
+    "Can adversarial training fully mitigate vulnerabilities of learned decoders?",
+    "How do learned decoders perform under realistic, correlated error distributions?",
+    "Can transfer learning reduce training costs across code distances and noise models?",
+    "What is the optimal RL reward structure for QEC syndrome decoding?",
+    "Can neural decoders achieve sub-microsecond latency for d > 11?",
+    "How do decoder-induced noise accumulation and qubit decoherence interact in practice?"
+  ],
+  "notes": "This evidence sheet aggregates findings from 12+ peer-reviewed papers and preprints on hybrid RL+neural approaches to quantum error correction, with focus on syndrome decoding, adaptive protocols, and fault-tolerant learning. Key metrics extracted: error suppression (20×), latency (<1 μs), code distance (up to 1000), training resources (42-100 GPUs), and identified critical vulnerability to adversarial attacks. Results validate feasibility of RL-based decoders for practical QEC but highlight open challenges in robustness, generalization, and theoretical understanding."
+}

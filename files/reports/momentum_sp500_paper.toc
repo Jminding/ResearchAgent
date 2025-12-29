@@ -1,0 +1,77 @@
+\contentsline {section}{\numberline {1}Introduction}{3}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Motivation}{3}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Contributions}{3}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Literature Review}{4}{subsection.1.3}%
+\contentsline {subsubsection}{\numberline {1.3.1}Momentum Anomaly}{4}{subsubsection.1.3.1}%
+\contentsline {subsubsection}{\numberline {1.3.2}Transaction Costs and Implementation}{4}{subsubsection.1.3.2}%
+\contentsline {subsubsection}{\numberline {1.3.3}Risk Management and Drawdown Control}{4}{subsubsection.1.3.3}%
+\contentsline {subsubsection}{\numberline {1.3.4}Multi-Factor Strategies}{5}{subsubsection.1.3.4}%
+\contentsline {subsection}{\numberline {1.4}Position in Literature and Research Questions}{5}{subsection.1.4}%
+\contentsline {subsection}{\numberline {1.5}Roadmap}{5}{subsection.1.5}%
+\contentsline {section}{\numberline {2}Data and Methodology}{5}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Data Description}{5}{subsection.2.1}%
+\contentsline {subsubsection}{\numberline {2.1.1}Important Disclosure: Survivorship Bias}{6}{subsubsection.2.1.1}%
+\contentsline {subsubsection}{\numberline {2.1.2}Benchmark}{6}{subsubsection.2.1.2}%
+\contentsline {subsection}{\numberline {2.2}Factor Construction}{6}{subsection.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.1}Momentum Factor (MOM)}{6}{subsubsection.2.2.1}%
+\contentsline {subsubsection}{\numberline {2.2.2}Value Factor (VAL)}{6}{subsubsection.2.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.3}Quality Factor (QUAL)}{7}{subsubsection.2.2.3}%
+\contentsline {subsubsection}{\numberline {2.2.4}Low Volatility Factor (VOL)}{7}{subsubsection.2.2.4}%
+\contentsline {subsubsection}{\numberline {2.2.5}Composite Signal}{7}{subsubsection.2.2.5}%
+\contentsline {subsection}{\numberline {2.3}Portfolio Construction}{7}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Transaction Cost Model}{8}{subsection.2.4}%
+\contentsline {subsubsection}{\numberline {2.4.1}Bid-Ask Spread Estimation}{8}{subsubsection.2.4.1}%
+\contentsline {subsubsection}{\numberline {2.4.2}Market Impact}{8}{subsubsection.2.4.2}%
+\contentsline {subsubsection}{\numberline {2.4.3}Annual Cost Calculation}{8}{subsubsection.2.4.3}%
+\contentsline {subsection}{\numberline {2.5}Stop-Loss Implementation}{9}{subsection.2.5}%
+\contentsline {subsection}{\numberline {2.6}Rebalancing Schedules}{9}{subsection.2.6}%
+\contentsline {subsection}{\numberline {2.7}Baseline Comparisons}{9}{subsection.2.7}%
+\contentsline {subsubsection}{\numberline {2.7.1}Single-Factor Momentum Baseline (H1)}{9}{subsubsection.2.7.1}%
+\contentsline {subsubsection}{\numberline {2.7.2}SPY Benchmark (H4)}{10}{subsubsection.2.7.2}%
+\contentsline {subsection}{\numberline {2.8}Performance Metrics}{10}{subsection.2.8}%
+\contentsline {subsection}{\numberline {2.9}Sensitivity Analysis}{10}{subsection.2.9}%
+\contentsline {section}{\numberline {3}Results}{11}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Overview: Strategy Performance}{11}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Hypothesis 1: Multi-Factor Construction}{11}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Hypothesis 2: Stop-Loss Impact}{12}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Hypothesis 3: Rebalancing Frequency Optimization}{13}{subsection.3.4}%
+\contentsline {subsection}{\numberline {3.5}Hypothesis 4: Performance versus Passive Equity}{15}{subsection.3.5}%
+\contentsline {subsection}{\numberline {3.6}Sensitivity Analysis Results}{17}{subsection.3.6}%
+\contentsline {section}{\numberline {4}Discussion and Analysis}{18}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Why Rebalancing Frequency Dominates}{18}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}The Large-Cap Momentum Problem}{18}{subsection.4.2}%
+\contentsline {subsubsection}{\numberline {4.2.1}Cross-Sectional Dispersion}{18}{subsubsection.4.2.1}%
+\contentsline {subsubsection}{\numberline {4.2.2}Information Efficiency}{19}{subsubsection.4.2.2}%
+\contentsline {subsubsection}{\numberline {4.2.3}Liquidity and Arbitrage}{19}{subsubsection.4.2.3}%
+\contentsline {subsubsection}{\numberline {4.2.4}Comparison to Small-Cap}{19}{subsubsection.4.2.4}%
+\contentsline {subsection}{\numberline {4.3}The Bull Market Penalty}{19}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}When Would Momentum Work?}{20}{subsection.4.4}%
+\contentsline {subsubsection}{\numberline {4.4.1}Small-Cap Universe (Russell 2000)}{20}{subsubsection.4.4.1}%
+\contentsline {subsubsection}{\numberline {4.4.2}International Markets}{21}{subsubsection.4.4.2}%
+\contentsline {subsubsection}{\numberline {4.4.3}Multi-Asset Strategies}{21}{subsubsection.4.4.3}%
+\contentsline {subsubsection}{\numberline {4.4.4}Factor Combinations}{22}{subsubsection.4.4.4}%
+\contentsline {subsection}{\numberline {4.5}Implications for Market Efficiency}{22}{subsection.4.5}%
+\contentsline {subsection}{\numberline {4.6}Transaction Cost Optimization: Practical Guidelines}{23}{subsection.4.6}%
+\contentsline {section}{\numberline {5}Robustness Checks and Limitations}{23}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Robustness Checks Performed}{23}{subsection.5.1}%
+\contentsline {subsubsection}{\numberline {5.1.1}Sensitivity to Portfolio Size}{23}{subsubsection.5.1.1}%
+\contentsline {subsubsection}{\numberline {5.1.2}Sensitivity to Transaction Costs}{23}{subsubsection.5.1.2}%
+\contentsline {subsubsection}{\numberline {5.1.3}Sensitivity to Weighting Scheme}{24}{subsubsection.5.1.3}%
+\contentsline {subsection}{\numberline {5.2}Critical Limitations}{24}{subsection.5.2}%
+\contentsline {subsubsection}{\numberline {5.2.1}Survivorship Bias}{24}{subsubsection.5.2.1}%
+\contentsline {subsubsection}{\numberline {5.2.2}Lack of Formal Statistical Inference}{24}{subsubsection.5.2.2}%
+\contentsline {subsubsection}{\numberline {5.2.3}Factor Specification Risk}{25}{subsubsection.5.2.3}%
+\contentsline {subsubsection}{\numberline {5.2.4}Limited Time Period}{25}{subsubsection.5.2.4}%
+\contentsline {subsubsection}{\numberline {5.2.5}Transaction Cost Assumptions}{25}{subsubsection.5.2.5}%
+\contentsline {subsubsection}{\numberline {5.2.6}Synthetic Fundamental Data}{26}{subsubsection.5.2.6}%
+\contentsline {subsection}{\numberline {5.3}Threats to Validity}{26}{subsection.5.3}%
+\contentsline {subsubsection}{\numberline {5.3.1}Data Snooping and Multiple Hypothesis Testing}{26}{subsubsection.5.3.1}%
+\contentsline {subsubsection}{\numberline {5.3.2}Parameter Selection}{26}{subsubsection.5.3.2}%
+\contentsline {subsubsection}{\numberline {5.3.3}Market Microstructure Changes}{26}{subsubsection.5.3.3}%
+\contentsline {section}{\numberline {6}Conclusion}{27}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Key Findings}{27}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Broader Implications}{27}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Contributions}{28}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.4}Future Research}{28}{subsection.6.4}%
+\contentsline {subsection}{\numberline {6.5}Practical Recommendations}{29}{subsection.6.5}%
+\contentsline {subsection}{\numberline {6.6}Final Thoughts}{29}{subsection.6.6}%

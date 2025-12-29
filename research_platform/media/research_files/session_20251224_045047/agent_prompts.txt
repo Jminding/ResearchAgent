@@ -1,0 +1,44 @@
+
+================================================================================
+AGENT: LITERATURE-REVIEWER-1
+TYPE: literature-reviewer
+SPAWNED: 2025-12-24 04:50:53
+DESCRIPTION: GNN architectures and theory
+================================================================================
+
+PROMPT:
+Research foundational graph neural network architectures (GCN, GraphSAGE, GAT, GIN) and their theoretical properties. Focus on node embedding techniques, graph convolution mechanisms, and scalability. MUST create files/research_notes/evidence_sheet.json with quantitative evidence including: model parameters, computational complexity, benchmark accuracy numbers, and citation counts for key papers.
+
+
+================================================================================
+AGENT: LITERATURE-REVIEWER-2
+TYPE: literature-reviewer
+SPAWNED: 2025-12-24 04:50:54
+DESCRIPTION: Anomaly detection methods using GNNs
+================================================================================
+
+PROMPT:
+Survey anomaly detection techniques applied to graphs: subgraph anomalies, node anomalies, edge anomalies, and community-based methods. Examine GNN-based detectors (outlier scoring, reconstruction loss, adversarial). Focus on methods for dynamic/streaming graphs. MUST create files/research_notes/evidence_sheet.json with quantitative evidence including: detection rates, false positive rates, F1 scores, and method-specific performance metrics from published benchmarks.
+
+
+================================================================================
+AGENT: LITERATURE-REVIEWER-3
+TYPE: literature-reviewer
+SPAWNED: 2025-12-24 04:50:55
+DESCRIPTION: Financial transaction networks and fraud
+================================================================================
+
+PROMPT:
+Investigate financial transaction networks as graphs, money laundering detection, fraud ring identification, and behavioral anomalies in payment systems. Research graph-based fraud detection benchmarks and real-world financial datasets. MUST create files/research_notes/evidence_sheet.json with quantitative evidence including: fraud detection precision/recall, transaction network sizes, graph densities, known fraud prevalence rates, and detection latency requirements.
+
+
+================================================================================
+AGENT: LITERATURE-REVIEWER-4
+TYPE: literature-reviewer
+SPAWNED: 2025-12-24 04:50:57
+DESCRIPTION: Benchmarks and open challenges
+================================================================================
+
+PROMPT:
+Compile benchmarks for GNN-based anomaly detection: datasets (COLLAB, OGB, synthetic), performance metrics, baseline comparisons. Document open challenges: class imbalance, concept drift, scalability limits, interpretability. MUST create files/research_notes/evidence_sheet.json with quantitative evidence including: dataset statistics (nodes, edges, anomaly ratios), baseline method performances, computational costs, and reported limitations from literature.
+

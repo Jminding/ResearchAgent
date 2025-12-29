@@ -1,0 +1,167 @@
+You: Investigate the use of graph neural networks for anomaly detection in financial transaction networks.
+Agent: Spawning 4 parallel literature reviewers across GNN foundations, anomaly detection methods, financial applications, and benchmarks.
+
+[🚀 Spawning LITERATURE-REVIEWER-1: GNN architectures and theory]
+
+
+[🚀 Spawning LITERATURE-REVIEWER-2: Anomaly detection methods using GNNs]
+
+
+[🚀 Spawning LITERATURE-REVIEWER-3: GNNs in financial fraud detection]
+
+
+[🚀 Spawning LITERATURE-REVIEWER-4: Benchmarks and datasets for graph anomaly detection]
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='graph anomaly detection datasets benchmarks 2025 2024'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='synthetic transaction networks anomaly detection benchmark'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='graph classification benchmarks evaluation protocols'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='financial transaction networks anomaly detection datasets'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='graph neural networks anomaly detection baseline methods performance'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='GCN graph convolutional networks original paper 2016 2017'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='graph attention networks GAT architecture 2017 2018'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='GraphSAGE inductive node embedding learning 2017'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='GIN graph isomorphism networks Weisfeiler-Lehman 2018 2019'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='graph neural networks message passing framework survey'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='graph neural networks financial crime detection transaction fraud'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='money laundering detection machine learning graph networks'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='anomaly detection transaction graphs GNN state of the art'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='fraud ring detection graph neural networks'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='illicit financial networks detection machine learning'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='graph anomaly detection survey 2024 2025'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='graph autoencoder anomaly detection reconstruction'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='graph neural network outlier detection unsupervised'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='temporal graph anomaly detection node subgraph'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='graph anomaly detection benchmark datasets AUC results'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='GCN GAT GraphSAGE GIN benchmark results Cora Citeseer Pubmed accuracy 2019 2020'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='graph neural networks scalability complexity temporal dynamics 2020 2021'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='graph neural networks over-smoothing depth limitations 2021 2022'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='GNN node classification edge prediction graph classification tasks'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='message passing neural networks Gilmer et al spectral methods'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='GNN fraud detection precision recall F1 score benchmark results dataset'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='financial crime detection dataset elliptic ORCA transaction graph benchmark'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='heterogeneous graph neural networks money laundering detection'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='transaction graph anomaly detection neural networks real-world case study'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='regulatory compliance AML detection financial crime machine learning'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='DOMINANT graph anomaly detection AUC F1 score results'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='graph convolutional network anomaly scoring node reconstruction error'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='GAE GAD social network fraud detection AUC ROC performance'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='subgraph anomaly detection community structure mining'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='dynamic graph temporal anomaly detection LSTM GRU benchmark'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='GADBench supervised graph anomaly detection NeurIPS 2023 dataset sizes'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='OGB-GLB open graph benchmark anomaly detection node edge subgraph'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='graph anomaly detection baseline accuracy AUC ROC evaluation metrics'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='TUDataset graph classification benchmark sizes properties'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='Elliptic Bitcoin transaction network anomaly detection benchmark dataset'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='"IEEE-CIS" fraud detection dataset GNN benchmark'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='graph anomaly detection benchmark datasets transaction networks AUC performance'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='financial crime detection regulatory framework FATF BSA transaction monitoring'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='Bitcoin blockchain illicit transaction detection AML neural networks'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='"graph anomaly detection" attributed networks benchmark results comparison table'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='one-class GNN graph anomaly detection isolation forest local outlier factor'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='heterogeneous graph anomaly detection knowledge graph'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='contrastive learning graph anomaly detection self-supervised'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='graph signal processing anomaly detection spectral methods'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='"how powerful are graph neural networks" Xu 2018 expressiveness WL test'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='GNN time complexity space complexity O(n) O(m) computational cost'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='graph neural networks generalization bounds approximation theory'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='GCN spectral graph theory Laplacian first order approximation'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='graph representation learning benchmark OGB open graph benchmark 2020 2021'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='"graph anomaly detection" baseline models GCN GAT GraphSAGE performance accuracy F1'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='graph anomaly detection computational complexity time space requirements scaling'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='unsupervised graph anomaly detection OOD out-of-distribution ICLR 2025 benchmark'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='fraud detection graph neural networks evaluation protocol imbalanced datasets'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='"graph convolutional network" fraud detection precision recall results 2023 2024'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='DynBERG temporal GNN fraud detection benchmark performance'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='FinCEN files money laundering case study network analysis'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='anomaly detection false positive rate TPR FPR performance 2024 2025'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='BlogCatalog Flickr ACM Cora anomaly detection F1 macro AUC results'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='OCGIN GUIDE DeepSVDD graph level anomaly AUC performance'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='graph embedding anomaly detection node2vec embedding distance'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='GCN number of parameters hidden dimensions attention heads benchmark accuracy Cora'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='graph neural networks inductive transductive learning evaluation protocol'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='GNN aggregation functions mean pooling sum GraphSAGE sampling neighborhood'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='graph neural networks adversarial robustness perturbation attacks 2021 2022'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='heterogeneous graph neural networks heterophily node classification'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='graph anomaly detection datasets node numbers edge counts anomaly rates percentages'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='"graph anomaly detection" AUC scores baseline results 0.7 0.8 0.9'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='synthetic graph generation anomalies Stochastic Block Model power-law networks'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='PyTorch Geometric graph anomaly detection datasets preprocessing evaluation'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='graph anomaly detection limitations challenges out-of-distribution generalization'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='DGraphFin dataset anomaly detection financial graph nodes edges'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='"anomaly detection" survey taxonomy 2024 2025 node edge subgraph graph-level'

@@ -1,0 +1,42 @@
+Training Log: lstm_baseline
+Started: 2025-12-21T23:20:49.956095
+============================================================
+
+
+Training Configuration:
+  Epochs: 50
+  Batch size: 256
+  Learning rate: 0.0001
+  Weight decay: 1e-05
+  Patience: 10
+  Alpha aux: 0.1
+  Warmup steps: 500
+  Gradient clip: 1.0
+
+Class weights: [0.86191946 1.2869891  0.85109156]
+
+============================================================
+Starting Training
+============================================================
+
+Epoch   1 | Train Loss: 1.1608 | Val Loss: 1.0988 | Val Acc: 0.2947 | Val F1: 0.2785 | LR: 0.000100 | Time: 14.7s
+Epoch   2 | Train Loss: 1.1036 | Val Loss: 1.0991 | Val Acc: 0.3218 | Val F1: 0.2881 | LR: 0.000100 | Time: 12.7s
+Epoch   3 | Train Loss: 1.1010 | Val Loss: 1.0986 | Val Acc: 0.3544 | Val F1: 0.3246 | LR: 0.000100 | Time: 12.7s
+Epoch   4 | Train Loss: 1.0990 | Val Loss: 1.0997 | Val Acc: 0.3289 | Val F1: 0.3261 | LR: 0.000099 | Time: 13.7s
+Epoch   5 | Train Loss: 1.0965 | Val Loss: 1.1006 | Val Acc: 0.3545 | Val F1: 0.3316 | LR: 0.000098 | Time: 12.8s
+Epoch   6 | Train Loss: 1.0923 | Val Loss: 1.1052 | Val Acc: 0.3510 | Val F1: 0.3314 | LR: 0.000097 | Time: 12.9s
+Epoch   7 | Train Loss: 1.0859 | Val Loss: 1.1098 | Val Acc: 0.3731 | Val F1: 0.3195 | LR: 0.000096 | Time: 12.8s
+Epoch   8 | Train Loss: 1.0749 | Val Loss: 1.1195 | Val Acc: 0.3700 | Val F1: 0.3166 | LR: 0.000095 | Time: 13.4s
+Epoch   9 | Train Loss: 1.0605 | Val Loss: 1.1353 | Val Acc: 0.3525 | Val F1: 0.3378 | LR: 0.000093 | Time: 13.1s
+Epoch  10 | Train Loss: 1.0425 | Val Loss: 1.1560 | Val Acc: 0.3542 | Val F1: 0.3340 | LR: 0.000092 | Time: 13.6s
+Epoch  11 | Train Loss: 1.0222 | Val Loss: 1.1977 | Val Acc: 0.3512 | Val F1: 0.3276 | LR: 0.000090 | Time: 13.7s
+Epoch  12 | Train Loss: 1.0013 | Val Loss: 1.2243 | Val Acc: 0.3583 | Val F1: 0.3275 | LR: 0.000088 | Time: 15.8s
+Epoch  13 | Train Loss: 0.9809 | Val Loss: 1.2559 | Val Acc: 0.3560 | Val F1: 0.3268 | LR: 0.000086 | Time: 16.1s
+
+Early stopping triggered at epoch 13
+
+Loaded best model with val_loss: 1.0986
+
+============================================================
+Training Complete
+============================================================

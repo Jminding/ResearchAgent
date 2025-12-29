@@ -1,0 +1,139 @@
+{
+  "domain": "quantum_error_correction",
+  "title": "QEC Evidence Sheet: Datasets, Benchmarks, RL-Assisted Decoding",
+  "date_generated": "2025-12-28",
+  "metric_ranges": {
+    "logical_error_rate_per_cycle": {"min": 0.0014, "max": 0.01, "unit": "fraction", "key_ref": "Google Willow d=7: 0.143%"},
+    "error_suppression_factor": {"min": 2.0, "max": 2.5, "unit": "per distance step", "key_ref": "Google Willow: 2.14x"},
+    "qubit_overhead_surface": {"min": 100, "max": 10000, "unit": "physical per logical", "key_ref": "Depends on error rate"},
+    "qubit_overhead_qldpc": {"min": 24, "max": 100, "unit": "physical per logical", "key_ref": "IBM Gross: 10x better"},
+    "ml_decoder_improvement": {"min": 0.06, "max": 0.30, "unit": "fraction vs classical", "key_ref": "AlphaQubit vs SCAM: 30%"},
+    "fpga_decoder_latency": {"min": 1e-7, "max": 1e-6, "unit": "seconds", "key_ref": "Riverlane: <1 microsecond"},
+    "ml_decoder_latency": {"min": 1e-3, "max": 1e-2, "unit": "seconds", "key_ref": "AlphaQubit: milliseconds"},
+    "surface_code_threshold": {"min": 0.005, "max": 0.02, "unit": "fraction", "key_ref": "Theoretical ~1%"},
+    "toric_code_rl_threshold": {"min": 0.11, "max": 0.11, "unit": "fraction", "key_ref": "RL decoders ~11%"},
+    "gate_fidelity_superconducting": {"min": 0.9996, "max": 0.9997, "unit": "fidelity", "key_ref": "Willow 2-qubit 99.67%"},
+    "gate_fidelity_trapped_ion": {"min": 0.9999, "max": 0.99995, "unit": "fidelity", "key_ref": "Oxford Ionics >99.99%"},
+    "code_distance_hardware": {"min": 3, "max": 7, "unit": "code distance", "key_ref": "Willow d=7 (101 qubits)"},
+    "code_distance_simulation": {"min": 3, "max": 11, "unit": "code distance", "key_ref": "AlphaQubit simulated d=11"},
+    "largest_logical_qubit_count": {"min": 48, "max": 48, "unit": "logical qubits", "key_ref": "Harvard/MIT 280 physical"},
+    "synthetic_training_samples": {"min": 10000, "max": 100000000, "unit": "syndrome samples", "key_ref": "AlphaQubit: 100M+ samples"},
+    "hardware_finetuning_samples": {"min": 1000, "max": 10000, "unit": "samples", "key_ref": "AlphaQubit: thousands"},
+    "ml_test_accuracy": {"min": 0.92, "max": 0.96, "unit": "fraction correct", "key_ref": "U-Net: 95-96% on d=5"}
+  },
+  "typical_sample_sizes": {
+    "simulation_per_config": "10K - 100K syndrome samples",
+    "hardware_characterization": "1K - 10K error samples",
+    "code_distance_range": "d=3-7 (hardware), d=3-11 (simulation)",
+    "physical_qubit_range": "3-10 (toys) to 280-300 (practical)",
+    "ml_training_time": "Hours to days on GPU",
+    "rl_training_time": "6-24 hours for near-optimal codes"
+  },
+  "known_pitfalls": [
+    "Simulation-reality gap: Idealized error models vs cross-talk, leakage, non-Markovian dynamics",
+    "Measurement error underestimation: Assumed >98% but integrated fidelity often lower",
+    "Generalization limits: Tested d<=11; scaling to d>=15-25 unclear",
+    "Syndrome backlog risk: Decoder latency must beat error correction cycle (~1 microsecond)",
+    "Adversarial vulnerability: Neural decoders can be fooled by specific syndrome patterns",
+    "Hardware drift: Models may degrade as processor parameters drift over time",
+    "Metric inconsistency: Papers report results differently (accuracy vs F1 vs error rate)",
+    "Logical operator preservation: Some ML decoders may accidentally flip logical qubits",
+    "Training data scarcity: Extracting error samples from hardware expensive",
+    "Below-threshold narrow margin: Threshold achieved but safety margin unknown"
+  ],
+  "key_findings": [
+    {
+      "finding": "Exponential error suppression with code distance on hardware",
+      "metric": "Λ = 2.14 ± 0.02 per distance increment",
+      "platform": "Google Willow superconducting",
+      "significance": "First hardware validation of 30-year theoretical prediction"
+    },
+    {
+      "finding": "ML decoders outperform classical algorithmic decoders",
+      "metric": "6-30% error reduction; U-Net 50% vs CNN",
+      "platform": "Multiple validation",
+      "significance": "Neural networks adapt to real hardware noise"
+    },
+    {
+      "finding": "Real-time sub-microsecond decoding on FPGA",
+      "metric": "<1 microsecond latency per correction round",
+      "platform": "Riverlane Local Clustering Decoder",
+      "significance": "Solves critical bottleneck preventing syndrome backlog"
+    },
+    {
+      "finding": "QLDPC codes reduce qubit overhead by 10-20x",
+      "metric": "288 qubits for 12 logical (IBM Gross code)",
+      "platform": "IBM systems",
+      "significance": "Makes fault-tolerant quantum computing practical-scale feasible"
+    },
+    {
+      "finding": "RL discovers QEC codes and control strategies online",
+      "metric": "Threshold ~11% for toric code; near-optimal in hours",
+      "platform": "Simulated up to d=5",
+      "significance": "Enables hardware-optimized code discovery"
+    },
+    {
+      "finding": "48 logical qubits demonstrated and used for algorithms",
+      "metric": "280 physical qubits encoding 48 logical",
+      "platform": "Harvard/MIT neutral atom array",
+      "significance": "First large-scale error-corrected algorithm execution"
+    },
+    {
+      "finding": "Logical qubit lifetime exceeds physical qubits",
+      "metric": "Willow d=7: 2.4x lifetime advantage",
+      "platform": "Google Willow superconducting",
+      "significance": "QEC actually extends lifetime; confirms usefulness"
+    },
+    {
+      "finding": "Neural decoders generalize beyond training distances",
+      "metric": "Trained on d=5; maintains advantage up to d=11",
+      "platform": "AlphaQubit on Sycamore",
+      "significance": "Learned decoders transfer knowledge beyond training"
+    }
+  ],
+  "hardware_inventory": [
+    {
+      "platform": "Google Willow superconducting",
+      "qubits": 105,
+      "max_code_distance": 7,
+      "total_surface_code_qubits": 101,
+      "gate_fidelity_2q": "99.67%",
+      "key_metric": "0.143% logical error per cycle"
+    },
+    {
+      "platform": "Google Sycamore superconducting",
+      "qubits": 53,
+      "max_code_distance": 5,
+      "decoder": "AlphaQubit transformer",
+      "key_metric": "30% error reduction"
+    },
+    {
+      "platform": "Harvard/MIT neutral atom",
+      "qubits": 280,
+      "logical_qubits": 48,
+      "key_metric": "Error-corrected algorithms executed"
+    },
+    {
+      "platform": "Quantinuum H2 trapped-ion",
+      "qubits": 56,
+      "max_code_distance": 4,
+      "key_metric": "800x logical-to-physical ratio"
+    },
+    {
+      "platform": "IBM Quantum Loon superconducting",
+      "qubits": "TBD 2025",
+      "code": "QLDPC/Gross",
+      "key_metric": "10x qubit efficiency"
+    }
+  ],
+  "research_gaps": [
+    "Scalability to practical code distances (d>=15-25)",
+    "Real-time ML decoder inference on standard FPGA",
+    "Robustness and adversarial examples in decoders",
+    "Threshold under realistic non-Markovian noise",
+    "Training data efficiency",
+    "Online adaptation as hardware drifts",
+    "Standardized benchmarking across platforms"
+  ],
+  "summary": "QEC has crossed critical milestones: exponential error suppression on hardware, below-threshold regimes demonstrated, ML decoders outperforming classical by 6-30%, real-time sub-microsecond decoding on FPGA, and 48 logical qubits successfully demonstrated. Remaining challenges: scaling to practical sizes, real-time ML inference, adversarial robustness, and threshold margins under realistic noise."
+}

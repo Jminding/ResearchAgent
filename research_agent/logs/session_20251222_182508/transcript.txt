@@ -1,0 +1,139 @@
+You: Research the utilization of multi-wavelength emissions to classify between active galactic nuclei and star-forming galaxies. Write the paper using the aastex63 LaTeX library template.
+Agent: Spawning 4 literature reviewers in parallel to cover AGN classification, star-forming galaxy signatures, multi-wavelength methodologies, and observational datasets.
+
+[🚀 Spawning LITERATURE-REVIEWER-1: AGN classification and multi-wavelength signatures]
+
+
+[🚀 Spawning LITERATURE-REVIEWER-2: Star-forming galaxies and emission signatures]
+
+
+[🚀 Spawning LITERATURE-REVIEWER-3: Multi-wavelength diagnostic methods and classification]
+
+
+[🚀 Spawning LITERATURE-REVIEWER-4: Observational surveys and benchmark datasets]
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='multi-wavelength AGN signatures radio infrared optical UV X-ray'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='AGN classification Type 1 Type 2 Seyfert LINER quasar'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='AGN emission mechanisms ionization diagnostic lines'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='AGN variability temporal characteristics X-ray UV optical'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='AGN unification model orientation accretion disk torus'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='AGN star-forming galaxies diagnostic methods literature review'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='WISE color-color diagram AGN selection criteria infrared'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='BPT diagram optical emission line diagnostics AGN classification'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='X-ray infrared flux ratio AGN identification SED fitting'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='machine learning AGN classification galaxy contamination'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='SDSS AGN star-forming galaxy classification survey'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='WISE infrared AGN classification benchmark dataset'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='Chandra XMM-Newton X-ray AGN catalog survey'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='Herschel ALMA far-infrared submillimeter galaxy survey'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='multi-wavelength AGN classification photometric redshift'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='multi-wavelength signatures star-forming galaxies infrared optical UV radio'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='star formation rate indicators SFR tracers wavelength bands'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='dust properties wavelength dependence star-forming galaxies extinction'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='Halpha Halpha emission star formation rate calibration galaxies'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='infrared luminosity star formation rate dust emission FIR'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='composite AGN star-forming galaxies contamination diagnostic challenges'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='SED fitting AGN host galaxy contribution dust torus'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='mid-infrared AGN diagnostics Spitzer WISE extended emission'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='radio detection AGN identification quiescent star-forming galaxies'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='narrow-line region AGN diagnostic optical NIR spectroscopy'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='2MASS near-infrared survey galaxy classification redshift'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='AGN misclassification rates performance metrics spectroscopic validation'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='galaxy survey catalog validation methodology AGN star-forming'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='BPT diagram emission line AGN classification accuracy benchmark'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='COSMOS survey multi-wavelength catalog AGN host galaxy'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='radio continuum emission star-forming galaxies thermal free-free bremsstrahlung'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='metallicity effects star-forming galaxies emission lines ionization'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='BPT diagram star-forming galaxies AGN ionization diagnostics'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='dust attenuation curve optical infrared star-forming galaxies reddening'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='UV ionization photons young massive stars H-ionizing radiation'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='AGN BPT diagram optical diagnostic narrow-line region broad-line region'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='AGN radio loud radio quiet jets relativistic beaming'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='obscured AGN mid-infrared selection Spitzer WISE'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='AGN accretion corona inverse Compton scattering X-ray'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='AGN spectral energy distribution SED modeling infrared dust emission'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='"Kewley" AGN diagnostic line ratio 2006 empirical demarcation'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='Assef WISE AGN selection W1-W2 color photometric 2013'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='photometric redshift AGN classification photometry multi-band'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='AGN survey catalog classification criteria SDSS MaNGA'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='"spectroscopic redshift" "photometric redshift" AGN accuracy survey comparison'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='X-ray survey sensitivity flux limit AGN detection Chandra'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='infrared selected AGN WISE 22 micron star-forming galaxy contamination'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='submillimeter galaxy ALMA detection sensitivity benchmark sample'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='AGN redshift evolution luminosity function demographics'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='AGN X-ray spectroscopy reflection iron line Fe K'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='AGN optical UV continuum variability timescale reverberation'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='AGN host galaxy color morphology bulge black hole mass'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='SED fitting spectral energy distribution star-forming galaxies modeling'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='submillimeter continuum dust emission 850 micron galaxies FIR'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='optical emission lines Balmer series nebular diagnostics HII regions'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='JWST infrared spectroscopy star-forming galaxies 2025'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='deep learning galaxy classification AGN benchmark dataset performance'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='cross-survey AGN classification validation SDSS COSMOS XMM'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='PAH polycyclic aromatic hydrocarbons emission mid-infrared star-forming galaxies'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='[OIII] [NII] [SII] forbidden lines diagnostic ratios star-forming galaxies'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='Balmer decrement dust extinction H-alpha H-beta galaxies'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='equivalent width EW stellar age young populations star-forming galaxies'
+
+[LITERATURE-REVIEWER-3] → Write    Input: file='diagnostic_methods.md' (31049 chars)

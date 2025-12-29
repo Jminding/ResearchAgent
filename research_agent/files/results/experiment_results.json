@@ -1,0 +1,295 @@
+{
+  "experiment_info": {
+    "date": "2025-12-21 21:48:50",
+    "total_sources": 6800,
+    "train_size": 5440,
+    "test_size": 1360,
+    "features": [
+      "log_Lx",
+      "gamma",
+      "log_NH",
+      "HR",
+      "log_Lx_LIR",
+      "log_Lx_SFR",
+      "EW_Fe",
+      "alpha_OX",
+      "redshift",
+      "flux_ratio",
+      "detection_likelihood",
+      "is_obscured",
+      "is_luminous",
+      "has_fe_line"
+    ],
+    "class_distribution": {
+      "AGN": 5563,
+      "SFG": 1237
+    }
+  },
+  "model_performance": {
+    "random_forest": {
+      "accuracy": 0.9933823529411765,
+      "roc_auc": 0.9998799611510634,
+      "f1_score": 0.9821073558648111,
+      "precision": 0.96484375,
+      "recall": 1.0,
+      "confusion_matrix": [
+        [
+          1104,
+          9
+        ],
+        [
+          0,
+          247
+        ]
+      ],
+      "classification_report": {
+        "0": {
+          "precision": 1.0,
+          "recall": 0.9919137466307277,
+          "f1-score": 0.9959404600811907,
+          "support": 1113.0
+        },
+        "1": {
+          "precision": 0.96484375,
+          "recall": 1.0,
+          "f1-score": 0.9821073558648111,
+          "support": 247.0
+        },
+        "accuracy": 0.9933823529411765,
+        "macro avg": {
+          "precision": 0.982421875,
+          "recall": 0.9959568733153639,
+          "f1-score": 0.989023907973001,
+          "support": 1360.0
+        },
+        "weighted avg": {
+          "precision": 0.9936150045955883,
+          "recall": 0.9933823529411765,
+          "f1-score": 0.9934281242418923,
+          "support": 1360.0
+        }
+      },
+      "feature_importance": {
+        "log_Lx": 0.07635316882038866,
+        "gamma": 0.0008293609229103682,
+        "log_NH": 0.00605163841182706,
+        "HR": 0.17352923171213108,
+        "log_Lx_LIR": 0.14545627488880897,
+        "log_Lx_SFR": 0.15432161466780736,
+        "EW_Fe": 0.03640547411428432,
+        "alpha_OX": 0.18150622405986,
+        "redshift": 0.0008112913448349875,
+        "flux_ratio": 0.15740444537138168,
+        "detection_likelihood": 0.0017210998385614527,
+        "is_obscured": 0.0017346821999937058,
+        "is_luminous": 0.056213990341661614,
+        "has_fe_line": 0.007661503305548785
+      }
+    },
+    "gradient_boosting": {
+      "accuracy": 0.9941176470588236,
+      "roc_auc": 0.9998726860693097,
+      "f1_score": 0.984,
+      "precision": 0.9723320158102767,
+      "recall": 0.9959514170040485,
+      "confusion_matrix": [
+        [
+          1106,
+          7
+        ],
+        [
+          1,
+          246
+        ]
+      ],
+      "classification_report": {
+        "0": {
+          "precision": 0.999096657633243,
+          "recall": 0.9937106918238994,
+          "f1-score": 0.9963963963963964,
+          "support": 1113.0
+        },
+        "1": {
+          "precision": 0.9723320158102767,
+          "recall": 0.9959514170040485,
+          "f1-score": 0.984,
+          "support": 247.0
+        },
+        "accuracy": 0.9941176470588236,
+        "macro avg": {
+          "precision": 0.9857143367217598,
+          "recall": 0.994831054413974,
+          "f1-score": 0.9901981981981982,
+          "support": 1360.0
+        },
+        "weighted avg": {
+          "precision": 0.9942357263609836,
+          "recall": 0.9941176470588236,
+          "f1-score": 0.9941449920508744,
+          "support": 1360.0
+        }
+      },
+      "feature_importance": {
+        "log_Lx": 0.00476721441886969,
+        "gamma": 0.0018507875845972341,
+        "log_NH": 0.0023604584913209936,
+        "HR": 0.6009400862109479,
+        "log_Lx_LIR": 0.00428932233865987,
+        "log_Lx_SFR": 0.003962116547103561,
+        "EW_Fe": 0.0018028176272905782,
+        "alpha_OX": 0.02023816725662274,
+        "redshift": 0.00321027686420841,
+        "flux_ratio": 0.3550368869625147,
+        "detection_likelihood": 0.0014513329081521783,
+        "is_obscured": 2.2309377243712736e-08,
+        "is_luminous": 8.745630966156798e-05,
+        "has_fe_line": 3.0541706734435693e-06
+      }
+    },
+    "neural_network": {
+      "accuracy": 0.9948529411764706,
+      "roc_auc": 0.9998981488554477,
+      "f1_score": 0.9859719438877755,
+      "precision": 0.9761904761904762,
+      "recall": 0.9959514170040485,
+      "confusion_matrix": [
+        [
+          1107,
+          6
+        ],
+        [
+          1,
+          246
+        ]
+      ],
+      "classification_report": {
+        "0": {
+          "precision": 0.9990974729241877,
+          "recall": 0.9946091644204852,
+          "f1-score": 0.9968482665466006,
+          "support": 1113.0
+        },
+        "1": {
+          "precision": 0.9761904761904762,
+          "recall": 0.9959514170040485,
+          "f1-score": 0.9859719438877755,
+          "support": 247.0
+        },
+        "accuracy": 0.9948529411764706,
+        "macro avg": {
+          "precision": 0.987643974557332,
+          "recall": 0.9952802907122669,
+          "f1-score": 0.9914101052171881,
+          "support": 1360.0
+        },
+        "weighted avg": {
+          "precision": 0.994937158076227,
+          "recall": 0.9948529411764706,
+          "f1-score": 0.9948729344166523,
+          "support": 1360.0
+        }
+      }
+    }
+  },
+  "redshift_analysis": {
+    "bins": [
+      0,
+      0.5,
+      1.0,
+      2.0,
+      4.0
+    ],
+    "metrics_by_redshift": {
+      "random_forest": {
+        "accuracy": [
+          0.9926289926289926,
+          0.993801652892562,
+          0.9937888198757764,
+          0.9920634920634921
+        ],
+        "f1": [
+          0.9798657718120806,
+          0.9822485207100592,
+          0.9846153846153847,
+          0.9803921568627451
+        ],
+        "auc": [
+          0.9998359445492576,
+          0.999939909262987,
+          1.0,
+          0.9996039603960396
+        ]
+      },
+      "gradient_boosting": {
+        "accuracy": [
+          0.9975429975429976,
+          0.993801652892562,
+          0.9937888198757764,
+          0.9841269841269841
+        ],
+        "f1": [
+          0.9931972789115646,
+          0.9822485207100592,
+          0.9846153846153847,
+          0.96
+        ],
+        "auc": [
+          0.9998769584119431,
+          0.9999699546314935,
+          0.9999999999999999,
+          0.9996039603960396
+        ]
+      },
+      "neural_network": {
+        "accuracy": [
+          0.9926289926289926,
+          0.9958677685950413,
+          0.9968944099378882,
+          0.9920634920634921
+        ],
+        "f1": [
+          0.9795918367346939,
+          0.9880952380952381,
+          0.9922480620155039,
+          0.9803921568627451
+        ],
+        "auc": [
+          0.9998359445492576,
+          0.999939909262987,
+          1.0,
+          0.9996039603960396
+        ]
+      }
+    }
+  },
+  "constants_used": {
+    "alpha_SFR": "2.6e+39",
+    "alpha_LMXB": "1.5e+29",
+    "L_AGN_THRESHOLD": "3e+42",
+    "NH_OBSCURED_THRESHOLD": "1e+22",
+    "NH_COMPTON_THICK": "1e+24",
+    "GAMMA_AGN_MEAN": "1.9",
+    "GAMMA_AGN_STD": "0.3",
+    "GAMMA_SFG_MEAN": "2.0",
+    "GAMMA_SFG_STD": "0.4",
+    "EW_FE_THRESHOLD": "100",
+    "H0": "70",
+    "OMEGA_M": "0.3",
+    "OMEGA_LAMBDA": "0.7"
+  },
+  "theoretical_validation": {
+    "H1_luminosity_sfr_excess": {
+      "description": "Sources with L_X > 3*alpha_SFR*SFR classified as AGN",
+      "threshold": 3.0,
+      "passed": true
+    },
+    "H2_hardness_luminosity_separation": {
+      "description": "AGN and SFG separable in HR-L_X plane",
+      "passed": true
+    },
+    "H4_multiwavelength_improvement": {
+      "description": "Multi-wavelength features improve classification",
+      "passed": true
+    }
+  }
+}

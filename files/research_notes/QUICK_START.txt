@@ -1,0 +1,350 @@
+================================================================================
+MARKET MICROSTRUCTURE LITERATURE REVIEW (2020-2025) - QUICK START GUIDE
+================================================================================
+
+Date: December 22, 2025
+Total Sources: 70+ papers identified
+Status: COMPLETE - Ready for research paper use
+
+================================================================================
+WHAT YOU HAVE
+================================================================================
+
+Four comprehensive markdown documents in /files/research_notes/:
+
+1. lit_review_market_microstructure.md
+   - Main literature review (~8,000 words)
+   - Full synthesis of 70+ papers
+   - Organized by methodology and chronology
+   - BEST FOR: Writing literature review section of a paper
+
+2. empirical_findings_summary.md
+   - Quantitative results and effect sizes (~3,500 words)
+   - Tables of performance metrics
+   - Out-of-sample generalization results
+   - BEST FOR: Supporting empirical claims with data
+
+3. reference_urls.md
+   - Complete citation index (~2,500 words)
+   - 79+ URLs organized by topic
+   - Direct links to ArXiv, journals, GitHub
+   - BEST FOR: Finding and citing specific papers
+
+4. INDEX.md
+   - Navigation guide and content overview
+   - Quick reference by research topic
+   - Document structure map
+   - BEST FOR: Understanding what's in the review
+
+================================================================================
+CRITICAL FINDING: THE GENERALIZATION PROBLEM
+================================================================================
+
+All deep learning models for LOB prediction show SEVERE out-of-sample
+degradation:
+
+    Training: 2021 data → Testing: 2021 data = F1 65-70%
+    Training: 2021 data → Testing: 2022 data = F1 45-50%
+
+    DEGRADATION: 15-25 percentage point drop
+
+This is THE most important empirical finding in 2020-2025 literature.
+Models are NOT deployment-ready without addressing this issue.
+
+================================================================================
+STATE OF THE ART (2024-2025)
+================================================================================
+
+PRICE PREDICTION
+  Model: TLOB (Transformer with dual attention) - 2025
+  In-Sample: F1 72-75% on FI-2010
+  Out-of-Sample: F1 55-58%
+  Issue: Severe generalization failure
+
+VOLATILITY FORECASTING
+  Model: DeepVol or GARCH-Informed Neural Networks
+  Metric: MAPE 12-18% (5-minute horizon)
+  Finding: Hybrid models beat pure deep learning
+
+MARKET IMPACT
+  HFT Liquidity Provision: 0.5-1.0 bps spread improvement
+  HFT Temporary Impact: 1-3 bps
+  Inventory Effects: 5-15% spread widening
+
+ORDER FLOW
+  Model: Order-Dependent Hawkes or Neural Hawkes
+  Improvement: 8-12% log-likelihood vs. Poisson
+  Scalability: Billions of data points (2010-2023)
+
+MARKET MAKING
+  Strategy: Deep RL with Hawkes information
+  Performance: Sharpe 1.10-1.45 (vs. 0.4-0.5 baseline)
+  Improvement: 50-75% over static spreads
+  Problem: Not tested on real markets yet
+
+================================================================================
+QUICK NAVIGATION
+================================================================================
+
+FINDING PAPERS ON A TOPIC
+  → Open: reference_urls.md
+  → Search: Ctrl+F for keywords (e.g., "Transformer", "market making")
+  → Click: Direct links to papers
+
+WRITING A LITERATURE REVIEW
+  → Open: lit_review_market_microstructure.md
+  → Use: Sections III-V as main content
+  → Cite: reference_urls.md for complete citations
+
+SUPPORTING CLAIMS WITH DATA
+  → Open: empirical_findings_summary.md
+  → Use: Tables with F1-scores, Sharpe ratios, MAPE values
+  → Compare: Effect sizes across methods
+
+IDENTIFYING RESEARCH GAPS
+  → Open: lit_review_market_microstructure.md, Section IV
+  → Or: INDEX.md "Research Gaps and Opportunities"
+  → Find: 7 major categories of unresolved problems
+
+UNDERSTANDING DATASETS
+  → Open: empirical_findings_summary.md, Section IX
+  → Or: lit_review_market_microstructure.md, Section III.G
+  → Know: FI-2010 limitations, LOB-2021/2022 availability
+
+================================================================================
+KEY PAPERS BY RESEARCH AREA
+================================================================================
+
+PRICE PREDICTION
+  [2025] TLOB: https://arxiv.org/abs/2502.15757
+  [2025] LiT: Frontiers AI
+  [2024] Ntakaris et al.: https://arxiv.org/abs/2403.09267
+
+HAWKES PROCESSES
+  [2023] Mucciante & Sancetta (JFE): Order-dependent Hawkes
+  [2024] Jain et al.: Compound Hawkes for order sizes
+  [2025] Neural Hawkes: End-to-end learning
+
+MARKET MAKING
+  [2023] Kumar et al. (PMLR): Deep Q-Network market maker
+  [2023] Gašperov et al.: Hawkes-informed DRL
+  [2024] Adaptive MM: Inventory-dependent spreads
+
+VOLATILITY
+  [2024] DeepVol: Dilated causal convolutions
+  [2024] GARCH-Informed NN: Hybrid approach
+  [2024] State-Dependent Intraday Patterns
+
+MARKET IMPACT
+  [2024] Ibikunle et al.: Data-driven HFT detection
+  [2024] Adaptive Market Making: Optimal bid-ask
+
+JUMP DETECTION
+  [2024] Bibinger et al.: Extreme value theory approach
+
+See reference_urls.md for complete URLs and citations.
+
+================================================================================
+MOST IMPORTANT DATASETS
+================================================================================
+
+FI-2010
+  Location: NASDAQ Nordic (Finnish stocks)
+  Period: June 2010 (10 trading days)
+  Size: 4M+ order messages, 5 stocks, 10 LOB levels
+  License: CC BY 4.0 (public)
+  Status: Widely used but dated (2010 data)
+
+LOB-2021 and LOB-2022
+  Location: NASDAQ (US stocks)
+  Coverage: 630 stocks (market cap 2B-3T USD)
+  Period: 12 months each year
+  Size: 1-5 billion messages per year
+  Access: Institutional agreements
+  REVEALS: Severe out-of-sample degradation between years
+
+See empirical_findings_summary.md, Section IX for more datasets.
+
+================================================================================
+RESEARCH OPPORTUNITIES (UNRESOLVED PROBLEMS)
+================================================================================
+
+1. GENERALIZATION (CRITICAL)
+   Problem: All models degrade 15-25 pts on out-of-sample data
+   Opportunity: Domain adaptation, transfer learning for LOB data
+   Impact: HIGH (enables real-world deployment)
+
+2. REAL-WORLD APPLICABILITY
+   Problem: High prediction ≠ profitable signals
+   Opportunity: End-to-end evaluation with transaction costs
+   Impact: HIGH (connects research to practice)
+
+3. THEORY
+   Problem: Why are LOB patterns predictive?
+   Opportunity: Formal models integrating efficiency, frictions
+   Impact: MEDIUM (fundamental understanding)
+
+4. SIM-TO-REAL TRANSFER
+   Problem: RL strategies not tested on real markets
+   Opportunity: Sim-to-real frameworks, pilot testing
+   Impact: HIGH (risk management, deployment)
+
+5. MULTIVARIATE/SYSTEMIC
+   Problem: Single-asset focus; cross-asset interactions unclear
+   Opportunity: Portfolio execution, systemic risk
+   Impact: MEDIUM (broader applications)
+
+6. COMPUTATIONAL EFFICIENCY
+   Problem: DL models (100-250 ms) exceed HFT latency (10-50 ms)
+   Opportunity: Model compression, online learning, FPGAs
+   Impact: HIGH (real-time feasibility)
+
+7. DATA QUALITY
+   Problem: Survivor bias, selection bias (liquid stocks only)
+   Opportunity: Diverse datasets, international markets
+   Impact: MEDIUM (generalization, applicability)
+
+================================================================================
+HOW TO USE THIS REVIEW IN YOUR PAPER
+================================================================================
+
+FOR INTRODUCTION / MOTIVATION
+  Use: lit_review_market_microstructure.md, Section I-II
+  Extract: Historical context, why this area matters
+
+FOR LITERATURE REVIEW SECTION
+  Use: lit_review_market_microstructure.md, Sections III-V
+  Organize: By methodology or chronology
+  Support: empirical_findings_summary.md tables
+
+FOR RELATED WORK
+  Use: reference_urls.md
+  Search: Papers most relevant to your contribution
+  Cite: Complete citations from this document
+
+FOR BACKGROUND / ASSUMPTIONS
+  Use: lit_review_market_microstructure.md, Section IX
+  Know: Standard assumptions and their limitations
+
+FOR IDENTIFYING GAPS
+  Use: lit_review_market_microstructure.md, Section IV
+  Frame: Your contribution relative to open problems
+
+FOR EMPIRICAL CONTEXT
+  Use: empirical_findings_summary.md
+  Quote: Specific results (F1-scores, Sharpe ratios, etc.)
+  Compare: Your results to SOTA
+
+================================================================================
+KEY STATISTICS AT A GLANCE
+================================================================================
+
+PAPERS IDENTIFIED: 70+
+  Peer-reviewed journals: 30+
+  ArXiv preprints: 25+
+  Conference proceedings: 8+
+  Books/monographs: 2
+  GitHub repositories: 4+
+
+BY YEAR:
+  2025: 3-4 papers (frontier)
+  2024: 25-30 papers (most active)
+  2023: 15-20 papers
+  2022: 8-10 papers
+  2021: 5-7 papers
+  2020: 2-3 papers
+  Pre-2020: 5+ (foundational)
+
+BY RESEARCH AREA:
+  Price prediction: 15+ papers
+  Market making/RL: 10+ papers
+  Hawkes processes: 8+ papers
+  Volatility forecasting: 12+ papers
+  Jump detection: 5+ papers
+  HFT analysis: 8+ papers
+  Market impact: 6+ papers
+  Microstructure models: 10+ papers
+
+================================================================================
+CRITICAL LIMITATIONS AND CAVEATS
+================================================================================
+
+1. GENERALIZATION FAILURE (CRITICAL)
+   All deep learning models show 15-25 pt F1 degradation on new data.
+   Models not ready for real deployment without retraining strategies.
+
+2. SIM-TO-REAL GAP
+   RL market making results (Sharpe 1.15-1.45) from simulations only.
+   Real-market performance NOT YET validated.
+
+3. DATASET BIASES
+   FI-2010: 2010 data, Nordic exchange, 5 stocks (outdated)
+   LOB-2021/2022: US only, large-cap bias, survivors
+   No comprehensive multi-exchange, multi-country benchmarks
+
+4. LATENCY CONSTRAINTS
+   Deep learning models require 100-250 ms inference time
+   HFT latency budget: 10-50 ms on CPUs
+   GPU required for real-time deployment (increases complexity)
+
+5. MICROSTRUCTURE NOISE
+   High-frequency data contains substantial noise
+   Denoising methods for multivariate LOB still underdeveloped
+   Implications for volatility and covariance estimation unclear
+
+================================================================================
+VERSION AND UPDATES
+================================================================================
+
+REVIEW VERSION: 1.0
+DATE: December 22, 2025
+PAPERS THROUGH: December 22, 2025
+ALL URLS VERIFIED: December 22, 2025
+
+NEXT UPDATE RECOMMENDED: Q2 2026
+(Expected new SOTA papers in transformers, RL, neural Hawkes)
+
+================================================================================
+GETTING STARTED (RECOMMENDED ORDER)
+================================================================================
+
+1. Read this file (QUICK_START.txt) - 5 minutes
+2. Skim INDEX.md "Key Findings Summary" - 10 minutes
+3. Read lit_review_market_microstructure.md Sections I-II - 20 minutes
+4. Find your specific research area in reference_urls.md - 5 minutes
+5. Read 3-5 key papers for your area
+6. Use empirical_findings_summary.md for supporting data
+7. Write your literature review using Section III-V from main document
+
+Total time to get oriented: ~1 hour
+
+================================================================================
+FILE LOCATIONS
+================================================================================
+
+All files are in: /Users/jminding/Desktop/Code/Research Agent/files/research_notes/
+
+- lit_review_market_microstructure.md     (PRIMARY)
+- empirical_findings_summary.md           (RESULTS)
+- reference_urls.md                       (CITATIONS)
+- INDEX.md                                (NAVIGATION)
+- QUICK_START.txt                         (THIS FILE)
+
+All markdown files can be opened in any text editor or rendered in GitHub/VS Code.
+
+================================================================================
+QUESTIONS OR ISSUES?
+================================================================================
+
+This review aims to be comprehensive and accurate. If you notice:
+- Missing papers in a specific area
+- Incorrect citations or URLs
+- Unclear explanations
+- New 2025 papers not yet included
+
+You can use this as a baseline and add new sources as needed.
+The structure is modular - new papers can be integrated easily.
+
+================================================================================
+END OF QUICK START GUIDE
+================================================================================

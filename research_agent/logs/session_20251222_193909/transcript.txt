@@ -1,0 +1,126 @@
+You: Research the utilization of multi-wavelength emissions to classify between active galactic nuclei and star-forming galaxies. Write the paper using the aastex63 LaTeX library template.
+Agent: Spawning 4 parallel literature reviewers on distinct subtopics for multi-wavelength AGN/star-forming galaxy classification.
+
+[🚀 Spawning LITERATURE-REVIEWER-1: Multi-wavelength AGN signatures]
+
+
+[🚀 Spawning LITERATURE-REVIEWER-2: Star-forming galaxy multi-wavelength properties]
+
+
+[🚀 Spawning LITERATURE-REVIEWER-3: Classification methods and diagnostic diagrams]
+
+
+[🚀 Spawning LITERATURE-REVIEWER-4: Composite/LINER galaxies and edge cases]
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='AGN multi-wavelength emission signatures X-ray infrared optical radio'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='AGN diagnostic techniques classification X-ray optical 2023 2024 2025'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='active galactic nuclei emission line diagnostics BPT diagram'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='AGN infrared selection mid-infrared colors diagnostics'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='X-ray properties AGN variability spectral hardness ratio'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='composite galaxies AGN starburst classification'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='LINER nuclei AGN classification low ionization'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='starburst AGN composite BPT diagram degeneracies'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='AGN SFG classification confusion observational ambiguity 2023 2024'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='multi-wavelength emission star-forming galaxies UV optical infrared'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='star formation rate indicators UV infrared radio'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='dust attenuation star-forming galaxies multi-wavelength'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='stellar population synthesis star-forming galaxies SED fitting'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='diagnostic diagrams star formation galaxies BPT emission lines'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='AGN classification star-forming galaxies BPT diagram optical emission lines'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='AGN star-forming galaxy color-color plot mid-infrared WISE classification'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='infrared diagnostics AGN identification Spitzer WISE 2025'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='X-ray optical correlation AGN classification multi-wavelength'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='machine learning AGN classification galaxies accuracy metrics'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='radio core dominance AGN Fanaroff-Riley classification'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='AGN SED fitting spectral energy distribution modeling'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='X-ray column density NH AGN obscuration classification'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='AGN variability timescales optical X-ray monitoring'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='high-redshift AGN selection 2024 2025 criteria photometric'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='weak AGN low luminosity nuclear emission obscured starbursts'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='radio mode AGN cooling flow LINER accretion'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='dusty starburst AGN infrared colors separation techniques'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='post-starburst galaxies AGN signatures intermediate types'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='far-infrared luminosity star formation calibration Spitzer WISE'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='radio continuum star formation galaxies 1.4 GHz synchrotron'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='optical emission lines Halpha star formation rate calibration'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='spectral energy distribution fitting datasets SDSS CANDELS'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='UV extinction dust correction star-forming galaxies attenuation curve'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='AGN classification survey methods 2024 2025 spectroscopic photometric'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='deep learning convolutional neural networks AGN classification accuracy'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='SED fitting AGN star-forming galaxies decomposition method'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='radio morphology AGN classification jets star-forming'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='JWST AGN classification near-infrared diagnostics emission lines'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='"AGN demarcation" "mixing sequence" optical emission lines'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='X-ray weak AGN Compton thick AGN selection bias'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='high-z AGN metallicity effects ionization parameter classification 2024'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='supernova remnants ionization diagnostic diagram confusion LINER'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='"star-forming galaxies" survey datasets GALEX UV ultraviolet'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='infrared spectral features PAH silicate absorption dust star formation'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='nebular emission lines diagnostics star-forming galaxies metallicity'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='Kennicutt Schmidt star formation law surface density'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='Balmer decrement dust attenuation Halpha Hbeta extinction'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='"WISE" AGN selection criteria color W1 W2 2023 2024'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='Chandra X-ray observations AGN spectral fitting 2024 2025'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='AGN unified model Type1 Type2 optical classification FWHM'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='radio-loud radio-quiet AGN classification criteria radio loudness'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='"Baldwin Phillips Terlevich" diagram AGN LINER Seyfert classification'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='obscured AGN X-ray selection optical classification column density'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='SPICY catalogue AGN classification Spitzer infrared criteria'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='AGN diagnostic diagram alternatives BPT mid-infrared power-law'
+
+Error: Command failed with exit code -2 (exit code: -2)
+Error output: Check stderr output for details

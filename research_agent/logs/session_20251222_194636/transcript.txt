@@ -1,0 +1,211 @@
+You: Research the utilization of multi-wavelength emissions to classify between active galactic nuclei and star-forming galaxies. Write the paper using the aastex63 LaTeX library template.
+Agent: Spawning 4 literature reviewers in parallel across AGN/starburst classification subtopics, then moving through theory → data → experiments → analysis → paper.
+
+[🚀 Spawning LITERATURE-REVIEWER-1: Multi-wavelength AGN diagnostics]
+
+
+[🚀 Spawning LITERATURE-REVIEWER-2: Star-forming galaxy classification]
+
+
+[🚀 Spawning LITERATURE-REVIEWER-3: AGN/starburst composite galaxies]
+
+
+[🚀 Spawning LITERATURE-REVIEWER-4: Multi-wavelength surveys and datasets]
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='composite AGN starburst systems galaxies literature review'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='LINER galaxies AGN starburst distinction diagnostic'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='mid-infrared diagnostics AGN starburst emission'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='radio morphology AGN starburst classification'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='X-ray infrared correlation AGN starburst systems'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='UV-optical SED star-forming galaxies literature review'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='infrared dust emission star-forming galaxies galaxies'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='Balmer Hα emission lines star formation diagnostic'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='radio continuum star formation rate calibration'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='AGN star-forming galaxies multi-wavelength classification'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='CANDELS multi-wavelength galaxy survey data integration catalog'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='SDSS SPITZER AGN SFG classification methodology'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='VLA-COSMOS survey multi-wavelength source classification'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='Herschel SPITZER Chandra multi-wavelength AGN classification'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='3XMM survey multi-wavelength optical infrared cross-matching'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='AGN identification multi-wavelength diagnostics X-ray infrared optical 2024 2025'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='BPT diagram AGN classification optical emission lines'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='X-ray hardness ratio AGN detection active galactic nuclei'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='infrared color AGN selection mid-infrared WISE'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='radio properties AGN diagnostic techniques identification'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='optical emission line diagnostics AGN starburst composite galaxies BPT diagram'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='infrared spectroscopy Spitzer IRS AGN starburst identification'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='ultraluminous infrared galaxies ULIRGs AGN starburst contribution'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='post-starburst galaxies AGN activity detection methods'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='dust reverberation mapping AGN obscured starburst'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='SFR calibration methods UV infrared optical comparison'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='star-forming galaxies AGN diagnostic line ratios OIII NII'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='dust obscured star formation far-infrared submillimeter'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='stellar population synthesis SED fitting star-forming galaxies'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='SED fitting AGN spectral energy distribution fitting 2023 2024 2025'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='AGN selection thresholds criteria X-ray luminosity detection limits'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='multiwavelength AGN survey COSMOS Chandra deep field'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='AGN obscuration column density X-ray absorption'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='radio mode AGN quiescent black hole accretion diagnostic'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='galaxy survey sample selection photometric redshift AGN classification 2023 2024'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='multi-wavelength X-ray infrared SED fitting AGN contamination'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='Chandra COSMOS survey AGN classification stellar mass'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='machine learning AGN star forming galaxies radio optical IR classification'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='COSMOS field multi-wavelength catalog SED properties'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='PAH emission features AGN starburst diagnostic continuum'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='submillimeter continuum AGN starburst bolometric luminosity'
+
+[LITERATURE-REVIEWER-3] → WebSearch    Input: query='narrow line region extended emission AGN starburst galaxies'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='BPT diagram AGN SFG separation 2023 2024'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='X-ray infrared AGN SFG diagnostic indicators'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='spectral energy distribution decomposition AGN starburst'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='"composite AGN" star-forming galaxy diagnostic separation 2023 2024'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='WHAN diagram AGN classification optical emission lines LINER'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='Seyfert 1 Seyfert 2 classification optical spectroscopy AGN'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='infrared to X-ray SED AGN host galaxy decomposition'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='"spectral energy distribution" AGN SFG classification BPT diagram'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='publicly available galaxy survey catalogs CANDELS GOODS redshift photometry'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='Spitzer MIPS 24 micron AGN infrared selection criteria'
+
+[LITERATURE-REVIEWER-4] → WebSearch    Input: query='XMM-Newton X-ray spectral classification AGN types'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='"Kennicutt" SFR calibration UV Hα infrared'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='radio-infrared correlation star formation dust synchrotron'
+
+[LITERATURE-REVIEWER-2] → WebSearch    Input: query='polycyclic aromatic hydrocarbon PAH star formation AGN'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='AGN selection comparison X-ray optical infrared radio 2022 2023 2024'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='Compton thick AGN detection identification methods X-ray reflection'
+
+[LITERATURE-REVIEWER-1] → WebSearch    Input: query='AGN torus dust models infrared diagnostic silicate feature'
+
+[LITERATURE-REVIEWER-1] → Write    Input: file='agn_diagnostics.md' (26719 chars)
+
+[LITERATURE-REVIEWER-3] → Write    Input: file='composite_systems.md' (37953 chars)
+
+[LITERATURE-REVIEWER-4] → Write    Input: file='survey_datasets.md' (40019 chars)
+
+[LITERATURE-REVIEWER-2] → Write    Input: file='sfg_classification.md' (42782 chars)
+
+All 4 literature reviewers complete. Now spawning theorist to formalize research framework.
+
+[🚀 Spawning THEORIST-1: Formalize AGN/SFG classification theory]
+
+[THEORIST-1] → Write    Input: file='theory_multiwavelength_agn_sfg_classification.md' (24142 chars)
+
+Theorist complete. Now spawning data-collector to identify datasets for experiments.
+
+[🚀 Spawning DATA-COLLECTOR-1: Locate multi-wavelength AGN/SFG datasets]
+
+[DATA-COLLECTOR-1] → WebSearch    Input: query='COSMOS survey multi-wavelength AGN SFG classification catalog Chandra XMM Spitzer'
+
+[DATA-COLLECTOR-1] → WebSearch    Input: query='CANDELS survey AGN star forming galaxy classification multi-wavelength data access'
+
+[DATA-COLLECTOR-1] → WebSearch    Input: query='Chandra Deep Field South North AGN classification catalog download'
+
+[DATA-COLLECTOR-1] → WebSearch    Input: query='GOODS survey multi-wavelength AGN SFG photometry redshift catalog'
+
+[DATA-COLLECTOR-1] → WebSearch    Input: query='COSMOS2020 catalog AGN classification photometric redshift download IRSA'
+
+[DATA-COLLECTOR-1] → WebSearch    Input: query='3XMM DR13 catalog AGN multiwavelength optical infrared crossmatch'
+
+[DATA-COLLECTOR-1] → WebSearch    Input: query='SDSS AGN catalog MPA-JHU spectroscopic star forming galaxy BPT download'
+
+[DATA-COLLECTOR-1] → WebSearch    Input: query='Spitzer IRAC AGN selection Stern wedge mid-infrared catalog'
+
+[DATA-COLLECTOR-1] → WebSearch    Input: query='"AllWISE" AGN catalog classification Wright mid-infrared color selection'
+
+[DATA-COLLECTOR-1] → WebSearch    Input: query='LOFAR VLA radio AGN star forming galaxy catalog HETDEX SDSS'
+
+[DATA-COLLECTOR-1] → WebSearch    Input: query='Herschel PACS FIR catalog AGN SFG far infrared luminosity function'
+
+[DATA-COLLECTOR-1] → WebSearch    Input: query='COSMOS catalog download IRSA NASA archive multi-wavelength photometry'
+
+[DATA-COLLECTOR-1] → WebSearch    Input: query='Chandra Deep Field catalog download ChaMP CDF-S CDF-N X-ray source table'
+
+[DATA-COLLECTOR-1] → WebSearch    Input: query='CANDELS catalog download HST ACS WFC3 GOODS photometry stellar mass'
+
+[DATA-COLLECTOR-1] → WebSearch    Input: query='AGN SFG classification benchmark dataset machine learning multiwavelength training'
+
+[DATA-COLLECTOR-1] → WebSearch    Input: query='XMM XXL survey AGN classification catalog redshift multiwavelength download'
+
+[DATA-COLLECTOR-1] → Write    Input: file='data_sources_agn_sfg_multiwavelength.md' (45851 chars)
+
+[DATA-COLLECTOR-1] → Write    Input: file='dataset_download_instructions.md' (28940 chars)
+
+[DATA-COLLECTOR-1] → Write    Input: file='dataset_summary_quick_reference.md' (15397 chars)
+
+Data-collector complete. Now spawning experimentalist to implement multi-wavelength classification experiments.
+
+[🚀 Spawning EXPERIMENTALIST-1: Implement multi-wavelength AGN/SFG classification]
+
+[EXPERIMENTALIST-1] → Bash    Input: {'command': 'ls -la /Users/jminding/Desktop/Code/Research Agent/files/data/', 'description': 'List d
+
+[EXPERIMENTALIST-1] → Read    Input: path='/Users/jminding/Desktop/Code/Research Agent/files/theory/theory_multiwavelength_agn_sfg_classification.md'
+
+[EXPERIMENTALIST-1] → Bash    Input: {'command': 'ls -la "/Users/jminding/Desktop/Code/Research Agent/files/data/"', 'description': 'List
+
+[EXPERIMENTALIST-1] → Bash    Input: {'command': 'ls -la "/Users/jminding/Desktop/Code/Research Agent/files/"', 'description': 'List file
+
+[EXPERIMENTALIST-1] → Read    Input: path='/Users/jminding/Desktop/Code/Research Agent/files/data/data_sources_agn_sfg_multiwavelength.md'
+
+[EXPERIMENTALIST-1] → Read    Input: path='/Users/jminding/Desktop/Code/Research Agent/files/data/dataset_summary_quick_reference.md'
+
+[EXPERIMENTALIST-1] → Bash    Input: {'command': 'ls -la "/Users/jminding/Desktop/Code/Research Agent/files/experiments/"', 'description'
+
+[EXPERIMENTALIST-1] → Bash    Input: {'command': 'ls -la "/Users/jminding/Desktop/Code/Research Agent/files/results/"', 'description': 'L
+
+[EXPERIMENTALIST-1] → Read    Input: path='/Users/jminding/Desktop/Code/Research Agent/files/experiments/agn_sfg_classification_pipeline.py'
+
+[EXPERIMENTALIST-1] → Write    Input: file='multiwavelength_agn_sfg_experiment.py' (74551 chars)

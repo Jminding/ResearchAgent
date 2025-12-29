@@ -1,0 +1,405 @@
+{
+  "project_name": "QEC_RL_Scaling_Revision",
+  "results": [
+    {
+      "config_name": "extended_d15_ep200_s1",
+      "parameters": {
+        "code_distance": 15,
+        "physical_error_rate": 0.005,
+        "training_episodes": 200,
+        "seed": 1
+      },
+      "metrics": {
+        "logical_error_rate": 0.768,
+        "ci_95_lower": 0.7310005156360254,
+        "ci_95_upper": 0.8049994843639746,
+        "stderr": 0.018877287940803362,
+        "training_loss": 1.1505910473180685,
+        "convergence_episode": 200,
+        "training_time_sec": 46.90091896057129
+      },
+      "ablation": null,
+      "error": null
+    },
+    {
+      "config_name": "extended_d15_ep200_s2",
+      "parameters": {
+        "code_distance": 15,
+        "physical_error_rate": 0.005,
+        "training_episodes": 200,
+        "seed": 2
+      },
+      "metrics": {
+        "logical_error_rate": 0.736,
+        "ci_95_lower": 0.6973622400649313,
+        "ci_95_upper": 0.7746377599350687,
+        "stderr": 0.019713142824014644,
+        "training_loss": 0.9843779234119902,
+        "convergence_episode": 200,
+        "training_time_sec": 49.862438917160034
+      },
+      "ablation": null,
+      "error": null
+    },
+    {
+      "config_name": "extended_d15_ep200_s3",
+      "parameters": {
+        "code_distance": 15,
+        "physical_error_rate": 0.005,
+        "training_episodes": 200,
+        "seed": 3
+      },
+      "metrics": {
+        "logical_error_rate": 0.74,
+        "ci_95_lower": 0.7015520133166898,
+        "ci_95_upper": 0.7784479866833102,
+        "stderr": 0.019616319736382767,
+        "training_loss": 1.0535433512570356,
+        "convergence_episode": 200,
+        "training_time_sec": 46.162132024765015
+      },
+      "ablation": null,
+      "error": null
+    },
+    {
+      "config_name": "extended_d15_ep200_s4",
+      "parameters": {
+        "code_distance": 15,
+        "physical_error_rate": 0.005,
+        "training_episodes": 200,
+        "seed": 4
+      },
+      "metrics": {
+        "logical_error_rate": 0.768,
+        "ci_95_lower": 0.7310005156360254,
+        "ci_95_upper": 0.8049994843639746,
+        "stderr": 0.018877287940803362,
+        "training_loss": 0.9287994248263155,
+        "convergence_episode": 200,
+        "training_time_sec": 46.369996070861816
+      },
+      "ablation": null,
+      "error": null
+    },
+    {
+      "config_name": "extended_d15_ep200_s5",
+      "parameters": {
+        "code_distance": 15,
+        "physical_error_rate": 0.005,
+        "training_episodes": 200,
+        "seed": 5
+      },
+      "metrics": {
+        "logical_error_rate": 0.77,
+        "ci_95_lower": 0.7331124042529199,
+        "ci_95_upper": 0.8068875957470801,
+        "stderr": 0.018820201911775546,
+        "training_loss": 1.1089535677036069,
+        "convergence_episode": 200,
+        "training_time_sec": 52.013067960739136
+      },
+      "ablation": null,
+      "error": null
+    },
+    {
+      "config_name": "extended_d15_ep1000_s1",
+      "parameters": {
+        "code_distance": 15,
+        "physical_error_rate": 0.005,
+        "training_episodes": 1000,
+        "seed": 1
+      },
+      "metrics": {
+        "logical_error_rate": 0.76,
+        "ci_95_lower": 0.7225645130925215,
+        "ci_95_upper": 0.7974354869074786,
+        "stderr": 0.019099738218101316,
+        "training_loss": 1.0814278882129391,
+        "convergence_episode": 1000,
+        "training_time_sec": 285.33859610557556
+      },
+      "ablation": null,
+      "error": null
+    },
+    {
+      "config_name": "extended_d15_ep1000_s2",
+      "parameters": {
+        "code_distance": 15,
+        "physical_error_rate": 0.005,
+        "training_episodes": 1000,
+        "seed": 2
+      },
+      "metrics": {
+        "logical_error_rate": 0.732,
+        "ci_95_lower": 0.6931765606469493,
+        "ci_95_upper": 0.7708234393530506,
+        "stderr": 0.0198078772209442,
+        "training_loss": 0.9842007630841316,
+        "convergence_episode": 1000,
+        "training_time_sec": 295.06730699539185
+      },
+      "ablation": null,
+      "error": null
+    },
+    {
+      "config_name": "extended_d15_ep1000_s3",
+      "parameters": {
+        "code_distance": 15,
+        "physical_error_rate": 0.005,
+        "training_episodes": 1000,
+        "seed": 3
+      },
+      "metrics": {
+        "logical_error_rate": 0.76,
+        "ci_95_lower": 0.7225645130925215,
+        "ci_95_upper": 0.7974354869074786,
+        "stderr": 0.019099738218101316,
+        "training_loss": 0.9565400616585837,
+        "convergence_episode": 1000,
+        "training_time_sec": 302.9673008918762
+      },
+      "ablation": null,
+      "error": null
+    },
+    {
+      "config_name": "extended_d15_ep1000_s4",
+      "parameters": {
+        "code_distance": 15,
+        "physical_error_rate": 0.005,
+        "training_episodes": 1000,
+        "seed": 4
+      },
+      "metrics": {
+        "logical_error_rate": 0.778,
+        "ci_95_lower": 0.7415718299773376,
+        "ci_95_upper": 0.8144281700226624,
+        "stderr": 0.018585801031970613,
+        "training_loss": 0.9565366908940924,
+        "convergence_episode": 1000,
+        "training_time_sec": 321.90808606147766
+      },
+      "ablation": null,
+      "error": null
+    },
+    {
+      "config_name": "extended_d15_ep1000_s5",
+      "parameters": {
+        "code_distance": 15,
+        "physical_error_rate": 0.005,
+        "training_episodes": 1000,
+        "seed": 5
+      },
+      "metrics": {
+        "logical_error_rate": 0.75,
+        "ci_95_lower": 0.7120447632071674,
+        "ci_95_upper": 0.7879552367928326,
+        "stderr": 0.019364916731037084,
+        "training_loss": 1.0258928504649862,
+        "convergence_episode": 1000,
+        "training_time_sec": 295.4966628551483
+      },
+      "ablation": null,
+      "error": null
+    },
+    {
+      "config_name": "extended_d15_ep2000_s1",
+      "parameters": {
+        "code_distance": 15,
+        "physical_error_rate": 0.005,
+        "training_episodes": 2000,
+        "seed": 1
+      },
+      "metrics": {
+        "logical_error_rate": 0.752,
+        "ci_95_lower": 0.7141465184269663,
+        "ci_95_upper": 0.7898534815730337,
+        "stderr": 0.019313000802568203,
+        "training_loss": 0.9705240489146248,
+        "convergence_episode": 2000,
+        "training_time_sec": 578.0733358860016
+      },
+      "ablation": null,
+      "error": null
+    },
+    {
+      "config_name": "extended_d15_ep2000_s2",
+      "parameters": {
+        "code_distance": 15,
+        "physical_error_rate": 0.005,
+        "training_episodes": 2000,
+        "seed": 2
+      },
+      "metrics": {
+        "logical_error_rate": 0.76,
+        "ci_95_lower": 0.7225645130925215,
+        "ci_95_upper": 0.7974354869074786,
+        "stderr": 0.019099738218101316,
+        "training_loss": 0.9982431762883452,
+        "convergence_episode": 2000,
+        "training_time_sec": 654.0339510440826
+      },
+      "ablation": null,
+      "error": null
+    },
+    {
+      "config_name": "extended_d15_ep2000_s3",
+      "parameters": {
+        "code_distance": 15,
+        "physical_error_rate": 0.005,
+        "training_episodes": 2000,
+        "seed": 3
+      },
+      "metrics": {
+        "logical_error_rate": 0.754,
+        "ci_95_lower": 0.7162493620080401,
+        "ci_95_upper": 0.7917506379919599,
+        "stderr": 0.019260529587734602,
+        "training_loss": 1.039673709887078,
+        "convergence_episode": 2000,
+        "training_time_sec": 554.0759830474854
+      },
+      "ablation": null,
+      "error": null
+    },
+    {
+      "config_name": "extended_d15_ep2000_s4",
+      "parameters": {
+        "code_distance": 15,
+        "physical_error_rate": 0.005,
+        "training_episodes": 2000,
+        "seed": 4
+      },
+      "metrics": {
+        "logical_error_rate": 0.726,
+        "ci_95_lower": 0.6869055902103638,
+        "ci_95_upper": 0.7650944097896362,
+        "stderr": 0.01994612744369192,
+        "training_loss": 0.9842483771281907,
+        "convergence_episode": 2000,
+        "training_time_sec": 531.825129032135
+      },
+      "ablation": null,
+      "error": null
+    },
+    {
+      "config_name": "extended_d15_ep2000_s5",
+      "parameters": {
+        "code_distance": 15,
+        "physical_error_rate": 0.005,
+        "training_episodes": 2000,
+        "seed": 5
+      },
+      "metrics": {
+        "logical_error_rate": 0.77,
+        "ci_95_lower": 0.7331124042529199,
+        "ci_95_upper": 0.8068875957470801,
+        "stderr": 0.018820201911775546,
+        "training_loss": 0.9565195442673772,
+        "convergence_episode": 2000,
+        "training_time_sec": 533.7065749168396
+      },
+      "ablation": null,
+      "error": null
+    },
+    {
+      "config_name": "extended_d15_ep5000_s1",
+      "parameters": {
+        "code_distance": 15,
+        "physical_error_rate": 0.005,
+        "training_episodes": 5000,
+        "seed": 1
+      },
+      "metrics": {
+        "logical_error_rate": 0.776,
+        "ci_95_lower": 0.7394551705873458,
+        "ci_95_upper": 0.8125448294126543,
+        "stderr": 0.018645321128905233,
+        "training_loss": 1.0257699736324697,
+        "convergence_episode": 5000,
+        "training_time_sec": 1365.2044990062714
+      },
+      "ablation": null,
+      "error": null
+    },
+    {
+      "config_name": "extended_d15_ep5000_s2",
+      "parameters": {
+        "code_distance": 15,
+        "physical_error_rate": 0.005,
+        "training_episodes": 5000,
+        "seed": 2
+      },
+      "metrics": {
+        "logical_error_rate": 0.74,
+        "ci_95_lower": 0.7015520133166898,
+        "ci_95_upper": 0.7784479866833102,
+        "stderr": 0.019616319736382767,
+        "training_loss": 1.0952326812638042,
+        "convergence_episode": 5000,
+        "training_time_sec": 1258.5658149719238
+      },
+      "ablation": null,
+      "error": null
+    },
+    {
+      "config_name": "extended_d15_ep5000_s3",
+      "parameters": {
+        "code_distance": 15,
+        "physical_error_rate": 0.005,
+        "training_episodes": 5000,
+        "seed": 3
+      },
+      "metrics": {
+        "logical_error_rate": 0.736,
+        "ci_95_lower": 0.6973622400649313,
+        "ci_95_upper": 0.7746377599350687,
+        "stderr": 0.019713142824014644,
+        "training_loss": 1.0535665945334625,
+        "convergence_episode": 5000,
+        "training_time_sec": 1275.4971942901611
+      },
+      "ablation": null,
+      "error": null
+    },
+    {
+      "config_name": "extended_d15_ep5000_s4",
+      "parameters": {
+        "code_distance": 15,
+        "physical_error_rate": 0.005,
+        "training_episodes": 5000,
+        "seed": 4
+      },
+      "metrics": {
+        "logical_error_rate": 0.762,
+        "ci_95_lower": 0.7246718012864269,
+        "ci_95_upper": 0.7993281987135731,
+        "stderr": 0.01904499934365974,
+        "training_loss": 1.178373869688218,
+        "convergence_episode": 5000,
+        "training_time_sec": 1248.7454028129578
+      },
+      "ablation": null,
+      "error": null
+    },
+    {
+      "config_name": "extended_d15_ep5000_s5",
+      "parameters": {
+        "code_distance": 15,
+        "physical_error_rate": 0.005,
+        "training_episodes": 5000,
+        "seed": 5
+      },
+      "metrics": {
+        "logical_error_rate": 0.768,
+        "ci_95_lower": 0.7310005156360254,
+        "ci_95_upper": 0.8049994843639746,
+        "stderr": 0.018877287940803362,
+        "training_loss": 1.0397732684368968,
+        "convergence_episode": 5000,
+        "training_time_sec": 1237.5447301864624
+      },
+      "ablation": null,
+      "error": null
+    }
+  ]
+}

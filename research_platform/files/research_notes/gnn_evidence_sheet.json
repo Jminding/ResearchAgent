@@ -1,0 +1,222 @@
+{
+  "metric_ranges": {
+    "gnn_cora_accuracy_range": [0.814, 0.833],
+    "gnn_citeseer_accuracy_range": [0.703, 0.725],
+    "gnn_pubmed_accuracy_range": [0.79, 0.79],
+    "gat_ogbn_proteins_accuracy": [0.8747, 0.8747],
+    "graphsage_reddit_accuracy": [0.954, 0.954],
+    "graphsage_cora_inductive_accuracy": [0.907, 0.907],
+    "ppi_f1_score": [0.973, 0.973],
+    "gcn_time_complexity_edges": "O(|E|F)",
+    "graphsage_time_complexity_batch": "O(bkL)",
+    "gat_time_complexity_attention": "O(N^2)",
+    "sign_max_nodes": 110000000,
+    "sign_max_edges": 1500000000,
+    "memory_full_batch_gcn": "O(Lnd + Ld^2)",
+    "memory_minibatch_graphsage": "O(bkL)",
+    "memory_full_batch_gat": "O(N^2d + Lnd)",
+    "graphsage_speedup_vs_gat": 88,
+    "graphsage_speedup_vs_gcn": 4,
+    "gat_dropout_accuracy_loss_percent": [2.44, 2.53],
+    "gat_wikics_improvement_percent": 4.16,
+    "dropedge_16layer_improvement_percent": 2.0,
+    "minibatch_epoch_advantage_vs_fullbatch": "3-5 fewer epochs",
+    "se2p_speedup_max": 8,
+    "smpnn_scaling": "O(n)",
+    "transformer_scaling": "O(n^2)",
+    "ogbn_products_nodes": 2400000,
+    "ogbn_products_edges": 61200000,
+    "ogbn_proteins_nodes": 132000,
+    "ogbn_proteins_edges": 39600000,
+    "cora_nodes": 2708,
+    "cora_edges": 5278,
+    "cora_features": 1433,
+    "cora_classes": 7,
+    "reddit_nodes": 232000,
+    "reddit_edges": 11600000,
+    "gnn_depth_practical_limit": "2-4 layers",
+    "gnn_depth_with_mitigation": "4-8 layers",
+    "wl_expressiveness_bound": "1-WL equivalent"
+  },
+  "typical_sample_sizes": {
+    "citation_networks": "Thousands of nodes (Cora: 2.7K, Citeseer: 3.3K, PubMed: 19.7K)",
+    "medium_scale_social": "Hundreds of thousands (Reddit: 232K)",
+    "large_scale_products": "Millions (ogbn-products: 2.4M nodes, 61.2M edges)",
+    "very_large_scale": "Hundreds of millions (OGBN-Papers100M: 110M+ nodes, 1.5B edges)",
+    "protein_interaction": "Tens to hundreds of thousands (PPI: 56K nodes)",
+    "typical_training_set_fraction": "10-20% of nodes for transductive learning",
+    "batch_size_graphsage": "Typically 256-512 nodes per batch",
+    "neighborhood_sample_size_graphsage": "10-25 samples per hop",
+    "number_of_layers_optimal": "2-4 layers for standard tasks",
+    "number_of_attention_heads": "4-8 heads for GAT variants"
+  },
+  "known_pitfalls": [
+    "over-smoothing: node representations converge to indistinguishable vectors beyond 2-3 layers",
+    "over-squashing: exponential neighborhood growth compresses information into fixed-size vectors on graphs with bottlenecks",
+    "transductive_bias: GCN requires all nodes at training time; cannot generalize to new nodes",
+    "sampling_variance: GraphSAGE neighborhood sampling introduces gradient noise and variance",
+    "attention_quadratic_cost: GAT scales as O(N^2) making it prohibitive for graphs with N > 100K nodes",
+    "full_batch_memory: Full-batch GCN requires O(Lnd + Ld^2) memory, prohibitive for graphs > 1M nodes",
+    "neighbourhood_explosion: K-hop neighborhoods grow exponentially; sampling becomes necessary",
+    "weisfeiler_lehman_limit: MPNNs cannot distinguish certain non-isomorphic graphs or count substructures",
+    "graph_structure_sensitivity: GCN performance sensitive to sparsity patterns and degree distribution",
+    "regularization_criticality: Dropout, batch normalization essential; ablation removes 2.44-2.53% accuracy",
+    "benchmark_saturation: Classical GNNs remain competitive despite new architectures; small benchmarks may mislead",
+    "curvature_bottlenecks: Negatively curved edges (high-degree nodes) are sources of over-squashing",
+    "attention_collapse: Multi-head attention can suffer gradient instability in deep networks",
+    "generalization_gap_sampling: Inductive learning with sampling has incomplete theoretical understanding",
+    "missing_global_context: Neighborhood aggregation misses long-range dependencies beyond receptive field",
+    "parameter_growth_gat: Per-head weight matrices increase parameters substantially vs. GCN",
+    "mini_batch_stochasticity: Mini-batch training exhibits slower per-epoch convergence despite fewer total epochs",
+    "preprocessing_dependence: Simplified models (SIGN) depend on high-quality pre-computed features",
+    "hyperparameter_sensitivity: Performance varies significantly with dropout rate, learning rate, and layer normalization",
+    "spectral_properties_dependency: GNN performance correlates with spectral gap and eigenvalue distribution of graph"
+  ],
+  "key_references": [
+    {
+      "shortname": "KW2016",
+      "year": 2016,
+      "title": "Semi-Supervised Classification with Graph Convolutional Networks",
+      "venue": "ICLR 2017",
+      "finding": "GCN: First-order spectral approximation; scales as O(|E|F); achieves 81.4% on Cora",
+      "arxiv": "1609.02907",
+      "url": "https://arxiv.org/abs/1609.02907"
+    },
+    {
+      "shortname": "HYL2017",
+      "year": 2017,
+      "title": "Inductive Representation Learning on Large Graphs",
+      "venue": "NIPS 2017",
+      "finding": "GraphSAGE: Neighborhood sampling + aggregation; O(bkL) complexity; 90.7% Cora inductive; 88x faster than GAT",
+      "arxiv": "1706.02216",
+      "url": "https://arxiv.org/abs/1706.02216"
+    },
+    {
+      "shortname": "VCR2017",
+      "year": 2017,
+      "title": "Graph Attention Networks",
+      "venue": "ICLR 2018",
+      "finding": "GAT: Masked multi-head self-attention; O(N^2) cost; 83.3% Cora transductive; 97.3% PPI inductive F1",
+      "arxiv": "1710.10903",
+      "url": "https://arxiv.org/abs/1710.10903"
+    },
+    {
+      "shortname": "XHLJ2019",
+      "year": 2019,
+      "title": "How Powerful are Graph Neural Networks?",
+      "venue": "ICLR 2019",
+      "finding": "MPNNs expressiveness bounded by Weisfeiler-Lehman test; cannot count subgraphs or distinguish certain isomorphic patterns",
+      "arxiv": "1810.00826",
+      "url": "https://arxiv.org/abs/1810.00826"
+    },
+    {
+      "shortname": "RHXH2020",
+      "year": 2020,
+      "title": "DropEdge: Towards Deep Graph Convolutional Networks on Node Classification",
+      "venue": "ICLR 2020",
+      "finding": "DropEdge mitigates over-smoothing; enables 16-layer GCN with +2% improvement over 2-layer on Cora",
+      "arxiv": "1907.10903",
+      "url": "https://arxiv.org/abs/1907.10903"
+    },
+    {
+      "shortname": "TSBED2021",
+      "year": 2021,
+      "title": "Understanding Over-Squashing and Bottlenecks on Graphs via Curvature",
+      "venue": "ICLR 2022",
+      "finding": "Over-squashing caused by negatively curved edges (high-degree nodes); graph rewiring remedy proposed",
+      "arxiv": "2111.14522",
+      "url": "https://arxiv.org/abs/2111.14522"
+    },
+    {
+      "shortname": "HZL2023",
+      "year": 2023,
+      "title": "Simple Scalable Graph Neural Networks",
+      "venue": "Twitter Research Blog",
+      "finding": "SIGN architecture: Scales to 110M+ nodes, 1.5B edges (OGBN-Papers100M); pre-computed diffusions; outperforms complex variants",
+      "arxiv": "2302.03468",
+      "url": "https://arxiv.org/abs/2302.03468"
+    },
+    {
+      "shortname": "SBG2024",
+      "year": 2024,
+      "title": "Beyond Weisfeiler-Lehman: A Quantitative Framework for GNN Expressiveness",
+      "venue": "ICLR 2024",
+      "finding": "Homomorphism expressivity framework quantifies GNN ability to count subgraphs; moves beyond coarse WL bounds",
+      "arxiv": "2401.08514",
+      "url": "https://arxiv.org/abs/2401.08514"
+    },
+    {
+      "shortname": "HZL2024",
+      "year": 2024,
+      "title": "Classic GNNs are Strong Baselines: Reassessing GNNs for Node Classification",
+      "venue": "NeurIPS 2024 (Datasets & Benchmarks)",
+      "finding": "GCN/GAT competitive with recent architectures when properly tuned; GAT 87.47% ogbn-proteins; dropout critical (2.44-2.53% loss)",
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2024/file/b10ed15ff1aa864f1be3a75f1ffc021b-Paper-Datasets_and_Benchmarks_Track.pdf"
+    },
+    {
+      "shortname": "SWC2024",
+      "year": 2024,
+      "title": "A Comprehensive Study on Large-Scale Graph Training",
+      "venue": "ICLR 2024",
+      "finding": "Mini-batch training reaches target accuracy 3-5 epochs faster than full-batch despite longer per-epoch time",
+      "arxiv": "2210.07494",
+      "url": "https://arxiv.org/abs/2210.07494"
+    },
+    {
+      "shortname": "LHSZJA2025",
+      "year": 2025,
+      "title": "SE2P: Scalable Expressiveness via Preprocessed Graph Perturbations",
+      "venue": "ArXiv",
+      "finding": "Balances scalability and expressiveness; achieves up to 8x speedup while maintaining or improving generalization vs. standard GCN",
+      "arxiv": "2406.11714",
+      "url": "https://arxiv.org/abs/2406.11714"
+    },
+    {
+      "shortname": "B2025",
+      "year": 2025,
+      "title": "Scalable Message Passing Neural Networks: No Need for Attention in Large Graph Representation Learning",
+      "venue": "ArXiv",
+      "finding": "SMPNNs achieve linear O(n) scaling; outperform Graph Transformers on large graphs; quadratic attention cost unjustified at scale",
+      "arxiv": "2411.00835",
+      "url": "https://arxiv.org/abs/2411.00835"
+    },
+    {
+      "shortname": "PTNK2025",
+      "year": 2025,
+      "title": "A Dynamical Systems Approach to Mitigating Oversmoothing in Graph Neural Networks",
+      "venue": "ArXiv",
+      "finding": "Pruning-based strategy via rank analysis enables deeper GNNs (8-16 layers) without performance degradation",
+      "arxiv": "2412.07243",
+      "url": "https://arxiv.org/abs/2412.07243"
+    },
+    {
+      "shortname": "GBDH2023",
+      "year": 2023,
+      "title": "Weisfeiler and Leman Go Neural: Higher-order Graph Neural Networks",
+      "venue": "ICML 2023",
+      "finding": "k-GNNs overcome WL limitations for specific tasks; higher-order constructions match or exceed WL expressiveness",
+      "arxiv": "1810.02244",
+      "url": "https://arxiv.org/abs/1810.02244"
+    },
+    {
+      "shortname": "GSRVD2017",
+      "year": 2017,
+      "title": "Neural Message Passing for Quantum Chemistry",
+      "venue": "ICML 2017",
+      "finding": "MPNN framework unifies message-passing view; enables modular design of GNN aggregation and update functions",
+      "arxiv": "1704.01212",
+      "url": "https://arxiv.org/abs/1704.01212"
+    },
+    {
+      "shortname": "ZDR2024",
+      "year": 2024,
+      "title": "A Comprehensive Benchmark on Spectral GNNs: The Impact on Efficiency, Memory, and Effectiveness",
+      "venue": "ArXiv",
+      "finding": "Spectral GNNs offer accuracy-efficiency trade-offs; polynomial-based methods (PGC) more expressive than fixed spectral filters",
+      "arxiv": "2406.09675",
+      "url": "https://arxiv.org/abs/2406.09675"
+    }
+  ],
+  "domain": "ml",
+  "notes": "Comprehensive evidence sheet for foundational GNN architectures (GCN, GraphSAGE, GAT) with emphasis on scalability, expressiveness, and inductive/transductive capabilities. Includes quantitative performance metrics across multiple benchmark datasets (Cora, Citeseer, PubMed, OGBN, Reddit, PPI), computational complexity analysis, and identified pitfalls. Key finding: Trade-off between efficiency (GCN > GraphSAGE > GAT) and expressiveness (GAT > GraphSAGE > GCN); message-passing architectures scale better than attention at million-node scale despite lower theoretical expressiveness. Classic GNNs remain competitive with recent architectures when properly tuned (2024-2025). Over-smoothing and over-squashing are fundamental challenges; mitigation strategies (DropEdge, rewiring, batch norm, skip connections) are critical for deeper networks."
+}

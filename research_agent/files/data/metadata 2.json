@@ -1,0 +1,466 @@
+{
+  "distances": [
+    3,
+    5,
+    7
+  ],
+  "error_rates": [
+    0.01,
+    0.025555555555555554,
+    0.041111111111111105,
+    0.056666666666666664,
+    0.07222222222222222,
+    0.08777777777777776,
+    0.10333333333333332,
+    0.11888888888888886,
+    0.13444444444444442,
+    0.15
+  ],
+  "noise_types": [
+    "depolarizing",
+    "dephasing"
+  ],
+  "n_samples_train": 10000,
+  "n_samples_test": 5000,
+  "n_rounds": 3,
+  "datasets": {
+    "d3": {
+      "depolarizing": {
+        "p0.0100": {
+          "train_file": "train_d3_depolarizing_0p0100.pkl",
+          "test_file": "test_d3_depolarizing_0p0100.pkl",
+          "n_detectors": 24,
+          "raw_logical_error_rate_train": 0.0723,
+          "raw_logical_error_rate_test": 0.07
+        },
+        "p0.0256": {
+          "train_file": "train_d3_depolarizing_0p0256.pkl",
+          "test_file": "test_d3_depolarizing_0p0256.pkl",
+          "n_detectors": 24,
+          "raw_logical_error_rate_train": 0.1684,
+          "raw_logical_error_rate_test": 0.1608
+        },
+        "p0.0411": {
+          "train_file": "train_d3_depolarizing_0p0411.pkl",
+          "test_file": "test_d3_depolarizing_0p0411.pkl",
+          "n_detectors": 24,
+          "raw_logical_error_rate_train": 0.246,
+          "raw_logical_error_rate_test": 0.2386
+        },
+        "p0.0567": {
+          "train_file": "train_d3_depolarizing_0p0567.pkl",
+          "test_file": "test_d3_depolarizing_0p0567.pkl",
+          "n_detectors": 24,
+          "raw_logical_error_rate_train": 0.2962,
+          "raw_logical_error_rate_test": 0.2986
+        },
+        "p0.0722": {
+          "train_file": "train_d3_depolarizing_0p0722.pkl",
+          "test_file": "test_d3_depolarizing_0p0722.pkl",
+          "n_detectors": 24,
+          "raw_logical_error_rate_train": 0.3476,
+          "raw_logical_error_rate_test": 0.3436
+        },
+        "p0.0878": {
+          "train_file": "train_d3_depolarizing_0p0878.pkl",
+          "test_file": "test_d3_depolarizing_0p0878.pkl",
+          "n_detectors": 24,
+          "raw_logical_error_rate_train": 0.38,
+          "raw_logical_error_rate_test": 0.3884
+        },
+        "p0.1033": {
+          "train_file": "train_d3_depolarizing_0p1033.pkl",
+          "test_file": "test_d3_depolarizing_0p1033.pkl",
+          "n_detectors": 24,
+          "raw_logical_error_rate_train": 0.4118,
+          "raw_logical_error_rate_test": 0.4032
+        },
+        "p0.1189": {
+          "train_file": "train_d3_depolarizing_0p1189.pkl",
+          "test_file": "test_d3_depolarizing_0p1189.pkl",
+          "n_detectors": 24,
+          "raw_logical_error_rate_train": 0.4358,
+          "raw_logical_error_rate_test": 0.4384
+        },
+        "p0.1344": {
+          "train_file": "train_d3_depolarizing_0p1344.pkl",
+          "test_file": "test_d3_depolarizing_0p1344.pkl",
+          "n_detectors": 24,
+          "raw_logical_error_rate_train": 0.4443,
+          "raw_logical_error_rate_test": 0.4518
+        },
+        "p0.1500": {
+          "train_file": "train_d3_depolarizing_0p1500.pkl",
+          "test_file": "test_d3_depolarizing_0p1500.pkl",
+          "n_detectors": 24,
+          "raw_logical_error_rate_train": 0.4641,
+          "raw_logical_error_rate_test": 0.4574
+        }
+      },
+      "dephasing": {
+        "p0.0100": {
+          "train_file": "train_d3_dephasing_0p0100.pkl",
+          "test_file": "test_d3_dephasing_0p0100.pkl",
+          "n_detectors": 24,
+          "raw_logical_error_rate_train": 0.0661,
+          "raw_logical_error_rate_test": 0.0726
+        },
+        "p0.0256": {
+          "train_file": "train_d3_dephasing_0p0256.pkl",
+          "test_file": "test_d3_dephasing_0p0256.pkl",
+          "n_detectors": 24,
+          "raw_logical_error_rate_train": 0.1511,
+          "raw_logical_error_rate_test": 0.153
+        },
+        "p0.0411": {
+          "train_file": "train_d3_dephasing_0p0411.pkl",
+          "test_file": "test_d3_dephasing_0p0411.pkl",
+          "n_detectors": 24,
+          "raw_logical_error_rate_train": 0.2187,
+          "raw_logical_error_rate_test": 0.2174
+        },
+        "p0.0567": {
+          "train_file": "train_d3_dephasing_0p0567.pkl",
+          "test_file": "test_d3_dephasing_0p0567.pkl",
+          "n_detectors": 24,
+          "raw_logical_error_rate_train": 0.274,
+          "raw_logical_error_rate_test": 0.2744
+        },
+        "p0.0722": {
+          "train_file": "train_d3_dephasing_0p0722.pkl",
+          "test_file": "test_d3_dephasing_0p0722.pkl",
+          "n_detectors": 24,
+          "raw_logical_error_rate_train": 0.317,
+          "raw_logical_error_rate_test": 0.3226
+        },
+        "p0.0878": {
+          "train_file": "train_d3_dephasing_0p0878.pkl",
+          "test_file": "test_d3_dephasing_0p0878.pkl",
+          "n_detectors": 24,
+          "raw_logical_error_rate_train": 0.3554,
+          "raw_logical_error_rate_test": 0.3628
+        },
+        "p0.1033": {
+          "train_file": "train_d3_dephasing_0p1033.pkl",
+          "test_file": "test_d3_dephasing_0p1033.pkl",
+          "n_detectors": 24,
+          "raw_logical_error_rate_train": 0.3879,
+          "raw_logical_error_rate_test": 0.386
+        },
+        "p0.1189": {
+          "train_file": "train_d3_dephasing_0p1189.pkl",
+          "test_file": "test_d3_dephasing_0p1189.pkl",
+          "n_detectors": 24,
+          "raw_logical_error_rate_train": 0.4133,
+          "raw_logical_error_rate_test": 0.4134
+        },
+        "p0.1344": {
+          "train_file": "train_d3_dephasing_0p1344.pkl",
+          "test_file": "test_d3_dephasing_0p1344.pkl",
+          "n_detectors": 24,
+          "raw_logical_error_rate_train": 0.4204,
+          "raw_logical_error_rate_test": 0.4344
+        },
+        "p0.1500": {
+          "train_file": "train_d3_dephasing_0p1500.pkl",
+          "test_file": "test_d3_dephasing_0p1500.pkl",
+          "n_detectors": 24,
+          "raw_logical_error_rate_train": 0.4473,
+          "raw_logical_error_rate_test": 0.4566
+        }
+      }
+    },
+    "d5": {
+      "depolarizing": {
+        "p0.0100": {
+          "train_file": "train_d5_depolarizing_0p0100.pkl",
+          "test_file": "test_d5_depolarizing_0p0100.pkl",
+          "n_detectors": 72,
+          "raw_logical_error_rate_train": 0.1176,
+          "raw_logical_error_rate_test": 0.1166
+        },
+        "p0.0256": {
+          "train_file": "train_d5_depolarizing_0p0256.pkl",
+          "test_file": "test_d5_depolarizing_0p0256.pkl",
+          "n_detectors": 72,
+          "raw_logical_error_rate_train": 0.2457,
+          "raw_logical_error_rate_test": 0.247
+        },
+        "p0.0411": {
+          "train_file": "train_d5_depolarizing_0p0411.pkl",
+          "test_file": "test_d5_depolarizing_0p0411.pkl",
+          "n_detectors": 72,
+          "raw_logical_error_rate_train": 0.3325,
+          "raw_logical_error_rate_test": 0.3462
+        },
+        "p0.0567": {
+          "train_file": "train_d5_depolarizing_0p0567.pkl",
+          "test_file": "test_d5_depolarizing_0p0567.pkl",
+          "n_detectors": 72,
+          "raw_logical_error_rate_train": 0.3967,
+          "raw_logical_error_rate_test": 0.3926
+        },
+        "p0.0722": {
+          "train_file": "train_d5_depolarizing_0p0722.pkl",
+          "test_file": "test_d5_depolarizing_0p0722.pkl",
+          "n_detectors": 72,
+          "raw_logical_error_rate_train": 0.4375,
+          "raw_logical_error_rate_test": 0.435
+        },
+        "p0.0878": {
+          "train_file": "train_d5_depolarizing_0p0878.pkl",
+          "test_file": "test_d5_depolarizing_0p0878.pkl",
+          "n_detectors": 72,
+          "raw_logical_error_rate_train": 0.4528,
+          "raw_logical_error_rate_test": 0.4576
+        },
+        "p0.1033": {
+          "train_file": "train_d5_depolarizing_0p1033.pkl",
+          "test_file": "test_d5_depolarizing_0p1033.pkl",
+          "n_detectors": 72,
+          "raw_logical_error_rate_train": 0.4685,
+          "raw_logical_error_rate_test": 0.4806
+        },
+        "p0.1189": {
+          "train_file": "train_d5_depolarizing_0p1189.pkl",
+          "test_file": "test_d5_depolarizing_0p1189.pkl",
+          "n_detectors": 72,
+          "raw_logical_error_rate_train": 0.4851,
+          "raw_logical_error_rate_test": 0.4866
+        },
+        "p0.1344": {
+          "train_file": "train_d5_depolarizing_0p1344.pkl",
+          "test_file": "test_d5_depolarizing_0p1344.pkl",
+          "n_detectors": 72,
+          "raw_logical_error_rate_train": 0.4875,
+          "raw_logical_error_rate_test": 0.488
+        },
+        "p0.1500": {
+          "train_file": "train_d5_depolarizing_0p1500.pkl",
+          "test_file": "test_d5_depolarizing_0p1500.pkl",
+          "n_detectors": 72,
+          "raw_logical_error_rate_train": 0.489,
+          "raw_logical_error_rate_test": 0.492
+        }
+      },
+      "dephasing": {
+        "p0.0100": {
+          "train_file": "train_d5_dephasing_0p0100.pkl",
+          "test_file": "test_d5_dephasing_0p0100.pkl",
+          "n_detectors": 72,
+          "raw_logical_error_rate_train": 0.1041,
+          "raw_logical_error_rate_test": 0.099
+        },
+        "p0.0256": {
+          "train_file": "train_d5_dephasing_0p0256.pkl",
+          "test_file": "test_d5_dephasing_0p0256.pkl",
+          "n_detectors": 72,
+          "raw_logical_error_rate_train": 0.2215,
+          "raw_logical_error_rate_test": 0.2218
+        },
+        "p0.0411": {
+          "train_file": "train_d5_dephasing_0p0411.pkl",
+          "test_file": "test_d5_dephasing_0p0411.pkl",
+          "n_detectors": 72,
+          "raw_logical_error_rate_train": 0.3031,
+          "raw_logical_error_rate_test": 0.316
+        },
+        "p0.0567": {
+          "train_file": "train_d5_dephasing_0p0567.pkl",
+          "test_file": "test_d5_dephasing_0p0567.pkl",
+          "n_detectors": 72,
+          "raw_logical_error_rate_train": 0.374,
+          "raw_logical_error_rate_test": 0.378
+        },
+        "p0.0722": {
+          "train_file": "train_d5_dephasing_0p0722.pkl",
+          "test_file": "test_d5_dephasing_0p0722.pkl",
+          "n_detectors": 72,
+          "raw_logical_error_rate_train": 0.4165,
+          "raw_logical_error_rate_test": 0.4128
+        },
+        "p0.0878": {
+          "train_file": "train_d5_dephasing_0p0878.pkl",
+          "test_file": "test_d5_dephasing_0p0878.pkl",
+          "n_detectors": 72,
+          "raw_logical_error_rate_train": 0.437,
+          "raw_logical_error_rate_test": 0.4434
+        },
+        "p0.1033": {
+          "train_file": "train_d5_dephasing_0p1033.pkl",
+          "test_file": "test_d5_dephasing_0p1033.pkl",
+          "n_detectors": 72,
+          "raw_logical_error_rate_train": 0.4618,
+          "raw_logical_error_rate_test": 0.4566
+        },
+        "p0.1189": {
+          "train_file": "train_d5_dephasing_0p1189.pkl",
+          "test_file": "test_d5_dephasing_0p1189.pkl",
+          "n_detectors": 72,
+          "raw_logical_error_rate_train": 0.4734,
+          "raw_logical_error_rate_test": 0.4704
+        },
+        "p0.1344": {
+          "train_file": "train_d5_dephasing_0p1344.pkl",
+          "test_file": "test_d5_dephasing_0p1344.pkl",
+          "n_detectors": 72,
+          "raw_logical_error_rate_train": 0.4809,
+          "raw_logical_error_rate_test": 0.4658
+        },
+        "p0.1500": {
+          "train_file": "train_d5_dephasing_0p1500.pkl",
+          "test_file": "test_d5_dephasing_0p1500.pkl",
+          "n_detectors": 72,
+          "raw_logical_error_rate_train": 0.4961,
+          "raw_logical_error_rate_test": 0.485
+        }
+      }
+    },
+    "d7": {
+      "depolarizing": {
+        "p0.0100": {
+          "train_file": "train_d7_depolarizing_0p0100.pkl",
+          "test_file": "test_d7_depolarizing_0p0100.pkl",
+          "n_detectors": 144,
+          "raw_logical_error_rate_train": 0.1532,
+          "raw_logical_error_rate_test": 0.155
+        },
+        "p0.0256": {
+          "train_file": "train_d7_depolarizing_0p0256.pkl",
+          "test_file": "test_d7_depolarizing_0p0256.pkl",
+          "n_detectors": 144,
+          "raw_logical_error_rate_train": 0.3042,
+          "raw_logical_error_rate_test": 0.312
+        },
+        "p0.0411": {
+          "train_file": "train_d7_depolarizing_0p0411.pkl",
+          "test_file": "test_d7_depolarizing_0p0411.pkl",
+          "n_detectors": 144,
+          "raw_logical_error_rate_train": 0.4023,
+          "raw_logical_error_rate_test": 0.395
+        },
+        "p0.0567": {
+          "train_file": "train_d7_depolarizing_0p0567.pkl",
+          "test_file": "test_d7_depolarizing_0p0567.pkl",
+          "n_detectors": 144,
+          "raw_logical_error_rate_train": 0.4426,
+          "raw_logical_error_rate_test": 0.4384
+        },
+        "p0.0722": {
+          "train_file": "train_d7_depolarizing_0p0722.pkl",
+          "test_file": "test_d7_depolarizing_0p0722.pkl",
+          "n_detectors": 144,
+          "raw_logical_error_rate_train": 0.4722,
+          "raw_logical_error_rate_test": 0.4834
+        },
+        "p0.0878": {
+          "train_file": "train_d7_depolarizing_0p0878.pkl",
+          "test_file": "test_d7_depolarizing_0p0878.pkl",
+          "n_detectors": 144,
+          "raw_logical_error_rate_train": 0.4824,
+          "raw_logical_error_rate_test": 0.491
+        },
+        "p0.1033": {
+          "train_file": "train_d7_depolarizing_0p1033.pkl",
+          "test_file": "test_d7_depolarizing_0p1033.pkl",
+          "n_detectors": 144,
+          "raw_logical_error_rate_train": 0.4863,
+          "raw_logical_error_rate_test": 0.4878
+        },
+        "p0.1189": {
+          "train_file": "train_d7_depolarizing_0p1189.pkl",
+          "test_file": "test_d7_depolarizing_0p1189.pkl",
+          "n_detectors": 144,
+          "raw_logical_error_rate_train": 0.4941,
+          "raw_logical_error_rate_test": 0.4832
+        },
+        "p0.1344": {
+          "train_file": "train_d7_depolarizing_0p1344.pkl",
+          "test_file": "test_d7_depolarizing_0p1344.pkl",
+          "n_detectors": 144,
+          "raw_logical_error_rate_train": 0.4982,
+          "raw_logical_error_rate_test": 0.4988
+        },
+        "p0.1500": {
+          "train_file": "train_d7_depolarizing_0p1500.pkl",
+          "test_file": "test_d7_depolarizing_0p1500.pkl",
+          "n_detectors": 144,
+          "raw_logical_error_rate_train": 0.5048,
+          "raw_logical_error_rate_test": 0.5046
+        }
+      },
+      "dephasing": {
+        "p0.0100": {
+          "train_file": "train_d7_dephasing_0p0100.pkl",
+          "test_file": "test_d7_dephasing_0p0100.pkl",
+          "n_detectors": 144,
+          "raw_logical_error_rate_train": 0.1377,
+          "raw_logical_error_rate_test": 0.15
+        },
+        "p0.0256": {
+          "train_file": "train_d7_dephasing_0p0256.pkl",
+          "test_file": "test_d7_dephasing_0p0256.pkl",
+          "n_detectors": 144,
+          "raw_logical_error_rate_train": 0.2763,
+          "raw_logical_error_rate_test": 0.293
+        },
+        "p0.0411": {
+          "train_file": "train_d7_dephasing_0p0411.pkl",
+          "test_file": "test_d7_dephasing_0p0411.pkl",
+          "n_detectors": 144,
+          "raw_logical_error_rate_train": 0.3744,
+          "raw_logical_error_rate_test": 0.3822
+        },
+        "p0.0567": {
+          "train_file": "train_d7_dephasing_0p0567.pkl",
+          "test_file": "test_d7_dephasing_0p0567.pkl",
+          "n_detectors": 144,
+          "raw_logical_error_rate_train": 0.4297,
+          "raw_logical_error_rate_test": 0.435
+        },
+        "p0.0722": {
+          "train_file": "train_d7_dephasing_0p0722.pkl",
+          "test_file": "test_d7_dephasing_0p0722.pkl",
+          "n_detectors": 144,
+          "raw_logical_error_rate_train": 0.4593,
+          "raw_logical_error_rate_test": 0.459
+        },
+        "p0.0878": {
+          "train_file": "train_d7_dephasing_0p0878.pkl",
+          "test_file": "test_d7_dephasing_0p0878.pkl",
+          "n_detectors": 144,
+          "raw_logical_error_rate_train": 0.4771,
+          "raw_logical_error_rate_test": 0.4708
+        },
+        "p0.1033": {
+          "train_file": "train_d7_dephasing_0p1033.pkl",
+          "test_file": "test_d7_dephasing_0p1033.pkl",
+          "n_detectors": 144,
+          "raw_logical_error_rate_train": 0.4844,
+          "raw_logical_error_rate_test": 0.4938
+        },
+        "p0.1189": {
+          "train_file": "train_d7_dephasing_0p1189.pkl",
+          "test_file": "test_d7_dephasing_0p1189.pkl",
+          "n_detectors": 144,
+          "raw_logical_error_rate_train": 0.4881,
+          "raw_logical_error_rate_test": 0.483
+        },
+        "p0.1344": {
+          "train_file": "train_d7_dephasing_0p1344.pkl",
+          "test_file": "test_d7_dephasing_0p1344.pkl",
+          "n_detectors": 144,
+          "raw_logical_error_rate_train": 0.4865,
+          "raw_logical_error_rate_test": 0.4936
+        },
+        "p0.1500": {
+          "train_file": "train_d7_dephasing_0p1500.pkl",
+          "test_file": "test_d7_dephasing_0p1500.pkl",
+          "n_detectors": 144,
+          "raw_logical_error_rate_train": 0.4981,
+          "raw_logical_error_rate_test": 0.5042
+        }
+      }
+    }
+  }
+}

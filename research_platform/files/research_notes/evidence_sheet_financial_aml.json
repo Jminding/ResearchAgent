@@ -1,0 +1,341 @@
+{
+  "domain": "finance",
+  "title": "Financial Transaction Networks, Money Laundering Detection, Fraud Patterns - Evidence Sheet",
+  "date_created": "2025-12-24",
+  "literature_coverage_period": "2020-2025",
+  "total_references": 50,
+  "metric_ranges": {
+    "random_forest_accuracy": [0.85, 0.98],
+    "random_forest_f1_score_minority": [0.70, 0.90],
+    "isolation_forest_accuracy": [0.85, 0.95],
+    "isolation_forest_f1_score_minority": [0.70, 0.92],
+    "xgboost_accuracy": [0.94, 1.0],
+    "xgboost_auc": [0.94, 0.99],
+    "ensemble_stacking_accuracy": [0.9994, 1.0],
+    "ensemble_stacking_auc": [1.0, 1.0],
+    "gcn_f1_score_minority": [0.60, 0.75],
+    "gcn_auc": [0.70, 0.80],
+    "temporal_graph_network_auc": [0.80, 0.92],
+    "graph_autoencoder_precision_improvement": [0.025, 0.040],
+    "graph_autoencoder_recall_improvement": [0.060, 0.080],
+    "graph_autoencoder_f1_improvement": [0.050, 0.065],
+    "false_positive_rate_traditional_systems": [0.90, 0.98],
+    "false_positive_rate_ml_baseline": [0.42, 0.95],
+    "false_positive_rate_advanced_graph_systems": [0.10, 0.20],
+    "ieee_cis_baseline_auc": [0.92, 0.92],
+    "ieee_cis_optimized_auc": [0.99, 1.0],
+    "ieee_cis_fraud_rate": [0.0349, 0.0349],
+    "ieee_cis_imbalance_ratio": [27.5, 27.5],
+    "elliptic_fraud_rate": [0.0223, 0.0223],
+    "elliptic_imbalance_ratio": [44.0, 44.0],
+    "kaggle_credit_card_fraud_rate": [0.0017, 0.0017],
+    "kaggle_credit_card_imbalance_ratio": [578.0, 578.0],
+    "annual_aml_compliance_cost_billions": [274.0, 274.0]
+  },
+  "typical_sample_sizes": {
+    "ieee_cis_total_transactions": "590,540",
+    "ieee_cis_fraud_count": "20,663 (3.49%)",
+    "kaggle_credit_card_total": "284,807",
+    "kaggle_credit_card_fraud": "492 (0.17%)",
+    "elliptic_nodes": "203,769",
+    "elliptic_edges": "234,355",
+    "banking_network_nodes": "1,624,030",
+    "banking_network_edges": "3,823,167",
+    "banking_network_density": "0.00014%",
+    "saml_d_features": "12",
+    "saml_d_typologies": "28"
+  },
+  "class_imbalance_statistics": {
+    "ieee_cis_fraud_percentage": 3.49,
+    "kaggle_fraud_percentage": 0.17,
+    "elliptic_illicit_percentage": 2.23,
+    "production_aml_fraud_percentage_range": "0.0005-0.05",
+    "production_imbalance_ratio_range": "2000-200000:1",
+    "downsampling_improvement_auc": 0.005,
+    "smote_f1_improvement": 0.05,
+    "cost_weighting_f1_improvement": 0.03
+  },
+  "key_findings": [
+    {
+      "finding_id": "F1",
+      "title": "Extreme Class Imbalance is Fundamental",
+      "key_metric": "IEEE-CIS: 3.49% fraud (27.5:1), Kaggle: 0.17% (578:1), Production: 0.0005-0.05% (2000-200000:1)",
+      "implication": "All effective models require explicit imbalance handling; naive models achieve 100% false negatives"
+    },
+    {
+      "finding_id": "F2",
+      "title": "High Accuracy Does Not Guarantee Real-World Effectiveness",
+      "key_metric": "Test AUC: 99-100% vs Real-World FPR: 90-98%",
+      "implication": "Evaluation must include temporal holdout and realistic negative sampling"
+    },
+    {
+      "finding_id": "F3",
+      "title": "Isolation Forest Baseline Highly Competitive",
+      "key_metric": "IF: 0.85-0.95 accuracy, 0.70-0.92 F1 (unsupervised, O(n log n))",
+      "implication": "Minimum labeled data requirement - Isolation Forest should be primary baseline"
+    },
+    {
+      "finding_id": "F4",
+      "title": "Graph Structure Provides 2-10% Performance Gain",
+      "key_metric": "GCN: 0.60-0.75 F1, TGN superior AUC vs static GNN",
+      "implication": "Network-aware methods essential for transaction-level fraud detection"
+    },
+    {
+      "finding_id": "F5",
+      "title": "Temporal Dynamics Critical for Money Laundering",
+      "key_metric": "TGN significantly outperforms static GNN; 5-20% degradation with temporal leakage",
+      "implication": "Placement-layering-integration phases require time-aware models"
+    },
+    {
+      "finding_id": "F6",
+      "title": "Synthetic Datasets Enable Complete Ground Truth",
+      "key_metric": "eMoney and SAML-D: complete labels vs real data with undetected laundering",
+      "implication": "Synthetic data valuable for algorithm development; multi-dataset evaluation recommended"
+    },
+    {
+      "finding_id": "F7",
+      "title": "False Positive Rates Dominate Operational Costs",
+      "key_metric": "90-98% FPR (traditional) vs 10-20% (advanced graph), $274B annual cost",
+      "implication": "FPR optimization critical; cost-benefit analysis drives practical deployment"
+    },
+    {
+      "finding_id": "F8",
+      "title": "Banking Networks Extremely Sparse and Large",
+      "key_metric": "1.6M nodes, 3.8M edges, 0.00014% density",
+      "implication": "Distributed/streaming methods required; full-graph GPU inference infeasible"
+    },
+    {
+      "finding_id": "F9",
+      "title": "Downsampling Most Effective for Large Data",
+      "key_metric": "IEEE-CIS: +0.5% AUC lift from 0.92 to 0.97 with stratified downsampling",
+      "implication": "Preferred over SMOTE for >100K samples; avoids synthetic correlations"
+    },
+    {
+      "finding_id": "F10",
+      "title": "Graph Autoencoders Effective for Unsupervised Detection",
+      "key_metric": "LG-VGAE: +3.7% precision, +7.0% recall, +5.7% F1 over RF baseline",
+      "implication": "Unsupervised representation learning captures latent patterns without labels"
+    },
+    {
+      "finding_id": "F11",
+      "title": "Ensemble Methods Achieve Highest Accuracy",
+      "key_metric": "XGBoost+LightGBM+CatBoost: 99.94% accuracy, 100% AUC, 99.14% recall",
+      "implication": "State-of-the-art for supervised settings; multiple learners capture diverse patterns"
+    },
+    {
+      "finding_id": "F12",
+      "title": "28+ Distinct Money Laundering Typologies Identified",
+      "key_metric": "Placement, Layering, Integration phases; SAML-D dataset covers 28 typologies",
+      "implication": "Single-class anomaly detection insufficient; multi-class framework needed"
+    }
+  ],
+  "known_pitfalls": [
+    "Class imbalance severely biases models toward majority class; requires downsampling/SMOTE/cost-weighting",
+    "High accuracy (99%+) misleading for fraud detection; false positive rates remain 10-98% in production",
+    "Synthetic AML datasets may not capture all real-world complexities; validation against real data essential",
+    "Temporal data leakage: models trained on future data perform much better; strict temporal splits required",
+    "GNN hyperparameter tuning critical; no universal embedding dimension across datasets",
+    "Isolation Forest performance degrades on sparse features and high dimensionality",
+    "SMOTE introduces synthetic correlations; apply only to training set, not validation",
+    "Cross-border transactions legitimately trigger false positives; geographic stratification needed",
+    "Money laundering patterns evolve; models degrade with concept drift (weeks-months timescale)",
+    "Real AML data has incomplete labels; undetected laundering mislabeled as legitimate",
+    "Graph density matters: sparse networks (0.00014%) create GPU inference challenges",
+    "Threshold selection requires precision-recall analysis, not just ROC-AUC optimization",
+    "GNN computational overhead prevents real-time inference on 1M+ node networks without optimization",
+    "Regulatory explainability requirements conflict with black-box ensemble/DL methods",
+    "False positive handling ($274B annually) dominates compliance budgets",
+    "Small sample instability: performance varies with test composition and random seeds",
+    "Baseline comparison fairness: different papers use different class imbalance treatments",
+    "Subgraph sampling biases toward high-degree nodes; representative sampling strategy critical",
+    "Transaction amount features may leak label information if not carefully handled",
+    "Heterogeneous graph methods sensitive to node/edge type schema design"
+  ],
+  "dataset_summary": {
+    "ieee_cis_fraud_detection": {
+      "year": 2019,
+      "size": 590540,
+      "fraud_rate": "3.49%",
+      "features": 433,
+      "imbalance_ratio": "27.5:1",
+      "baseline_auc": 0.92,
+      "optimized_auc": 0.99,
+      "url": "https://www.kaggle.com/c/ieee-fraud-detection"
+    },
+    "kaggle_credit_card_fraud": {
+      "year": 2013,
+      "size": 284807,
+      "fraud_rate": "0.17%",
+      "features": 30,
+      "imbalance_ratio": "578:1",
+      "use_case": "Extreme imbalance benchmark"
+    },
+    "elliptic_bitcoin": {
+      "year": 2019,
+      "nodes": 203769,
+      "edges": 234355,
+      "fraud_rate": "2.23%",
+      "imbalance_ratio": "44:1",
+      "baseline_gcn_f1": 0.65,
+      "use_case": "Cryptocurrency AML, graph-based detection"
+    },
+    "emoneys_synthetic": {
+      "year": 2023,
+      "authors": "Altman et al., NeurIPS",
+      "advantage": "Complete ground truth labels",
+      "typologies": "Multiple realistic money laundering patterns",
+      "use_case": "Unbiased algorithm comparison"
+    },
+    "saml_d_synthetic": {
+      "year": 2023,
+      "authors": "Oztas et al.",
+      "features": 12,
+      "typologies": 28,
+      "coverage": "Geographic regions, high-risk countries, payment types",
+      "use_case": "Diverse typology coverage"
+    },
+    "banking_transaction_network": {
+      "nodes": 1624030,
+      "edges": 3823167,
+      "density": "0.00014%",
+      "challenge": "GPU scalability for full-graph inference"
+    }
+  },
+  "baseline_methods_summary": {
+    "isolation_forest": {
+      "type": "unsupervised",
+      "accuracy_range": [0.85, 0.95],
+      "f1_range": [0.70, 0.92],
+      "time_complexity": "O(n log n)",
+      "advantage": "No labeled data required, fast",
+      "limitation": "Performance degrades on sparse features"
+    },
+    "random_forest": {
+      "type": "supervised",
+      "accuracy_range": [0.85, 0.98],
+      "f1_range": [0.70, 0.90],
+      "requires_class_balance": true,
+      "advantage": "Interpretable, feature importance",
+      "limitation": "Biased toward majority class without mitigation"
+    },
+    "xgboost": {
+      "type": "supervised",
+      "accuracy_range": [0.94, 1.0],
+      "auc_range": [0.94, 0.99],
+      "f1_range": [0.75, 1.0],
+      "advantage": "Handles imbalance with scale_pos_weight",
+      "limitation": "Hyperparameter tuning required"
+    },
+    "ensemble_stacking": {
+      "type": "supervised",
+      "components": "XGBoost+LightGBM+CatBoost",
+      "accuracy": 0.9994,
+      "auc": 1.0,
+      "advantage": "State-of-the-art accuracy",
+      "limitation": "Computationally expensive, black-box"
+    },
+    "graph_convolutional_network": {
+      "type": "semi-supervised",
+      "f1_range": [0.60, 0.75],
+      "auc_range": [0.70, 0.80],
+      "advantage": "Exploits network structure",
+      "limitation": "Limited temporal modeling"
+    },
+    "temporal_graph_network": {
+      "type": "semi-supervised",
+      "auc_range": [0.80, 0.92],
+      "advantage": "Captures dynamic graph evolution",
+      "limitation": "Higher computational cost than GCN"
+    },
+    "graph_autoencoder": {
+      "type": "unsupervised",
+      "precision_improvement_vs_rf": "3.7%",
+      "recall_improvement_vs_rf": "7.0%",
+      "f1_improvement_vs_rf": "5.7%",
+      "advantage": "No labeled data required, latent representation learning",
+      "limitation": "Reconstruction threshold selection non-trivial"
+    }
+  },
+  "class_imbalance_mitigation": {
+    "downsampling": {
+      "effectiveness": "Most effective for large datasets (>100K)",
+      "auc_improvement": 0.005,
+      "risks": "Information loss if random",
+      "mitigation": "Use stratified downsampling",
+      "recommendation": "Primary choice for IEEE-CIS"
+    },
+    "smote": {
+      "effectiveness": "Moderate imbalance (5-50:1); poor for extreme",
+      "f1_improvement": 0.05,
+      "risks": "Synthetic correlations, overfitting if applied to test",
+      "recommendation": "Apply to training set only, 1-5% fraud rate"
+    },
+    "cost_weighting": {
+      "effectiveness": "3-5% F1-score improvement",
+      "methods": "XGBoost scale_pos_weight, RF class_weight",
+      "risks": "Sensitive to cost ratio selection",
+      "recommendation": "Use with boosting methods"
+    },
+    "stratified_kfold": {
+      "effectiveness": "Essential for reliable estimates",
+      "standard_splits": 5,
+      "risks": "Still vulnerable to temporal leakage",
+      "recommendation": "Always use with temporal holdout"
+    }
+  },
+  "research_opportunities": [
+    {
+      "gap": "Synthetic dataset validation",
+      "opportunity": "Empirical comparison of synthetic vs real detection performance"
+    },
+    {
+      "gap": "Concept drift in AML",
+      "opportunity": "Longitudinal studies of pattern evolution; continual learning frameworks"
+    },
+    {
+      "gap": "Scalability to 1M+ networks",
+      "opportunity": "Distributed GNN inference; streaming anomaly detection"
+    },
+    {
+      "gap": "Explainability for compliance",
+      "opportunity": "SHAP/LIME for GNNs; rule extraction from neural networks"
+    },
+    {
+      "gap": "False positive optimization",
+      "opportunity": "FPR-recall tradeoff curves; ensemble voting strategies"
+    },
+    {
+      "gap": "Cross-domain transfer",
+      "opportunity": "Domain adaptation for cross-bank/cross-country generalization"
+    },
+    {
+      "gap": "Minimal labeled data",
+      "opportunity": "Active learning; weak supervision; self-supervised pre-training"
+    },
+    {
+      "gap": "Blockchain-specific methods",
+      "opportunity": "UTXO-aware detection; mixing pool detection; address clustering"
+    },
+    {
+      "gap": "Collusive fraud detection",
+      "opportunity": "Subgraph anomaly detection; community detection for illicit rings"
+    },
+    {
+      "gap": "Real-time inference at scale",
+      "opportunity": "Online GNN algorithms; edge computing for AML"
+    }
+  ],
+  "recommendations_for_practitioners": [
+    "Start with Isolation Forest as baseline (unsupervised, O(n log n), no tuning)",
+    "Add XGBoost with scale_pos_weight for supervised setting",
+    "Use stratified K-fold cross-validation with temporal holdout",
+    "Optimize for precision-recall, not accuracy alone",
+    "Implement ensemble voting (2/3 or 3/5 agreement) to reduce false positives",
+    "For graph data: start with GCN, add TGN if temporal dynamics important",
+    "Retrain models quarterly to combat concept drift",
+    "Use SHAP for model explainability and regulatory compliance",
+    "Plan for 10-20x higher false positive rates in production than test-set metrics",
+    "Validate on held-out temporal data (last 2-4 weeks, no future leakage)"
+  ],
+  "notes": "Evidence sheet synthesizing 50+ peer-reviewed papers (2020-2025) on financial transaction networks, money laundering detection, and fraud patterns. Key insights: (1) Class imbalance fundamental (0.17%-3.49% fraud); (2) High accuracy misleading (99%+ test vs 10-98% real-world FPR); (3) Graph methods provide 2-10% gains; (4) Temporal modeling essential for multi-stage AML; (5) Synthetic datasets enable complete labeling; (6) False positive optimization dominates operational value. Primary datasets: IEEE-CIS (590K, 3.49%), eMoney/SAML-D (synthetic), Elliptic (203K nodes, 2.23%). Critical gaps: scalability to 1M+ networks, concept drift, explainability, cross-domain transfer, real-time inference."
+}

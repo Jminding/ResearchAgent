@@ -1,0 +1,44 @@
+
+================================================================================
+AGENT: LITERATURE-REVIEWER-1
+TYPE: literature-reviewer
+SPAWNED: 2025-12-24 04:46:03
+DESCRIPTION: GNN architectures and theory
+================================================================================
+
+PROMPT:
+Survey foundational graph neural network architectures (GCN, GAT, GraphSAGE, GIN) and theoretical properties. Focus on node/edge/graph-level learning, message passing, and scalability. MUST create evidence_sheet.json with quantitative evidence including model parameters, complexity bounds, and key performance metrics from benchmark papers.
+
+
+================================================================================
+AGENT: LITERATURE-REVIEWER-2
+TYPE: literature-reviewer
+SPAWNED: 2025-12-24 04:46:04
+DESCRIPTION: Anomaly detection methods using GNNs
+================================================================================
+
+PROMPT:
+Research anomaly detection techniques applied to graph-structured data: graph autoencoders, graph outlier detection, unsupervised GNN methods, and reconstruction-based anomaly scoring. Include node anomalies, subgraph anomalies, and temporal graph anomalies. MUST create evidence_sheet.json with quantitative evidence from published papers including detection rates, false positive rates, and AUC scores.
+
+
+================================================================================
+AGENT: LITERATURE-REVIEWER-3
+TYPE: literature-reviewer
+SPAWNED: 2025-12-24 04:46:05
+DESCRIPTION: GNNs in financial fraud detection
+================================================================================
+
+PROMPT:
+Survey applications of graph neural networks to financial crime detection: transaction graph anomalies, money laundering detection, fraud rings, and illicit financial networks. Include real-world case studies and regulatory contexts. MUST create evidence_sheet.json with quantitative evidence including fraud detection precision, recall, datasets used, and transaction volumes studied.
+
+
+================================================================================
+AGENT: LITERATURE-REVIEWER-4
+TYPE: literature-reviewer
+SPAWNED: 2025-12-24 04:46:06
+DESCRIPTION: Benchmarks and datasets for graph anomaly detection
+================================================================================
+
+PROMPT:
+Identify public datasets and benchmarks for graph anomaly detection: synthetic transaction networks, graph classification benchmarks, and financial datasets. Include evaluation protocols, baselines, and baseline model performance. MUST create evidence_sheet.json with quantitative evidence: dataset sizes, anomaly rates, baseline accuracies, and computational requirements.
+

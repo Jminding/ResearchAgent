@@ -1,0 +1,88 @@
+
+================================================================================
+AGENT: LITERATURE-REVIEWER-1
+TYPE: literature-reviewer
+SPAWNED: 2025-12-24 03:22:00
+DESCRIPTION: GNN architectures and theory
+================================================================================
+
+PROMPT:
+Research foundational graph neural network architectures (GCN, GraphSAGE, GAT, GIN, etc.), their mathematical foundations, and theoretical properties. Focus on how these architectures learn node and edge representations. MUST create files/research_notes/evidence_sheet.json with quantitative evidence on model accuracy, computational complexity, and parameter counts from peer-reviewed sources.
+
+
+================================================================================
+AGENT: LITERATURE-REVIEWER-2
+TYPE: literature-reviewer
+SPAWNED: 2025-12-24 03:22:00
+DESCRIPTION: Anomaly detection methods using GNNs
+================================================================================
+
+PROMPT:
+Research anomaly detection techniques using graph neural networks, including unsupervised, semi-supervised, and supervised approaches. Cover reconstruction-based, distance-based, and density-based GNN anomaly detection methods. MUST create files/research_notes/evidence_sheet.json with quantitative evidence on detection rates, AUC scores, F1 scores, and computational costs from published studies.
+
+
+================================================================================
+AGENT: LITERATURE-REVIEWER-3
+TYPE: literature-reviewer
+SPAWNED: 2025-12-24 03:22:01
+DESCRIPTION: Financial networks and fraud detection
+================================================================================
+
+PROMPT:
+Research financial transaction networks, fraud detection use cases, and application of GNNs to financial anomaly detection. Cover datasets (e.g., Elliptic, FinBench), benchmarks, real-world deployment challenges, and performance metrics. MUST create files/research_notes/evidence_sheet.json with quantitative evidence on detection accuracy, false positive rates, scalability metrics, and regulatory compliance requirements from financial security literature.
+
+
+================================================================================
+AGENT: THEORIST-1
+TYPE: theorist
+SPAWNED: 2025-12-24 03:30:56
+DESCRIPTION: Formalize theory and research hypothesis
+================================================================================
+
+PROMPT:
+You have access to the literature review outputs in files/research_notes/. Read ALL evidence_sheet files (evidence_sheet.json, evidence_sheet_gnn.json from anomaly detection and financial reviews). Synthesize findings into a unified mathematical framework for "GNNs for Financial Anomaly Detection". Define: (1) the problem formulation with graph construction G=(V,E) where V=accounts and E=transactions; (2) theoretical foundations from GNN literature; (3) a formal hypothesis about when heterophily-aware GNNs outperform homophily-assuming ones in financial networks; (4) key assumptions (temporal dynamics, anomaly prevalence 0.1-2%, class imbalance); (5) falsifiable predictions with quantitative thresholds (e.g., "heterophily-aware methods achieve F1 > 0.90 on financial graphs"). Write comprehensive pseudocode for the experimental validation strategy. Save all outputs to files/theory/framework.md and files/theory/hypothesis.md.
+
+
+================================================================================
+AGENT: EXPERIMENTAL-DESIGNER-1
+TYPE: experimental-designer
+SPAWNED: 2025-12-24 03:34:41
+DESCRIPTION: Design comprehensive experiment plan
+================================================================================
+
+PROMPT:
+Read files/research_notes/evidence_sheet.json (all three versions) and files/theory/ (framework.md and hypothesis.md). Design a rigorous ExperimentPlan JSON that specifies: (1) PRIMARY EXPERIMENT: Compare homophily-assuming GNNs (GCN, GraphSAGE, GAT) vs. heterophily-aware GNNs (H2GCN, FAGCN, LINKX, GPR-GNN) across synthetic financial graphs with systematically varying homophily levels h in {0.1, 0.2, 0.3, 0.4, 0.5}. (2) ABLATION STUDIES: Isolate impact of temporal weighting, class imbalance handling (SMOTE ratios), and node feature importance. (3) ROBUSTNESS CHECKS: Vary graph sizes, anomaly prevalence rates (0.1%, 0.5%, 2%), label noise (FNR, FPR). (4) DATA GUIDELINES: Prefer synthetic Stochastic Block Model graphs for controlled homophily, with optional real datasets (Elliptic, FinBench) for validation. Organize as JSON with parameter_grids, ablation_studies, robustness_checks sections. Save to files/theory/experiment_plan.json. Include data_guidelines field specifying graph construction, feature engineering, and evaluation protocols.
+
+
+================================================================================
+AGENT: DATA-COLLECTOR-1
+TYPE: data-collector
+SPAWNED: 2025-12-24 03:37:23
+DESCRIPTION: Locate and document financial network datasets
+================================================================================
+
+PROMPT:
+Read files/theory/experiment_plan.json to understand data guidelines. Your task: (1) Locate and evaluate the Elliptic Bitcoin transaction dataset and IEEE-CIS Fraud Detection dataset. Assess availability, licensing, node/edge counts, feature dimensions, anomaly prevalence, and homophily characteristics. (2) Document why synthetic Stochastic Block Model graphs are REQUIRED for primary experiments (systematic homophily control h ∈ [0.1, 0.5]). (3) Record access instructions for real datasets (Kaggle links, paper supplements, institutional repositories). (4) If real datasets have limitations, justify synthetic data generation strategy with specific parameters. (5) Create files/data/dataset_inventory.json with complete specifications (node counts, edge counts, features, anomaly%, homophily estimates, splits, access URLs). (6) Create files/data/README.md documenting dataset selection rationale, feature engineering guidelines, and temporal/graph construction details for reproducibility.
+
+
+================================================================================
+AGENT: EXPERIMENTALIST-1
+TYPE: experimentalist
+SPAWNED: 2025-12-24 03:45:21
+DESCRIPTION: Implement and execute all experiments
+================================================================================
+
+PROMPT:
+Read files/theory/experiment_plan.json and files/data/dataset_inventory.json. Your task: (1) Implement the PRIMARY EXPERIMENT comparing homophily-assuming GNNs (GCN, GraphSAGE, GAT) vs. heterophily-aware GNNs (H2GCN, FAGCN, LINKX, GPR-GNN) across synthetic SBM graphs with h ∈ {0.1, 0.2, 0.3, 0.4, 0.5}, anomaly prevalence {1%, 2%}, 5 seeds each. (2) Execute all 5 ABLATION STUDIES as specified (temporal weighting, SMOTE, feature importance, depth sensitivity, class imbalance). (3) Run all 8 ROBUSTNESS CHECKS (hyperparameter variations, graph sizes, anomaly rates, label noise, Elliptic validation). (4) Save ResultsTable (all experiment runs with model, h, prevalence, seed, F1, AUROC, Precision, Recall, latency) as files/results/results_table.json and files/results/results_table.csv. (5) Create comparative analysis files: files/results/homophily_sweep.json (F1/AUROC at each h level), files/results/ablation_summary.json (improvement deltas for each ablation). (6) Iteratively improve implementations to maximize performance on the hypothesized thresholds. Save all code to files/experiments/.
+
+
+================================================================================
+AGENT: ANALYST-1
+TYPE: analyst
+SPAWNED: 2025-12-24 04:27:31
+DESCRIPTION: Analyze results and test hypotheses
+================================================================================
+
+PROMPT:
+Read files/results/results_table.json, files/theory/experiment_plan.json, and files/research_notes/evidence_sheet.json. Your task: (1) Perform statistical hypothesis testing for all 5 hypotheses from files/theory/hypothesis.md. For each hypothesis, compute 95% confidence intervals, p-values (paired t-tests, Bonferroni corrected), and effect sizes. (2) Generate AnalysisSummary with key findings: Which hypotheses are SUPPORTED vs. FALSIFIED? What is the evidence? (3) Create detailed comparison JSONs: files/results/comparison_homophily_effect.json (F1 deltas between heterophily-aware vs. homophily-assuming at each h level with statistical significance), files/results/comparison_model_robustness.json (which models degrade under noise/imbalance). (4) If ANY hypothesis is falsified, create files/results/followup_plan.json with mode: "discovery" and 2-3 diagnostic follow-up hypotheses to explain the falsification. (5) Write comprehensive analysis to files/results/analysis_summary.md with tables, visualizations descriptions, interpretation of findings relative to prior work, and practical recommendations for practitioners. Include discussion of why results differ from literature expectations (evidence_sheet predicted F1 0.75-0.99, but some models underperform).
+

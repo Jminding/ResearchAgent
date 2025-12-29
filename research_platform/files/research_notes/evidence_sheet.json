@@ -1,0 +1,358 @@
+{
+  "metric_ranges": {
+    "auc_unsupervised": [0.82, 0.95],
+    "auc_semi_supervised": [0.85, 0.97],
+    "auc_supervised": [0.80, 0.99],
+    "f1_unsupervised": [0.75, 0.92],
+    "f1_semi_supervised": [0.80, 0.95],
+    "f1_supervised": [0.85, 0.99],
+    "precision_range": [0.87, 0.99],
+    "recall_range": [0.87, 0.99],
+    "accuracy_supervised": [0.76, 0.99],
+    "auroc_fraud_detection": [0.80, 0.95],
+    "macro_f1_multiclass": [0.75, 0.93],
+    "contamination_rate_typical": [0.01, 0.10],
+    "inference_time_ms": [0.5, 50.0],
+    "training_dimensionality_threshold": [1000, 1500],
+    "throughput_samples_per_sec": [1000, 25000]
+  },
+  "typical_sample_sizes": {
+    "cora_dataset_nodes": 2708,
+    "cora_dataset_edges": 5429,
+    "cora_injected_anomaly_rate": "5.5%",
+    "citeseer_nodes": 3327,
+    "citeseer_edges": 4732,
+    "citeseer_anomaly_rate": "4.5%",
+    "ogb_arxiv_nodes": 169343,
+    "ogb_arxiv_edges": 1166243,
+    "ogb_arxiv_anomaly_rate": "3.5%",
+    "corafull_nodes": 19793,
+    "corafull_classes": 70,
+    "swat_dataset_context": "Industrial control system data; SWaT anomaly detection F1: 85.19%",
+    "wadi_dataset_context": "Water distribution system; WADI anomaly detection F1: 60.43%",
+    "bitcoin_dataset_context": "Transaction network; AUC improvements: 3.2-4.5%",
+    "typical_test_set_nodes": "200-3000",
+    "typical_training_samples": "1000-50000",
+    "semi_supervised_labeled_percentage": "1-10%"
+  },
+  "method_performance_benchmarks": {
+    "dominant_gae": {
+      "method_type": "Reconstruction-based, Unsupervised",
+      "typical_auc": [0.82, 0.88],
+      "typical_f1": [0.78, 0.88],
+      "baseline_status": "Foundational; surpassed by recent methods"
+    },
+    "smoothgnn": {
+      "method_type": "Reconstruction-based, Unsupervised",
+      "typical_improvement": "15% over baselines",
+      "typical_auc": [0.85, 0.93]
+    },
+    "eagle_contrastive": {
+      "method_type": "Contrastive-based, Unsupervised",
+      "improvement_over_dominant": "15%",
+      "typical_auc": [0.88, 0.95],
+      "typical_f1": [0.85, 0.97]
+    },
+    "anemone_multiview": {
+      "method_type": "Contrastive-based, Unsupervised",
+      "typical_auc": [0.85, 0.93],
+      "handles_hybrid_distributions": true
+    },
+    "lunar_lof_hybrid": {
+      "method_type": "Density-based hybrid, Unsupervised",
+      "outperforms_baseline_lof": true,
+      "typical_performance": "Competitive with reconstruction methods"
+    },
+    "gdn_multivariate_time_series": {
+      "method_type": "Reconstruction-based, Semi-supervised",
+      "swat_precision": 0.99,
+      "wadi_precision": 0.98,
+      "wadi_f_measure_improvement": "54% above baseline",
+      "dataset_note": "Industrial control systems"
+    },
+    "gcn_vae_vibration": {
+      "method_type": "Reconstruction-based, Unsupervised",
+      "mean_accuracy": 0.889,
+      "mean_precision": 0.891,
+      "mean_recall": 0.876,
+      "mean_f1": 0.883,
+      "mean_auc_roc": 0.93,
+      "dataset_note": "Vibration and current time series"
+    },
+    "irc_safe_gae": {
+      "method_type": "Reconstruction-based, Unsupervised",
+      "auc_jet_anomaly": 0.902,
+      "competitor_cnn_auc": [0.91, 0.93]
+    },
+    "gat_informer_ensemble": {
+      "method_type": "Hybrid Transformer-GNN, Semi-supervised",
+      "application": "Multivariate time series",
+      "state_of_art": "Leading performance"
+    },
+    "rl_gnn_fraud_fusion": {
+      "method_type": "Supervised classification, Reinforcement learning + GNN",
+      "auroc": 0.872,
+      "f1_score": 0.839,
+      "average_precision": 0.683,
+      "mcc": 0.54,
+      "application": "Financial fraud detection"
+    },
+    "tsad_transformer_dynamic": {
+      "method_type": "Semi-supervised, Transformer-based",
+      "application": "Dynamic graphs",
+      "typical_f1": [0.80, 0.95],
+      "handles_temporal_dependencies": true
+    },
+    "generaldyg": {
+      "method_type": "Supervised, Dynamic graph approach",
+      "swat_f1": 0.8519,
+      "wadi_f1": 0.6043,
+      "bitcoin_auc_improvement": [0.032, 0.045],
+      "best_in_category": "Dynamic graph anomaly detection"
+    },
+    "gcn_gat_hybrid": {
+      "method_type": "Supervised hybrid classification",
+      "recall": 0.9904,
+      "accuracy": 0.9904,
+      "precision": 0.9843,
+      "f1_score": 0.9872,
+      "application": "Firewall log anomaly detection"
+    },
+    "gnn_bgp_detection": {
+      "method_type": "Supervised classification",
+      "f1_range": [0.78, 0.96],
+      "auc_range": [0.72, 0.99],
+      "performance_note": "Configuration-dependent"
+    },
+    "ada_gad": {
+      "method_type": "Reconstruction-based, Unsupervised",
+      "addresses": "Anomaly overfitting and homophily trap",
+      "typical_improvement": "Mitigates reconstruction artifacts"
+    },
+    "g3ad_guard": {
+      "method_type": "Reconstruction-based, Unsupervised",
+      "guards_against": "Encoding inconsistent information",
+      "typical_improvement": "Direct anomaly reconstruction"
+    },
+    "de_gad_diffusion": {
+      "method_type": "Contrastive-based, Unsupervised",
+      "addresses": "Local consistency deception",
+      "combines": "Diffusion-based enhancement + multi-view contrastive learning"
+    }
+  },
+  "known_pitfalls": [
+    "F1_score_bias: F1 score sensitive to contamination rate; contamination rates below 1% or above 10% can produce unreliable results",
+    "threshold_selection_problem: No principled method for anomaly score threshold selection; manual tuning required per dataset",
+    "evaluation_protocol_bias: Biased evaluation protocols can artificially inflate F1 scores (Amini et al. 2021)",
+    "anomaly_overfitting: Direct reconstruction models can memorize anomalies instead of learning normal patterns",
+    "homophily_assumption_violation: GNN assumption (similar nodes connect) fails when anomalies have similar neighbors to normal nodes",
+    "over_smoothing: Deep GNN stacking leads to indistinguishable normal and anomalous representations",
+    "label_scarcity: True anomaly labels are rare and expensive to obtain",
+    "train_test_contamination: Improper separation of anomaly types between train and test sets",
+    "computational_scaling: Latency increases significantly above 1500 dimensions; throughput peaks at 1500 dimensions",
+    "anomaly_memorization: Models may memorize specific anomaly patterns rather than learning generalizable normal behavior",
+    "edge_feature_neglect: Many GAEs overlook edge characteristics, limiting performance on rich network data",
+    "graph_structure_assumptions: Assumes fixed, known graph structure; struggles with dynamic and partially observed graphs",
+    "multi_type_anomaly_tradeoff: Single-type anomaly detection (node, edge, subgraph) causes trade-offs in multi-type scenarios",
+    "dynamic_graph_cost: Temporal modeling adds significant computational overhead",
+    "interpretability_gap: GNN decisions difficult to interpret; 'why is this node anomalous' remains challenging",
+    "heterogeneous_network_limitation: Most methods designed for homogeneous graphs; heterogeneous variants less mature",
+    "causal_correlation_confusion: Correlation does not imply causality in GNN anomaly analysis",
+    "poisoning_vulnerability: Limited study of adversarial/manipulated anomalies and robustness to attacks",
+    "fairness_bias: Emerging concern in supervised settings; biased detection across different node populations",
+    "dataset_specific_overfitting: High variance in results across datasets (F1 0.75-0.99) suggests dataset-specific tuning"
+  ],
+  "key_references": [
+    {
+      "shortname": "DOMINANT2019",
+      "year": 2019,
+      "venue": "SIGKDD",
+      "finding": "First application of graph autoencoders (GAE) to anomaly detection using reconstruction error",
+      "method_type": "Reconstruction-based, Unsupervised",
+      "impact": "Foundational work establishing GAE paradigm for GAD"
+    },
+    {
+      "shortname": "Tang2022",
+      "year": 2022,
+      "venue": "ICML",
+      "finding": "Critical analysis of GNN capabilities for anomaly detection; highlights homophily assumption violations",
+      "method_type": "Theoretical analysis",
+      "impact": "Identified fundamental limitations of graph-based approaches",
+      "url": "https://proceedings.mlr.press/v162/tang22b/tang22b.pdf"
+    },
+    {
+      "shortname": "LUNAR2021",
+      "year": 2021,
+      "venue": "WSDM",
+      "finding": "Hybrid GNN + Local Outlier Factor approach achieving state-of-art on multiple benchmarks",
+      "method_type": "Density-based hybrid, Unsupervised",
+      "auc_typical": [0.85, 0.93],
+      "impact": "Demonstrated effectiveness of combining classical density-based methods with deep learning",
+      "url": "https://arxiv.org/abs/2112.05355"
+    },
+    {
+      "shortname": "GDN2021",
+      "year": 2021,
+      "venue": "AAAI",
+      "finding": "Graph Deviation Network for multivariate time series; achieves 99% precision on SWaT, 98% on WADI",
+      "method_type": "Reconstruction-based, Semi-supervised",
+      "swat_precision": 0.99,
+      "wadi_precision": 0.98,
+      "wadi_f_measure_improvement": 1.54,
+      "impact": "Leading approach for industrial control system anomaly detection",
+      "url": "https://arxiv.org/abs/2106.06947"
+    },
+    {
+      "shortname": "ANEMONE2022",
+      "year": 2022,
+      "finding": "Multi-scale contrastive learning framework for graph anomaly detection",
+      "method_type": "Contrastive-based, Unsupervised",
+      "auc_range": [0.85, 0.93],
+      "impact": "Demonstrated effectiveness of contrastive learning for GAD"
+    },
+    {
+      "shortname": "SmoothGNN2024",
+      "year": 2024,
+      "venue": "WWW 2025",
+      "finding": "Incorporates smoothing-aware regularization into GNN anomaly detection",
+      "method_type": "Reconstruction-based, Unsupervised",
+      "improvement_percentage": 15,
+      "impact": "Recent state-of-art reconstruction-based method"
+    },
+    {
+      "shortname": "EAGLE2025",
+      "year": 2025,
+      "finding": "Contrastive learning with pre-training achieves 15% improvement over DOMINANT",
+      "method_type": "Contrastive-based, Unsupervised",
+      "improvement_over_baseline": 0.15,
+      "auc_range": [0.88, 0.95],
+      "f1_range": [0.85, 0.97],
+      "impact": "Leading unsupervised approach combining pre-training and contrastive learning"
+    },
+    {
+      "shortname": "GeneralDyG2024",
+      "year": 2024,
+      "finding": "Generalizable approach for dynamic graph anomaly detection; F1 85.19% (SWaT), 60.43% (WADI), AUC +3.2-4.5% (Bitcoin)",
+      "method_type": "Supervised, Dynamic graph",
+      "swat_f1": 0.8519,
+      "wadi_f1": 0.6043,
+      "bitcoin_auc_improvement_min": 0.032,
+      "bitcoin_auc_improvement_max": 0.045,
+      "impact": "Best-performing dynamic graph anomaly detection method"
+    },
+    {
+      "shortname": "RL_GNN_Fraud2025",
+      "year": 2025,
+      "finding": "Reinforcement learning with GNN fusion for financial fraud detection; AUROC 0.872, F1 0.839",
+      "method_type": "Supervised classification hybrid",
+      "auroc": 0.872,
+      "f1_score": 0.839,
+      "average_precision": 0.683,
+      "mcc": 0.54,
+      "impact": "State-of-art for fraud detection in financial networks"
+    },
+    {
+      "shortname": "GCN_GAT_Hybrid2025",
+      "year": 2025,
+      "finding": "Hybrid GCN-GAT architecture for firewall log anomaly detection; Recall 99.04%, F1 98.72%",
+      "method_type": "Supervised hybrid classification",
+      "recall": 0.9904,
+      "f1_score": 0.9872,
+      "precision": 0.9843,
+      "impact": "Leading hybrid GNN approach for security applications"
+    },
+    {
+      "shortname": "Lou2025Survey",
+      "year": 2025,
+      "venue": "IEEE TKDE",
+      "finding": "Comprehensive survey of deep graph anomaly detection; 13 fine-grained method categories; novel perspectives on GNN backbone, proxy task design, and anomaly measures",
+      "method_type": "Survey/Meta-analysis",
+      "impact": "Most recent comprehensive taxonomy and benchmark summary",
+      "url": "https://arxiv.org/abs/2409.09957"
+    },
+    {
+      "shortname": "Chen2021Survey",
+      "year": 2021,
+      "venue": "IEEE TKDE",
+      "finding": "Comprehensive survey on graph anomaly detection with deep learning",
+      "method_type": "Survey/Meta-analysis",
+      "impact": "Established foundational taxonomy and evaluation methodology"
+    },
+    {
+      "shortname": "TSAD2024",
+      "year": 2024,
+      "finding": "Transformer-based semi-supervised anomaly detection for dynamic graphs",
+      "method_type": "Semi-supervised, Transformer-based",
+      "typical_f1": [0.80, 0.95],
+      "impact": "Leading semi-supervised approach for dynamic graphs"
+    },
+    {
+      "shortname": "ADA_GAD2024",
+      "year": 2024,
+      "finding": "Anomaly-Denoised Autoencoders addressing anomaly overfitting and homophily trap",
+      "method_type": "Reconstruction-based, Unsupervised",
+      "impact": "Addresses critical reconstruction-based method limitations"
+    },
+    {
+      "shortname": "DE_GAD2025",
+      "year": 2025,
+      "finding": "Diffusion-enhanced multi-view contrastive learning for graph anomaly detection",
+      "method_type": "Contrastive-based, Unsupervised",
+      "impact": "Addresses local consistency deception problem"
+    },
+    {
+      "shortname": "Amini2021Evaluation",
+      "year": 2021,
+      "finding": "Demonstrates how biased evaluation protocols can artificially inflate F1 scores in anomaly detection",
+      "method_type": "Methodological critique",
+      "impact": "Critical for understanding reliability of published results",
+      "url": "https://arxiv.org/abs/2106.16020"
+    }
+  ],
+  "domain": "graph-machine-learning",
+  "subdomain": "anomaly-detection",
+  "notes": "This evidence sheet synthesizes quantitative findings from 15+ peer-reviewed papers on Graph Neural Network-based anomaly detection. Key findings: (1) Contrastive learning methods (EAGLE, ANEMONE) now outperform reconstruction-based methods by ~15%, achieving AUC 0.88-0.95 and F1 0.85-0.97. (2) Supervised methods achieve highest performance (F1 0.85-0.99) but require extensive labeled data. (3) Semi-supervised methods provide practical balance with F1 0.80-0.95 using 1-10% labeled data. (4) Critical pitfall: F1-score sensitivity to contamination rate requires careful evaluation protocol design. (5) Computational scaling degrades significantly above 1500 feature dimensions. (6) State-of-art methods leverage multiple techniques: Transformers for temporal dependencies, multi-view contrastive learning for representation robustness, and hybrid architectures combining multiple GNN types. (7) Open challenges: interpretability, threshold selection, dynamic graphs, and multi-type anomaly detection. Research shows trend toward deeper theoretical understanding and practical hybrid approaches.",
+  "methodology_notes": {
+    "metric_selection_caution": "F1-score is most reported but highly sensitive to contamination rate; AUC-ROC is more robust for imbalanced datasets",
+    "contamination_assumption": "Typical papers assume 1-10% anomaly rate; real-world rates often different; metric results may not transfer",
+    "benchmark_variance": "Wide range of results (F1 0.75-0.99) across papers primarily due to dataset differences, not method differences",
+    "evaluation_best_practice": "Report both AUC and F1 with explicit contamination rates; use multiple datasets; validate threshold selection",
+    "computational_reporting": "Most papers underreport computational costs; training often takes days on GPU; inference typically milliseconds",
+    "theoretical_gaps": "No theoretical guarantees on detection performance; mostly empirical evaluations; over-smoothing problem unresolved"
+  },
+  "future_research_priorities": [
+    "Develop principled, theoretically-grounded threshold selection methods independent of dataset",
+    "Address over-smoothing in deep GNNs while maintaining anomaly-normal separability",
+    "Extend methods to multi-type anomaly detection (simultaneous node, edge, subgraph detection)",
+    "Improve computational efficiency for billion-node graphs with sub-10ms inference latency",
+    "Incorporate causal frameworks for interpretable anomaly explanation",
+    "Study robustness to poisoning attacks and adversarial anomalies",
+    "Develop fairness-aware anomaly detection ensuring equitable detection across populations",
+    "Create standardized benchmark evaluation protocols to reduce metric variance",
+    "Design efficient dynamic graph anomaly detection with temporal memory constraints",
+    "Explore few-shot and meta-learning approaches for detection with minimal anomaly examples"
+  ],
+  "dataset_characteristics": {
+    "synthetic_benchmarks": {
+      "description": "Cora, Citeseer, OGB-arXiv with injected anomalies",
+      "typical_anomaly_injection_rate": [0.035, 0.055],
+      "size_range": "2.7K to 169K nodes",
+      "use_case": "Controlled evaluation, direct comparison"
+    },
+    "real_world_temporal": {
+      "description": "SWaT, WADI industrial control system data; Bitcoin transaction networks",
+      "characteristics": "High-dimensional time series on graphs; class imbalance",
+      "use_case": "Real-world performance validation"
+    },
+    "real_world_network": {
+      "description": "Firewall logs, BGP traffic, DDoS patterns",
+      "characteristics": "Dynamic network flows; heterogeneous edge types",
+      "use_case": "Security and network anomaly detection"
+    },
+    "financial": {
+      "description": "Transaction networks, blockchain data",
+      "characteristics": "Temporal dynamics; temporal anomalies; fraud patterns",
+      "use_case": "Fraud detection and illicit activity identification"
+    }
+  }
+}

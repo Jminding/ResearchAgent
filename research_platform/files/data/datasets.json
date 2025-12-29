@@ -1,0 +1,554 @@
+{
+  "metadata": {
+    "created_date": "2025-12-24",
+    "purpose": "Financial transaction network fraud detection datasets",
+    "validation_status": "URLs and access methods verified as of 2025-12-24",
+    "agent": "data_acquisition_specialist"
+  },
+  "datasets": [
+    {
+      "name": "Elliptic Bitcoin Dataset",
+      "priority": 1,
+      "source": {
+        "primary_url": "https://www.kaggle.com/datasets/ellipticco/elliptic-data-set",
+        "alternative_url": "https://pytorch-geometric.readthedocs.io/en/latest/generated/torch_geometric.datasets.EllipticBitcoinDataset.html",
+        "github_extended": "https://github.com/git-disl/EllipticPlusPlus",
+        "provider": "Elliptic Co. / University of Cambridge",
+        "publication_year": 2019
+      },
+      "access_method": {
+        "method_1": "Kaggle API: kaggle datasets download -d ellipticco/elliptic-data-set",
+        "method_2": "PyTorch Geometric: torch_geometric.datasets.EllipticBitcoinDataset",
+        "method_3": "Direct download from Kaggle webpage",
+        "authentication_required": "Kaggle API token (kaggle.json) required for API access",
+        "estimated_download_time": "< 5 minutes"
+      },
+      "dataset_size": {
+        "nodes": 203769,
+        "edges": 234355,
+        "transactions": 203769,
+        "features_per_node": 166,
+        "file_size_mb": "Approximately 50-100 MB (CSV files)",
+        "classes": 3
+      },
+      "file_structure": {
+        "format": "CSV files",
+        "files": [
+          "elliptic_txs_features.csv - 203,769 rows x 166 columns (node features)",
+          "elliptic_txs_classes.csv - Class labels (illicit/licit/unknown)",
+          "elliptic_txs_edgelist.csv - 234,355 directed edges (txId1, txId2)"
+        ],
+        "feature_breakdown": {
+          "local_features": 94,
+          "aggregate_features": 72,
+          "time_step": 1,
+          "description": "Local features are transaction-specific. Aggregate features represent 1-hop backward/forward neighbor statistics (max, min, std, correlation)"
+        }
+      },
+      "features": {
+        "feature_count": 166,
+        "feature_types": [
+          "94 local transaction features (anonymized)",
+          "72 aggregate features (neighbor statistics: max, min, std, correlation)",
+          "1 time step feature (values 1-49, representing ~2-week intervals)"
+        ],
+        "anonymization": "All features anonymized for privacy; original feature names not disclosed"
+      },
+      "labels": {
+        "label_type": "Multi-class classification",
+        "classes": {
+          "illicit": {
+            "count": 4545,
+            "percentage": 2.0,
+            "description": "Transactions associated with illicit activities (scams, ransomware, etc.)"
+          },
+          "licit": {
+            "count": 42019,
+            "percentage": 21.0,
+            "description": "Legitimate transactions from verified exchanges, services"
+          },
+          "unknown": {
+            "count": 157205,
+            "percentage": 77.0,
+            "description": "Unlabeled transactions"
+          }
+        },
+        "fraud_rate_labeled": "9.76% of labeled data is fraudulent (4545 / 46564)",
+        "fraud_rate_overall": "2.0% of all transactions labeled as fraudulent"
+      },
+      "temporal_span": {
+        "time_steps": 49,
+        "time_step_interval": "Approximately 2 weeks per time step",
+        "total_duration": "Approximately 98 weeks (~23 months)",
+        "temporal_encoding": "Discrete time steps 1-49, evenly spaced",
+        "temporal_structure": "49 weakly connected components, one per time step",
+        "transactions_per_timestep": "Between 1,000 and 8,000 nodes per component"
+      },
+      "graph_structure": {
+        "graph_type": "Directed Acyclic Graph (DAG)",
+        "average_degree": 1.15,
+        "average_degree_undirected": 2.30,
+        "calculation": "Avg degree (directed) = 234,355 / 203,769 ≈ 1.15",
+        "diameter": "Not reported in literature",
+        "clustering_coefficient": "Not reported in literature",
+        "connected_components": 49,
+        "isolated_nodes": 0,
+        "self_loops": 0,
+        "edge_direction": "Represents Bitcoin flow from one transaction to another",
+        "sparsity": "Relatively sparse graph (1.15 avg degree)"
+      },
+      "known_limitations": {
+        "limitation_1": "Only ~0.1% of total Bitcoin transactions (very small subsample)",
+        "limitation_2": "Feature anonymization prevents domain-specific feature engineering",
+        "limitation_3": "77% of nodes unlabeled (semi-supervised learning challenge)",
+        "limitation_4": "Class imbalance: only 2% labeled as illicit overall",
+        "limitation_5": "Time-step granularity (~2 weeks) may miss short-term patterns",
+        "limitation_6": "No ground truth for 'unknown' class - potential label noise",
+        "limitation_7": "Diameter and clustering coefficient not reported",
+        "limitation_8": "Relatively low connectivity (avg degree 1.15) limits GNN neighborhood aggregation"
+      },
+      "license": {
+        "license_type": "Kaggle Dataset License",
+        "usage_restrictions": "Review Kaggle dataset page for current license terms",
+        "commercial_use": "Check license details on Kaggle",
+        "attribution_required": "Yes - cite original paper and dataset",
+        "citation": "Weber, M., et al. (2019). Anti-Money Laundering in Bitcoin: Experimenting with Graph Convolutional Networks for Financial Forensics. KDD Workshop on Anomaly Detection in Finance."
+      },
+      "validation_notes": {
+        "data_quality": "High quality, professionally curated by Elliptic Co.",
+        "missing_values": "No missing values reported",
+        "anomalies": "Class imbalance is primary data challenge",
+        "preprocessing_required": "Minimal - features already normalized",
+        "recommended_splits": "Temporal split recommended (earlier time steps for train, later for test)"
+      },
+      "use_cases": [
+        "Anti-money laundering (AML) detection",
+        "Graph neural network (GNN) evaluation",
+        "Temporal graph analysis",
+        "Semi-supervised learning with graphs",
+        "Imbalanced classification",
+        "Financial forensics research"
+      ],
+      "research_impact": {
+        "downloads": "~10,000 downloads as of 2024",
+        "views": ">100,000 views on Kaggle",
+        "citations": "~400 citations to original paper",
+        "popularity": "De facto standard for Bitcoin fraud detection research"
+      }
+    },
+    {
+      "name": "IEEE-CIS Fraud Detection Dataset",
+      "priority": 2,
+      "source": {
+        "primary_url": "https://www.kaggle.com/competitions/ieee-fraud-detection",
+        "data_url": "https://www.kaggle.com/c/ieee-fraud-detection/data",
+        "provider": "Vesta Corporation & IEEE Computational Intelligence Society",
+        "competition_year": 2019
+      },
+      "access_method": {
+        "method_1": "Kaggle Competition Data: kaggle competitions download -c ieee-fraud-detection",
+        "method_2": "Direct download from Kaggle competition data page",
+        "authentication_required": "Kaggle account + accept competition rules required",
+        "competition_status": "Closed competition (data still accessible)",
+        "estimated_download_time": "5-10 minutes (larger dataset)"
+      },
+      "dataset_size": {
+        "transactions_train": 590540,
+        "transactions_test": "~500,000",
+        "total_transactions": "~1,090,000",
+        "features_train": 433,
+        "features_test": 434,
+        "file_size_gb": "Approximately 500 MB - 1 GB (CSV files)",
+        "classes": 2
+      },
+      "file_structure": {
+        "format": "CSV files",
+        "files": [
+          "train_transaction.csv - 590,540 rows, transaction data",
+          "train_identity.csv - Identity information (subset of transactions)",
+          "test_transaction.csv - ~500,000 rows",
+          "test_identity.csv - Identity information for test set"
+        ],
+        "join_key": "TransactionID (links transaction and identity tables)",
+        "note": "Not all transactions have corresponding identity information"
+      },
+      "features": {
+        "feature_count": 434,
+        "feature_categories": {
+          "transaction_features": {
+            "TransactionDT": "Timedelta from reference datetime",
+            "TransactionAMT": "Transaction amount in USD",
+            "ProductCD": "Product code (W, C, R, H, S)"
+          },
+          "card_features": {
+            "card1_to_card6": "Card type, category, issuing bank, country, etc."
+          },
+          "address_features": {
+            "addr1": "Billing region",
+            "addr2": "Billing country"
+          },
+          "distance_features": {
+            "dist1": "Distance between addresses",
+            "dist2": "Distance between addresses (alternate)"
+          },
+          "email_features": {
+            "P_emaildomain": "Purchaser email domain",
+            "R_emaildomain": "Recipient email domain"
+          },
+          "vesta_features": {
+            "V1_to_V339": "Vesta engineered features (ranking, counting, entity relations)"
+          },
+          "categorical_features": {
+            "C1_to_C14": "Counting features",
+            "D1_to_D15": "Timedelta features",
+            "M1_to_M9": "Match features (e.g., card-address match)"
+          },
+          "identity_features": {
+            "id_01_to_id_11": "Identity information",
+            "id_12_to_id_38": "Network connection and browser information (categorical)",
+            "DeviceType": "Mobile or desktop",
+            "DeviceInfo": "Device model/version"
+          }
+        },
+        "missing_values": "194 columns contain at least one missing value",
+        "feature_engineering": "Extensive Vesta proprietary features included",
+        "anonymization": "Many features anonymized (V1-V339, C1-C14, D1-D15, etc.)"
+      },
+      "labels": {
+        "label_type": "Binary classification",
+        "classes": {
+          "fraud": {
+            "count": "~20,663 (train set)",
+            "percentage": 3.5,
+            "description": "Confirmed fraudulent transactions"
+          },
+          "legitimate": {
+            "count": "~569,877 (train set)",
+            "percentage": 96.5,
+            "description": "Legitimate transactions"
+          }
+        },
+        "fraud_rate": "3.5% (more balanced than ULB dataset)",
+        "test_labels": "Not publicly available (competition format)"
+      },
+      "temporal_span": {
+        "time_feature": "TransactionDT (timedelta from reference)",
+        "actual_duration": "Not explicitly disclosed",
+        "temporal_encoding": "Continuous timedelta values",
+        "temporal_features": "D1-D15 represent various timedeltas",
+        "note": "Exact date range not disclosed for privacy"
+      },
+      "graph_structure": {
+        "native_graph": false,
+        "graph_construction_potential": {
+          "node_types": [
+            "Transactions",
+            "Cards (card1-card6)",
+            "Email domains (P_emaildomain, R_emaildomain)",
+            "Addresses (addr1, addr2)",
+            "Devices (DeviceType, DeviceInfo)",
+            "Identity entities (id features)"
+          ],
+          "edge_types": [
+            "Transaction-to-card",
+            "Transaction-to-email",
+            "Transaction-to-address",
+            "Transaction-to-device",
+            "Card-to-address (billing)",
+            "Shared entity relationships"
+          ],
+          "construction_method": "User-defined (dataset does not provide pre-built graph)",
+          "graph_type": "Heterogeneous graph (multiple node/edge types)",
+          "note": "Researchers must construct graph from tabular data"
+        },
+        "average_degree": "Not applicable (tabular data)",
+        "diameter": "Not applicable (tabular data)",
+        "clustering_coefficient": "Not applicable (tabular data)"
+      },
+      "known_limitations": {
+        "limitation_1": "Extensive missing values (194/434 columns have missing data)",
+        "limitation_2": "Feature anonymization limits interpretability",
+        "limitation_3": "No pre-built graph structure (tabular data only)",
+        "limitation_4": "Test labels not publicly available",
+        "limitation_5": "Vesta features proprietary - cannot replicate on other data",
+        "limitation_6": "Temporal span not disclosed (privacy concerns)",
+        "limitation_7": "Identity information only available for subset of transactions",
+        "limitation_8": "Requires significant feature engineering and missing value imputation",
+        "limitation_9": "Dataset reflects Vesta's specific e-commerce context (may not generalize)"
+      },
+      "license": {
+        "license_type": "Kaggle Competition License",
+        "usage_restrictions": "Must accept competition rules to access data",
+        "commercial_use": "Restricted - review competition rules",
+        "attribution_required": "Yes - acknowledge IEEE-CIS and Vesta Corporation",
+        "redistribution": "Not permitted without permission"
+      },
+      "validation_notes": {
+        "data_quality": "High quality, real-world e-commerce data from Vesta",
+        "missing_values": "Extensive - requires careful imputation strategy",
+        "anomalies": "Some categorical features have very high cardinality",
+        "preprocessing_required": "Extensive - missing value imputation, feature engineering, scaling",
+        "recommended_approach": "Ensemble methods, gradient boosting (XGBoost, LightGBM), feature selection"
+      },
+      "use_cases": [
+        "Credit card fraud detection",
+        "E-commerce fraud prevention",
+        "Imbalanced classification",
+        "Feature engineering research",
+        "Ensemble learning",
+        "Time-series fraud detection",
+        "Graph construction from tabular data (research)"
+      ],
+      "research_impact": {
+        "competition_participants": "6,351 teams",
+        "popularity": "One of largest fraud detection competitions",
+        "benchmark_status": "Standard benchmark for tabular fraud detection"
+      }
+    },
+    {
+      "name": "Credit Card Fraud Detection (ULB/Kaggle)",
+      "priority": 3,
+      "source": {
+        "primary_url": "https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud",
+        "provider": "Machine Learning Group - Université Libre de Bruxelles (MLG-ULB)",
+        "publication_year": 2013,
+        "original_paper": "Dal Pozzolo et al. - Calibrating Probability with Undersampling for Unbalanced Classification"
+      },
+      "access_method": {
+        "method_1": "Kaggle API: kaggle datasets download -d mlg-ulb/creditcardfraud",
+        "method_2": "Direct download from Kaggle webpage",
+        "authentication_required": "Kaggle API token (kaggle.json) for API access",
+        "estimated_download_time": "< 2 minutes (smaller dataset)"
+      },
+      "dataset_size": {
+        "transactions": 284807,
+        "features": 30,
+        "file_size_mb": "Approximately 150 MB (CSV file)",
+        "classes": 2
+      },
+      "file_structure": {
+        "format": "Single CSV file",
+        "files": [
+          "creditcard.csv - 284,807 rows x 31 columns (30 features + 1 label)"
+        ],
+        "columns": "Time, V1-V28, Amount, Class"
+      },
+      "features": {
+        "feature_count": 30,
+        "feature_types": {
+          "pca_features": {
+            "count": 28,
+            "names": "V1, V2, ..., V28",
+            "description": "Principal components from PCA transformation",
+            "note": "Original feature names not disclosed due to confidentiality"
+          },
+          "non_pca_features": {
+            "Time": {
+              "description": "Seconds elapsed between each transaction and first transaction",
+              "range": "0 to 172,792 seconds (48 hours)"
+            },
+            "Amount": {
+              "description": "Transaction amount in Euros",
+              "range": "Varies significantly across transactions"
+            }
+          }
+        },
+        "anonymization": "V1-V28 are PCA-transformed anonymized features",
+        "scaling": "PCA features are standardized"
+      },
+      "labels": {
+        "label_type": "Binary classification",
+        "label_column": "Class",
+        "classes": {
+          "fraud": {
+            "count": 492,
+            "percentage": 0.172,
+            "label_value": 1,
+            "description": "Fraudulent transactions"
+          },
+          "legitimate": {
+            "count": 284315,
+            "percentage": 99.828,
+            "label_value": 0,
+            "description": "Legitimate transactions"
+          }
+        },
+        "fraud_rate": "0.172% (extreme class imbalance)",
+        "class_ratio": "1:578 (fraud:legitimate)"
+      },
+      "temporal_span": {
+        "duration": "48 hours (2 days)",
+        "start_date": "September 2013 (European cardholders)",
+        "time_encoding": "Seconds from first transaction (0 to 172,792)",
+        "temporal_coverage": "Continuous 2-day period",
+        "note": "Short temporal span limits long-term pattern analysis"
+      },
+      "graph_structure": {
+        "native_graph": false,
+        "graph_construction_potential": {
+          "feasibility": "Limited - insufficient relational information",
+          "challenges": [
+            "No card/account identifiers",
+            "No merchant information",
+            "No user/device identifiers",
+            "PCA anonymization removes relational features"
+          ],
+          "possible_approaches": [
+            "Temporal proximity edges (transactions close in time)",
+            "Feature similarity edges (k-NN graph based on V1-V28)",
+            "Amount-based edges (similar transaction amounts)"
+          ],
+          "note": "Graph construction would be artificial - not recommended"
+        },
+        "average_degree": "Not applicable (tabular data, no natural graph)",
+        "diameter": "Not applicable",
+        "clustering_coefficient": "Not applicable"
+      },
+      "known_limitations": {
+        "limitation_1": "Extreme class imbalance (0.172% fraud rate)",
+        "limitation_2": "PCA transformation removes interpretability and domain knowledge",
+        "limitation_3": "Cannot perform feature engineering on original features",
+        "limitation_4": "Only 48-hour window - no long-term temporal patterns",
+        "limitation_5": "No relational information (cards, merchants, users)",
+        "limitation_6": "Cannot construct meaningful graph structure",
+        "limitation_7": "Amount feature not scaled (requires normalization)",
+        "limitation_8": "European cardholders only - geographic limitation",
+        "limitation_9": "2013 data - fraud patterns may have evolved",
+        "limitation_10": "No information about fraud types or attack vectors"
+      },
+      "license": {
+        "license_type": "Open Database License (DbCL) v1.0",
+        "usage_restrictions": "Free to use for research and education",
+        "commercial_use": "Permitted under DbCL terms",
+        "attribution_required": "Yes - cite original ULB research",
+        "citation": "Dal Pozzolo, A., et al. (2015). Calibrating Probability with Undersampling for Unbalanced Classification. IEEE Symposium Series on Computational Intelligence."
+      },
+      "validation_notes": {
+        "data_quality": "High quality, well-curated, no missing values",
+        "missing_values": "None (0 missing values)",
+        "anomalies": "Extreme class imbalance is primary challenge",
+        "preprocessing_required": [
+          "Scale 'Amount' feature (V1-V28 already scaled)",
+          "Apply sampling techniques (SMOTE, undersampling, etc.)",
+          "Consider time-based train/test split"
+        ],
+        "recommended_metrics": "Precision-Recall AUC, F1-score, not accuracy (due to imbalance)",
+        "evaluation_strategy": "Stratified k-fold cross-validation or temporal split"
+      },
+      "use_cases": [
+        "Extreme imbalanced classification",
+        "Anomaly detection",
+        "Cost-sensitive learning",
+        "Sampling technique evaluation (SMOTE, ADASYN, etc.)",
+        "Threshold optimization",
+        "Baseline fraud detection research",
+        "Educational purposes"
+      ],
+      "research_impact": {
+        "downloads": ">500,000 downloads",
+        "citations": ">1,000 citations",
+        "status": "De facto standard benchmark for imbalanced classification",
+        "popularity": "Most popular fraud detection dataset on Kaggle",
+        "community": "Extensive tutorials, kernels, and discussions available"
+      }
+    }
+  ],
+  "summary_comparison": {
+    "best_for_graph_learning": {
+      "dataset": "Elliptic Bitcoin Dataset",
+      "reason": "Native graph structure, 203K nodes, 234K edges, temporal dynamics"
+    },
+    "best_for_feature_richness": {
+      "dataset": "IEEE-CIS Fraud Detection",
+      "reason": "434 features including engineered Vesta features, device/browser info"
+    },
+    "best_for_imbalanced_learning": {
+      "dataset": "Credit Card Fraud Detection (ULB)",
+      "reason": "Extreme imbalance (0.172%), clean data, standard benchmark"
+    },
+    "largest_dataset": {
+      "dataset": "IEEE-CIS Fraud Detection",
+      "size": "~1.09M total transactions"
+    },
+    "most_realistic_fraud_rate": {
+      "dataset": "Credit Card Fraud Detection (ULB)",
+      "rate": "0.172% (closest to real-world)"
+    },
+    "best_temporal_coverage": {
+      "dataset": "Elliptic Bitcoin Dataset",
+      "span": "~23 months across 49 time steps"
+    }
+  },
+  "recommendations": {
+    "primary_recommendation": "Use Elliptic Bitcoin Dataset for graph-based fraud detection research",
+    "rationale": [
+      "Native graph structure (DAG) with 203K nodes and 234K edges",
+      "Temporal dynamics across 49 time steps (~23 months)",
+      "Realistic fraud rate (~2% labeled as illicit)",
+      "Supports both supervised and semi-supervised learning",
+      "Direct applicability to GNN architectures",
+      "Active research community and extensive benchmarks"
+    ],
+    "secondary_recommendation": "Use IEEE-CIS for feature-rich tabular fraud detection",
+    "tertiary_recommendation": "Use ULB dataset for imbalanced learning baselines",
+    "multi_dataset_strategy": {
+      "approach": "Evaluate on all three datasets for comprehensive assessment",
+      "benefits": [
+        "Elliptic: Graph structure evaluation",
+        "IEEE-CIS: High-dimensional feature learning",
+        "ULB: Extreme imbalance handling"
+      ],
+      "challenge": "Different data modalities require different model architectures"
+    }
+  },
+  "synthetic_data_justification": {
+    "is_synthetic_needed": false,
+    "reason": "Three high-quality real-world datasets available covering different aspects",
+    "when_synthetic_might_help": [
+      "If graph diameter/clustering properties need specific values (not reported for Elliptic)",
+      "If controlled fraud network patterns needed (e.g., fraud rings with known structure)",
+      "If privacy regulations prevent use of real data",
+      "For ablation studies isolating specific graph properties"
+    ],
+    "synthetic_generation_approach": {
+      "method": "Stochastic Block Model (SBM) with fraud communities",
+      "parameters": {
+        "nodes": "100,000 - 200,000",
+        "fraud_rate": "2-5%",
+        "community_structure": "Fraud rings with higher intra-community connectivity",
+        "temporal_steps": "20-50 time steps",
+        "features": "Generate using mixture models or copy Elliptic distribution"
+      },
+      "validation": "Compare graph statistics (degree distribution, clustering, etc.) to real data"
+    }
+  },
+  "data_acquisition_status": {
+    "elliptic": {
+      "status": "VERIFIED - Available on Kaggle",
+      "verified_date": "2025-12-24",
+      "access": "Immediate via Kaggle API",
+      "issues": "None"
+    },
+    "ieee_cis": {
+      "status": "VERIFIED - Available on Kaggle (competition data)",
+      "verified_date": "2025-12-24",
+      "access": "Requires competition rules acceptance",
+      "issues": "Test labels not public"
+    },
+    "ulb_creditcard": {
+      "status": "VERIFIED - Available on Kaggle",
+      "verified_date": "2025-12-24",
+      "access": "Immediate via Kaggle API",
+      "issues": "None"
+    }
+  },
+  "next_steps": {
+    "step_1": "Download Elliptic dataset using Kaggle API",
+    "step_2": "Perform exploratory data analysis (EDA) and compute graph statistics",
+    "step_3": "Validate data quality (check for missing values, outliers, etc.)",
+    "step_4": "Compute missing graph properties (diameter, clustering coefficient)",
+    "step_5": "Create train/validation/test splits (temporal split recommended)",
+    "step_6": "Document data preprocessing pipeline",
+    "step_7": "Generate summary statistics and visualizations"
+  }
+}

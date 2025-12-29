@@ -1,0 +1,230 @@
+{
+  "trigger": "Undertraining hypothesis REJECTED: Extended training (25x more episodes, 200->5000) shows no statistically significant improvement (p>0.05, flat learning curve). RL performance remains poor (LER ~0.75) regardless of training budget.",
+  "original_hypothesis_failed": "Insufficient training (200 episodes) limits RL performance at code distance d=15",
+  "mode": "demo",
+  "context": {
+    "observation": "RL decoder achieves LER ~0.75 at d=15, dramatically worse than MWPM baseline (LER ~0.08)",
+    "extended_training_result": "25x more training produces no improvement; learning curve is flat/noisy",
+    "implication": "Training duration is NOT the bottleneck; fundamental limitations exist"
+  },
+  "proposed_hypotheses": [
+    {
+      "id": "H1",
+      "hypothesis": "Insufficient model capacity: GNN architecture cannot represent complex d=15 decoding policy",
+      "rationale": "The current GNN architecture (4 layers, 128 hidden dimensions, ~100K parameters) may lack sufficient representational capacity for the complex decoding policy required at d=15. Surface codes at d=15 have 449 physical qubits and 224 syndrome bits, creating a high-dimensional input space. If the model cannot represent the optimal policy, no amount of training will help.",
+      "diagnostic_experiment": {
+        "name": "model_capacity_ablation",
+        "description": "Test GNN architectures with varying depth and width at d=15",
+        "parameters": {
+          "code_distance": [15],
+          "physical_error_rate": [0.005],
+          "gnn_architectures": [
+            {"layers": 4, "hidden_dim": 128, "params": "~100K", "label": "baseline"},
+            {"layers": 6, "hidden_dim": 256, "params": "~400K", "label": "medium"},
+            {"layers": 8, "hidden_dim": 256, "params": "~600K", "label": "deep"},
+            {"layers": 12, "hidden_dim": 512, "params": "~2.5M", "label": "very_deep"}
+          ],
+          "training_episodes": [2000],
+          "seeds": [1, 2, 3, 4, 5]
+        },
+        "metrics": ["logical_error_rate", "model_parameters", "training_time", "inference_time"],
+        "duration_estimate": "1-2 days (4 architectures x 5 seeds x 2000 episodes)"
+      },
+      "expected_outcome": "If model capacity is the bottleneck, larger architectures (8L_256H or 12L_512H) should show significantly lower LER (e.g., <0.5) compared to baseline (0.75). Expect diminishing returns: 4L->6L may help, but 8L->12L may not.",
+      "alternative_outcome": "If all architectures achieve similar LER (~0.75), capacity is NOT the issue. Move to H2.",
+      "required_comparisons": [
+        {
+          "comparison": "4L_128H_vs_8L_256H",
+          "statistical_test": "two_sample_t_test",
+          "significance_threshold": 0.05,
+          "effect_size_threshold": 0.5,
+          "interpretation": "Large effect (d>0.5) indicates capacity matters"
+        },
+        {
+          "comparison": "8L_256H_vs_12L_512H",
+          "statistical_test": "two_sample_t_test",
+          "significance_threshold": 0.05,
+          "effect_size_threshold": 0.3,
+          "interpretation": "If no improvement, capacity is saturated"
+        }
+      ],
+      "priority": 1,
+      "effort": "low_moderate",
+      "risk": "Low risk; well-defined experiment with clear interpretation"
+    },
+    {
+      "id": "H2",
+      "hypothesis": "Inadequate reward signal: Sparse logical error reward provides insufficient learning signal for d=15 complexity",
+      "rationale": "Current reward structure is sparse: +1 for successful decoding, 0 for failure. At d=15, there are ~10^14 possible error configurations, leading to a severe credit assignment problem (which actions led to success/failure?). Dense reward shaping (intermediate rewards based on syndrome weight or distance to correct state) could provide more informative gradients for learning.",
+      "diagnostic_experiment": {
+        "name": "reward_shaping_ablation",
+        "description": "Compare different reward functions at d=15",
+        "parameters": {
+          "code_distance": [15],
+          "physical_error_rate": [0.005],
+          "reward_types": [
+            {
+              "name": "sparse",
+              "description": "Current approach: +1 for correct decoding, 0 otherwise",
+              "label": "baseline"
+            },
+            {
+              "name": "dense_syndrome",
+              "description": "Reward for reducing syndrome weight (intermediate progress)",
+              "label": "dense_intermediate"
+            },
+            {
+              "name": "dense_distance",
+              "description": "Reward based on distance to correct logical state",
+              "label": "dense_distance"
+            },
+            {
+              "name": "shaped_curriculum",
+              "description": "Gradually increase d from 3->7->11->15 during training",
+              "label": "curriculum"
+            }
+          ],
+          "gnn_architecture": {"layers": 4, "hidden_dim": 128},
+          "training_episodes": [2000],
+          "seeds": [1, 2, 3, 4, 5]
+        },
+        "metrics": ["logical_error_rate", "learning_curve_slope", "convergence_episode", "final_reward"],
+        "duration_estimate": "2-3 days (4 reward types x 5 seeds x 2000 episodes)"
+      },
+      "expected_outcome": "If reward signal is the bottleneck, dense reward shaping (especially dense_syndrome or curriculum) should show: (1) faster learning curve convergence, (2) significantly lower final LER (e.g., <0.4), (3) more stable training (lower variance across seeds).",
+      "alternative_outcome": "If all reward types achieve similar LER (~0.75), reward signal is NOT the issue. Move to H3.",
+      "required_comparisons": [
+        {
+          "comparison": "sparse_vs_dense_syndrome",
+          "statistical_test": "two_sample_t_test",
+          "significance_threshold": 0.05,
+          "effect_size_threshold": 0.8,
+          "interpretation": "Large effect (d>0.8) indicates reward matters"
+        },
+        {
+          "comparison": "sparse_vs_curriculum",
+          "statistical_test": "two_sample_t_test",
+          "significance_threshold": 0.05,
+          "effect_size_threshold": 0.8,
+          "interpretation": "Curriculum learning may help even if static dense rewards don't"
+        },
+        {
+          "comparison": "learning_curve_slopes",
+          "statistical_test": "linear_regression",
+          "metric": "LER_vs_episode",
+          "interpretation": "Dense rewards should show steeper negative slope (faster learning)"
+        }
+      ],
+      "priority": 1,
+      "effort": "moderate",
+      "risk": "Moderate risk; reward engineering can be tricky, may need iteration"
+    },
+    {
+      "id": "H3",
+      "hypothesis": "Fundamental algorithm limitation: GNN-based RL may be inherently unsuited for surface code decoding at scale",
+      "rationale": "Surface code decoding with MWPM is a global optimization problem (finding minimum-weight perfect matching across the entire syndrome graph). GNN message passing is inherently local: information propagates gradually across the graph over multiple layers. Even with many layers, GNN may struggle to coordinate global decisions required for optimal matching. This is analogous to using greedy search for traveling salesman problem - local heuristics fail to find global optimum.",
+      "diagnostic_experiment": {
+        "name": "qualitative_failure_analysis",
+        "description": "Analyze where and why trained GNN deviates from optimal MWPM matching",
+        "approach": [
+          {
+            "step": 1,
+            "name": "Generate test cases",
+            "description": "Create simple, interpretable error patterns (single qubit errors, chain errors, cluster errors) at d=7 and d=15"
+          },
+          {
+            "step": 2,
+            "name": "Compare corrections",
+            "description": "For each test case, record: (1) GNN correction, (2) MWPM correction, (3) whether they match, (4) distance from optimal"
+          },
+          {
+            "step": 3,
+            "name": "Identify failure modes",
+            "description": "Categorize mismatches: Does GNN fail on: long-range correlations? high syndrome weight? specific error patterns?"
+          },
+          {
+            "step": 4,
+            "name": "Quantitative analysis",
+            "description": "Define 'matching quality' metric (e.g., overlap with MWPM matching, distance to correct logical state). Test across error complexity levels."
+          }
+        ],
+        "parameters": {
+          "code_distances": [7, 15],
+          "error_patterns": ["single_qubit", "chain", "cluster", "random"],
+          "error_weights": [1, 2, 3, 5, 10],
+          "num_samples_per_pattern": 100
+        },
+        "metrics": ["matching_overlap_with_mwpm", "logical_correctness", "syndrome_distance", "failure_mode_categories"],
+        "duration_estimate": "3-5 days (requires manual analysis and categorization)"
+      },
+      "expected_outcome": "If GNN is fundamentally limited by local structure, we expect to see: (1) Systematic deviations from MWPM even on simple cases, (2) Failure to coordinate long-range corrections, (3) Degradation with increasing error complexity, (4) Specific failure modes (e.g., can't handle chain errors > GNN receptive field).",
+      "alternative_outcome": "If GNN matches MWPM on simple cases but fails on complex ones, the issue may be capacity (H1) or training (H2), not fundamental limitation.",
+      "required_comparisons": [
+        {
+          "comparison": "matching_quality_vs_error_complexity",
+          "statistical_test": "spearman_correlation",
+          "significance_threshold": 0.05,
+          "interpretation": "Strong negative correlation confirms GNN degrades with complexity"
+        },
+        {
+          "comparison": "gnn_vs_mwpm_agreement_rate",
+          "statistical_test": "binomial_test",
+          "null_hypothesis": "Agreement by chance (50%)",
+          "interpretation": "If agreement < 60%, GNN is not learning MWPM-like strategy"
+        }
+      ],
+      "priority": 2,
+      "effort": "high",
+      "risk": "High risk; qualitative analysis is subjective, interpretation may be unclear"
+    }
+  ],
+  "recommended_next_steps": [
+    {
+      "step": 1,
+      "action": "Run H1 (model capacity ablation) immediately",
+      "rationale": "Fastest to execute, clearest interpretation, low risk. If successful, provides actionable path forward.",
+      "timeline": "1-2 days",
+      "decision_rule": "If any architecture achieves LER < 0.5 at d=15, capacity was the issue. Scale up model and re-run baseline comparisons. If all architectures ~ 0.75, move to Step 2."
+    },
+    {
+      "step": 2,
+      "action": "Run H2 (reward shaping ablation) if H1 fails",
+      "rationale": "Moderate effort, high impact if successful. Reward engineering is a known RL challenge.",
+      "timeline": "2-3 days",
+      "decision_rule": "If any reward type achieves LER < 0.4 at d=15, reward signal was the issue. Adopt best reward and re-run comparisons. If all ~ 0.75, move to Step 3."
+    },
+    {
+      "step": 3,
+      "action": "Run H3 (qualitative failure analysis) if both H1 and H2 fail",
+      "rationale": "Slower and more subjective, but provides mechanistic understanding of WHY RL fails. Helps decide whether to pivot away from RL entirely.",
+      "timeline": "3-5 days",
+      "decision_rule": "If GNN shows systematic deviations from MWPM even on simple cases, conclude that GNN-RL is fundamentally unsuited for QEC. Recommend: (1) Hybrid RL+MWPM, (2) Different model architecture (Transformer?), (3) Abandon RL for QEC."
+    },
+    {
+      "step": 4,
+      "action": "If all three fail, consider alternative directions",
+      "options": [
+        "Hybrid approach: Use RL for pre-processing, MWPM for decoding",
+        "Different architecture: Transformer-based decoder (global attention)",
+        "Supervised learning: Train on MWPM corrections (imitation learning)",
+        "Conclude RL unsuitable for QEC and publish negative result"
+      ]
+    }
+  ],
+  "success_criteria": {
+    "H1_success": "Any architecture achieves LER < 0.5 at d=15 (vs baseline 0.75)",
+    "H2_success": "Any reward type achieves LER < 0.4 at d=15 (vs baseline 0.75)",
+    "H3_insight": "Clear categorization of failure modes and mechanistic understanding",
+    "overall_success": "Identify actionable path to improve RL decoder performance OR definitively rule out RL for QEC"
+  },
+  "resource_estimates": {
+    "compute": "GPU cluster, ~5-10 GPU-days total for H1+H2",
+    "time": "1-2 weeks for all three hypotheses (sequential)",
+    "personnel": "1 researcher full-time + occasional input from PI"
+  },
+  "publication_strategy": {
+    "if_h1_or_h2_succeed": "Revise manuscript to positive framing: 'Scaling RL for QEC requires [capacity/reward shaping]'",
+    "if_all_fail": "Maintain negative result framing: 'When and why does RL fail for QEC at scale?' - valuable for community",
+    "regardless": "Extended experiments + diagnostic follow-ups strengthen paper and address all reviewer concerns"
+  }
+}
