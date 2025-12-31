@@ -60,6 +60,9 @@ logs/*
 .DS_Store
 Thumbs.db
 
+# Databases
+*.sqlite3
+
 # Markdown files
 DJANGO_SETUP_GUIDE.md
 ENHANCED_FEATURES.md
