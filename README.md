@@ -6,16 +6,16 @@ A comprehensive multi-agent research system that conducts autonomous scientific 
 
 ```bash
 # Install dependencies
-uv sync
+pip install -r requirements.txt
 
-# Set your API key
-export ANTHROPIC_API_KEY="your-api-key"
+# Make Django migrations
+cd research_platform
+python manage.py makemigrations
+python manage.py migrate
 
-# Run the agent
-uv run python research_agent/agent.py
+# Run the server
+python manage.py runserver
 ```
-
-Then ask: "Research quantum error correction codes and compare stabilizer vs. surface codes"
 
 ## How It Works
 
