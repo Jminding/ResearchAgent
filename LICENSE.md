@@ -25,6 +25,6 @@ SOFTWARE.
 ## Third-Party Components
 
 This project extends Anthropic's Claude Agent SDK. The original SDK example code
-is subject to Anthropic's licensing terms. All modifications, extensions, and 
+is subject to the MIT License as specified by Anthropic. All modifications, extensions, and 
 additional components developed for this project are licensed under the MIT 
 License above.
