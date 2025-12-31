@@ -450,3 +450,6 @@ To reproduce a session:
 3. Check `files/experiments/` for code and configurations
 4. Rerun experiments with same parameters
 5. Compare results against `files/results/results_table.csv`
+
+# Credits
+This project is based on the research agent from the Anthropic Team's Claude Agent SDK docs. The original research agent was a search and summarization agent that searched for information regarding a specified topic and returned a report of what it found. This project significantly expands upon that agent by enabling it to conduct scientific research and simulations and giving it a more easily accessible user interface.
